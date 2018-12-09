@@ -1,0 +1,56 @@
+[
+  {
+    "parameters": [
+      ["1 item with 1 SLA"],
+      ["anonymous", "identified", "identifiedAndlogged"]
+    ],
+    "scenarios": [
+      "Delivery",
+      "Pickup",
+      "Scheduled Delivery",
+      "Scheduled Pickup"
+    ],
+    "suite": [],
+    "threashold": null
+  },
+  {
+    "parameters": [
+      ["1 item with n SLAs"],
+      ["anonymous", "identified", "identifiedAndlogged"]
+    ],
+    "scenarios": [
+      "Delivery + Delivery",
+      "Delivery + Pickup",
+      "Pickup + Pickup",
+      "Scheduled Delivery + Delivery",
+      "Scheduled Delivery + Scheduled Delivery",
+      "Scheduled Delivery + Pickup",
+      "Scheduled Delivery + Scheduled Pickup",
+      "Scheduled Pickup + Delivery",
+      "Scheduled Pickup + Pickup",
+      "Scheduled Pickup + Scheduled Pickup"
+    ],
+    "suite": [],
+    "threashold": null
+  },
+  {
+    "parameters": [
+      ["n items with n SLAs"],
+      ["anonymous", "identified", "identifiedAndlogged"]
+    ],
+    "scenarios": [
+      "Delivery + Delivery",
+      "Delivery + Pickup",
+      "Pickup + Pickup",
+      "Scheduled Delivery + Delivery",
+      "Scheduled Delivery + Scheduled Delivery",
+      "Scheduled Delivery + Pickup",
+      "Scheduled Delivery + Scheduled Pickup",
+      "Scheduled Pickup + Delivery",
+      "Scheduled Pickup + Pickup",
+      "Scheduled Pickup + Scheduled Pickup"
+    ],
+    "suite": [],
+    "threashold": null
+  }
+]
