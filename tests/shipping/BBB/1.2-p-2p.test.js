@@ -1,37 +1,28 @@
-import {
-  clearBrowserStorage,
-  getAddSkusEndpointComplete,
-  setup,
-  visitAndClearCookies
-} from "../utils";
+import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
-  getRandomEmail,
-  fillProfile,
   getSecondPurchaseEmail,
   confirmSecondPurchase
-} from "../utils/profile-actions";
+} from "../../../utils/profile-actions";
 import {
-  fillShippingPreviewDelivery,
-  togglePickupShippingPreview,
-  toggleDeliveryShippingPreview,
   choosePickupOmnishipping,
-  fillPickupAddress,
-  goToPayment
-} from "../utils/shipping-actions";
-import { payWithPaymentSlip, completePurchase } from "../utils/payment-actions";
+  goToPayment,
+  chooseDeliveryOmnishipping
+} from "../../../utils/shipping-actions";
+import {
+  payWithPaymentSlip,
+  completePurchase
+} from "../../../utils/payment-actions";
 
-describe("Basic Flow", () => {
+describe("Pickup - 2P", () => {
   before(() => {
-    visitAndClearCookies()
+    visitAndClearCookies();
   });
 
   it("start with delivery then, choosing pickup, then choosing pickup", () => {
     const email = getSecondPurchaseEmail();
-    const url = getAddSkusEndpointComplete("285");
-    cy.wait(2000)
-    setup(url, { mobile: false });
 
+    setup({ skus: ["285"] });
     fillEmail(email);
     confirmSecondPurchase();
     goToPayment();
@@ -41,9 +32,7 @@ describe("Basic Flow", () => {
     cy.url({ timeout: 30000 }).should("contain", "/orderPlaced");
     cy.contains(email).should("be.visible");
     cy.contains("Gab**** God**").should("be.visible");
+    cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible");
     cy.contains("Retirar").should("be.visible");
-
   });
 });
-
-// OK

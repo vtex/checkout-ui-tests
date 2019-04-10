@@ -1,28 +1,23 @@
-import {
-  getAddSkusEndpointComplete,
-  getAddGiftListEndpoint,
-  setup,
-  visitAndClearCookies
-} from "../utils";
+import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
   getRandomEmail,
   fillProfile
-} from "../utils/profile-actions";
-import { payWithPaymentSlip, completePurchase } from "../utils/payment-actions";
+} from "../../../utils/profile-actions";
+import {
+  payWithPaymentSlip,
+  completePurchase
+} from "../../../utils/payment-actions";
 
-describe("Basic Flow", () => {
+describe("Gift List", () => {
   before(() => {
-    visitAndClearCookies()
+    visitAndClearCookies();
   });
 
   it("gift list with delivery", () => {
     const email = getRandomEmail();
-    const sku_url = getAddSkusEndpointComplete("31");
-    const url = getAddGiftListEndpoint(sku_url, '21')
-    cy.wait(2000)
-    setup(url, { mobile: false });
 
+    setup({ mobile: false, isGiftList: true, skus: ["31"] });
     fillEmail(email);
     fillProfile();
     payWithPaymentSlip();
@@ -32,6 +27,5 @@ describe("Basic Flow", () => {
     cy.contains(email).should("be.visible");
     cy.contains("Fernando Coelho").should("be.visible");
     cy.contains("Teste Endereço").should("be.visible");
-
   });
 });

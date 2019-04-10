@@ -1,0 +1,9 @@
+{
+  "integrationFolder": "tests",
+  "testFiles": "**/*.test.js",
+  "chromeWebSecurity": false,
+  "blacklistHosts": ["www.googletagmanager.com"],
+  "record": true,
+  "video": true,
+  "projectId": "kobqo4"
+}
