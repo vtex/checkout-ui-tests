@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress open",
+    "test:ci": "cypress run --record --key 1886e3df-573a-4bdc-a1af-8882fd6c3fd7"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,34 @@
   "bugs": {
     "url": "https://github.com/vtex/checkout-ui-tests/issues"
   },
-  "homepage": "https://github.com/vtex/checkout-ui-tests#readme"
+  "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
+  "devDependencies": {
+    "@vtexlab/horus": "^0.0.22",
+    "cypress": "^3.2.0"
+  },
+  "horus": {
+    "host": "vtexgame1.vtexcommercestable.com.br/checkout",
+    "path": "checkout",
+    "applicationName": "checkout-ui-tests",
+    "moduleName": "Checkout UI",
+    "description": "E2E tests for Checkout UI shopping scenarios",
+    "cypressDashboardKey": "1886e3df-573a-4bdc-a1af-8882fd6c3fd7",
+    "cypressConfig": {
+      "local": {
+        "record": true,
+        "video": true
+      },
+      "remote": {
+        "record": true,
+        "video": true
+      }
+    },
+    "slack": {
+      "hook": "https://hooks.slack.com/services/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",
+      "notify": {
+        "success": false,
+        "error": true
+      }
+    }
+  }
 }
