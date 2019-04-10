@@ -9,7 +9,7 @@ import {
   completePurchase
 } from "../../../utils/payment-actions";
 
-xdescribe("Scheduled Delivery - 2P", () => {
+describe("Scheduled Delivery - 2P", () => {
   before(() => {
     visitAndClearCookies();
     deleteAllCookies();
