@@ -22,6 +22,7 @@ export function choosePickupOmnishipping() {
 }
 
 export function fillShippingPreviewDelivery() {
+  cy.wait(1000);
   cy.get("button#shipping-calculate-link").click();
 
   cy.get("#ship-postalCode").type("22071060");

@@ -33,4 +33,3 @@ describe("Delivery + Scheduled Delivery - 2P", () => {
     cy.contains("Bot*****").should("be.visible");
   });
 });
-// OK

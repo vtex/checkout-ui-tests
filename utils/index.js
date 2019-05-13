@@ -78,7 +78,7 @@ export function identityPurchase(email) {
 }
 
 export function deleteAllCookies() {
-  cy.clearCookies("https://vtexgame1.vtexcommercebeta.com.br");
+  cy.clearCookies("https://vtexgame1.myvtex.com");
   cy.clearCookies("https://io.vtexpayments.com.br");
   var cookies = document.cookie.split(";");
 

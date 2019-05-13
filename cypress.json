@@ -5,5 +5,6 @@
   "blacklistHosts": ["www.googletagmanager.com"],
   "record": true,
   "video": true,
-  "projectId": "kobqo4"
+  "projectId": "kobqo4",
+  "pageLoadTimeout": 120000
 }

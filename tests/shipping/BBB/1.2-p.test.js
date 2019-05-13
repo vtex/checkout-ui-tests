@@ -18,7 +18,7 @@ describe("Pickup", () => {
     visitAndClearCookies();
   });
 
-  it("start with delivery then, choosing pickup, then choosing pickup", () => {
+  it("with only piickup", () => {
     const email = getRandomEmail();
 
     setup({ skus: ["285"] });
@@ -38,5 +38,3 @@ describe("Pickup", () => {
     cy.contains("Copacabana").should("be.visible");
   });
 });
-
-// OK

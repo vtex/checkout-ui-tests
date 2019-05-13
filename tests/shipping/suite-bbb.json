@@ -1,9 +1,6 @@
 [
   {
-    "parameters": [
-      ["1 item with 1 SLA"],
-      ["anonymous", "identified", "identifiedAndlogged"]
-    ],
+    "parameters": [["1 item with 1 SLA"], ["anonymous", "identified"]],
     "scenarios": [
       "Delivery",
       "Pickup",
@@ -14,10 +11,7 @@
     "threashold": null
   },
   {
-    "parameters": [
-      ["1 item with n SLAs"],
-      ["anonymous", "identified", "identifiedAndlogged"]
-    ],
+    "parameters": [["1 item with n SLAs"], ["anonymous", "identified"]],
     "scenarios": [
       "Delivery + Delivery",
       "Delivery + Pickup",
@@ -34,10 +28,7 @@
     "threashold": null
   },
   {
-    "parameters": [
-      ["n items with n SLAs"],
-      ["anonymous", "identified", "identifiedAndlogged"]
-    ],
+    "parameters": [["n items with n SLAs"], ["anonymous", "identified"]],
     "scenarios": [
       "Delivery + Delivery",
       "Delivery + Pickup",

@@ -45,4 +45,3 @@ describe("Delivery + Scheduled Delivery", () => {
     cy.contains("Agendada").should("be.visible");
   });
 });
-// OK

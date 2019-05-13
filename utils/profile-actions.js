@@ -6,7 +6,7 @@ export function fillEmail(email) {
   cy.wait(1000);
 
   cy.get("#client-pre-email", { force: true }).type(email);
-  cy.get("#btn-client-pre-email").click();
+  cy.get("#btn-client-pre-email", { force: true }).click();
 
   cy.wait(1000);
 }

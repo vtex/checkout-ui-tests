@@ -31,5 +31,3 @@ describe("Delivery - 2P", () => {
     cy.contains("Retirar").should("be.visible");
   });
 });
-
-// OK
