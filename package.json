@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress open",
+    "horus": "horus",
     "test:ci": "cypress run --record --key 1886e3df-573a-4bdc-a1af-8882fd6c3fd7"
   },
   "repository": {
