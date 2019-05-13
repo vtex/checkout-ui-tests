@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cypress open",
     "horus": "horus",
-    "test:ci": "cypress run --record --key 1886e3df-573a-4bdc-a1af-8882fd6c3fd7"
+    "test:ci": "cypress run --record --key a4b15394-7579-4f14-abb0-7b86d60f1871"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
   "devDependencies": {
     "@vtexlab/horus": "^0.0.22",
+    "@vtexlab/monitoringjs": "^0.1.16",
     "cypress": "^3.2.0"
   },
   "horus": {
@@ -28,7 +29,7 @@
     "applicationName": "checkout-ui-tests",
     "moduleName": "Checkout UI",
     "description": "E2E tests for Checkout UI shopping scenarios",
-    "cypressDashboardKey": "1886e3df-573a-4bdc-a1af-8882fd6c3fd7",
+    "cypressDashboardKey": "a4b15394-7579-4f14-abb0-7b86d60f1871",
     "cypressConfig": {
       "local": {
         "record": true,
