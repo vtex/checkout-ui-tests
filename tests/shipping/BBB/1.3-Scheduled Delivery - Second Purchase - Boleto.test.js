@@ -9,13 +9,13 @@ import {
   completePurchase
 } from "../../../utils/payment-actions";
 
-xdescribe("Scheduled Delivery - 2P", () => {
+describe("Scheduled Delivery - 2P", () => {
   before(() => {
     visitAndClearCookies();
     deleteAllCookies();
   });
 
-  it("start with delivery then, choosing pickup, then choosing delivery", () => {
+  xit("start with delivery then, choosing pickup, then choosing delivery", () => {
     const email = getSecondPurchaseEmail();
 
     setup({ skus: ["299"] });
