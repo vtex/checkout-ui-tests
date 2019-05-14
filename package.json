@@ -40,8 +40,7 @@
       "remote": {
         "record": true,
         "video": true
-      },
-      "integrationFolder": "tests"
+      }
     },
     "slack": {
       "hook": "https://hooks.slack.com/services/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",
