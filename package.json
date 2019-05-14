@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
   "devDependencies": {
-    "@vtexlab/horus": "^0.0.22",
+    "@vtexlab/horus": "^0.0.23",
     "@vtexlab/monitoringjs": "^0.1.16",
     "cypress": "^3.2.0"
   },
@@ -29,6 +29,7 @@
     "applicationName": "checkout-ui-tests",
     "moduleName": "Checkout UI",
     "description": "E2E tests for Checkout UI shopping scenarios",
+    "branch": "master",
     "cypressDashboardKey": "a4b15394-7579-4f14-abb0-7b86d60f1871",
     "cypressConfig": {
       "local": {
@@ -38,7 +39,8 @@
       "remote": {
         "record": true,
         "video": true
-      }
+      },
+      "integrationFolder": "tests"
     },
     "slack": {
       "hook": "https://hooks.slack.com/services/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",
