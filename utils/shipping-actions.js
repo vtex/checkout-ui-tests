@@ -3,6 +3,23 @@ export function fillPostalCodeOmnishipping() {
   cy.get("#ship-postalCode").type("22071060");
 }
 
+export function fillGeolocationOmnishipping() {
+  cy.wait(2000);
+
+  cy.get("#ship-addressQuery").type("Praia de Botafogo 300");
+
+  cy.get(".pac-item")
+    .first()
+    .trigger("mouseover");
+
+  cy.get(".pac-item")
+    .first()
+    .click();
+
+  cy.wait(2000);
+  cy.contains("Praia de Botafogo 300");
+}
+
 export function fillAddressInformation() {
   cy.get("#ship-number").type("12");
 }
@@ -57,19 +74,22 @@ export function chooseDeliveryDate() {
   cy.get(".react-datepicker__day--keyboard-selected", { force: true }).click();
 }
 
-export function fillPickupAddress() {
+export function fillPickupAddress(options = { isClean: false }) {
   cy.get("#find-pickups-manualy-button").click();
 
-  cy.get("#pkpmodal-search input").type("Praia de Botafogo, 300");
+  if (options.isClean) {
+    cy.get("#pkpmodal-search #ship-postalCode").type("22071060");
+  } else {
+    cy.get("#pkpmodal-search input").type("Praia de Botafogo, 300");
 
-  cy.get(".pac-item")
-    .first()
-    .trigger("mouseover");
+    cy.get(".pac-item")
+      .first()
+      .trigger("mouseover");
 
-  cy.get(".pac-item")
-    .first()
-    .click();
-
+    cy.get(".pac-item")
+      .first()
+      .click();
+  }
   cy.get(".pkpmodal-points-list #retirada-na-loja-141125d").click();
 
   cy.get("#confirm-pickup-retirada-na-loja-141125d").click();
