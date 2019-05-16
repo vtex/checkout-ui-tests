@@ -4,21 +4,28 @@ import {
   PROFILE_ENDPOINT,
   getBaseURL,
   CHECKOUT_ENDPOINT,
-  BASE_WORKSPACE
+  BASE_WORKSPACE,
+  DEFAULT_ACCOUNT_NAME,
+  getAccountName
 } from "./constants";
 
 const BASE_CONFIG = {
-  accountName: "vtexgame1",
+  accountName: DEFAULT_ACCOUNT_NAME,
   environment: Cypress.env("VTEX_ENV") || process.env.VTEX_ENV || "stable",
   workspace: BASE_WORKSPACE
 };
 
-export function setup({ mobile = false, isGiftList = false, skus }) {
+export function setup({
+  mobile = false,
+  isGiftList = false,
+  skus,
+  account = "default"
+}) {
   let url = "";
   if (isGiftList) {
-    url = getAddGiftListEndpoint(getAddSkusEndpoint(...skus), "21");
+    url = getAddGiftListEndpoint(getAddSkusEndpoint({ account, skus }), "21");
   } else {
-    url = getAddSkusEndpoint(...skus);
+    url = getAddSkusEndpoint({ account, skus });
   }
   cy.server();
   cy.route({
@@ -48,18 +55,26 @@ export function setup({ mobile = false, isGiftList = false, skus }) {
   return cy;
 }
 
-export function visitAndClearCookies() {
-  cy.visit(getBaseURL(BASE_CONFIG) + CHECKOUT_ENDPOINT);
+export function visitAndClearCookies(account = "default") {
+  cy.visit(
+    getBaseURL({
+      ...BASE_CONFIG,
+      accountName: getAccountName(account)
+    }) + CHECKOUT_ENDPOINT
+  );
   cy.clearCookies();
   cy.clearLocalStorage();
 }
 
-export function getAddSkusEndpoint() {
+export function getAddSkusEndpoint({ skus, account }) {
   deleteAllCookies();
-  return Array.from(arguments).reduce(
+  return Array.from(skus).reduce(
     (acumulatedSkus, sku, index) =>
       `${acumulatedSkus}${index > 0 ? "&" : ""}sku=${sku}&qty=1&seller=1&sc=1`,
-    getBaseURL(BASE_CONFIG) + ADD_SKUS_ENDPOINT
+    getBaseURL({
+      ...BASE_CONFIG,
+      accountName: getAccountName(account)
+    }) + ADD_SKUS_ENDPOINT
   );
 }
 
