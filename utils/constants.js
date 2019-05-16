@@ -16,7 +16,7 @@ const ENV_BASE_URLS = {
     `https://${
       workspace ? workspace + "--" : ""
     }${accountName}.vtexcommercebeta.com.br`,
-  stable: accountName => `https://${accountName}.myvtex.com`
+  stable: accountName => `https://${accountName}.vtexcommercestable.com.br`
 };
 
 export function getBaseURL({ accountName, environment, workspace }) {
