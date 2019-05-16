@@ -7,7 +7,7 @@ import {
   BASE_WORKSPACE
 } from "./constants";
 
-const VTEX_ENV = process.env.VTEX_ENV || "beta";
+const VTEX_ENV = process.env.VTEX_ENV || "stable";
 
 const BASE_CONFIG = {
   accountName: "vtexgame1",
