@@ -7,11 +7,9 @@ import {
   BASE_WORKSPACE
 } from "./constants";
 
-const VTEX_ENV = process.env.VTEX_ENV || "stable";
-
 const BASE_CONFIG = {
   accountName: "vtexgame1",
-  environment: VTEX_ENV,
+  environment: Cypress.env("VTEX_ENV") || process.env.VTEX_ENV || "stable",
   workspace: BASE_WORKSPACE
 };
 
