@@ -4,7 +4,10 @@ import {
   confirmSecondPurchase,
   getSecondPurchaseEmail
 } from "../../../utils/profile-actions";
-import { goToPayment } from "../../../utils/shipping-actions";
+import {
+  goToPayment,
+  chooseDeliveryDate
+} from "../../../utils/shipping-actions";
 import {
   payWithPaymentSlip,
   completePurchase
@@ -22,6 +25,7 @@ describe("Delivery + Scheduled Delivery - 2P", () => {
     setup({ skus: ["35", "299"] });
     fillEmail(email);
     confirmSecondPurchase();
+    chooseDeliveryDate();
     goToPayment();
     payWithPaymentSlip();
     completePurchase();
