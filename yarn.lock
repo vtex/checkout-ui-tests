@@ -61,6 +61,17 @@
     node-window-polyfill "^1.0.0"
     pug "^2.0.3"
 
+"@vtexlab/monitoringjs@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@vtexlab/monitoringjs/-/monitoringjs-0.1.20.tgz#5dae6585a3470b50b3b431b2a96b42ff935a6562"
+  integrity sha512-cDJ9QTxpjrvfwlI43+wa9bslOscVqDB1V4rpa4aQU7EP27tM5MfV7DNhAOIzUcSi+nxV2MCAOWHX3AZ0UAtECA==
+  dependencies:
+    axios "^0.18.0"
+    date-fns "^1.29.0"
+    fs "0.0.1-security"
+    node-window-polyfill "^1.0.0"
+    pug "^2.0.3"
+
 acorn-globals@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-3.1.0.tgz#fd8270f71fbb4996b004fa880ee5d46573a731bf"

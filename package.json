@@ -20,7 +20,7 @@
   "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
   "devDependencies": {
     "@vtexlab/horus": "^0.0.34",
-    "@vtexlab/monitoringjs": "^0.1.16",
+    "@vtexlab/monitoringjs": "^0.1.20",
     "cypress": "^3.2.0"
   },
   "horus": {
