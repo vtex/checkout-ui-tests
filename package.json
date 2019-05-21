@@ -34,6 +34,7 @@
     "cypressDashboardKeys": {
       "integration": "a4b15394-7579-4f14-abb0-7b86d60f1871"
     },
+    "monitoringFolder": "tests",
     "cypressConfig": {
       "local": {
         "record": true,
