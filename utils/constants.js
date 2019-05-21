@@ -8,6 +8,7 @@ export const BASE_WORKSPACE = "beta";
 export const DEFAULT_ACCOUNT_NAME = "vtexgame1";
 export const NO_GOOGLE_MAPS_ACCOUNT_NAME = "vtexgame1clean";
 export const GEOLOCATION_MAPS_ACCOUNT_NAME = "vtexgame1geo";
+export const NO_LEAN_ACCOUNT_NAME = "vtexgame1nolean";
 
 const LOCAL_PORT = process.env.PORT || 3000;
 
@@ -30,7 +31,8 @@ export function getBaseURL({ accountName, environment, workspace }) {
 export const ACCOUNT_NAMES = {
   geolocation: GEOLOCATION_MAPS_ACCOUNT_NAME,
   clean: NO_GOOGLE_MAPS_ACCOUNT_NAME,
-  default: DEFAULT_ACCOUNT_NAME
+  default: DEFAULT_ACCOUNT_NAME,
+  noLean: NO_LEAN_ACCOUNT_NAME
 };
 
 export function getAccountName(type) {

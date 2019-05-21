@@ -75,11 +75,11 @@ export function chooseDeliveryDate() {
 }
 
 export function fillPickupAddress(options = { isClean: false }) {
-  cy.get("#find-pickups-manualy-button").click();
-
   if (options.isClean) {
+    cy.get("#find-pickups-manualy-button").click();
     cy.get("#pkpmodal-search #ship-postalCode").type("22071060");
   } else {
+    cy.get("#find-pickups-manualy-button").click();
     cy.get("#pkpmodal-search input").type("Praia de Botafogo, 300");
 
     cy.get(".pac-item")

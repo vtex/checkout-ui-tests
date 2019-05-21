@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Pickup with no google maps pickup selection
+
+### Added
+
+- Delivery With Lean Shipping disabled
+
 ## [0.0.3] - 2019-05-16
 
 ### Added
