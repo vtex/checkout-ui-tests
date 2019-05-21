@@ -13,7 +13,8 @@ import {
 } from "../../../utils/shipping-actions";
 import {
   completePurchase,
-  payWithCreditCard
+  payWithCreditCard,
+  typeCVV
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 
