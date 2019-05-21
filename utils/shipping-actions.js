@@ -6,7 +6,7 @@ export function fillPostalCodeOmnishipping() {
 export function fillGeolocationOmnishipping() {
   cy.wait(2000);
 
-  cy.get("#ship-addressQuery").type("Praia de Botafogo 300");
+  cy.get("#ship-addressQuery").type("Rua Saint Roman 12");
 
   cy.get(".pac-item")
     .first()
@@ -17,11 +17,51 @@ export function fillGeolocationOmnishipping() {
     .click();
 
   cy.wait(2000);
-  cy.contains("Praia de Botafogo 300");
+  cy.contains("Rua Saint Roman 12");
 }
 
 export function fillAddressInformation() {
   cy.get("#ship-number").type("12");
+}
+
+export function unavailableDeliveryGoToPickup() {
+  cy.wait(1000);
+  cy.get(".vtex-omnishipping-1-x-pickupButton").click();
+}
+
+export function fillShippingInformation(account) {
+  if (account === "geolocation") {
+    fillGeolocationOmnishipping();
+  } else {
+    fillPostalCodeOmnishipping();
+    fillAddressInformation();
+  }
+  if (account === "noLean") {
+    cy.get("#shipping-data")
+      .contains("PAC")
+      .should("be.visible");
+    cy.get("#shipping-data")
+      .contains("Motoboy")
+      .should("be.visible");
+    cy.get("#shipping-data")
+      .contains("Expressa")
+      .should("be.visible");
+    cy.get("#shipping-data")
+      .contains("PAC Lento")
+      .should("be.visible");
+  } else {
+    cy.get("#shipping-data")
+      .contains("Mais rápida")
+      .should("be.visible");
+    cy.get("#shipping-data")
+      .contains("Mais econômica")
+      .should("be.visible");
+  }
+}
+
+export function fillRemainingInfo() {
+  cy.wait(1000);
+  cy.get(".vtex-omnishipping-1-x-btnDelivery").click();
 }
 
 export function goToPayment() {

@@ -29,10 +29,10 @@ export function getBaseURL({ accountName, environment, workspace }) {
 }
 
 export const ACCOUNT_NAMES = {
-  geolocation: GEOLOCATION_MAPS_ACCOUNT_NAME,
-  clean: NO_GOOGLE_MAPS_ACCOUNT_NAME,
   default: DEFAULT_ACCOUNT_NAME,
-  noLean: NO_LEAN_ACCOUNT_NAME
+  noLean: NO_LEAN_ACCOUNT_NAME,
+  geolocation: GEOLOCATION_MAPS_ACCOUNT_NAME,
+  clean: NO_GOOGLE_MAPS_ACCOUNT_NAME
 };
 
 export function getAccountName(type) {
