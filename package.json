@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
   "devDependencies": {
-    "@vtexlab/horus": "^0.0.29",
+    "@vtexlab/horus": "^0.0.34",
     "@vtexlab/monitoringjs": "^0.1.16",
     "cypress": "^3.2.0"
   },
@@ -31,7 +31,9 @@
     "description": "E2E tests for Checkout UI shopping scenarios",
     "branch": "master",
     "hasBeta": true,
-    "cypressDashboardKey": "a4b15394-7579-4f14-abb0-7b86d60f1871",
+    "cypressDashboardKeys": {
+      "integration": "a4b15394-7579-4f14-abb0-7b86d60f1871"
+    },
     "cypressConfig": {
       "local": {
         "record": true,

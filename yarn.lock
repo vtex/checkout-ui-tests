@@ -32,10 +32,10 @@
   dependencies:
     "@types/babel-types" "*"
 
-"@vtexlab/horus@^0.0.29":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@vtexlab/horus/-/horus-0.0.29.tgz#2a3723ca4d93336d93f279e617e2b2b45005e548"
-  integrity sha512-H4F7/Fne8WFL81FiAVzqkXTMUciCWinSxaNYZHMyxJaoe3W+aC873b2etkbt86tRGyQLQt+CTaP7ovv0wNCAPA==
+"@vtexlab/horus@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@vtexlab/horus/-/horus-0.0.34.tgz#a0ee1be751ec1d5fc6f63b3e1a8b066535098b76"
+  integrity sha512-5l1G4ObRHUZCG7d86zsLltkGCCX4D9vDESlbUfw9ChFxAKKint56wE6cvogzh+Hfq0eZ1hXFW/GDAe5n6U/iZQ==
   dependencies:
     "@vtexlab/monitoringjs" "^0.1.16"
     aws-sdk "^2.344.0"
