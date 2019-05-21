@@ -48,6 +48,18 @@ export function payWithCreditCard(options = { withAddress: false }) {
   });
 }
 
+export function typeCVV() {
+  cy.wait(5000);
+  cy.get("iframe").then($iframe => {
+    const $body = $iframe.contents().find("body");
+
+    cy.wrap($body)
+      .find("#creditCardpayment-card-0Code")
+      .type("066");
+    cy.wait(1000);
+  });
+}
+
 export function completePurchase() {
   cy.wait(1000);
   cy.get("#payment-data-submit").should("not.have.attr", "disabled");
