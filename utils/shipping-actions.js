@@ -76,7 +76,7 @@ export function chooseDeliveryDate() {
 
 export function fillPickupAddress(options = { isClean: false }) {
   if (options.isClean) {
-    cy.get("#find-pickups-manualy-button").click();
+    cy.get("#find-pickups-manualy-button-denied").click();
     cy.get("#pkpmodal-search #ship-postalCode").type("22071060");
   } else {
     cy.get("#find-pickups-manualy-button").click();
