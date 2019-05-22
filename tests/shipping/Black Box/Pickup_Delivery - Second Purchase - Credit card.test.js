@@ -60,8 +60,7 @@ testWrapper(account => {
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Receber").should("be.visible");
-      cy.contains("Rua Saint Roman 12").should("be.visible");
-      cy.contains("Copacabana").should("be.visible");
+      cy.contains("Pra** ** *****ogo, ***").should("be.visible");
     });
   });
 });
