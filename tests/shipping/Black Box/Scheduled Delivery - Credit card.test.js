@@ -10,11 +10,9 @@ import {
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 import {
-  fillGeolocationOmnishipping,
-  fillPostalCodeOmnishipping,
-  fillAddressInformation,
   goToPayment,
-  chooseDeliveryDate
+  chooseDeliveryDate,
+  fillShippingInformation
 } from "../../../utils/shipping-actions";
 
 testWrapper(account => {
@@ -30,12 +28,7 @@ testWrapper(account => {
       fillEmail(email);
       fillProfile();
 
-      if (account === "geolocation") {
-        fillGeolocationOmnishipping();
-      } else {
-        fillPostalCodeOmnishipping();
-        fillAddressInformation();
-      }
+      fillShippingInformation(account);
       chooseDeliveryDate();
 
       cy.get("#shipping-data")
@@ -53,7 +46,6 @@ testWrapper(account => {
       cy.contains(email).should("be.visible");
       cy.contains("Fernando Coelho").should("be.visible");
       cy.contains("5521999999999").should("be.visible");
-      cy.contains("Boleto bancário").should("be.visible");
       cy.contains("Receber").should("be.visible");
       cy.contains("Rua Saint Roman 12").should("be.visible");
       cy.contains("Copacabana").should("be.visible");

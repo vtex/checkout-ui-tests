@@ -5,10 +5,10 @@ import {
   fillProfile
 } from "../../../utils/profile-actions";
 import {
-  fillPostalCodeOmnishipping,
   fillAddressInformation,
   goToPayment,
-  chooseDeliveryDate
+  chooseDeliveryDate,
+  fillShippingInformation
 } from "../../../utils/shipping-actions";
 import {
   completePurchase,
@@ -29,9 +29,8 @@ testWrapper(account => {
 
       fillEmail(email);
       fillProfile();
-      fillPostalCodeOmnishipping();
+      fillShippingInformation(account);
       chooseDeliveryDate();
-      fillAddressInformation();
       goToPayment();
       payWithCreditCard();
       completePurchase();

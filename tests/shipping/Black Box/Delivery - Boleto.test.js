@@ -30,6 +30,27 @@ testWrapper(account => {
       fillEmail(email);
       fillProfile();
       fillShippingInformation(account);
+      if (account === "noLean") {
+        cy.get("#shipping-data")
+          .contains("PAC")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Motoboy")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Expressa")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("PAC Lento")
+          .should("be.visible");
+      } else {
+        cy.get("#shipping-data")
+          .contains("Mais rápida")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Mais econômica")
+          .should("be.visible");
+      }
       goToPayment();
       payWithPaymentSlip();
       completePurchase();

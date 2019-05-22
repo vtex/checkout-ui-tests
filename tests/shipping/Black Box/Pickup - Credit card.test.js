@@ -27,7 +27,11 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       fillProfile();
-      fillPickupAddress();
+      fillPickupAddress({
+        isClean: ["clean", "noLean"].some(
+          localAccount => localAccount === account
+        )
+      });
       goToPayment();
       payWithCreditCard({ withAddress: true });
       completePurchase();

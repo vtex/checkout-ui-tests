@@ -1,17 +1,13 @@
 import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
-  getRandomEmail,
-  fillProfile,
   getSecondPurchaseEmail,
   confirmSecondPurchase
 } from "../../../utils/profile-actions";
 import {
-  fillPickupAddress,
   goToPayment,
   unavailableDeliveryGoToPickup,
-  fillRemainingInfo,
-  fillShippingInformation
+  fillRemainingInfo
 } from "../../../utils/shipping-actions";
 import {
   payWithPaymentSlip,
