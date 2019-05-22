@@ -9,7 +9,7 @@ import { completePurchase, typeCVV } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Delivery - 2P - ${account}`, () => {
+  describe(`Delivery - 2P - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });

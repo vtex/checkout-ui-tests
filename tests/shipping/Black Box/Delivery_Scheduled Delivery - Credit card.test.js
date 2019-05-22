@@ -11,13 +11,13 @@ import {
   chooseDeliveryDate
 } from "../../../utils/shipping-actions";
 import {
-  payWithPaymentSlip,
-  completePurchase
+  completePurchase,
+  payWithCreditCard
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Delivery + Scheduled Delivery - Boleto - ${account}`, () => {
+  describe(`Delivery + Scheduled Delivery - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
@@ -33,7 +33,7 @@ testWrapper(account => {
       chooseDeliveryDate();
       fillAddressInformation();
       goToPayment();
-      payWithPaymentSlip();
+      payWithCreditCard();
       completePurchase();
 
       cy.url({ timeout: 30000 }).should("contain", "/orderPlaced");

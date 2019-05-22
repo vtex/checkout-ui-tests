@@ -18,7 +18,7 @@ import {
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Pickup + Delivery - ${account}`, () => {
+  describe(`Pickup + Delivery - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });

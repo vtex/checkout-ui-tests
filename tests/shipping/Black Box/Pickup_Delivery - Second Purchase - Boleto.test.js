@@ -20,7 +20,7 @@ import {
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Pickup + Delivery - 2P - ${account}`, () => {
+  describe(`Pickup + Delivery - 2P - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });

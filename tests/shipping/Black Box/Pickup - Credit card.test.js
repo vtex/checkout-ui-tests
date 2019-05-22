@@ -16,7 +16,7 @@ import { ACCOUNT_NAMES } from "../../../utils/constants";
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Pickup - ${account}`, () => {
+  describe(`Pickup - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });

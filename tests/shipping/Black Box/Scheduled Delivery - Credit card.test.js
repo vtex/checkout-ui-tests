@@ -18,7 +18,7 @@ import {
 } from "../../../utils/shipping-actions";
 
 testWrapper(account => {
-  describe(`Scheduled Delivery - ${account}`, () => {
+  describe(`Scheduled Delivery - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
