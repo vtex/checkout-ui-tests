@@ -5,10 +5,10 @@ import {
   fillProfile
 } from "../../../utils/profile-actions";
 import {
-  fillPostalCodeOmnishipping,
   fillAddressInformation,
   goToPayment,
-  chooseDeliveryDate
+  chooseDeliveryDate,
+  fillShippingInformation
 } from "../../../utils/shipping-actions";
 import {
   payWithPaymentSlip,
@@ -17,7 +17,7 @@ import {
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe("Delivery + Scheduled Delivery - ${account}", () => {
+  describe(`Delivery + Scheduled Delivery - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
@@ -29,9 +29,8 @@ testWrapper(account => {
 
       fillEmail(email);
       fillProfile();
-      fillPostalCodeOmnishipping();
+      fillShippingInformation(account);
       chooseDeliveryDate();
-      fillAddressInformation();
       goToPayment();
       payWithPaymentSlip();
       completePurchase();

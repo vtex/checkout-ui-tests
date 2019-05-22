@@ -18,7 +18,7 @@ import {
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Delivery - ${account}`, () => {
+  describe(`Delivery - Credit Card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
@@ -30,6 +30,27 @@ testWrapper(account => {
       fillEmail(email);
       fillProfile();
       fillShippingInformation(account);
+      if (account === "noLean") {
+        cy.get("#shipping-data")
+          .contains("PAC")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Motoboy")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Expressa")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("PAC Lento")
+          .should("be.visible");
+      } else {
+        cy.get("#shipping-data")
+          .contains("Mais rápida")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Mais econômica")
+          .should("be.visible");
+      }
       goToPayment();
       payWithCreditCard();
       completePurchase();

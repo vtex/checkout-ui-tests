@@ -8,7 +8,7 @@ import { completePurchase, typeCVV } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Scheduled Delivery - 2P - account`, () => {
+  describe(`Scheduled Delivery - 2P - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });

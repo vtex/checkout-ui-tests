@@ -6,9 +6,10 @@ import {
 } from "../../../utils/profile-actions";
 import { completePurchase, typeCVV } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
+import { goToPayment } from "../../../utils/shipping-actions";
 
 testWrapper(account => {
-  describe(`Pickup - 2P - ${account}`, () => {
+  describe(`Pickup - 2P - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
@@ -19,6 +20,7 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      goToPayment();
       typeCVV();
       completePurchase();
 

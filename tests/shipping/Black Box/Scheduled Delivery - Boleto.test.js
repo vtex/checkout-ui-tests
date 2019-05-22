@@ -1,8 +1,6 @@
 import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
-  getSecondPurchaseEmail,
-  confirmSecondPurchase,
   getRandomEmail,
   fillProfile
 } from "../../../utils/profile-actions";
@@ -12,15 +10,13 @@ import {
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 import {
-  fillGeolocationOmnishipping,
-  fillPostalCodeOmnishipping,
-  fillAddressInformation,
   goToPayment,
-  chooseDeliveryDate
+  chooseDeliveryDate,
+  fillShippingInformation
 } from "../../../utils/shipping-actions";
 
 testWrapper(account => {
-  describe(`Scheduled Delivery - ${account}`, () => {
+  describe(`Scheduled Delivery - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
@@ -32,12 +28,7 @@ testWrapper(account => {
       fillEmail(email);
       fillProfile();
 
-      if (account === "geolocation") {
-        fillGeolocationOmnishipping();
-      } else {
-        fillPostalCodeOmnishipping();
-        fillAddressInformation();
-      }
+      fillShippingInformation(account);
       chooseDeliveryDate();
 
       cy.get("#shipping-data")
@@ -60,7 +51,6 @@ testWrapper(account => {
       cy.contains("Rua Saint Roman 12").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Agendada").should("be.visible");
-      cy.contains("Entre 09:00 e 21:00").should("be.visible");
     });
   });
 });

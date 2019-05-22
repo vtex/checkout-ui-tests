@@ -36,27 +36,6 @@ export function fillShippingInformation(account) {
     fillPostalCodeOmnishipping();
     fillAddressInformation();
   }
-  if (account === "noLean") {
-    cy.get("#shipping-data")
-      .contains("PAC")
-      .should("be.visible");
-    cy.get("#shipping-data")
-      .contains("Motoboy")
-      .should("be.visible");
-    cy.get("#shipping-data")
-      .contains("Expressa")
-      .should("be.visible");
-    cy.get("#shipping-data")
-      .contains("PAC Lento")
-      .should("be.visible");
-  } else {
-    cy.get("#shipping-data")
-      .contains("Mais rápida")
-      .should("be.visible");
-    cy.get("#shipping-data")
-      .contains("Mais econômica")
-      .should("be.visible");
-  }
 }
 
 export function fillRemainingInfo() {
@@ -108,8 +87,8 @@ export function toggleDeliveryShippingPreview() {
 export function chooseDeliveryDate() {
   cy.get("#scheduled-delivery-delivery").click();
   cy.wait(1000);
-  cy.get("#scheduled-delivery-delivery").click();
-  cy.get("#scheduled-delivery-delivery").click();
+  cy.get("#scheduled-delivery-delivery", { force: true }).click();
+  cy.get("#scheduled-delivery-delivery", { force: true }).click();
   cy.get("#scheduled-delivery-choose-agendada", { force: true }).click();
   cy.get(".react-datepicker__day--keyboard-selected", { force: true }).click();
 }

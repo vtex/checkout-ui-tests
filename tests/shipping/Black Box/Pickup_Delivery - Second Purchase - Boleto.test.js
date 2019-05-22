@@ -1,17 +1,13 @@
 import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
-  getRandomEmail,
-  fillProfile,
   getSecondPurchaseEmail,
   confirmSecondPurchase
 } from "../../../utils/profile-actions";
 import {
-  fillPickupAddress,
   goToPayment,
   unavailableDeliveryGoToPickup,
-  fillRemainingInfo,
-  fillShippingInformation
+  fillRemainingInfo
 } from "../../../utils/shipping-actions";
 import {
   payWithPaymentSlip,
@@ -20,7 +16,7 @@ import {
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Pickup + Delivery - 2P - ${account}`, () => {
+  describe(`Pickup + Delivery - 2P - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
@@ -61,8 +57,7 @@ testWrapper(account => {
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Receber").should("be.visible");
-      cy.contains("Rua Saint Roman 12").should("be.visible");
-      cy.contains("Copacabana").should("be.visible");
+      cy.contains("Pra** ** *****ogo, ***").should("be.visible");
     });
   });
 });

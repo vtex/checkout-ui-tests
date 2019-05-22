@@ -20,6 +20,7 @@ export function payWithCreditCard(options = { withAddress: false }) {
       .find("#creditCardpayment-card-0Name")
       .type("Fernando A Coelho");
     cy.wait(1000);
+
     cy.wrap($body)
       .find("#creditCardpayment-card-0Brand")
       .select("1");
@@ -56,6 +57,11 @@ export function typeCVV() {
   cy.wait(5000);
   cy.get("iframe").then($iframe => {
     const $body = $iframe.contents().find("body");
+
+    cy.wrap($body)
+      .find("#creditCardpayment-card-0Brand")
+      .select("1");
+    cy.wait(1000);
 
     cy.wrap($body)
       .find("#creditCardpayment-card-0Code")

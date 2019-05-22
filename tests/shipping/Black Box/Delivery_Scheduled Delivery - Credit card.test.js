@@ -5,39 +5,32 @@ import {
   fillProfile
 } from "../../../utils/profile-actions";
 import {
-  completePurchase,
-  payWithCreditCard
-} from "../../../utils/payment-actions";
-import { testWrapper } from "../../../utils/testWrapper";
-import {
+  fillAddressInformation,
   goToPayment,
   chooseDeliveryDate,
   fillShippingInformation
 } from "../../../utils/shipping-actions";
+import {
+  completePurchase,
+  payWithCreditCard
+} from "../../../utils/payment-actions";
+import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Scheduled Delivery - Credit card - ${account}`, () => {
+  describe(`Delivery + Scheduled Delivery - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
 
-    it("complete purchase with scheduled delivery", () => {
+    it("delivery with scheduled delivery with multiple items", () => {
       const email = getRandomEmail();
 
-      setup({ skus: ["299"], account });
+      setup({ skus: ["35", "299"], account });
+
       fillEmail(email);
       fillProfile();
-
       fillShippingInformation(account);
       chooseDeliveryDate();
-
-      cy.get("#shipping-data")
-        .contains("agendada")
-        .should("be.visible");
-      cy.get("#shipping-data")
-        .contains("agendada-top")
-        .should("be.visible");
-
       goToPayment();
       payWithCreditCard();
       completePurchase();

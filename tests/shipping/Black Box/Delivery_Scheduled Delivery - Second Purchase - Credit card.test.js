@@ -1,25 +1,34 @@
 import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
-  getSecondPurchaseEmail,
-  confirmSecondPurchase
+  confirmSecondPurchase,
+  getSecondPurchaseEmail
 } from "../../../utils/profile-actions";
-import { completePurchase, typeCVV } from "../../../utils/payment-actions";
-
+import {
+  goToPayment,
+  chooseDeliveryDate
+} from "../../../utils/shipping-actions";
+import {
+  payWithPaymentSlip,
+  completePurchase,
+  typeCVV
+} from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 
 testWrapper(account => {
-  describe(`Delivery - 2P - Credit card - ${account}`, () => {
+  describe(`Delivery + Scheduled Delivery - 2P - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
 
-    it("delivery with second purchase email", () => {
+    it("delivery with scheduled delivery with multiple items", () => {
       const email = getSecondPurchaseEmail();
 
-      setup({ skus: ["289"], account });
+      setup({ skus: ["35", "299"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      chooseDeliveryDate();
+      goToPayment();
       typeCVV();
       completePurchase();
 
@@ -27,7 +36,7 @@ testWrapper(account => {
       cy.contains(email).should("be.visible");
       cy.contains("Gab**** God**").should("be.visible");
       cy.contains("Receber").should("be.visible");
-      cy.contains("PAC").should("be.visible");
+      cy.contains("Bot*****").should("be.visible");
     });
   });
 });
