@@ -50,7 +50,6 @@ testWrapper(account => {
       cy.contains("Rua Saint Roman 12").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Agendada").should("be.visible");
-      cy.contains("Entre 09:00 e 21:00").should("be.visible");
     });
   });
 });
