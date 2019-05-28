@@ -1,5 +1,5 @@
 export function fillEmail(email) {
-  cy.wait(1000);
+  cy.wait(2000);
 
   cy.get("#cart-to-orderform", { force: true }).click();
 
