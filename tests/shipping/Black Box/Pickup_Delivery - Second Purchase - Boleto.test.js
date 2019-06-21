@@ -14,6 +14,7 @@ import {
   completePurchase
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
+import { goToInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup + Delivery - 2P - Boleto - ${account}`, () => {
@@ -34,6 +35,7 @@ testWrapper(account => {
         .should("be.visible");
 
       fillRemainingInfo();
+      goToInvoiceAddress(account);
 
       cy.get("#shipping-data")
         .contains("Pra** ** *****ogo ***")

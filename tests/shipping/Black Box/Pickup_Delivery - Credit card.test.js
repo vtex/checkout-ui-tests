@@ -16,6 +16,7 @@ import {
   payWithCreditCard
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
+import { goToInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup + Delivery - Credit card - ${account}`, () => {
@@ -30,11 +31,7 @@ testWrapper(account => {
       fillEmail(email);
       fillProfile();
       unavailableDeliveryGoToPickup();
-      fillPickupAddress({
-        isClean: ["clean", "noLean"].some(
-          localAccount => localAccount === account
-        )
-      });
+      goToInvoiceAddress(account);
       fillRemainingInfo();
       fillShippingInformation(account);
       if (account === "noLean") {

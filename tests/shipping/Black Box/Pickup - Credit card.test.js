@@ -14,6 +14,7 @@ import {
 } from "../../../utils/payment-actions";
 import { ACCOUNT_NAMES } from "../../../utils/constants";
 import { testWrapper } from "../../../utils/testWrapper";
+import { goToInvoiceAddress, fillInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup - Credit card - ${account}`, () => {
@@ -27,11 +28,9 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       fillProfile();
-      fillPickupAddress({
-        isClean: ["clean", "noLean"].some(
-          localAccount => localAccount === account
-        )
-      });
+      fillPickupAddress(account);
+      goToInvoiceAddress(account);
+      fillInvoiceAddress(account);
       goToPayment();
       payWithCreditCard({ withAddress: true });
       completePurchase();

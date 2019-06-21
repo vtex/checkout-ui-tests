@@ -5,39 +5,38 @@ import {
   fillProfile
 } from "../../../utils/profile-actions";
 import {
+  fillPickupAddress,
+  goToPayment,
+  unavailableDeliveryGoToPickup,
+  fillRemainingInfo,
+  fillShippingInformation,
+  chooseDeliveryDate
+} from "../../../utils/shipping-actions";
+import {
   payWithPaymentSlip,
   completePurchase
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
-import {
-  goToPayment,
-  chooseDeliveryDate,
-  fillShippingInformation
-} from "../../../utils/shipping-actions";
+import { goToInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
-  describe(`Scheduled Delivery - Boleto - ${account}`, () => {
+  describe(`Pickup + Scheduled Delivery - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account);
     });
 
-    it("complete purchase with scheduled delivery", () => {
+    it("with only pickup", () => {
       const email = getRandomEmail();
 
-      setup({ skus: ["291"], account });
+      setup({ skus: ["285", "291"], account });
       fillEmail(email);
       fillProfile();
-
+      unavailableDeliveryGoToPickup();
+      fillPickupAddress(account);
+      fillRemainingInfo();
       fillShippingInformation(account);
       chooseDeliveryDate();
-
-      cy.get("#shipping-data")
-        .contains("agendada")
-        .should("be.visible");
-      cy.get("#shipping-data")
-        .contains("agendada-top")
-        .should("be.visible");
-
+      goToInvoiceAddress(account);
       goToPayment();
       payWithPaymentSlip();
       completePurchase();
@@ -46,11 +45,13 @@ testWrapper(account => {
       cy.contains(email).should("be.visible");
       cy.contains("Fernando Coelho").should("be.visible");
       cy.contains("5521999999999").should("be.visible");
-      cy.contains("Boleto bancário").should("be.visible");
-      cy.contains("Receber").should("be.visible");
-      cy.contains("Rua Saint Roman 12").should("be.visible");
+      cy.contains("Retirar").should("be.visible");
+      cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible");
+      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Agendada").should("be.visible");
+      cy.contains("Rua Saint Roman 12").should("be.visible");
+      cy.contains("Copacabana").should("be.visible");
     });
   });
 });

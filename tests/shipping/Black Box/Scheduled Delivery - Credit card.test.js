@@ -24,7 +24,7 @@ testWrapper(account => {
     it("complete purchase with scheduled delivery", () => {
       const email = getRandomEmail();
 
-      setup({ skus: ["299"], account });
+      setup({ skus: ["291"], account });
       fillEmail(email);
       fillProfile();
 

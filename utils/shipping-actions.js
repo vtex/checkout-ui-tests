@@ -21,6 +21,7 @@ export function fillGeolocationOmnishipping() {
 }
 
 export function fillAddressInformation() {
+  cy.wait(2000);
   cy.get("#ship-number").type("12");
 }
 
@@ -89,12 +90,16 @@ export function chooseDeliveryDate() {
   cy.wait(1000);
   cy.get("#scheduled-delivery-delivery", { force: true }).click();
   cy.get("#scheduled-delivery-delivery", { force: true }).click();
-  cy.get("#scheduled-delivery-choose-agendada", { force: true }).click();
+  cy.get(".scheduled-delivery-choose", { force: true }).click();
   cy.get(".react-datepicker__day--keyboard-selected", { force: true }).click();
 }
 
-export function fillPickupAddress(options = { isClean: false }) {
-  if (options.isClean) {
+export function fillPickupAddress(account) {
+  if (
+    ["clean", "noLean", "invoice"].some(
+      localAccount => localAccount === account
+    )
+  ) {
     cy.get("#find-pickups-manualy-button-denied").click();
     cy.get("#pkpmodal-search #ship-postalCode").type("22071060");
   } else {

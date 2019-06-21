@@ -10,6 +10,7 @@ import {
   completePurchase
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
+import { goToInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup - 2P - Boleto - ${account}`, () => {
@@ -23,6 +24,7 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      goToInvoiceAddress(account);
       goToPayment();
       payWithPaymentSlip();
       completePurchase();

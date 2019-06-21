@@ -9,6 +9,7 @@ export const DEFAULT_ACCOUNT_NAME = "vtexgame1";
 export const NO_GOOGLE_MAPS_ACCOUNT_NAME = "vtexgame1clean";
 export const GEOLOCATION_MAPS_ACCOUNT_NAME = "vtexgame1geo";
 export const NO_LEAN_ACCOUNT_NAME = "vtexgame1nolean";
+export const INVOICE_ACCOUNT_NAME = "vtexgame1invoice";
 
 const LOCAL_PORT = process.env.PORT || 3000;
 
@@ -32,7 +33,8 @@ export const ACCOUNT_NAMES = {
   default: DEFAULT_ACCOUNT_NAME,
   noLean: NO_LEAN_ACCOUNT_NAME,
   geolocation: GEOLOCATION_MAPS_ACCOUNT_NAME,
-  clean: NO_GOOGLE_MAPS_ACCOUNT_NAME
+  clean: NO_GOOGLE_MAPS_ACCOUNT_NAME,
+  invoice: INVOICE_ACCOUNT_NAME
 };
 
 export function getAccountName(type) {

@@ -16,6 +16,7 @@ import {
   completePurchase
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
+import { goToInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup + Delivery - Boleto - ${account}`, () => {
@@ -30,13 +31,10 @@ testWrapper(account => {
       fillEmail(email);
       fillProfile();
       unavailableDeliveryGoToPickup();
-      fillPickupAddress({
-        isClean: ["clean", "noLean"].some(
-          localAccount => localAccount === account
-        )
-      });
+      fillPickupAddress(account);
       fillRemainingInfo();
       fillShippingInformation(account);
+      goToInvoiceAddress(account);
       if (account === "noLean") {
         cy.get("#shipping-data")
           .contains("PAC")

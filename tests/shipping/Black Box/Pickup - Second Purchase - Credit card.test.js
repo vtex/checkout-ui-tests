@@ -7,6 +7,7 @@ import {
 import { completePurchase, typeCVV } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 import { goToPayment } from "../../../utils/shipping-actions";
+import { goToInvoiceAddress } from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup - 2P - Credit card - ${account}`, () => {
@@ -20,6 +21,7 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      goToInvoiceAddress(address);
       goToPayment();
       typeCVV();
       completePurchase();

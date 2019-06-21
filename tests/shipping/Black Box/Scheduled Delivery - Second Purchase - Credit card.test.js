@@ -6,6 +6,10 @@ import {
 } from "../../../utils/profile-actions";
 import { completePurchase, typeCVV } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
+import {
+  chooseDeliveryDate,
+  goToPayment
+} from "../../../utils/shipping-actions";
 
 testWrapper(account => {
   describe(`Scheduled Delivery - 2P - Credit card - ${account}`, () => {
@@ -13,12 +17,14 @@ testWrapper(account => {
       visitAndClearCookies(account);
     });
 
-    xit("start with delivery then, choosing pickup, then choosing delivery", () => {
+    it("start with delivery then, choosing pickup, then choosing delivery", () => {
       const email = getSecondPurchaseEmail();
 
-      setup({ skus: ["299"], account });
+      setup({ skus: ["291"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      chooseDeliveryDate();
+      goToPayment();
       typeCVV();
       completePurchase();
 
