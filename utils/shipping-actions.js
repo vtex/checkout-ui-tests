@@ -6,7 +6,7 @@ export function fillPostalCodeOmnishipping() {
 export function fillGeolocationOmnishipping() {
   cy.wait(2000);
 
-  cy.get("#ship-addressQuery").type("Praia de Botafogo 300");
+  cy.get("#ship-addressQuery").type("Rua Saint Roman 12");
 
   cy.get(".pac-item")
     .first()
@@ -17,16 +17,36 @@ export function fillGeolocationOmnishipping() {
     .click();
 
   cy.wait(2000);
-  cy.contains("Praia de Botafogo 300");
+  cy.contains("Rua Saint Roman 12");
 }
 
 export function fillAddressInformation() {
+  cy.wait(2000);
   cy.get("#ship-number").type("12");
+}
+
+export function unavailableDeliveryGoToPickup() {
+  cy.wait(1000);
+  cy.get(".vtex-omnishipping-1-x-pickupButton").click({ force: true });
+}
+
+export function fillShippingInformation(account) {
+  if (account === "geolocation") {
+    fillGeolocationOmnishipping();
+  } else {
+    fillPostalCodeOmnishipping();
+    fillAddressInformation();
+  }
+}
+
+export function fillRemainingInfo() {
+  cy.wait(1000);
+  cy.get(".vtex-omnishipping-1-x-btnDelivery").click({ force: true });
 }
 
 export function goToPayment() {
   cy.wait(1000);
-  cy.get(".btn-go-to-payment").click();
+  cy.get(".btn-go-to-payment").click({ force: true });
 }
 
 export function chooseDeliveryOmnishipping() {
@@ -66,16 +86,21 @@ export function toggleDeliveryShippingPreview() {
 }
 
 export function chooseDeliveryDate() {
-  cy.get("#scheduled-delivery-delivery").click();
-  cy.wait(1000);
-  cy.get("#scheduled-delivery-delivery").click();
-  cy.get("#scheduled-delivery-delivery").click();
-  cy.get("#scheduled-delivery-choose-agendada", { force: true }).click();
-  cy.get(".react-datepicker__day--keyboard-selected", { force: true }).click();
+  cy.wait(3000);
+  cy.get("#scheduled-delivery-delivery").click({ force: true });
+  cy.wait(3000);
+  cy.get("#scheduled-delivery-delivery").click({ force: true });
+  cy.get("#scheduled-delivery-delivery").click({ force: true });
+  cy.get(".scheduled-delivery-choose").click({ force: true });
+  cy.get(".react-datepicker__day--keyboard-selected").click({ force: true });
 }
 
-export function fillPickupAddress(options = { isClean: false }) {
-  if (options.isClean) {
+export function fillPickupAddress(account) {
+  if (
+    ["clean", "noLean", "invoice"].some(
+      localAccount => localAccount === account
+    )
+  ) {
     cy.get("#find-pickups-manualy-button-denied").click();
     cy.get("#pkpmodal-search #ship-postalCode").type("22071060");
   } else {

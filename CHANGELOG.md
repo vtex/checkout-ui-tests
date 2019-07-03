@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Tests to cover all supported accountNames
+- Tests filenames to be more readable
+
+### Added
+
+- test wrapper which generates tests for all supported accountNames
+- Second purchase tests.
+- Delivery + Pickup tests (First and Second Purchase)
+
+### Removed
+
+- Tests which were previously manually tested
+
 ## [0.0.4] - 2019-05-21
 
 ### Changed

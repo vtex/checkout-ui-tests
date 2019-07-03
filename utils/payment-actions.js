@@ -1,9 +1,9 @@
 export function payWithPaymentSlip() {
   cy.wait(5000);
-  cy.get("#payment-group-bankInvoicePaymentGroup", { force: true }).click();
+  cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true });
   cy.wait(3000);
   cy.get("#payment-data-submit").should("not.have.attr", "disabled");
-  cy.get("#payment-group-bankInvoicePaymentGroup", { force: true }).click();
+  cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true });
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {
@@ -19,6 +19,11 @@ export function payWithCreditCard(options = { withAddress: false }) {
     cy.wrap($body)
       .find("#creditCardpayment-card-0Name")
       .type("Fernando A Coelho");
+    cy.wait(1000);
+
+    cy.wrap($body)
+      .find("#creditCardpayment-card-0Brand")
+      .select("1");
     cy.wait(1000);
 
     cy.wrap($body)
@@ -45,6 +50,23 @@ export function payWithCreditCard(options = { withAddress: false }) {
         .find("#payment-billing-address-number-0")
         .type("12");
     }
+  });
+}
+
+export function typeCVV() {
+  cy.wait(5000);
+  cy.get("iframe").then($iframe => {
+    const $body = $iframe.contents().find("body");
+
+    cy.wrap($body)
+      .find("#creditCardpayment-card-0Brand")
+      .select("1");
+    cy.wait(1000);
+
+    cy.wrap($body)
+      .find("#creditCardpayment-card-0Code")
+      .type("066");
+    cy.wait(1000);
   });
 }
 
