@@ -4,7 +4,8 @@ import {
   getRandomEmail,
   fillProfile,
   getSecondPurchaseEmail,
-  confirmSecondPurchase
+  confirmSecondPurchase,
+  login
 } from "../../../utils/profile-actions";
 import {
   goToPayment,
@@ -38,6 +39,8 @@ testWrapper(account => {
         .should("be.visible");
 
       fillRemainingInfo();
+      goToInvoiceAddress(account);
+      login(account);
       goToInvoiceAddress(account);
 
       cy.get("#shipping-data")

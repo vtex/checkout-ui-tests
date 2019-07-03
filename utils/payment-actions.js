@@ -1,9 +1,9 @@
 export function payWithPaymentSlip() {
   cy.wait(5000);
-  cy.get("#payment-group-bankInvoicePaymentGroup", { force: true }).click();
+  cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true });
   cy.wait(3000);
   cy.get("#payment-data-submit").should("not.have.attr", "disabled");
-  cy.get("#payment-group-bankInvoicePaymentGroup", { force: true }).click();
+  cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true });
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {

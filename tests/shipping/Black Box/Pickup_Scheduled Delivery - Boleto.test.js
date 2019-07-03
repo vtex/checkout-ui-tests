@@ -2,7 +2,8 @@ import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
   getRandomEmail,
-  fillProfile
+  fillProfile,
+  login
 } from "../../../utils/profile-actions";
 import {
   fillPickupAddress,

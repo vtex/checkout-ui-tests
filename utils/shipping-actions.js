@@ -27,7 +27,7 @@ export function fillAddressInformation() {
 
 export function unavailableDeliveryGoToPickup() {
   cy.wait(1000);
-  cy.get(".vtex-omnishipping-1-x-pickupButton").click();
+  cy.get(".vtex-omnishipping-1-x-pickupButton").click({ force: true });
 }
 
 export function fillShippingInformation(account) {
@@ -41,12 +41,12 @@ export function fillShippingInformation(account) {
 
 export function fillRemainingInfo() {
   cy.wait(1000);
-  cy.get(".vtex-omnishipping-1-x-btnDelivery").click();
+  cy.get(".vtex-omnishipping-1-x-btnDelivery").click({ force: true });
 }
 
 export function goToPayment() {
   cy.wait(1000);
-  cy.get(".btn-go-to-payment").click();
+  cy.get(".btn-go-to-payment").click({ force: true });
 }
 
 export function chooseDeliveryOmnishipping() {
@@ -86,12 +86,13 @@ export function toggleDeliveryShippingPreview() {
 }
 
 export function chooseDeliveryDate() {
-  cy.get("#scheduled-delivery-delivery").click();
-  cy.wait(1000);
-  cy.get("#scheduled-delivery-delivery", { force: true }).click();
-  cy.get("#scheduled-delivery-delivery", { force: true }).click();
-  cy.get(".scheduled-delivery-choose", { force: true }).click();
-  cy.get(".react-datepicker__day--keyboard-selected", { force: true }).click();
+  cy.wait(3000);
+  cy.get("#scheduled-delivery-delivery").click({ force: true });
+  cy.wait(3000);
+  cy.get("#scheduled-delivery-delivery").click({ force: true });
+  cy.get("#scheduled-delivery-delivery").click({ force: true });
+  cy.get(".scheduled-delivery-choose").click({ force: true });
+  cy.get(".react-datepicker__day--keyboard-selected").click({ force: true });
 }
 
 export function fillPickupAddress(account) {

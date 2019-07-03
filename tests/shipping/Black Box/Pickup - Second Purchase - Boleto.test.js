@@ -2,7 +2,8 @@ import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
   getSecondPurchaseEmail,
-  confirmSecondPurchase
+  confirmSecondPurchase,
+  login
 } from "../../../utils/profile-actions";
 import { goToPayment } from "../../../utils/shipping-actions";
 import {
@@ -10,7 +11,10 @@ import {
   completePurchase
 } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
-import { goToInvoiceAddress } from "../../../utils/invoice-actions";
+import {
+  goToInvoiceAddress,
+  fillInvoiceAddress
+} from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup - 2P - Boleto - ${account}`, () => {
@@ -24,6 +28,8 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      goToInvoiceAddress(account);
+      login(account);
       goToInvoiceAddress(account);
       goToPayment();
       payWithPaymentSlip();

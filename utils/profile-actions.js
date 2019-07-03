@@ -1,12 +1,12 @@
 export function fillEmail(email) {
   cy.wait(2000);
 
-  cy.get("#cart-to-orderform", { force: true }).click();
+  cy.get("#cart-to-orderform").click({ force: true });
 
   cy.wait(1000);
 
-  cy.get("#client-pre-email", { force: true }).type(email);
-  cy.get("#btn-client-pre-email", { force: true }).click();
+  cy.get("#client-pre-email").type(email, { force: true });
+  cy.get("#btn-client-pre-email").click({ force: true });
 
   cy.wait(1000);
 }
@@ -35,5 +35,13 @@ export function getSecondPurchaseEmail() {
 
 export function confirmSecondPurchase() {
   cy.wait(1000);
-  cy.get("#btn-identified-user-button").click();
+  cy.get("#btn-identified-user-button").click({ force: true });
+}
+
+export function login(account) {
+  if (account === "invoice") {
+    cy.get("#loginWithUserAndPasswordBtn").click();
+    cy.get("#inputPassword").type("Abcd1234");
+    cy.get("#classicLoginBtn").click();
+  }
 }

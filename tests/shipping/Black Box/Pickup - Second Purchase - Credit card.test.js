@@ -2,12 +2,16 @@ import { setup, visitAndClearCookies } from "../../../utils";
 import {
   fillEmail,
   getSecondPurchaseEmail,
-  confirmSecondPurchase
+  confirmSecondPurchase,
+  login
 } from "../../../utils/profile-actions";
 import { completePurchase, typeCVV } from "../../../utils/payment-actions";
 import { testWrapper } from "../../../utils/testWrapper";
 import { goToPayment } from "../../../utils/shipping-actions";
-import { goToInvoiceAddress } from "../../../utils/invoice-actions";
+import {
+  goToInvoiceAddress,
+  fillInvoiceAddress
+} from "../../../utils/invoice-actions";
 
 testWrapper(account => {
   describe(`Pickup - 2P - Credit card - ${account}`, () => {
@@ -21,6 +25,8 @@ testWrapper(account => {
       setup({ skus: ["285"], account });
       fillEmail(email);
       confirmSecondPurchase();
+      goToInvoiceAddress(address);
+      login(account);
       goToInvoiceAddress(address);
       goToPayment();
       typeCVV();

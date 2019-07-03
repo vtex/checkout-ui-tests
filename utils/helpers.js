@@ -109,7 +109,7 @@ export const defaultFlowModal = (options = { geolocation: false }) => {
     .type("Fernando")
     .blur();
 
-  cy.get(".btn-go-to-payment").click();
+  cy.get(".btn-go-to-payment").click({ force: true });
 
   cy.contains("Em até 2 dias úteis").should("be.visible");
   cy.contains("R$ 10,00").should("be.visible");
