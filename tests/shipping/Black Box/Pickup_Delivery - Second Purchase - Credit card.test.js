@@ -43,15 +43,27 @@ testWrapper(account => {
       login(account);
       goToInvoiceAddress(account);
 
-      cy.get("#shipping-data")
-        .contains("Pra** ** *****ogo ***")
-        .should("be.visible");
-      cy.get("#shipping-data")
-        .contains("Bot***** - Rio ** ******* - RJ")
-        .should("be.visible");
-      cy.get("#shipping-data")
-        .contains("******040")
-        .should("be.visible");
+      if (account === "invoice") {
+        cy.get("#shipping-data")
+          .contains("Praia de Botafogo 300")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Botafogo - Rio de Janeiro - RJ")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("22250-040")
+          .should("be.visible");
+      } else {
+        cy.get("#shipping-data")
+          .contains("Pra** ** *****ogo ***")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("Bot***** - Rio ** ******* - RJ")
+          .should("be.visible");
+        cy.get("#shipping-data")
+          .contains("******040")
+          .should("be.visible");
+      }
 
       goToPayment();
       typeCVV();
@@ -59,13 +71,22 @@ testWrapper(account => {
 
       cy.url({ timeout: 30000 }).should("contain", "/orderPlaced");
       cy.contains(email).should("be.visible");
-      cy.contains("Gab**** God**").should("be.visible");
+      if (account === "invoice") {
+        cy.contains("Gabriel Godoy").should("be.visible");
+      } else {
+        cy.contains("Gab**** God**").should("be.visible");
+      }
+
       cy.contains("Retirar").should("be.visible");
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible");
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Receber").should("be.visible");
-      cy.contains("Pra** ** *****ogo, ***").should("be.visible");
+      if (account === "invoice") {
+        cy.contains("Praia de Botafogo, 300").should("be.visible");
+      } else {
+        cy.contains("Pra** ** *****ogo, ***").should("be.visible");
+      }
     });
   });
 });
