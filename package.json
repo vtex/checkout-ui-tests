@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
   "devDependencies": {
-    "@vtexlab/horus": "^0.0.34",
+    "@vtexlab/horus": "^0.0.35",
     "@vtexlab/monitoringjs": "^0.1.20",
     "cypress": "3.1.0"
   },
@@ -32,17 +32,17 @@
     "branch": "master",
     "hasBeta": true,
     "cypressDashboardKeys": {
-      "integration": "a4b15394-7579-4f14-abb0-7b86d60f1871"
+      "integration": "6ecaeca9-8292-49d5-b954-f5d330526703"
     },
     "monitoringFolder": "tests",
     "cypressConfig": {
       "local": {
-        "record": true,
-        "video": true
+        "record": false,
+        "video": false
       },
       "remote": {
-        "record": true,
-        "video": true
+        "record": false,
+        "video": false
       }
     },
     "slack": {

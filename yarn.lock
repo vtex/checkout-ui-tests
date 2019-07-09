@@ -110,10 +110,10 @@
   resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
   integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
 
-"@vtexlab/horus@^0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@vtexlab/horus/-/horus-0.0.34.tgz#a0ee1be751ec1d5fc6f63b3e1a8b066535098b76"
-  integrity sha512-5l1G4ObRHUZCG7d86zsLltkGCCX4D9vDESlbUfw9ChFxAKKint56wE6cvogzh+Hfq0eZ1hXFW/GDAe5n6U/iZQ==
+"@vtexlab/horus@^0.0.35":
+  version "0.0.35"
+  resolved "https://registry.yarnpkg.com/@vtexlab/horus/-/horus-0.0.35.tgz#50e1014aecf5882912bf016e364d001d7c5a9e0d"
+  integrity sha512-3ahTyPIigqvjQeZvN9u7C9nQULd/RH8rZKJJYdiI3jAeajCFYbeZ9d95TmCmDbtPMzlyPjzk46GzwXMTQTfo0Q==
   dependencies:
     "@vtexlab/monitoringjs" "^0.1.16"
     aws-sdk "^2.344.0"
