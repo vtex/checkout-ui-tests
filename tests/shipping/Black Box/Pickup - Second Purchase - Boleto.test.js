@@ -37,7 +37,11 @@ testWrapper(account => {
 
       cy.url({ timeout: 30000 }).should("contain", "/orderPlaced");
       cy.contains(email).should("be.visible");
-      cy.contains("Gab**** God**").should("be.visible");
+      if (account === "invoice") {
+        cy.contains("Gabriel Godoy").should("be.visible");
+      } else {
+        cy.contains("Gab**** God**").should("be.visible");
+      }
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible");
       cy.contains("Retirar").should("be.visible");
     });
