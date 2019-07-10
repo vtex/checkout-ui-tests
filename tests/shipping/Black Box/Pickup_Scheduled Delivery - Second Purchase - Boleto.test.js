@@ -46,14 +46,14 @@ testWrapper(account => {
 
       cy.url({ timeout: 30000 }).should("contain", "/orderPlaced");
       cy.contains(email).should("be.visible");
-      cy.contains("Fernando Coelho").should("be.visible");
-      cy.contains("5521999999999").should("be.visible");
+      cy.contains("Gab**** God**").should("be.visible");
+      cy.contains("*********2222").should("be.visible");
       cy.contains("Retirar").should("be.visible");
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible");
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
       cy.contains("Agendada").should("be.visible");
-      cy.contains("Rua Saint Roman 12").should("be.visible");
+      cy.contains("Pra** ** *****ogo, ***").should("be.visible");
       cy.contains("Copacabana").should("be.visible");
     });
   });
