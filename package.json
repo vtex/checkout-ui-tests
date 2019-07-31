@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cypress open",
     "horus": "horus",
-    "test:ci": "cypress run --record --key a4b15394-7579-4f14-abb0-7b86d60f1871"
+    "test:ci": "cypress run --record --key a4b15394-7579-4f14-abb0-7b86d60f1871",
+    "create-files": "node ./src/index.js"
   },
   "repository": {
     "type": "git",
