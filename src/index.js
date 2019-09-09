@@ -1,76 +1,109 @@
-const fs = require("fs");
+const cypress = require("cypress")
+const Promise = require("bluebird")
+const uuidv4 = require("uuid/v4")
+const cmd = require("node-cmd")
+const getSpecDirectories = require("../utils/specs")
+const cmdGetAsync = Promise.promisify(cmd.get, {
+  multiArgs: true,
+  context: cmd,
+})
+const monitoring = require("./monitoring")
+const s3 = require("./s3")
 
-const ACCOUNT_NAMES = ["invoice", "default", "noLean", "geolocation", "clean"];
-
-function start() {
-  const currentPath = process.cwd();
-  const testsPath = currentPath.replace("src", "tests");
-
-  const files = getSpecDirectories({ dir: testsPath, basePath: testsPath });
-
-  const modelFiles = files.filter(file => file.includes("models"));
-  modelFiles.forEach(fileUrl => {
-    const fileContent = readFile(testsPath + fileUrl);
-
-    ACCOUNT_NAMES.forEach(account => {
-      const splittedFilePath = fileUrl.split("models/");
-      splittedFilePath[0] = splittedFilePath[0];
-      const filepath = splittedFilePath[0];
-      const fileTitle = splittedFilePath[1];
-      writeResultsToJs({
-        account,
-        dir: testsPath + filepath,
-        fileTitle
-      });
-    });
-  });
+const BASE_PATH = "./tests/"
+const CONCURRENCY = 5
+const CYPRESS_CONFIG = {
+  config: {
+    chromeWebSecurity: false,
+    blacklistHosts: ["www.googletagmanager.com"],
+    pageLoadTimeout: 180000,
+    viewportHeight: 660,
+    viewportWidth: 1024,
+    trashAssetsBeforeRuns: false,
+  },
+  projectId: "kobqo4",
+  video: true,
+  reporterOptions: {
+    reportDir: "cypress/results",
+    overwrite: false,
+    html: false,
+    json: true,
+  },
 }
 
-function readFile(fileUrl) {
-  const fileContent = fs.readFileSync(fileUrl, "utf8");
-  return JSON.stringify(fileContent);
-}
+const specs = getSpecDirectories({
+  dir: BASE_PATH,
+  basePath: BASE_PATH,
+}).filter(
+  spec => spec.indexOf("model") === -1 && spec.indexOf(".DS_Store") === -1
+)
 
-function getSpecDirectories({ dir, filelist, basePath }) {
-  const files = fs.readdirSync(dir);
-  filelist = filelist || [];
-  files
-    .filter(item => !/(^|\/)\.[^\/\.]/g.test(item))
-    .forEach(function(file) {
-      if (fs.statSync(`${dir}/${file}`).isDirectory()) {
-        filelist = getSpecDirectories({
-          dir: `${dir}/${file}`,
-          filelist,
-          basePath
-        });
-      } else {
-        const path = basePath ? dir.replace(basePath, "") : dir;
-        filelist.push(`${path}/${file}`);
+async function sendResults(result, spec) {
+  if (!result || result.message === "Could not find Cypress test run results") {
+    console.error("Could not find Cypress test run results")
+    return
+  }
+
+  console.log("Uploading videos...")
+  const runId = uuidv4()
+  result.runs = await Promise.all(
+    result.runs.map(async run => {
+      try {
+        if (run.stats.failures === 0) return run
+        const { url: videoUrl } = await s3.uploadFile(
+          run.video,
+          `${runId}/${run.spec.name}.mp4`,
+          "video/mp4"
+        )
+        return { ...run, video: videoUrl }
+      } catch (err) {
+        console.error(err)
+        return run
       }
-    });
-  return filelist;
+    })
+  )
+
+  console.log(`Sending result to monitoring for "${spec}"`)
+  await monitoring({
+    config: {
+      evidence: {
+        expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
+      },
+      env: "beta",
+      applicationName: "checkout-ui",
+      healthcheck: {
+        moduleName: "Checkout UI",
+        status: result.totalFailed > 0 ? 0 : 1,
+        title: spec,
+      },
+    },
+    tests: result,
+  })
 }
 
-function writeResultsToJs({ account, dir, fileTitle }) {
-  const content = `
-  import test from "./models/${fileTitle}"
+function runCypress(spec) {
+  return cypress
+    .run({
+      spec: `./tests${spec}`,
+      ...CYPRESS_CONFIG,
+    })
+    .then(result => {
+      sendResults(result, spec)
+    })
+}
 
-  test("${account}")
-  `;
+const run = async () => {
   try {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-    }
+    console.log("Downloading fixtures...")
+    await s3.downloadFixture()
+    console.log("Fixtures downloaded.")
 
-    const updatedFileTitle = fileTitle.replace(
-      ".model.js",
-      ` - ${account}.test.js`
-    );
-
-    fs.writeFileSync(`${dir}/${updatedFileTitle}`, content, "utf8");
+    console.log("Starting Tests...")
+    Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
+    return
   } catch (err) {
-    console.error(err);
+    console.log(err.message)
   }
 }
 
-start();
+run()

@@ -1,0 +1,110 @@
+div(style={background: '#0a0c1c', color: '#fff'} class="flex items-center white justify-center courier")
+  div(style={'color':'#fff', 'max-width': '70%', 'min-width': '50%'})
+    div(class="flex flex-row tc justify-between")
+      div
+        span(class="mr2 gray") Start:
+        span #{startedTestsAt}
+      div
+        span(class="mr2 gray") End:
+        span #{endedTestsAt}
+      div
+        span(class="mr2 gray") Duration:
+        span #{totalDuration/1000}s
+
+    table(class="mt4" style={width:'100%', 'border-collapse': 'collapse', color: '#fff'})
+      thead
+        tr(style={'border-bottom':'1px solid #555'})
+          th(class="pa2 tl normal gray") Spec
+          th(class="pa2 tc normal gray") Tests
+          th(class="pa2 tc normal gray") Passing
+          th(class="pa2 tc normal gray") Failing
+          th(class="pa2 tc normal gray") Pending
+          th(class="pa2 tc normal gray") Skipped
+      tbody
+        each test in runs
+          tr(style={'border-bottom':'1px solid #555', 'border-left': '1px solid #555', 'border-right': '1px solid #555'})
+            td(class="pa2 tracked")
+              if test.stats.tests == (test.stats.passes + test.stats.pending + test.stats.skipped)
+                span(class="mr2" style={'font-size': '10px'}) ✅
+              else
+                span(class="mr2" style={'font-size': '10px'}) ❌
+              = test.spec.name
+            td(class="pa2 tc white")
+              = test.stats.tests
+            td(class="pa2 tc")
+              if test.stats.passes == 0
+                span(class="gray") -
+              else
+                span(class="green") #{test.stats.passes}
+            td(class="pa2 tc")
+              if test.stats.failures == 0
+                span(class="gray") -
+              else
+                span(class="red") #{test.stats.failures}
+            td(class="pa2 tc")
+              if test.stats.pending == 0
+                span(class="gray") -
+              else
+                span(class="blue") #{test.stats.pending}
+            td(class="pa2 tc gray")
+              = test.stats.skipped == 0 ? '-' : test.stats.skipped
+      tfoot
+        tr
+          td(class="pa2 tracked")
+            if (totalPassed + totalPending + totalSkipped) == totalTests
+              span(class="green") All specs passed!
+            else
+              span(class="red") #{totalFailed} out of #{totalTests} failed (#{Math.floor(totalFailed*100/totalTests)}%)
+
+          td(class="pa2 tc")= totalTests
+          td(class="pa2 tc")
+            if totalPassed > 0
+              span(class="green")= totalPassed
+            else
+              span(class="gray") -
+          td(class="pa2 tc")
+            if totalFailed > 0
+              span(class="red")= totalFailed
+            else
+              span(class="gray") -
+          td(class="pa2 tc")
+            if totalPending > 0
+              span(class="blue")= totalPending
+            else
+              span(class="gray") -
+          td(class="pa2 tc gray")
+            = totalSkipped > 0 ? totalSkipped : '-'
+
+    each run in runs
+      if run.stats.failures > 0
+        div(class="mt6 mb4 flex flex-column")
+          //- if run.gif
+          //-   div
+          //-     img(src=run.gif)/
+          //-   div(class="f6 center")= run.gif
+          //- if run.webm
+          //-   div
+          //-     video(src=run.webm class="w-100" controls autoplay loop)
+          //-   div(class="f6 center")= run.webm
+          if run.video
+            div
+              video(src=run.video class="w-100" controls autoplay loop)
+            div(class="f6 center")= run.video
+          each test in run.tests
+            if test.stack
+              div(class="mt4 mb4 flex flex-column white")
+                span Stack
+                pre(style={'white-space': 'pre-wrap', 'word-wrap':'break-word'}) #{test.stack}
+        //- table(class="mt4" style={width:'100%', 'border-collapse': 'collapse'})
+        //-   tbody
+        //-     tr
+        //-       td(colspan="6")
+        //-         div(class="mt6 mb4 flex flex-column")
+        //-           if run.gif
+        //-             div
+        //-               img(src=run.gif)/
+        //-             div(class="f6 center")= run.gif
+        //-           each test in run.tests
+        //-             div(class="mt4 mb4 flex flex-column white")
+        //-               span Stack
+        //-               pre #{test.stack}
