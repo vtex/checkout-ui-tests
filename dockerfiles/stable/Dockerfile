@@ -6,6 +6,6 @@ COPY ./ ./
 
 RUN \
   yarn install && \
-  yarn test
+  VTEX_ENV=stable yarn test
 
 ENTRYPOINT ["node", "./src/index.js"]

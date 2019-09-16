@@ -6,6 +6,6 @@ COPY ./ ./
 
 RUN \
   yarn install && \
-  ENV=beta yarn test
+  VTEX_ENV=beta yarn test
 
 ENTRYPOINT ["node", "./src/index.js"]

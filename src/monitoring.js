@@ -1,7 +1,6 @@
 require("node-window-polyfill").register()
 
 const pug = require("pug")
-const axios = require("axios")
 const http = require("axios")
 const fs = require("fs")
 
