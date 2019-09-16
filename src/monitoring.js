@@ -48,7 +48,7 @@ const main = async data => {
   const healthcheckConfig = config.healthcheck
   const evidenceConfig = config.evidence
 
-  const healthcheckUrl = `https://xzvyac22zi.execute-api.us-east-1.amazonaws.com/default/HorusProxy`
+  const healthcheckUrl = "https://5gkb7l6p2k.execute-api.us-east-1.amazonaws.com/default/HorusProxy"
 
   // Build message
   const message = compile({
@@ -88,7 +88,10 @@ const main = async data => {
       healthcheckUrl,
       healthcheckData,
       {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.HORUS_PROXY_KEY,
+        },
       }
     )
     console.log({ hcResponseData, status })

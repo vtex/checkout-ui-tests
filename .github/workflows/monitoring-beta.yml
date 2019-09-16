@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 12.x
     - name: Run docker with tests
+      env:
+        HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
       run: |
         yarn test:ci-beta
-      env:
-        CI: true
