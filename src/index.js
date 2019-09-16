@@ -90,7 +90,6 @@ function runCypress(spec) {
     .then(result => {
       sendResults(result, spec)
     })
-    .catch(err => console.log(err))
 }
 
 const run = async () => {

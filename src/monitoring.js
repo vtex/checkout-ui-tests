@@ -50,7 +50,6 @@ const main = async data => {
   const evidenceConfig = config.evidence
 
   const healthcheckUrl = `https://xzvyac22zi.execute-api.us-east-1.amazonaws.com/default/HorusProxy`
-  const evidenceApiBaseUrl = "http://evidence.vtex.com/api"
 
   // Build message
   const message = compile({
@@ -70,16 +69,6 @@ const main = async data => {
     fs.writeFileSync("./output.html", message)
   }
 
-  // Create evidence
-  const { data: evidenceHash } = await http.put(
-    `${evidenceApiBaseUrl}/evidence?application=${applicationName}&expirationInSeconds=${evidenceConfig.expirationInSeconds ||
-      evidenceExpirationDefault}`,
-    message,
-    {
-      headers: { "content-type": "text/plain; charset=utf-8" },
-    }
-  )
-
   // Send to Healthcheck
   const healthcheckData = {
     env: config.env,
@@ -92,7 +81,6 @@ const main = async data => {
       Status: healthcheckConfig.status,
       Title: healthcheckConfig.title,
       Etime: msToTime(testsData.totalDuration),
-      EvidencePath: `${evidenceApiBaseUrl}/evidence?application=${applicationName}&hash=${evidenceHash}`,
       Module: healthcheckConfig.moduleName,
     },
   }
