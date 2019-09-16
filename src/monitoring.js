@@ -1,17 +1,16 @@
-require('node-window-polyfill').register()
+require("node-window-polyfill").register()
 
-const pug = require('pug')
-const axios = require('axios')
-const http = require('axios')
-const fs = require('fs')
+const pug = require("pug")
+const axios = require("axios")
+const http = require("axios")
+const fs = require("fs")
 
 const templateUrl = `${__dirname}/templates/evidence.pug`
 const compile = pug.compileFile(templateUrl)
 
 const evidenceExpirationDefault = 86400 // 24h in seconds
 
-const isDev = process.env.MODE === 'dev'
-
+const isDev = process.env.MODE === "dev"
 
 const pad = (v, len = 2) => v.toString().padStart(len, 0)
 
@@ -24,7 +23,7 @@ function msToTime(s) {
   var mins = s % 60
   var hrs = (s - mins) / 60
 
-  return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3)
+  return pad(hrs) + ":" + pad(mins) + ":" + pad(secs) + "." + pad(ms, 3)
 }
 
 function format(date) {
@@ -50,8 +49,8 @@ const main = async data => {
   const healthcheckConfig = config.healthcheck
   const evidenceConfig = config.evidence
 
-  const healthcheckUrl = `https://monitoring.vtex.com/api/healthcheck/results?repository=${config.env || 'beta'}`
-  const evidenceApiBaseUrl = 'http://evidence.vtex.com/api'
+  const healthcheckUrl = `https://xzvyac22zi.execute-api.us-east-1.amazonaws.com/default/HorusProxy`
+  const evidenceApiBaseUrl = "http://evidence.vtex.com/api"
 
   // Build message
   const message = compile({
@@ -63,12 +62,12 @@ const main = async data => {
     totalPassed: testsData.totalPassed,
     totalPending: testsData.totalPending,
     totalSkipped: testsData.totalSkipped,
-    runs: testsData.runs
+    runs: testsData.runs,
   })
 
   // Dev
   if (isDev) {
-    fs.writeFileSync('./output.html', message)
+    fs.writeFileSync("./output.html", message)
   }
 
   // Create evidence
@@ -77,24 +76,27 @@ const main = async data => {
       evidenceExpirationDefault}`,
     message,
     {
-      headers: { 'content-type': 'text/plain; charset=utf-8' }
+      headers: { "content-type": "text/plain; charset=utf-8" },
     }
   )
 
   // Send to Healthcheck
   const healthcheckData = {
-    Status: healthcheckConfig.status,
-    Title: healthcheckConfig.title,
-    Etime: msToTime(testsData.totalDuration),
-    EvidencePath: `${evidenceApiBaseUrl}/evidence?application=${applicationName}&hash=${evidenceHash}`,
-    Module: healthcheckConfig.moduleName
+    env: config.env,
+    healthcheck: {
+      Status: healthcheckConfig.status,
+      Title: healthcheckConfig.title,
+      Etime: msToTime(testsData.totalDuration),
+      EvidencePath: `${evidenceApiBaseUrl}/evidence?application=${applicationName}&hash=${evidenceHash}`,
+      Module: healthcheckConfig.moduleName,
+    },
   }
   try {
     const { data: hcResponseData, status } = await http.post(
       healthcheckUrl,
       healthcheckData,
       {
-        headers: { 'Content-Type': 'application/json' }
+        headers: { "Content-Type": "application/json" },
       }
     )
     console.log({ hcResponseData, status })
