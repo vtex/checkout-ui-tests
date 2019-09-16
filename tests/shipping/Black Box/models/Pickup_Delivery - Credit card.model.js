@@ -9,6 +9,7 @@ import {
   unavailableDeliveryGoToPickup,
   fillRemainingInfo,
   fillShippingInformation,
+  fillPickupAddress,
 } from "../../../../utils/shipping-actions"
 import {
   completePurchase,
@@ -29,6 +30,7 @@ export default function test(account) {
       fillEmail(email)
       fillProfile()
       unavailableDeliveryGoToPickup()
+      fillPickupAddress(account)
       goToInvoiceAddress(account)
       fillRemainingInfo()
       fillShippingInformation(account)
