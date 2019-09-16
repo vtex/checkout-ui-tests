@@ -50,7 +50,7 @@ const main = async data => {
   const evidenceConfig = config.evidence
 
   const healthcheckUrl = `https://xzvyac22zi.execute-api.us-east-1.amazonaws.com/default/HorusProxy`
-  const evidenceApiBaseUrl = "http://evidence.vtex.com/api"
+  const evidenceApiBaseUrl = "http://vtexgame1.myvtex.com/api"
 
   // Build message
   const message = compile({
@@ -72,7 +72,7 @@ const main = async data => {
 
   // Create evidence
   const { data: evidenceHash } = await http.put(
-    `${evidenceApiBaseUrl}/evidence?application=${applicationName}&expirationInSeconds=${evidenceConfig.expirationInSeconds ||
+    `${evidenceApiBaseUrl}/Evidence?application=${applicationName}&expirationInSeconds=${evidenceConfig.expirationInSeconds ||
       evidenceExpirationDefault}`,
     message,
     {
