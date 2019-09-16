@@ -31,8 +31,13 @@ const downloadFixture = async () => {
   if (!fs.existsSync(fixturesDir)) {
     fs.mkdirSync(fixturesDir)
   }
-  const response = await s3.getObject({ Bucket: BUCKET, Key: 'healthcheck/users.json' }).promise()
-  fs.writeFileSync(fixturesFile, response.Body)
+
+  try {
+    const response = await s3.getObject({ Bucket: BUCKET, Key: 'healthcheck/users.json' }).promise()
+    fs.writeFileSync(fixturesFile, response.Body)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 module.exports = { uploadFile, downloadFixture }
