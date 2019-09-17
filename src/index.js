@@ -1,7 +1,9 @@
 const cypress = require("cypress")
+const cmd = require("node-cmd")
+const fs = require("fs")
+const axios = require("axios")
 const Promise = require("bluebird")
 const uuidv4 = require("uuid/v4")
-const cmd = require("node-cmd")
 const getSpecDirectories = require("../utils/specs")
 const cmdGetAsync = Promise.promisify(cmd.get, {
   multiArgs: true,
@@ -11,7 +13,7 @@ const monitoring = require("./monitoring")
 const s3 = require("./s3")
 
 const BASE_PATH = "./tests/"
-const CONCURRENCY = 5
+const CONCURRENCY = 1
 const CYPRESS_CONFIG = {
   config: {
     chromeWebSecurity: false,
@@ -50,12 +52,17 @@ async function sendResults(result, spec) {
     result.runs.map(async run => {
       try {
         if (run.stats.failures === 0) return run
-        const { url: videoUrl } = await s3.uploadFile(
-          run.video,
-          `${runId}/${run.spec.name}.mp4`,
-          "video/mp4"
-        )
-        return { ...run, video: videoUrl }
+        const {
+          data: { url },
+        } = await axios({
+          url: `https://tionk801f2.execute-api.us-east-1.amazonaws.com/default/HorusFiles?dst=${runId}/${run.spec.name}.mp4&contentType=video/mp4`,
+          method: "post",
+          data: fs.createReadStream(run.video),
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        return { ...run, video: url }
       } catch (err) {
         console.error(err)
         return run

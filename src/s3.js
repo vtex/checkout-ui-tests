@@ -1,9 +1,9 @@
-const fs = require('fs')
-const AWS = require('aws-sdk')
+const fs = require("fs")
+const AWS = require("aws-sdk")
 const s3 = new AWS.S3()
-const ACL = 'public-read'
-const BUCKET = 'vtex-id-hc'
-const KEY_PREFIX = 'healthcheck/tests/'
+const ACL = "public-read"
+const BUCKET = "vtex-id-hc"
+const KEY_PREFIX = "healthcheck/tests/"
 const cwd = process.cwd()
 
 const uploadFile = async (src, dst, contentType = null) => {
@@ -19,7 +19,7 @@ const uploadFile = async (src, dst, contentType = null) => {
     .promise()
   return {
     url: `https://${BUCKET}.s3.amazonaws.com/${key}`,
-    signed: s3.getSignedUrl('getObject', { Bucket: BUCKET, Key: key })
+    signed: s3.getSignedUrl("getObject", { Bucket: BUCKET, Key: key }),
   }
 }
 
@@ -33,7 +33,9 @@ const downloadFixture = async () => {
   }
 
   try {
-    const response = await s3.getObject({ Bucket: BUCKET, Key: 'healthcheck/users.json' }).promise()
+    const response = await s3
+      .getObject({ Bucket: BUCKET, Key: "healthcheck/users.json" })
+      .promise()
     fs.writeFileSync(fixturesFile, response.Body)
   } catch (err) {
     console.log(err)
