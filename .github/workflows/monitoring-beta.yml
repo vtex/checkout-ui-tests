@@ -2,21 +2,21 @@ name: Healthcheck Beta
 
 on:
   schedule:
-  - cron: "*/15 * * * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - name: Run docker with tests
-      env:
-        HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
-      run: |
-        yarn test:ci-beta
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Run docker with tests
+        env:
+          HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
+          HORUS_FILES_KEY: ${{ secrets.HORUS_FILES_KEY }}
+        run: |
+          yarn test:ci-beta

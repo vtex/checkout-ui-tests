@@ -55,11 +55,12 @@ async function sendResults(result, spec) {
         const {
           data: { url },
         } = await axios({
-          url: `https://tionk801f2.execute-api.us-east-1.amazonaws.com/default/HorusFiles?dst=${runId}/${run.spec.name}.mp4&contentType=video/mp4`,
+          url: `https://9nzhhs4p1f.execute-api.us-east-1.amazonaws.com/default/HorusFiles?dst=${runId}/${run.spec.name}.mp4&contentType=video/mp4`,
           method: "post",
           data: fs.createReadStream(run.video),
           headers: {
             "Content-Type": "multipart/form-data",
+            "x-api-key": process.env.HORUS_FILES_KEY,
           },
         })
         return { ...run, video: url }
