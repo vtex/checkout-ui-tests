@@ -41,7 +41,7 @@ export default function test(account) {
       payWithCreditCard()
       completePurchase()
 
-      cy.url({ timeout: 60000 }).should("contain", "/orderPlaced")
+      cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
       cy.wait(2000)
       cy.contains(email).should("be.visible")
       cy.contains("Fernando Coelho").should("be.visible")
