@@ -13,7 +13,7 @@ const monitoring = require("./monitoring")
 const s3 = require("./s3")
 
 const BASE_PATH = "./tests/"
-const CONCURRENCY = 1
+const CONCURRENCY = 5
 const CYPRESS_CONFIG = {
   config: {
     chromeWebSecurity: false,
@@ -22,6 +22,9 @@ const CYPRESS_CONFIG = {
     viewportHeight: 660,
     viewportWidth: 1024,
     trashAssetsBeforeRuns: false,
+  },
+  env: {
+    VTEX_ENV: process.env.VTEX_ENV,
   },
   projectId: "kobqo4",
   video: true,
