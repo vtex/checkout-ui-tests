@@ -1,4 +1,5 @@
 const cypress = require("cypress")
+const FormData = require("form-data")
 const cmd = require("node-cmd")
 const fs = require("fs")
 const axios = require("axios")
@@ -13,7 +14,7 @@ const monitoring = require("./monitoring")
 const s3 = require("./s3")
 
 const BASE_PATH = "./tests/"
-const CONCURRENCY = 5
+const CONCURRENCY = process.env.DEV ? 1 : 5
 const CYPRESS_CONFIG = {
   config: {
     chromeWebSecurity: false,
@@ -55,12 +56,15 @@ async function sendResults(result, spec) {
     result.runs.map(async run => {
       try {
         if (run.stats.failures === 0) return run
+        const file = fs.createReadStream(run.video)
+        const data = new FormData()
+        data.append("video", file)
         const {
           data: { url },
         } = await axios({
           url: `https://9nzhhs4p1f.execute-api.us-east-1.amazonaws.com/default/HorusFiles?dst=${runId}/${run.spec.name}.mp4&contentType=video/mp4`,
           method: "post",
-          data: fs.createReadStream(run.video),
+          data,
           headers: {
             "Content-Type": "multipart/form-data",
             "x-api-key": process.env.HORUS_FILES_KEY,

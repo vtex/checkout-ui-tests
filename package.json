@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./src/index.js",
+    "test": "DEV=dev node ./src/index.js",
     "horus": "horus",
     "test:ci": "cypress run --record --key a4b15394-7579-4f14-abb0-7b86d60f1871",
     "create-files": "node ./src/compile.js",
@@ -29,6 +29,7 @@
     "cypress": "3.1.0",
     "cypress-log-to-output": "^1.0.4",
     "docker": "^1.0.0",
+    "form-data": "^2.5.1",
     "minimist": "^1.2.0",
     "node-cmd": "^3.0.0",
     "node-window-polyfill": "^1.0.0",
