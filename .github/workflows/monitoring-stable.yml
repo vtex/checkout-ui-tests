@@ -1,4 +1,4 @@
-name: Healthcheck Beta
+name: Healthcheck Stable
 
 on:
   schedule:
@@ -19,4 +19,4 @@ jobs:
           HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
           HORUS_FILES_KEY: ${{ secrets.HORUS_FILES_KEY }}
         run: |
-          yarn test:ci-beta
+          yarn test:ci-stable
