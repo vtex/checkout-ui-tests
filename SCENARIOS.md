@@ -1,0 +1,85 @@
+## Accounts in which tests should cover
+
+|                 | `vtexgame1` | `vtexgame1geo` | `vtexgame1nolean` | `vtexgame1clean` | `vtexgame1invoice` |
+| --------------- | ----------- | -------------- | ----------------- | ---------------- | ------------------ |
+| Lean Shipping   | true        | true           | false             | false            | true               |
+| Geolocation     | false       | true           | false             | false            | false              |
+| Google Maps Key | YES         | YES            | NO                | NO               | NO                 |
+| Invoice Address | false       | false          | false             | false            | true               |
+
+## Shipping Purchase Scenarios
+
+### Delivery (Payment: Boleto)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Boleto.model.js)
+- Recurring Purchase
+
+### Delivery (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Credit%20card.model.js)
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Second%20Purchase%20-%20Credit%20card.model.js)
+
+### Delivery + Pickup (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup_Delivery%20-%20Credit%20card.model.js)
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup_Delivery%20-%20Second%20Purchase%20-%20Credit%20card.model.js)
+
+### Delivery + Scheduled Delivery (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery_Scheduled%20Delivery%20-%20Credit%20card.model.js)
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery_Scheduled%20Delivery%20-%20Second%20Purchase%20-%20Credit%20card.model.js)
+
+### Delivery + Scheduled Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Pickup (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup%20-%20Credit%20card.model.js)
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup%20-%20Second%20Purchase%20-%20Credit%20card.model.js)
+
+### Pickup + Scheduled Delivery (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup_Scheduled%20Delivery%20-%20Credit%20card.model.js)
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup_Scheduled%20Delivery%20-%20Second%20Purchase%20-%20Boleto.model.js)
+
+### Pickup + Scheduled Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Scheduled Delivery (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Scheduled%20Delivery%20-%20Credit%20card.model.js)
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Scheduled%20Delivery%20-%20Second%20Purchase%20-%20Credit%20card.model.js)
+
+### Scheduled Delivery + Scheduled Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Delivery + Scheduled Delivery + Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Delivery + Scheduled Delivery + Scheduled Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Delivery + Scheduled Pickup + Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Scheduled Delivery + Scheduled Pickup + Pickup (Payment: Credit card)
+
+- First Purchase
+- Recurring Purchase
+
+### Gift List (Payment: Boleto)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Gift%20List%20Purchase.model.js)
+- Recurring Purchase

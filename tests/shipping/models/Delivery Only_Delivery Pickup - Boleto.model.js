@@ -1,26 +1,23 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-  login,
-} from "../../../../utils/profile-actions"
+} from "../../../utils/profile-actions"
 import {
-  fillPickupAddress,
   goToPayment,
-  unavailableDeliveryGoToPickup,
   fillRemainingInfo,
   fillShippingInformation,
-  chooseDeliveryDate,
-} from "../../../../utils/shipping-actions"
+  choosePickupOmnishipping,
+} from "../../../utils/shipping-actions"
 import {
+  payWithPaymentSlip,
   completePurchase,
-  payWithCreditCard,
-} from "../../../../utils/payment-actions"
-import { goToInvoiceAddress } from "../../../../utils/invoice-actions"
+} from "../../../utils/payment-actions"
+import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 
 export default function test(account) {
-  describe(`Pickup + Delivery - Credit card - ${account}`, () => {
+  describe(`Delivery Only + Delivery/Pickup - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
@@ -28,17 +25,18 @@ export default function test(account) {
     it("with only pickup", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["285", "291"], account })
+      setup({ skus: ["298", "290"], account })
       fillEmail(email)
       fillProfile()
-      unavailableDeliveryGoToPickup()
-      fillPickupAddress(account)
-      fillRemainingInfo()
       fillShippingInformation(account)
-      chooseDeliveryDate()
+      choosePickupOmnishipping()
+      cy.get("#shipping-data")
+        .contains("Loja em Copacabana no Rio de Janeiro")
+        .should("be.visible")
+      fillRemainingInfo()
       goToInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard()
+      payWithPaymentSlip()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
@@ -50,7 +48,7 @@ export default function test(account) {
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
-      cy.contains("Agendada").should("be.visible")
+      cy.contains("Receber").should("be.visible")
       cy.contains("Rua Saint Roman 12").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
     })

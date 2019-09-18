@@ -1,42 +1,35 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-} from "../../../../utils/profile-actions"
+} from "../../../utils/profile-actions"
 import {
-  completePurchase,
-  payWithCreditCard,
-} from "../../../../utils/payment-actions"
-import {
+  fillAddressInformation,
   goToPayment,
   chooseDeliveryDate,
   fillShippingInformation,
-} from "../../../../utils/shipping-actions"
+} from "../../../utils/shipping-actions"
+import {
+  completePurchase,
+  payWithCreditCard,
+} from "../../../utils/payment-actions"
 
 export default function test(account) {
-  describe(`Scheduled Delivery - Credit card - ${account}`, () => {
+  describe(`Delivery + Scheduled Delivery - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
 
-    it("complete purchase with scheduled delivery", () => {
+    it("delivery with scheduled delivery with multiple items", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["291"], account })
+      setup({ skus: ["35", "299"], account })
+
       fillEmail(email)
       fillProfile()
-
       fillShippingInformation(account)
-      chooseDeliveryDate()
-
-      cy.get("#shipping-data")
-        .contains("agendada")
-        .should("be.visible")
-      cy.get("#shipping-data")
-        .contains("agendada-top")
-        .should("be.visible")
-
+      chooseDeliveryDate({ shouldActivate: true })
       goToPayment()
       payWithCreditCard()
       completePurchase()

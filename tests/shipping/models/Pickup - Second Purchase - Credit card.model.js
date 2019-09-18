@@ -1,13 +1,13 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getSecondPurchaseEmail,
   confirmSecondPurchase,
   login,
-} from "../../../../utils/profile-actions"
-import { completePurchase, typeCVV } from "../../../../utils/payment-actions"
-import { goToPayment } from "../../../../utils/shipping-actions"
-import { goToInvoiceAddress } from "../../../../utils/invoice-actions"
+} from "../../../utils/profile-actions"
+import { completePurchase, typeCVV } from "../../../utils/payment-actions"
+import { goToPayment } from "../../../utils/shipping-actions"
+import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 
 export default function test(account) {
   describe(`Pickup - 2P - Credit card - ${account}`, () => {

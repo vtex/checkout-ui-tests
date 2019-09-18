@@ -1,10 +1,10 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getSecondPurchaseEmail,
   confirmSecondPurchase,
-} from "../../../../utils/profile-actions"
-import { completePurchase, typeCVV } from "../../../../utils/payment-actions"
+} from "../../../utils/profile-actions"
+import { completePurchase, typeCVV } from "../../../utils/payment-actions"
 
 export default function test(account) {
   describe(`Delivery - 2P - Credit card - ${account}`, () => {

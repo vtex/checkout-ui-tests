@@ -1,21 +1,18 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-} from "../../../../utils/profile-actions"
-import {
-  fillPickupAddress,
-  goToPayment,
-} from "../../../../utils/shipping-actions"
+} from "../../../utils/profile-actions"
+import { fillPickupAddress, goToPayment } from "../../../utils/shipping-actions"
 import {
   completePurchase,
   payWithCreditCard,
-} from "../../../../utils/payment-actions"
+} from "../../../utils/payment-actions"
 import {
   goToInvoiceAddress,
   fillInvoiceAddress,
-} from "../../../../utils/invoice-actions"
+} from "../../../utils/invoice-actions"
 
 export default function test(account) {
   describe(`Pickup - Credit card - ${account}`, () => {

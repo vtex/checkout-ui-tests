@@ -1,14 +1,14 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getSecondPurchaseEmail,
   confirmSecondPurchase,
-} from "../../../../utils/profile-actions"
-import { completePurchase, typeCVV } from "../../../../utils/payment-actions"
+} from "../../../utils/profile-actions"
+import { completePurchase, typeCVV } from "../../../utils/payment-actions"
 import {
   chooseDeliveryDate,
   goToPayment,
-} from "../../../../utils/shipping-actions"
+} from "../../../utils/shipping-actions"
 
 export default function test(account) {
   describe(`Scheduled Delivery - 2P - Credit card - ${account}`, () => {

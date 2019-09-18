@@ -1,13 +1,13 @@
-import { setup, visitAndClearCookies } from "../../../../utils"
+import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-} from "../../../../utils/profile-actions"
+} from "../../../utils/profile-actions"
 import {
   payWithPaymentSlip,
   completePurchase,
-} from "../../../../utils/payment-actions"
+} from "../../../utils/payment-actions"
 
 export default function test(account) {
   describe(`Gift List - ${account}`, () => {
