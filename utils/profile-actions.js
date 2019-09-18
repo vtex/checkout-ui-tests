@@ -12,15 +12,13 @@ export function fillEmail(email) {
 }
 
 export function fillProfile() {
-  cy.get("#client-first-name")
-    .should("be.visible")
-    .type("Fernando")
+  cy.get("#client-first-name").type("Fernando", { force: true })
 
-  cy.get("#client-last-name").type("Coelho")
+  cy.get("#client-last-name").type("Coelho", { force: true })
 
-  cy.get("#client-document").type("00759459169")
+  cy.get("#client-document").type("00759459169", { force: true })
 
-  cy.get("#client-phone").type("21999999999")
+  cy.get("#client-phone").type("21999999999", { force: true })
 
   cy.get("#go-to-shipping").click()
 }
