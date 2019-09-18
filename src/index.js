@@ -1,3 +1,4 @@
+require("dotenv").config()
 const cypress = require("cypress")
 const FormData = require("form-data")
 const cmd = require("node-cmd")

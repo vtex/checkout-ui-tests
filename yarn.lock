@@ -734,6 +734,11 @@ doctypes@^1.1.0:
   resolved "https://registry.yarnpkg.com/doctypes/-/doctypes-1.1.0.tgz#ea80b106a87538774e8a3a4a5afe293de489e0a9"
   integrity sha1-6oCxBqh1OHdOijpKWv4pPeSJ4Kk=
 
+dotenv@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.1.0.tgz#d811e178652bfb8a1e593c6dd704ec7e90d85ea2"
+  integrity sha512-GUE3gqcDCaMltj2++g6bRQ5rBJWtkWTmqmD0fo1RnnMuUqHNCt2oTPeDnS9n6fKYvlhn7AeBkb38lymBtWBQdA==
+
 dox@^0.8.0:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/dox/-/dox-0.8.1.tgz#d7ade34333691bb90d7886055becf49f92afd06f"
