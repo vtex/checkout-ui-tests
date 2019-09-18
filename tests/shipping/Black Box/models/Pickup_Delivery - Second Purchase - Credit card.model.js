@@ -65,12 +65,6 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
       cy.wait(2000)
       cy.contains(email).should("be.visible")
-      if (account === "invoice") {
-        cy.contains("Gabriel Godoy").should("be.visible")
-      } else {
-        cy.contains("Gab**** God**").should("be.visible")
-      }
-
       cy.contains("Retirar").should("be.visible")
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
