@@ -29,7 +29,7 @@ export default function test(account) {
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
-      chooseDeliveryDate()
+      chooseDeliveryDate({ shouldActivate: true })
       goToPayment()
       payWithCreditCard()
       completePurchase()

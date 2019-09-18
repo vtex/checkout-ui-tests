@@ -85,7 +85,11 @@ export function toggleDeliveryShippingPreview() {
   cy.wait(1000)
 }
 
-export function chooseDeliveryDate() {
+export function chooseDeliveryDate(options = { shouldActivate: false }) {
+  if (options.shouldActivate) {
+    cy.wait(3000)
+    cy.get("#scheduled-delivery-delivery").click()
+  }
   cy.wait(3000)
   cy.get(".scheduled-delivery-choose").click({ force: true })
   cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })

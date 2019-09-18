@@ -7,7 +7,7 @@ export function payWithPaymentSlip() {
 }
 
 function getIframeBody($iframe) {
-  return $iframe.contents().find("body")
+  return $iframe.contents()
 }
 
 function queryIframe(callback) {
