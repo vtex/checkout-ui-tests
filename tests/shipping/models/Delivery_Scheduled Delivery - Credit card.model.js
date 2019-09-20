@@ -23,13 +23,18 @@ export default function test(account) {
 
     it("delivery with scheduled delivery with multiple items", () => {
       const email = getRandomEmail()
+      const shouldActivate = ["clean", "default", "geolocation", "invoice"].some(
+        localAccount => localAccount === account
+      )
 
       setup({ skus: ["35", "299"], account })
 
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
-      chooseDeliveryDate({ shouldActivate: true })
+      chooseDeliveryDate({
+        shouldActivate,
+      })
       goToPayment()
       payWithCreditCard()
       completePurchase()
