@@ -10,7 +10,7 @@ import {
 } from "../../../utils/payment-actions"
 
 export default function test(account) {
-  describe(`Gift List - ${account}`, () => {
+  xdescribe(`Gift List - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
