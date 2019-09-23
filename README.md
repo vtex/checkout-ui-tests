@@ -11,7 +11,7 @@ The test engine is composed by four main utilities:
 - **Horus Files** - AWS Lambda function used to send test result videos to s3
 - **Horus Proxy** - AWS Lambda function to send status to monitoring
 
-This repo has two github actions(BETA and STABLE) with a cron schedule to run all tests using cypress, then sending videos to s3, evidences and the run result to monitoring.
+This repo has two Github Actions (BETA and STABLE) with a cron schedule to run all tests using Cypress, then sending videos to s3, evidences and the run result to monitoring.
 
 ## Developing
 
@@ -29,7 +29,7 @@ $ yarn cypress:run
 
 To run the suite locally actually sending the results to monitoring run:
 
-**disclaimer** - you should have `HORUS_PROXY_KEY` and `HORUS_FILES_KEY` API keys in a `.env` file for the restuls and videos to be sent to monitoring.
+**disclaimer** - you should have `HORUS_PROXY_KEY` and `HORUS_FILES_KEY` API keys in a `.env` file for the results and videos to be sent to monitoring.
 
 ```sh
 $ yarn test # for tests using STABLE environment
