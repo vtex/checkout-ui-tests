@@ -1,12 +1,3 @@
-## Accounts in which tests should cover
-
-|                 | `vtexgame1` | `vtexgame1geo` | `vtexgame1nolean` | `vtexgame1clean` | `vtexgame1invoice` |
-| --------------- | ----------- | -------------- | ----------------- | ---------------- | ------------------ |
-| Lean Shipping   | true        | true           | false             | false            | true               |
-| Geolocation     | false       | true           | false             | false            | false              |
-| Google Maps Key | YES         | YES            | NO                | NO               | NO                 |
-| Invoice Address | false       | false          | false             | false            | true               |
-
 ## Shipping Purchase Scenarios
 
 ### Delivery (Payment: Boleto)
@@ -83,3 +74,23 @@
 
 - [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Gift%20List%20Purchase.model.js)
 - Recurring Purchase
+
+## Payment Purchase Scenarios
+
+### Credit card
+
+- [One card](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Credit%20card.model.js)
+- Two cards
+- Multiple sellers split
+
+### 3-D Secure Redirect
+
+- Credit card
+- Boleto/Dinheiro
+
+### 3-D Secure Payment Authorization App
+
+- Credit card
+- Boleto/Dinheiro
+
+### [Boleto](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Boleto.model.js)
