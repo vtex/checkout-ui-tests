@@ -62,8 +62,8 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `chooseDeliveryShippingPreview` - Selects Pickup tab at cart step
 - `chooseDeliveryDate` - Selects a date for scheduled options
 - `fillPickupAddress` - Searches for an address in the pickup points modal
-- **Invoice Address** `goToInvoiceAddress` - Selects go to invoice address to open this step
-- **Invoice Address** `fillInvoiceAddress` - Fills the invoice address information
+- `goToInvoiceAddress` - Selects go to invoice address to open this step
+- `fillInvoiceAddress` - Fills the invoice address information
 
 **Payment**
 
