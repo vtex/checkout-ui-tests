@@ -1,3 +1,5 @@
+import { ACCOUNT_NAMES } from "./constants"
+
 export function fillEmail(email) {
   cy.wait(2000)
 
@@ -37,7 +39,7 @@ export function confirmSecondPurchase() {
 }
 
 export function login(account) {
-  if (account === "invoice") {
+  if (account === ACCOUNT_NAMES.INVOICE) {
     cy.get("#loginWithUserAndPasswordBtn").click()
     cy.get("#inputPassword").type("Abcd1234")
     cy.get("#classicLoginBtn").click()

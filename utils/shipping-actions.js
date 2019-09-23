@@ -1,3 +1,5 @@
+import { ACCOUNT_NAMES } from "./constants"
+
 function fillPostalCodeOmnishipping() {
   cy.wait(1000)
   cy.get("#ship-postalCode").type("22071060")
@@ -31,7 +33,7 @@ export function unavailableDeliveryGoToPickup() {
 }
 
 export function fillShippingInformation(account) {
-  if (account === "geolocation") {
+  if (account === ACCOUNT_NAMES.GEOLOCATION) {
     fillGeolocationOmnishipping()
   } else {
     fillPostalCodeOmnishipping()
@@ -97,9 +99,11 @@ export function chooseDeliveryDate(options = { shouldActivate: false }) {
 
 export function fillPickupAddress(account) {
   if (
-    ["clean", "noLean", "invoice"].some(
-      localAccount => localAccount === account
-    )
+    [
+      ACCOUNT_NAMES.CLEAN_NO_MAPS,
+      ACCOUNT_NAMES.NO_LEAN,
+      ACCOUNT_NAMES.INVOICE,
+    ].some(localAccount => localAccount === account)
   ) {
     cy.get("#find-pickups-manualy-button-denied").click()
     cy.get("#pkpmodal-search #ship-postalCode").type("22071060")

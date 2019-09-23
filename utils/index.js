@@ -7,6 +7,7 @@ import {
   BASE_WORKSPACE,
   DEFAULT_ACCOUNT_NAME,
   getAccountName,
+  ACCOUNT_NAMES,
 } from "./constants"
 
 const BASE_CONFIG = {
@@ -22,26 +23,19 @@ export function setup({
   account = "default",
 }) {
   let url = ""
+
   if (isGiftList) {
     url = getAddGiftListEndpoint(getAddSkusEndpoint({ account, skus }), "21")
   } else {
     url = getAddSkusEndpoint({ account, skus })
   }
   cy.server()
-  cy.route({
-    method: "POST",
-    url: "/api/checkout/**",
-  }).as("checkoutRequest")
-  cy.route({
-    method: "GET",
-    url: "/api/checkout/**",
-  }).as("checkoutRequest")
+
+  cy.route({ method: "POST", url: "/api/checkout/**" }).as("checkoutRequest")
+  cy.route({ method: "GET", url: "/api/checkout/**" }).as("checkoutRequest")
 
   if (Cypress.env("isLogged")) {
-    cy.route({
-      method: "GET",
-      url: "/api/vtexid/**",
-    }).as("vtexId")
+    cy.route({ method: "GET", url: "/api/vtexid/**" }).as("vtexId")
   }
 
   if (mobile) {
@@ -55,15 +49,16 @@ export function setup({
   return cy
 }
 
-export function visitAndClearCookies(account = "default") {
+export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
   cy.visit(
     getBaseURL({
       ...BASE_CONFIG,
-      accountName: getAccountName(account),
+      accountName: account,
     }) + CHECKOUT_ENDPOINT
   )
   cy.clearCookies()
   cy.clearLocalStorage()
+
   if (BASE_CONFIG.environment === "beta") {
     cy.setCookie("vtex-commerce-env", "beta")
   }
@@ -71,14 +66,17 @@ export function visitAndClearCookies(account = "default") {
 
 export function getAddSkusEndpoint({ skus, account }) {
   deleteAllCookies()
-  return Array.from(skus).reduce(
-    (acumulatedSkus, sku, index) =>
-      `${acumulatedSkus}${index > 0 ? "&" : ""}sku=${sku}&qty=1&seller=1&sc=1`,
+
+  const baseURL =
     getBaseURL({
       ...BASE_CONFIG,
-      accountName: getAccountName(account),
+      accountName: account,
     }) + ADD_SKUS_ENDPOINT
-  )
+
+  const skuEndpoint = (acumulatedSkus, sku, index) =>
+    `${acumulatedSkus}${index > 0 ? "&" : ""}sku=${sku}&qty=1&seller=1&sc=1`
+
+  return Array.from(skus).reduce(skuEndpoint, baseURL)
 }
 
 export function getAddGiftListEndpoint(url, giftRegistry) {
@@ -88,6 +86,7 @@ export function getAddGiftListEndpoint(url, giftRegistry) {
 
 export function identityPurchase(email) {
   deleteAllCookies()
+
   cy.request(`${BASE_URL}${PROFILE_ENDPOINT}?email=${email}&sc=1`).as(
     "@checkoutRequest"
   )
@@ -96,6 +95,7 @@ export function identityPurchase(email) {
 export function deleteAllCookies() {
   cy.clearCookies("https://vtexgame1.myvtex.com")
   cy.clearCookies("https://io.vtexpayments.com.br")
+
   var cookies = document.cookie.split(";")
 
   for (var i = 0; i < cookies.length; i++) {
