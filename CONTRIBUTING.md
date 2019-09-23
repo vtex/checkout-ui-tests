@@ -65,15 +65,10 @@ After that you should implement call `setup()` function passing the skus and the
 ```js
 import { setup } from "../../../utils"
 
-...
-
 export default function test(account) {
-
 ...
-
   const skus = ["289"]
   setup({ skus, account })
-
 ...
 }
 ```
@@ -86,25 +81,13 @@ Once the `setup` is implemented, the steps to finish a purchase is next. In the 
 // it should show the right information
 ...
 if (account === "noLean") {
-  cy.get("#shipping-data")
-    .contains("PAC")
-    .should("be.visible")
-  cy.get("#shipping-data")
-    .contains("Motoboy")
-    .should("be.visible")
-  cy.get("#shipping-data")
-    .contains("Expressa")
-    .should("be.visible")
-  cy.get("#shipping-data")
-    .contains("PAC Lento")
-    .should("be.visible")
+  cy.get("#shipping-data").contains("PAC").should("be.visible")
+  cy.get("#shipping-data").contains("Motoboy").should("be.visible")
+  cy.get("#shipping-data").contains("Expressa").should("be.visible")
+  cy.get("#shipping-data").contains("PAC Lento").should("be.visible")
 } else {
-  cy.get("#shipping-data")
-    .contains("Mais rápida")
-    .should("be.visible")
-  cy.get("#shipping-data")
-    .contains("Mais econômica")
-    .should("be.visible")
+  cy.get("#shipping-data").contains("Mais rápida").should("be.visible")
+  cy.get("#shipping-data").contains("Mais econômica").should("be.visible")
 }
 ...
 //  Also, after the order is placed check if the information matches what
@@ -122,4 +105,4 @@ cy.contains("PAC").should("be.visible")
 ...
 ```
 
-After the test is done you should update [`SCENARIOS`](https://github.com/vtex/checkout-ui-tests/blob/master/SCENARIOS.md) and [`CHANGELOG`](https://github.com/vtex/checkout-ui-tests/blob/master/CHANGELOG.md) adding the implemented scenario. Also if an new action is implemented you should add it to the `README` as well.
+After the test is done you should update [`SCENARIOS`](https://github.com/vtex/checkout-ui-tests/blob/master/SCENARIOS.md) and [`CHANGELOG`](https://github.com/vtex/checkout-ui-tests/blob/master/CHANGELOG.md) adding the implemented scenario. Also if an new action is implemented you should add it to the [`README`](https://github.com/vtex/checkout-ui-tests/blob/master/README.md) as well.
