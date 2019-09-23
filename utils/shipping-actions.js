@@ -1,9 +1,9 @@
-export function fillPostalCodeOmnishipping() {
+function fillPostalCodeOmnishipping() {
   cy.wait(1000)
   cy.get("#ship-postalCode").type("22071060")
 }
 
-export function fillGeolocationOmnishipping() {
+function fillGeolocationOmnishipping() {
   cy.wait(2000)
 
   cy.get("#ship-addressQuery").type("Rua Saint Roman 12")
@@ -20,7 +20,7 @@ export function fillGeolocationOmnishipping() {
   cy.contains("Rua Saint Roman 12")
 }
 
-export function fillAddressInformation() {
+function fillAddressInformation() {
   cy.wait(2000)
   cy.get("#ship-number").type("12")
 }
@@ -49,11 +49,11 @@ export function goToPayment() {
   cy.get(".btn-go-to-payment").click({ force: true })
 }
 
-export function chooseDeliveryOmnishipping() {
+export function chooseDelivery() {
   cy.get("#shipping-option-delivery").click()
 }
 
-export function choosePickupOmnishipping() {
+export function choosePickup() {
   cy.wait(1000)
   cy.get("#shipping-option-pickup-in-point").click()
 }
@@ -67,7 +67,7 @@ export function fillShippingPreviewDelivery() {
   cy.get("#cart-shipping-calculate").click()
 }
 
-export function togglePickupShippingPreview() {
+export function choosePickupShippingPreview() {
   cy.get(".srp-toggle__pickup").click()
 
   cy.wait(1000)
@@ -75,7 +75,7 @@ export function togglePickupShippingPreview() {
   cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
 }
 
-export function toggleDeliveryShippingPreview() {
+export function chooseDeliveryShippingPreview() {
   cy.get(".srp-toggle__delivery").click()
 
   cy.wait(1000)

@@ -8,12 +8,9 @@ import {
   goToPayment,
   fillRemainingInfo,
   fillShippingInformation,
-  choosePickupOmnishipping,
+  choosePickup,
 } from "../../../utils/shipping-actions"
-import {
-  payWithPaymentSlip,
-  completePurchase,
-} from "../../../utils/payment-actions"
+import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 
 export default function test(account) {
@@ -29,14 +26,14 @@ export default function test(account) {
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
-      choosePickupOmnishipping()
+      choosePickup()
       cy.get("#shipping-data")
         .contains("Loja em Copacabana no Rio de Janeiro")
         .should("be.visible")
       fillRemainingInfo()
       goToInvoiceAddress(account)
       goToPayment()
-      payWithPaymentSlip()
+      payWithBoleto()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")

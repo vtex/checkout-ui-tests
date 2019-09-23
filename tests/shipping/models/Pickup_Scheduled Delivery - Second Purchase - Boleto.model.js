@@ -11,10 +11,7 @@ import {
   fillRemainingInfo,
   chooseDeliveryDate,
 } from "../../../utils/shipping-actions"
-import {
-  payWithPaymentSlip,
-  completePurchase,
-} from "../../../utils/payment-actions"
+import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 
 export default function test(account) {
@@ -36,7 +33,7 @@ export default function test(account) {
       login(account)
       goToInvoiceAddress(account)
       goToPayment()
-      payWithPaymentSlip()
+      payWithBoleto()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")

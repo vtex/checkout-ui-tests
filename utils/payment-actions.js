@@ -1,4 +1,4 @@
-export function payWithPaymentSlip() {
+export function payWithBoleto() {
   cy.wait(5000)
   cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true })
   cy.wait(3000)

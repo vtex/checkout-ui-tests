@@ -4,10 +4,7 @@ import {
   getRandomEmail,
   fillProfile,
 } from "../../../utils/profile-actions"
-import {
-  payWithPaymentSlip,
-  completePurchase,
-} from "../../../utils/payment-actions"
+import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
 
 export default function test(account) {
   xdescribe(`Gift List - ${account}`, () => {
@@ -21,7 +18,7 @@ export default function test(account) {
       setup({ mobile: false, isGiftList: true, skus: ["31"], account })
       fillEmail(email)
       fillProfile()
-      payWithPaymentSlip()
+      payWithBoleto()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")

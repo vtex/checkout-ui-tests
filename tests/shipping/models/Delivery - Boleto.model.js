@@ -8,10 +8,7 @@ import {
   goToPayment,
   fillShippingInformation,
 } from "../../../utils/shipping-actions"
-import {
-  payWithPaymentSlip,
-  completePurchase,
-} from "../../../utils/payment-actions"
+import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
 
 export default function test(account) {
   describe(`Delivery - Boleto - ${account}`, () => {
@@ -48,7 +45,7 @@ export default function test(account) {
           .should("be.visible")
       }
       goToPayment()
-      payWithPaymentSlip()
+      payWithBoleto()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
