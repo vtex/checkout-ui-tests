@@ -20,7 +20,7 @@ export function setup({
   mobile = false,
   isGiftList = false,
   skus,
-  account = "default",
+  account = ACCOUNT_NAMES.DEFAULT,
 }) {
   let url = ""
 

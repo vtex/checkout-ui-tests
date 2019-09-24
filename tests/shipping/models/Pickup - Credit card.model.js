@@ -13,6 +13,7 @@ import {
   goToInvoiceAddress,
   fillInvoiceAddress,
 } from "../../../utils/invoice-actions"
+import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Pickup - Credit card - ${account}`, () => {
@@ -30,7 +31,7 @@ export default function test(account) {
       goToInvoiceAddress(account)
       fillInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard({ withAddress: account !== "invoice" })
+      payWithCreditCard({ withAddress: account !== ACCOUNT_NAMES.INVOICE })
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")

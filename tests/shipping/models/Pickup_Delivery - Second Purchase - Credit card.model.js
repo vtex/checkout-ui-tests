@@ -12,6 +12,7 @@ import {
 } from "../../../utils/shipping-actions"
 import { completePurchase, typeCVV } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
+import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Pickup + Delivery - 2P - Credit card - ${account}`, () => {
@@ -36,7 +37,7 @@ export default function test(account) {
       login(account)
       goToInvoiceAddress(account)
 
-      if (account === "invoice") {
+      if (account === ACCOUNT_NAMES.INVOICE) {
         cy.get("#shipping-data")
           .contains("Praia de Botafogo 300")
           .should("be.visible")
@@ -70,7 +71,7 @@ export default function test(account) {
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
       cy.contains("Receber").should("be.visible")
-      if (account === "invoice") {
+      if (account === ACCOUNT_NAMES.INVOICE) {
         cy.contains("Praia de Botafogo, 300").should("be.visible")
       } else {
         cy.contains("Pra** ** *****ogo, ***").should("be.visible")
