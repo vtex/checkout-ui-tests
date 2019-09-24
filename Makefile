@@ -1,8 +1,5 @@
 IMAGE_NAME = vtex/checkout-ui-healthckeck-$(ENVIRONMENT)
 
-run: build
-	docker run --ipc=host --shm-size 1024M --rm -it $(IMAGE_NAME)
-
 deamon: build
 	docker run --ipc=host --shm-size 1024M -d $(IMAGE_NAME)
 
