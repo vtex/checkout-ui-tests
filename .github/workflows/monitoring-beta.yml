@@ -2,7 +2,7 @@ name: Healthcheck Beta
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/90 * * * *"
 
 jobs:
   build:
