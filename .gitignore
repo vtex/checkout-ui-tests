@@ -5,3 +5,4 @@ cypress/screenshots
 cypress/results
 .DS_Store
 .env
+output.html
