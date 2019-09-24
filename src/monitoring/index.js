@@ -11,7 +11,7 @@ const cmdGetAsync = Promise.promisify(cmd.get, {
   multiArgs: true,
   context: cmd,
 })
-const monitoring = require("../monitoring")
+const monitoring = require("./monitoring")
 const s3 = require("./s3")
 
 const BASE_PATH = "./tests/"
