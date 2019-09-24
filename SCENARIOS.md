@@ -3,7 +3,7 @@
 ### Delivery (Payment: Boleto)
 
 - [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Boleto.model.js)
-- Recurring Purchase
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Second%20Purchase%20-%20Boleto.model.js)
 
 ### Delivery (Payment: Credit card)
 
