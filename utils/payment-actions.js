@@ -11,7 +11,7 @@ function getIframeBody($iframe) {
 }
 
 function queryIframe(callback) {
-  cy.get("iframe").then(callback)
+  cy.get("#iframe-placeholder-creditCardPaymentGroup > iframe").then(callback)
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {
