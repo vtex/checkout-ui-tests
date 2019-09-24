@@ -5,7 +5,6 @@ import {
   fillProfile,
 } from "../../../utils/profile-actions"
 import {
-  fillAddressInformation,
   goToPayment,
   chooseDeliveryDate,
   fillShippingInformation,
@@ -14,6 +13,7 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
+import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery - Credit card - ${account}`, () => {
@@ -23,9 +23,12 @@ export default function test(account) {
 
     it("delivery with scheduled delivery with multiple items", () => {
       const email = getRandomEmail()
-      const shouldActivate = ["clean", "default", "geolocation", "invoice"].some(
-        localAccount => localAccount === account
-      )
+      const shouldActivate = [
+        ACCOUNT_NAMES.CLEAN_NO_MAPS,
+        ACCOUNT_NAMES.DEFAULT,
+        ACCOUNT_NAMES.GEOLOCATION,
+        ACCOUNT_NAMES.INVOICE,
+      ].some(localAccount => localAccount === account)
 
       setup({ skus: ["35", "299"], account })
 
