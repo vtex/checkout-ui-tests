@@ -9,6 +9,7 @@ import {
   fillShippingInformation,
 } from "../../../utils/shipping-actions"
 import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
+import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery - Boleto - ${account}`, () => {
@@ -23,7 +24,7 @@ export default function test(account) {
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
-      if (account === "noLean") {
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
         cy.get("#shipping-data")
           .contains("PAC")
           .should("be.visible")

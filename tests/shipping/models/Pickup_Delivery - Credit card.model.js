@@ -16,7 +16,7 @@ import {
   payWithCreditCard,
 } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-
+import { ACCOUNT_NAMES } from "../../../utils/constants"
 export default function test(account) {
   describe(`Pickup + Delivery - Credit card - ${account}`, () => {
     before(() => {
@@ -34,7 +34,7 @@ export default function test(account) {
       goToInvoiceAddress(account)
       fillRemainingInfo()
       fillShippingInformation(account)
-      if (account === "noLean") {
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
         cy.get("#shipping-data")
           .contains("PAC")
           .should("be.visible")

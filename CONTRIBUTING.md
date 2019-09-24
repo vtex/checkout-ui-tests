@@ -80,7 +80,7 @@ Once the `setup` is implemented, the steps to finish a purchase is next. In the 
 // checking if depending on the account configuration
 // it should show the right information
 ...
-if (account === "noLean") {
+if (account === ACCOUNT_NAMES.NO_LEAN) {
   cy.get("#shipping-data").contains("PAC").should("be.visible")
   cy.get("#shipping-data").contains("Motoboy").should("be.visible")
   cy.get("#shipping-data").contains("Expressa").should("be.visible")
