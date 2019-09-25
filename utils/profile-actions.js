@@ -30,7 +30,7 @@ export function getRandomEmail() {
 }
 
 export function getSecondPurchaseEmail() {
-  return "segunda-compra@mailinator.com"
+  return "second-purchase@mailinator.com"
 }
 
 export function confirmSecondPurchase() {
