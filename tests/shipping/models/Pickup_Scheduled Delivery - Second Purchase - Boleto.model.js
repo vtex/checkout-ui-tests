@@ -13,6 +13,7 @@ import {
 } from "../../../utils/shipping-actions"
 import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
+import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Pickup + Scheduled Delivery - 2P - Boleto - ${account}`, () => {
@@ -44,7 +45,11 @@ export default function test(account) {
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
       cy.contains("Agendada").should("be.visible")
-      cy.contains("Pra** ** *****ogo, ***").should("be.visible")
+      if (account === ACCOUNT_NAMES.INVOICE) {
+        cy.contains("Praia de Botafogo 300").should("be.visible")
+      } else {
+        cy.contains("Pra** ** *****ogo, ***").should("be.visible")
+      }
       cy.contains("Copacabana").should("be.visible")
     })
   })
