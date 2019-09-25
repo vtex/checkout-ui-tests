@@ -1,55 +1,52 @@
 import { setup, visitAndClearCookies } from "../../../utils"
 import {
   fillEmail,
-  login,
-  getSecondPurchaseEmail,
-  confirmSecondPurchase,
+  getRandomEmail,
+  fillProfile,
 } from "../../../utils/profile-actions"
 import {
   goToPayment,
-  unavailableDeliveryGoToPickup,
   fillRemainingInfo,
-  chooseDeliveryDate,
+  fillShippingInformation,
+  choosePickup,
 } from "../../../utils/shipping-actions"
-import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
+import { completePurchase, typeCVV } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
-  describe(`Pickup + Scheduled Delivery - 2P - Boleto - ${account}`, () => {
+  describe(`Delivery Only + Delivery/Pickup - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
 
     it("with only pickup", () => {
-      const email = getSecondPurchaseEmail()
+      const email = getRandomEmail()
 
-      setup({ skus: ["285", "291"], account })
+      setup({ skus: ["298", "290"], account })
       fillEmail(email)
-      confirmSecondPurchase()
-      unavailableDeliveryGoToPickup()
+      fillProfile()
+      fillShippingInformation(account)
+      choosePickup()
+      cy.get("#shipping-data")
+        .contains("Loja em Copacabana no Rio de Janeiro")
+        .should("be.visible")
       fillRemainingInfo()
-      chooseDeliveryDate()
-      goToInvoiceAddress(account)
-      login(account)
       goToInvoiceAddress(account)
       goToPayment()
-      payWithBoleto()
+      typeCVV()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
       cy.wait(2000)
       cy.contains(email).should("be.visible")
+      cy.contains("Fernando Coelho").should("be.visible")
+      cy.contains("5521999999999").should("be.visible")
       cy.contains("Retirar").should("be.visible")
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
       cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
-      cy.contains("Agendada").should("be.visible")
-      if (account === ACCOUNT_NAMES.INVOICE) {
-        cy.contains("Praia de Botafogo 300").should("be.visible")
-      } else {
-        cy.contains("Pra** ** *****ogo, ***").should("be.visible")
-      }
+      cy.contains("Receber").should("be.visible")
+      cy.contains("Rua Saint Roman 12").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
     })
   })

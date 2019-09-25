@@ -12,7 +12,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it("delivery with second purchase email", () => {
+    xit("delivery with second purchase email", () => {
       const email = getSecondPurchaseEmail()
 
       setup({ skus: ["289"], account })
