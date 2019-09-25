@@ -12,12 +12,12 @@ import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
 import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
-  describe(`Delivery - Boleto - ${account}`, () => {
+  xdescribe(`Delivery - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
 
-    xit("with only delivery", () => {
+    it("with only delivery", () => {
       const email = getRandomEmail()
 
       setup({ skus: ["289"], account })

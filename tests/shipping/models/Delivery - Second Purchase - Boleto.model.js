@@ -7,12 +7,12 @@ import {
 import { completePurchase, payWithBoleto } from "../../../utils/payment-actions"
 
 export default function test(account) {
-  describe(`Delivery - 2P - Boleto - ${account}`, () => {
+  xdescribe(`Delivery - 2P - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
 
-    xit("delivery with second purchase email", () => {
+    it("delivery with second purchase email", () => {
       const email = getSecondPurchaseEmail()
 
       setup({ skus: ["289"], account })
