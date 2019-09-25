@@ -39,23 +39,23 @@ export default function test(account) {
 
       if (account === ACCOUNT_NAMES.INVOICE) {
         cy.get("#shipping-data")
-          .contains("Praia de Botafogo 300")
+          .contains("Rua Saint Roman 12")
           .should("be.visible")
         cy.get("#shipping-data")
-          .contains("Botafogo - Rio de Janeiro - RJ")
+          .contains("Copacabana - Rio de Janeiro - RJ")
           .should("be.visible")
         cy.get("#shipping-data")
-          .contains("22250-040")
+          .contains("22071-060")
           .should("be.visible")
       } else {
         cy.get("#shipping-data")
-          .contains("Pra** ** *****ogo ***")
+          .contains("Rua ***** **man **")
           .should("be.visible")
         cy.get("#shipping-data")
-          .contains("Bot***** - Rio ** ******* - RJ")
+          .contains("Cop******* - Rio ** ******* - RJ")
           .should("be.visible")
         cy.get("#shipping-data")
-          .contains("******040")
+          .contains("******060")
           .should("be.visible")
       }
 
