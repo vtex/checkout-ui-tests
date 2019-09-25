@@ -10,7 +10,7 @@ import {
   fillShippingInformation,
   choosePickup,
 } from "../../../utils/shipping-actions"
-import { completePurchase, typeCVV } from "../../../utils/payment-actions"
+import { completePurchase, typeCVV, payWithCreditCard } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 
 export default function test(account) {
@@ -33,7 +33,7 @@ export default function test(account) {
       fillRemainingInfo()
       goToInvoiceAddress(account)
       goToPayment()
-      typeCVV()
+      payWithCreditCard()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
