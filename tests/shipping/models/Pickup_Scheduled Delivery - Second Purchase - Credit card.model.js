@@ -46,9 +46,9 @@ export default function test(account) {
       cy.contains("Copacabana").should("be.visible")
       cy.contains("Agendada").should("be.visible")
       if (account === ACCOUNT_NAMES.INVOICE) {
-        cy.contains("Praia de Botafogo 300").should("be.visible")
+        cy.contains("Rua Saint Roman 12").should("be.visible")
       } else {
-        cy.contains("Pra** ** *****ogo, ***").should("be.visible")
+        cy.contains("Rua ***** **man **").should("be.visible")
       }
       cy.contains("Copacabana").should("be.visible")
     })

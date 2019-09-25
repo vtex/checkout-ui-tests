@@ -48,11 +48,9 @@ export default function test(account) {
           .contains("22071-060")
           .should("be.visible")
       } else {
-        cy.get("#shipping-data")
-          .contains("Rua ***** **man **")
+        cy.get("#shipping-data").contains("Rua ***** **man **")
           .should("be.visible")
-        cy.get("#shipping-data")
-          .contains("Cop******* - Rio ** ******* - RJ")
+        cy.get("#shipping-data").contains("Cop******* - Rio ** ******* - RJ")
           .should("be.visible")
         cy.get("#shipping-data")
           .contains("******060")
