@@ -48,9 +48,11 @@ export default function test(account) {
           .contains("22071-060")
           .should("be.visible")
       } else {
-        cy.get("#shipping-data").contains("Rua ***** **man **")
+        cy.get("#shipping-data")
+          .contains("Rua ***** **man **")
           .should("be.visible")
-        cy.get("#shipping-data").contains("Cop******* - Rio ** ******* - RJ")
+        cy.get("#shipping-data")
+          .contains("Cop******* - Rio ** ******* - RJ")
           .should("be.visible")
         cy.get("#shipping-data")
           .contains("******060")
@@ -70,9 +72,9 @@ export default function test(account) {
       cy.contains("Copacabana").should("be.visible")
       cy.contains("Receber").should("be.visible")
       if (account === ACCOUNT_NAMES.INVOICE) {
-        cy.contains("Praia de Botafogo, 300").should("be.visible")
+        cy.contains("Rua Saint Roman 12").should("be.visible")
       } else {
-        cy.contains("Pra** ** *****ogo, ***").should("be.visible")
+        cy.contains("Rua ***** **man **").should("be.visible")
       }
     })
   })
