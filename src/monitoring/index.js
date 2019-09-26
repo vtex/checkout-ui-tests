@@ -56,7 +56,7 @@ async function sendResults(result, spec) {
   result.runs = await Promise.all(
     result.runs.map(async run => {
       try {
-        if (run.stats.failures === 0 || !process.env.HORUS_FILES_KEY) return run
+        if (run.stats.failures === 0) return run
         const { url: videoUrl } = await s3.uploadFile(
           run.video,
           `${runId}/${run.spec.name}.mp4`,

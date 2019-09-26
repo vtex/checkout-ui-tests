@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/monitoring/index.js",
   "scripts": {
-    "test": "DEV=dev node ./src/monitoring/index.js",
-    "test:beta": "DEV=dev VTEX_ENV=beta node ./src/monitoring/index.js",
+    "test": "DEV=true VTEX_ENV=stable node ./src/monitoring/index.js",
+    "test:beta": "DEV=true VTEX_ENV=beta node ./src/monitoring/index.js",
     "compile": "node ./src/compile-tests.js",
     "cypress": "cypress open",
     "cypress:run": "cypress run",

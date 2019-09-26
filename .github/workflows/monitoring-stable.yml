@@ -17,7 +17,6 @@ jobs:
       - name: Run docker with tests
         env:
           HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
-          HORUS_FILES_KEY: ${{ secrets.HORUS_FILES_KEY }}
           HORUS_COGNITO_CREDENTIALS: ${{ secrets.HORUS_COGNITO_CREDENTIALS }}
         run: |
           yarn test:ci-stable
