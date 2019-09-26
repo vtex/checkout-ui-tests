@@ -12,4 +12,4 @@ COPY ./ ./
 
 RUN \
   yarn install && \
-  VTEX_ENV=beta yarn test
+  yarn test:stable

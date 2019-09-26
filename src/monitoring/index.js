@@ -51,12 +51,13 @@ async function sendResults(result, spec) {
     return
   }
 
-  console.log("Uploading videos...")
   const runId = uuidv4()
   result.runs = await Promise.all(
     result.runs.map(async run => {
       try {
         if (run.stats.failures === 0) return run
+        console.log(`Uploading video for ${run.spec.name}`)
+
         const { url: videoUrl } = await s3.uploadFile(
           run.video,
           `${runId}/${run.spec.name}.mp4`,
