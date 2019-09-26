@@ -2,7 +2,7 @@ name: Healthcheck Stable
 
 on:
   schedule:
-    - cron: "*/90 * * * *"
+    - cron: "*/45 * * * *"
 
 jobs:
   build:
