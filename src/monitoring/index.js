@@ -56,25 +56,14 @@ async function sendResults(result, spec) {
   result.runs = await Promise.all(
     result.runs.map(async run => {
       try {
-        if (run.stats.failures === 0 || !process.env.HORUS_FILES_KEY) return run
-        const file = fs.createReadStream(run.video)
-        const data = new FormData()
+        if (run.stats.failures === 0) return run
+        const { url: videoUrl } = await s3.uploadFile(
+          run.video,
+          `${runId}/${run.spec.name}.mp4`,
+          "video/mp4"
+        )
 
-        data.append("video", file)
-
-        const {
-          data: { url },
-        } = await axios({
-          url: `https://9nzhhs4p1f.execute-api.us-east-1.amazonaws.com/default/HorusFiles?dst=${runId}/${run.spec.name}.mp4&contentType=video/mp4`,
-          method: "post",
-          data,
-          headers: {
-            ...data.getHeaders(),
-            "x-api-key": process.env.HORUS_FILES_KEY,
-          },
-        })
-
-        return { ...run, video: url }
+        return { ...run, video: videoUrl }
       } catch (err) {
         console.error(err)
         return run
