@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/monitoring/index.js",
   "scripts": {
-    "test": "VTEX_ENV=stable node ./src/monitoring/index.js",
+    "test": "node ./src/monitoring/index.js",
+    "test:stable": "VTEX_ENV=stable node ./src/monitoring/index.js",
     "test:beta": "VTEX_ENV=beta node ./src/monitoring/index.js",
     "compile": "node ./src/compile-tests.js",
     "cypress": "cypress open",

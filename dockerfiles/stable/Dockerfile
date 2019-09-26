@@ -12,4 +12,4 @@ COPY ./ ./
 
 RUN \
   yarn install && \
-  yarn test:beta
+  yarn test:stable
