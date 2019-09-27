@@ -1,9 +1,6 @@
 name: Healthcheck Push For Testing
 
-on:
-  pull_request:
-    branches:
-      - master
+on: [push]
 
 jobs:
   build:
@@ -17,7 +14,7 @@ jobs:
           node-version: 12.x
       - name: Run docker with tests
         env:
-          HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
           HORUS_COGNITO_CREDENTIALS: ${{ secrets.HORUS_COGNITO_CREDENTIALS }}
+          HORUS_PROXY_KEY: ${{ secrets.HORUS_PROXY_KEY }}
         run: |
           yarn test:ci-beta
