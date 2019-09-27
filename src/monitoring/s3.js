@@ -5,10 +5,7 @@ const BUCKET = "vtex-id-hc"
 const KEY_PREFIX = "healthcheck/tests/"
 const REGION = "us-east-1"
 const cwd = process.cwd()
-console.log(
-  "process.env.HORUS_COGNITO_CREDENTIALS",
-  process.env.HORUS_COGNITO_CREDENTIALS
-)
+
 AWS.config.update({
   region: REGION,
   credentials: new AWS.CognitoIdentityCredentials({
