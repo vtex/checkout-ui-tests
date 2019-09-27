@@ -27,7 +27,8 @@ const uploadFile = async (src, dst, contentType = null) => {
         ContentType: contentType,
       })
       .promise()
-    return {
+
+      return {
       url: `https://${BUCKET}.s3.amazonaws.com/${key}`,
       signed: s3.getSignedUrl("getObject", { Bucket: BUCKET, Key: key }),
     }
