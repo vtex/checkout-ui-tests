@@ -97,6 +97,16 @@ export function chooseDeliveryDate(options = { shouldActivate: false }) {
   cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })
 }
 
+export function choosePickupDate(options = { shouldActivate: false }) {
+  if (options.shouldActivate) {
+    cy.wait(3000)
+    cy.get('[id="scheduled-delivery-choose-pickup-(141125d)"]').click()
+  }
+  cy.wait(3000)
+  cy.get(".scheduled-delivery-choose").click({ force: true })
+  cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })
+}
+
 export function fillPickupAddress(account) {
   if (
     [
@@ -119,7 +129,7 @@ export function fillPickupAddress(account) {
       .first()
       .click()
   }
-  cy.get(".pkpmodal-points-list #retirada-na-loja-141125d").click()
+  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").click()
 
-  cy.get("#confirm-pickup-retirada-na-loja-141125d").click()
+  cy.get(".pkpmodal-details-confirm-btn").click()
 }

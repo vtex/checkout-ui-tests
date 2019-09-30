@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Delivery + Scheduled Pickup tests (First Purchase).
+
+### Added
+
 - `beta` and `stable` local headless testing
 
 ### Changed
