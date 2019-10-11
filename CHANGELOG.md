@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Cypress docker verison
+
+### Added
+
+- FFMPEG video converting
+
 ### Added
 
 - `beta` and `stable` local headless testing
