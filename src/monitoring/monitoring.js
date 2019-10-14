@@ -7,8 +7,6 @@ const fs = require("fs")
 const templateUrl = `${__dirname}/templates/evidence.pug`
 const compile = pug.compileFile(templateUrl)
 
-const evidenceExpirationDefault = 86400 // 24h in seconds
-
 const pad = (v, len = 2) => v.toString().padStart(len, 0)
 
 function msToTime(s) {

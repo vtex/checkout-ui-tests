@@ -1,21 +1,13 @@
 require("dotenv").config()
 const cypress = require("cypress")
-const FormData = require("form-data")
-const cmd = require("node-cmd")
-const fs = require("fs")
-const axios = require("axios")
 const Promise = require("bluebird")
 const uuidv4 = require("uuid/v4")
 const getSpecDirectories = require("../../utils/specs")
-const cmdGetAsync = Promise.promisify(cmd.get, {
-  multiArgs: true,
-  context: cmd,
-})
 const monitoring = require("./monitoring")
 const s3 = require("./s3")
 
 const BASE_PATH = "./tests/"
-const CONCURRENCY = process.env.DEV ? 1 : 5
+const CONCURRENCY = process.env.DEV ? 1 : 3
 const CYPRESS_CONFIG = {
   config: {
     chromeWebSecurity: false,
@@ -24,6 +16,7 @@ const CYPRESS_CONFIG = {
     viewportHeight: 660,
     viewportWidth: 1024,
     trashAssetsBeforeRuns: false,
+    videoUploadOnPasses: false,
   },
   env: {
     VTEX_ENV: process.env.VTEX_ENV,
@@ -52,6 +45,7 @@ async function sendResults(result, spec) {
   }
 
   const runId = uuidv4()
+
   result.runs = await Promise.all(
     result.runs.map(async run => {
       try {
