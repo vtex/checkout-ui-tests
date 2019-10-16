@@ -80,7 +80,7 @@
 ### Credit card
 
 - [One card](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery%20-%20Credit%20card.model.js)
-- Two cards
+- [Two cards](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Payment%20-%20Credit%20card%20-%20Two%20Cards.model.js)
 - Multiple sellers split
 
 ### 3-D Secure Redirect
