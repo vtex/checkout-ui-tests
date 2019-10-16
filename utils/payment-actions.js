@@ -14,63 +14,70 @@ function queryIframe(callback) {
   cy.get("#iframe-placeholder-creditCardPaymentGroup > iframe").then(callback)
 }
 
-export function payWithCreditCard(options = { withAddress: false }) {
+export function payWithCreditCard(options = { withAddress: false, id: 0 }) {
   cy.wait(5000)
 
   queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find("#creditCardpayment-card-0Number")
+      .find(`#creditCardpayment-card-${options.id}Number`)
       .type("4040240009008936")
-  })
 
-  queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find("#creditCardpayment-card-0Name")
+      .find(`#creditCardpayment-card-${options.id}Name`)
       .type("Fernando A Coelho")
     cy.wait(1000)
-  })
 
-  queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find("#creditCardpayment-card-0Brand")
+      .find(`#creditCardpayment-card-${options.id}Brand`)
       .select("1")
     cy.wait(1000)
-  })
 
-  queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find("#creditCardpayment-card-0Month")
+      .find(`#creditCardpayment-card-${options.id}Month`)
       .select("02")
     cy.wait(1000)
-  })
 
-  queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find("#creditCardpayment-card-0Year")
+      .find(`#creditCardpayment-card-${options.id}Year`)
       .select("22")
     cy.wait(1000)
-  })
 
-  queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find("#creditCardpayment-card-0Code")
+      .find(`#creditCardpayment-card-${options.id}Code`)
       .type("066")
     cy.wait(1000)
-  })
 
-  if (options.withAddress) {
-    queryIframe($iframe => {
+    if (options.withAddress) {
       cy.wrap(getIframeBody($iframe))
-        .find("#payment-billing-address-postalCode-0")
+        .find(`#payment-billing-address-postalCode-${options.id}`)
         .type("22071060")
-    })
-
-    queryIframe($iframe => {
       cy.wrap(getIframeBody($iframe))
-        .find("#payment-billing-address-number-0")
+        .find(`#payment-billing-address-number-${options.id}`)
         .type("12")
-    })
-  }
+    }
+  })
+}
+
+export function payWithTwoCreditCards(options = { withAddress: false }) {
+  cy.wait(5000)
+
+  queryIframe($iframe => {
+    const $body = getIframeBody($iframe)
+
+    selectTwoCards()
+    payWithCreditCard({ withAddress: options.withAddress, id: 0 })
+    payWithCreditCard({ withAddress: options.withAddress, id: 1 })
+  })
+}
+
+export function selectTwoCards() {
+  queryIframe($iframe => {
+    const $body = getIframeBody($iframe)
+
+    cy.wrap($body)
+      .find(".ChangeNumberOfPayments a")
+      .click()
+  })
 }
 
 export function typeCVV() {
