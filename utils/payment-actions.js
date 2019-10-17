@@ -14,7 +14,7 @@ function queryIframe(callback) {
   cy.get("#iframe-placeholder-creditCardPaymentGroup > iframe").then(callback)
 }
 
-export function payWithCreditCard(options = { withAddress: false, id: 0 }) {
+export function payWithCreditCard(options = { withAddress: false, id: "0" }) {
   cy.wait(5000)
 
   queryIframe($iframe => {
