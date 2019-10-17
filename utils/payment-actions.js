@@ -19,40 +19,40 @@ export function payWithCreditCard(options = { withAddress: false, id: "0" }) {
 
   queryIframe($iframe => {
     cy.wrap(getIframeBody($iframe))
-      .find(`#creditCardpayment-card-${options.id}Number`)
+      .find(`#creditCardpayment-card-${options.id || "0"}Number`)
       .type("4040240009008936")
 
     cy.wrap(getIframeBody($iframe))
-      .find(`#creditCardpayment-card-${options.id}Name`)
+      .find(`#creditCardpayment-card-${options.id || "0"}Name`)
       .type("Fernando A Coelho")
     cy.wait(1000)
 
     cy.wrap(getIframeBody($iframe))
-      .find(`#creditCardpayment-card-${options.id}Brand`)
+      .find(`#creditCardpayment-card-${options.id || "0"}Brand`)
       .select("1")
     cy.wait(1000)
 
     cy.wrap(getIframeBody($iframe))
-      .find(`#creditCardpayment-card-${options.id}Month`)
+      .find(`#creditCardpayment-card-${options.id || "0"}Month`)
       .select("02")
     cy.wait(1000)
 
     cy.wrap(getIframeBody($iframe))
-      .find(`#creditCardpayment-card-${options.id}Year`)
+      .find(`#creditCardpayment-card-${options.id || "0"}Year`)
       .select("22")
     cy.wait(1000)
 
     cy.wrap(getIframeBody($iframe))
-      .find(`#creditCardpayment-card-${options.id}Code`)
+      .find(`#creditCardpayment-card-${options.id || "0"}Code`)
       .type("066")
     cy.wait(1000)
 
     if (options.withAddress) {
       cy.wrap(getIframeBody($iframe))
-        .find(`#payment-billing-address-postalCode-${options.id}`)
+        .find(`#payment-billing-address-postalCode-${options.id || "0"}`)
         .type("22071060")
       cy.wrap(getIframeBody($iframe))
-        .find(`#payment-billing-address-number-${options.id}`)
+        .find(`#payment-billing-address-number-${options.id || "0"}`)
         .type("12")
     }
   })
