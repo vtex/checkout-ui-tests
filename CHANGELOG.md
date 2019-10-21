@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Delivery + Scheduled Pickup tests (Second Purchase).
+
+### Added
+
 - Two cards payment e2e tests
 
 ### Changed
