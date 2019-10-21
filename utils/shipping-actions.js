@@ -89,7 +89,7 @@ export function chooseDeliveryShippingPreview() {
 
 export function chooseDeliveryDate(options = { shouldActivate: false }) {
   if (options.shouldActivate) {
-    cy.wait(3000)
+    cy.wait(4000)
     cy.get("#scheduled-delivery-delivery").click()
   }
   cy.wait(3000)
