@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Gift list tests (Second Purchase).
+
+### Changed
+
+- Gift list from `xdescribe` to `describe` be actually used.
+
+### Added
+
 - Delivery + Scheduled Pickup tests (Second Purchase).
 
 ### Added

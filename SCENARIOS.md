@@ -73,7 +73,7 @@
 ### Gift List (Payment: Boleto)
 
 - [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Gift%20List%20Purchase.model.js)
-- Recurring Purchase
+- [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Gift%20List%20-%20Second%20Purchase.model.js)
 
 ## Payment Purchase Scenarios
 
