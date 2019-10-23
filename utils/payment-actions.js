@@ -15,6 +15,7 @@ function queryIframe(callback) {
 }
 
 export function payWithCreditCard(options = { withAddress: false, id: "0" }) {
+  cy.wait(3000)
   cy.get("#payment-group-creditCardPaymentGroup").click({ force: true })
 
   cy.wait(5000)
@@ -61,6 +62,9 @@ export function payWithCreditCard(options = { withAddress: false, id: "0" }) {
 }
 
 export function payWithTwoCreditCards(options = { withAddress: false }) {
+  cy.wait(3000)
+  cy.get("#payment-group-creditCardPaymentGroup").click({ force: true })
+
   cy.wait(5000)
 
   queryIframe($iframe => {
