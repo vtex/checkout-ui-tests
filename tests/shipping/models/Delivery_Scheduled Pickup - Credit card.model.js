@@ -27,12 +27,6 @@ export default function test(account) {
 
     it("delivery with scheduled pickup", () => {
       const email = getRandomEmail()
-      const shouldActivate = [
-        ACCOUNT_NAMES.CLEAN_NO_MAPS,
-        ACCOUNT_NAMES.DEFAULT,
-        ACCOUNT_NAMES.GEOLOCATION,
-        ACCOUNT_NAMES.INVOICE,
-      ].some(localAccount => localAccount === account)
 
       setup({ skus: ["289", "296"], account })
 
@@ -42,9 +36,7 @@ export default function test(account) {
       fillPickupAddress(account)
       fillRemainingInfo()
       fillShippingInformation(account)
-      choosePickupDate({
-        shouldActivate,
-      })
+      choosePickupDate(account)
       goToInvoiceAddress(account)
       goToPayment()
       payWithCreditCard()

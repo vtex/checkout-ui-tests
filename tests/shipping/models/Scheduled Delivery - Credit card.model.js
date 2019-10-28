@@ -28,7 +28,7 @@ export default function test(account) {
       fillProfile()
 
       fillShippingInformation(account)
-      chooseDeliveryDate()
+      chooseDeliveryDate(account)
 
       cy.get("#shipping-data")
         .contains("agendada")

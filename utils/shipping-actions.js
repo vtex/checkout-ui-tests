@@ -27,6 +27,15 @@ function fillAddressInformation() {
   cy.get("#ship-number").type("12")
 }
 
+function shouldActivateDatePicker(account) {
+  return [
+    ACCOUNT_NAMES.CLEAN_NO_MAPS,
+    ACCOUNT_NAMES.DEFAULT,
+    ACCOUNT_NAMES.GEOLOCATION,
+    ACCOUNT_NAMES.INVOICE,
+  ].some(localAccount => localAccount === account)
+}
+
 export function unavailableDeliveryGoToPickup() {
   cy.wait(1000)
   cy.get(".vtex-omnishipping-1-x-pickupButton").click({ force: true })
@@ -87,23 +96,27 @@ export function chooseDeliveryShippingPreview() {
   cy.wait(1000)
 }
 
-export function chooseDeliveryDate(options = { shouldActivate: false }) {
-  if (options.shouldActivate) {
+export function chooseDeliveryDate(account) {
+  if (shouldActivateDatePicker(account)) {
     cy.wait(4000)
     cy.get("#scheduled-delivery-delivery").click()
   }
   cy.wait(3000)
-  cy.get(".scheduled-delivery-choose").click({ force: true })
+  if (account === ACCOUNT_NAMES.NO_LEAN) {
+    cy.get("#scheduled-delivery-choose-agendada-top").click({ force: true })
+  } else {
+    cy.get("#scheduled-delivery-choose-agendada").click({ force: true })
+  }
   cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })
 }
 
-export function choosePickupDate(options = { shouldActivate: false }) {
-  if (options.shouldActivate) {
+export function choosePickupDate(account) {
+  if (shouldActivateDatePicker(account)) {
     cy.wait(3000)
     cy.get('[id="scheduled-delivery-choose-pickup-(141125d)"]').click()
   }
   cy.wait(3000)
-  cy.get(".scheduled-delivery-choose").click({ force: true })
+  cy.get('[id="scheduled-delivery-choose-pickup-(141125d)"]').click({ force: true })
   cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })
 }
 

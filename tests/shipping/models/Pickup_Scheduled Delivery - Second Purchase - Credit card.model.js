@@ -29,7 +29,7 @@ export default function test(account) {
       confirmSecondPurchase()
       unavailableDeliveryGoToPickup()
       fillRemainingInfo()
-      chooseDeliveryDate()
+      chooseDeliveryDate(account)
       goToInvoiceAddress(account)
       login(account)
       goToInvoiceAddress(account)
