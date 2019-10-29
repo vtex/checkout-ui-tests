@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Scheduled Delivery + Scheduled Pickup (First Purchase) tests.
+
 ## [0.0.5] - 2019-10-22
 
 ### Fixed

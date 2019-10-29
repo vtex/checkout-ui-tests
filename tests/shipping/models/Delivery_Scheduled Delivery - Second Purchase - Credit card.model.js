@@ -20,16 +20,10 @@ export default function test(account) {
     it("delivery with scheduled delivery with multiple items", () => {
       const email = getSecondPurchaseEmail()
 
-      const shouldActivate = [
-        ACCOUNT_NAMES.CLEAN_NO_MAPS,
-        ACCOUNT_NAMES.DEFAULT,
-        ACCOUNT_NAMES.GEOLOCATION,
-        ACCOUNT_NAMES.INVOICE,
-      ].some(localAccount => localAccount === account)
       setup({ skus: ["35", "299"], account })
       fillEmail(email)
       confirmSecondPurchase()
-      chooseDeliveryDate({ shouldActivate })
+      chooseDeliveryDate(account)
       goToPayment()
       typeCVV()
       completePurchase()

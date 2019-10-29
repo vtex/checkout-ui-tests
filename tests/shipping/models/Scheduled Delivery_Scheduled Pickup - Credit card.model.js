@@ -1,64 +1,62 @@
 import { setup, visitAndClearCookies } from "../../../utils"
 import {
-  confirmSecondPurchase,
   fillEmail,
+  getRandomEmail,
   fillProfile,
-  getSecondPurchaseEmail,
-  login,
 } from "../../../utils/profile-actions"
 import {
-  goToPayment,
+  completePurchase,
+  payWithCreditCard,
+} from "../../../utils/payment-actions"
+import {
+  chooseDeliveryDate,
   choosePickupDate,
   fillPickupAddress,
   fillRemainingInfo,
   fillShippingInformation,
+  goToPayment,
   unavailableDeliveryGoToPickup,
 } from "../../../utils/shipping-actions"
-import {
-  completePurchase,
-  payWithCreditCard,
-  typeCVV,
-} from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
-  describe(`Delivery + Scheduled Pickup - 2P - Credit card - ${account}`, () => {
+  describe(`Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
 
-    it("delivery with scheduled pickup", () => {
-      const email = getSecondPurchaseEmail()
+    it("scheduled delivery with scheduled pickup", () => {
+      const email = getRandomEmail()
 
-      setup({ skus: ["289", "296"], account })
-
+      setup({ skus: ["291", "296"], account })
       fillEmail(email)
-      confirmSecondPurchase()
+      fillProfile()
+
       unavailableDeliveryGoToPickup()
-      choosePickupDate(account)
+      fillPickupAddress(account)
       fillRemainingInfo()
-      goToInvoiceAddress(account)
-      login(account)
+
+      fillShippingInformation(account)
+      choosePickupDate(account)
+      chooseDeliveryDate(account)
+
       goToInvoiceAddress(account)
       goToPayment()
-      typeCVV()
+      payWithCreditCard()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
       cy.wait(2000)
       cy.contains(email).should("be.visible")
+      cy.contains("Fernando Coelho").should("be.visible")
+      cy.contains("5521999999999").should("be.visible")
+      cy.contains("Receber").should("be.visible")
+      cy.contains("Rua Saint Roman 12").should("be.visible")
+      cy.contains("Agendada").should("be.visible")
       cy.contains("Retirar").should("be.visible")
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
-      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
-      cy.contains("Agendada").should("be.visible")
-      cy.contains("Receber").should("be.visible")
-      if (account === ACCOUNT_NAMES.INVOICE) {
-        cy.contains("Rua Saint Roman 12").should("be.visible")
-      } else {
-        cy.contains("Rua ***** **man **").should("be.visible")
-      }
-      cy.contains("PAC").should("be.visible")
+      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")      
     })
   })
 }
