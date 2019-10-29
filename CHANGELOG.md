@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Video compression and upload
+
 ## [0.0.5] - 2019-10-22
 
 ### Fixed
