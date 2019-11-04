@@ -10,12 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Scheduled Delivery + Scheduled Pickup (First Purchase) tests.
+- Delivery + Scheduled Delivery + Pickup e2e tests for first purchase.
 
 ## [0.0.5] - 2019-10-22
 
 ### Fixed
 
-- Selection of credit card payment method
+- Selection of credit card payment method.
 
 ### Added
 
