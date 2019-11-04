@@ -7,7 +7,7 @@ const monitoring = require("./monitoring")
 const s3 = require("./s3")
 
 const BASE_PATH = "./tests/"
-const CONCURRENCY = process.env.DEV ? 1 : 3
+const CONCURRENCY = 1
 const CYPRESS_CONFIG = {
   config: {
     chromeWebSecurity: false,

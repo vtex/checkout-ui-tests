@@ -7,5 +7,6 @@
   "video": true,
   "projectId": "kobqo4",
   "key": "6ecaeca9-8292-49d5-b954-f5d330526703",
-  "pageLoadTimeout": 180000
+  "pageLoadTimeout": 180000,
+  "videoCompression": 32
 }
