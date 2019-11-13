@@ -38,8 +38,8 @@ export default function test(account) {
       fillRemainingInfo()
 
       fillShippingInformation(account)
-      choosePickupDate(account)
-      chooseDeliveryDate(account)
+      choosePickupDate({ account })
+      chooseDeliveryDate({ account })
 
       goToInvoiceAddress(account)
       goToPayment()

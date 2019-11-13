@@ -22,7 +22,7 @@ export default function test(account) {
       setup({ skus: ["291"], account })
       fillEmail(email)
       confirmSecondPurchase()
-      chooseDeliveryDate(account)
+      chooseDeliveryDate({ account })
       goToPayment()
       typeCVV()
       completePurchase()
