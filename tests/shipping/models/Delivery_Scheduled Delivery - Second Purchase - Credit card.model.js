@@ -20,7 +20,7 @@ export default function test(account) {
     it("delivery with scheduled delivery with multiple items", () => {
       const email = getSecondPurchaseEmail()
 
-      setup({ skus: ["35", "299"], account })
+      setup({ skus: ["35", "291"], account })
       fillEmail(email)
       confirmSecondPurchase()
       chooseDeliveryDate({ account })

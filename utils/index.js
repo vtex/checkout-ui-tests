@@ -106,3 +106,8 @@ export function deleteAllCookies() {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
   }
 }
+
+export function waitLoad() {
+  cy.get("#vtexIdUI-global-loader").should("not.exist")
+  cy.get(".icon-spinner").should("not.be.visible")
+}

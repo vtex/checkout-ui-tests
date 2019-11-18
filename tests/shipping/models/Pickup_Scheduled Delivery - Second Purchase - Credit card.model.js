@@ -16,7 +16,7 @@ import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
-  describe(`Pickup + Scheduled Delivery - 2P - Boleto - ${account}`, () => {
+  describe(`Pickup + Scheduled Delivery - 2P - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })

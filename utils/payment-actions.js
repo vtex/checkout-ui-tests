@@ -1,9 +1,9 @@
+import { waitLoad } from './'
+
 export function payWithBoleto() {
-  cy.wait(5000)
-  cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true })
-  cy.wait(3000)
+  cy.get("#payment-group-bankInvoicePaymentGroup:visible").click()
   cy.get("#payment-data-submit").should("not.have.attr", "disabled")
-  cy.get("#payment-group-bankInvoicePaymentGroup").click({ force: true })
+  cy.get("#payment-group-bankInvoicePaymentGroup:visible").click()
 }
 
 function getIframeBody($iframe) {
@@ -11,102 +11,92 @@ function getIframeBody($iframe) {
 }
 
 function queryIframe(callback) {
-  cy.get("#iframe-placeholder-creditCardPaymentGroup > iframe").then(callback)
+  cy.waitAndGet("#iframe-placeholder-creditCardPaymentGroup > iframe", 3000).then(callback)
 }
 
-export function payWithCreditCard(options = { withAddress: false, id: "0" }) {
-  cy.wait(3000)
-  cy.get("#payment-group-creditCardPaymentGroup").click({ force: true })
-
-  cy.wait(5000)
-
+function fillCreditCardInfo(options = { withAddress: false, id: "0" }) {
   queryIframe($iframe => {
-    cy.wrap(getIframeBody($iframe))
+    const $body = getIframeBody($iframe)
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || "0"}Number`)
       .type("4040240009008936")
 
-    cy.wrap(getIframeBody($iframe))
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || "0"}Name`)
       .type("Fernando A Coelho")
-    cy.wait(1000)
 
-    cy.wrap(getIframeBody($iframe))
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || "0"}Brand`)
       .select("1")
-    cy.wait(1000)
 
-    cy.wrap(getIframeBody($iframe))
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || "0"}Month`)
       .select("02")
-    cy.wait(1000)
 
-    cy.wrap(getIframeBody($iframe))
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || "0"}Year`)
       .select("22")
-    cy.wait(1000)
 
-    cy.wrap(getIframeBody($iframe))
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || "0"}Code`)
       .type("066")
-    cy.wait(1000)
 
     if (options.withAddress) {
-      cy.wrap(getIframeBody($iframe))
+      cy.wrap($body)
         .find(`#payment-billing-address-postalCode-${options.id || "0"}`)
         .type("22071060")
-      cy.wrap(getIframeBody($iframe))
+      
+      cy.wrap($body)
         .find(`#payment-billing-address-number-${options.id || "0"}`)
         .type("12")
     }
   })
 }
 
+export function payWithCreditCard(options) {
+  cy.waitAndGet("#payment-group-creditCardPaymentGroup", 3000).click()
+  waitLoad()
+  fillCreditCardInfo(options)
+}
+
 export function payWithTwoCreditCards(options = { withAddress: false }) {
-  cy.wait(3000)
-  cy.get("#payment-group-creditCardPaymentGroup").click({ force: true })
-
-  cy.wait(5000)
-
-  queryIframe($iframe => {
-    const $body = getIframeBody($iframe)
-
-    selectTwoCards()
-    payWithCreditCard({ withAddress: options.withAddress, id: 0 })
-    payWithCreditCard({ withAddress: options.withAddress, id: 1 })
-  })
+  cy.waitAndGet("#payment-group-creditCardPaymentGroup", 3000).click()
+  waitLoad()
+  selectTwoCards()
+  fillCreditCardInfo({ withAddress: options.withAddress, id: 0 })
+  fillCreditCardInfo({ withAddress: options.withAddress, id: 1 })
 }
 
 export function selectTwoCards() {
+  cy.get("#payment-group-creditCardPaymentGroup").click()
   queryIframe($iframe => {
     const $body = getIframeBody($iframe)
-
     cy.wrap($body)
-      .find(".ChangeNumberOfPayments a")
+      .find(".ChangeNumberOfPayments a:visible")
       .click()
   })
 }
 
 export function typeCVV() {
-  cy.wait(5000)
+  waitLoad()
+  cy.get("#payment-group-creditCardPaymentGroup").click()
+  waitLoad()
 
   queryIframe($iframe => {
-    cy.wrap(getIframeBody($iframe))
+    const $body = getIframeBody($iframe)
+
+    cy.wrap($body)
       .find("#creditCardpayment-card-0Brand")
       .select("1")
-    cy.wait(1000)
-  })
 
-  queryIframe($iframe => {
-    cy.wrap(getIframeBody($iframe))
+    cy.wrap($body)
       .find("#creditCardpayment-card-0Code")
       .type("066")
-    cy.wait(1000)
   })
 }
 
 export function completePurchase() {
-  cy.wait(1000)
-  cy.get("#payment-data-submit").should("not.have.attr", "disabled")
-
-  cy.get("#payment-data-submit").click({ force: true })
+  cy.get(".payment-submit-wrap > button.submit:visible").should("not.have.attr", "disabled")
+  cy.waitAndGet(".payment-submit-wrap > button.submit:visible", 3000).click()
 }
+
