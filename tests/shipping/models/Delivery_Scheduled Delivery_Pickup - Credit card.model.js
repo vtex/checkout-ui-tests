@@ -26,7 +26,7 @@ export default function test(account) {
 
     it('delivery with scheduled delivery and pickup point', () => {
       const email = getRandomEmail()
-      setup({ skus: ['285', '299', '31'], account })
+      setup({ skus: ['285', '291', '31'], account })
 
       fillEmail(email)
       fillProfile()
@@ -34,9 +34,7 @@ export default function test(account) {
       fillPickupAddress(account)
       fillRemainingInfo()
       fillShippingInformation(account)
-      chooseDeliveryDate({
-        shouldActivate: false,
-      })
+      chooseDeliveryDate({ shouldActivate: true })
       goToInvoiceAddress(account)
       goToPayment()
       payWithCreditCard()

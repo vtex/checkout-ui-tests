@@ -36,7 +36,7 @@ export default function test(account) {
       fillPickupAddress(account)
       fillRemainingInfo()
       fillShippingInformation(account)
-      choosePickupDate(account)
+      choosePickupDate({ account })
       goToInvoiceAddress(account)
       goToPayment()
       payWithCreditCard()

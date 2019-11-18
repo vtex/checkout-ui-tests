@@ -27,7 +27,11 @@ function fillAddressInformation() {
   cy.get("#ship-number").type("12")
 }
 
-function shouldActivateDatePicker(account) {
+function shouldActivateDatePicker({ account, shouldActivate }) {
+  if (shouldActivate !== undefined) {
+    return shouldActivate
+  }
+  
   return [
     ACCOUNT_NAMES.CLEAN_NO_MAPS,
     ACCOUNT_NAMES.DEFAULT,
@@ -96,28 +100,34 @@ export function chooseDeliveryShippingPreview() {
   cy.wait(1000)
 }
 
-export function chooseDeliveryDate(account) {
-  if (shouldActivateDatePicker(account)) {
-    cy.wait(4000)
-    cy.get("#scheduled-delivery-delivery").click()
+export function chooseDeliveryDate({ account, shouldActivate }) {
+  if (shouldActivateDatePicker({ account, shouldActivate })) {
+    cy.get("#scheduled-delivery-delivery").wait(1000).click()
   }
-  cy.wait(3000)
-  if (account === ACCOUNT_NAMES.NO_LEAN) {
-    cy.get("#scheduled-delivery-choose-agendada-top").click({ force: true })
-  } else {
-    cy.get("#scheduled-delivery-choose-agendada").click({ force: true })
-  }
-  cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })
+
+  cy.get(".shp-datepicker-button")
+    .filter(
+      (_, $button) =>
+        $button.id && $button.id.includes("scheduled-delivery-choose-agendada")
+    )
+    .click()
+  
+  cy.get(".react-datepicker__day--keyboard-selected").click()
 }
 
-export function choosePickupDate(account) {
-  if (shouldActivateDatePicker(account)) {
-    cy.wait(3000)
-    cy.get('[id="scheduled-delivery-choose-pickup-(141125d)"]').click()
+export function choosePickupDate({ account, shouldActivate }) {
+  if (shouldActivateDatePicker({ account, shouldActivate })) {
+    cy.get("#scheduled-delivery-pickup-in-point").wait(1000).click()
   }
-  cy.wait(3000)
-  cy.get('[id="scheduled-delivery-choose-pickup-(141125d)"]').click({ force: true })
-  cy.get(".react-datepicker__day--keyboard-selected").click({ force: true })
+
+  cy.get(".shp-datepicker-button")
+    .filter(
+      (_, $button) => 
+        $button.id && $button.id.includes("scheduled-delivery-choose-pickup")
+    )
+    .click()
+
+  cy.get(".react-datepicker__day--keyboard-selected").click()
 }
 
 export function fillPickupAddress(account) {
