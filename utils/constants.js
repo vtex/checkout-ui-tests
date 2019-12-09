@@ -3,7 +3,7 @@ const BASE_URL_COMPLETE = "http://vtexgame1.vtexlocal.com.br/"
 const ADD_SKUS_ENDPOINT = "/checkout/cart/add?"
 const CHECKOUT_ENDPOINT = "/checkout"
 const PROFILE_ENDPOINT = "/api/checkout/pub/profiles/"
-const BASE_WORKSPACE = "beta"
+const BASE_WORKSPACE = Cypress.env("VTEX_WORKSPACE") || "beta"
 
 const ACCOUNT_NAMES = {
   DEFAULT: "vtexgame1",
@@ -22,7 +22,10 @@ const ENV_BASE_URLS = {
     `https://${
       workspace ? workspace + "--" : ""
     }${accountName}.vtexcommercebeta.com.br`,
-  stable: accountName => `https://${accountName}.vtexcommercestable.com.br`,
+  stable: (accountName, workspace) =>
+    `https://${
+      workspace ? workspace + "--" : ""
+    }${accountName}.vtexcommercestable.com.br`,
 }
 
 function getBaseURL({ accountName, environment, workspace }) {
