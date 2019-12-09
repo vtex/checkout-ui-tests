@@ -3,7 +3,7 @@ const BASE_URL_COMPLETE = "http://vtexgame1.vtexlocal.com.br/"
 const ADD_SKUS_ENDPOINT = "/checkout/cart/add?"
 const CHECKOUT_ENDPOINT = "/checkout"
 const PROFILE_ENDPOINT = "/api/checkout/pub/profiles/"
-const BASE_WORKSPACE = Cypress.env("VTEX_WORKSPACE") || "beta"
+const BASE_WORKSPACE = "beta"
 
 const ACCOUNT_NAMES = {
   DEFAULT: "vtexgame1",

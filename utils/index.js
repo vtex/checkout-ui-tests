@@ -13,7 +13,7 @@ import {
 const BASE_CONFIG = {
   accountName: DEFAULT_ACCOUNT_NAME,
   environment: Cypress.env("VTEX_ENV") || process.env.VTEX_ENV || "stable",
-  workspace: BASE_WORKSPACE,
+  workspace: Cypress.env("VTEX_WORKSPACE") || BASE_WORKSPACE,
 }
 
 export function setup({
