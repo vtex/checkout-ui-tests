@@ -10,12 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Workflow for VTEX IO `beta` workspace running in `stable` environment.
-
-### Added
-
 - Documentation for using cypress open;
 - Ability to set `workspace` even if it's in `stable` environment;
-- `.prettierrc`.
+- `.prettierrc`;
+- Test for Delivery + Boleto + Without Geolocation and Postal Code.
 
 ### Changed
 
