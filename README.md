@@ -28,6 +28,12 @@ $ yarn cypress --env VTEX_ENV={{local|beta|stable}}
 $ yarn cypress --env VTEX_WORKSPACE={{example_workspace}}
 ```
 
+Multiple parameters should be separated by comma, e.g.:
+
+```sh
+$ yarn cypress --env VTEX_ENV=beta,VTEX_WORKSPACE=myWorkspace
+```
+
 To run ALL tests without sending to monitoring run:
 
 ```sh
