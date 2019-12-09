@@ -75,9 +75,9 @@ async function sendResults(result, spec) {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
       },
       env: isIOEnv ? "beta" : process.env.VTEX_ENV,
-      applicationName: `checkout-ui ${isIOEnv ? "(beta - IO)" : ""}`,
+      applicationName: `checkout-ui${isIOEnv ? "-io" : ""}`,
       healthcheck: {
-        moduleName: "Checkout UI",
+        moduleName: `Checkout UI ${isIOEnv ? "(IO Beta)" : ""}`,
         status: result.totalFailed > 0 ? 0 : 1,
         title: spec,
       },
