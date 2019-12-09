@@ -21,6 +21,13 @@ To implement a test or just run a test individually run the following command an
 $ yarn cypress
 ```
 
+Optional parameters can be set such as `environment` and vtex io `workspace` as follows:
+
+```sh
+$ yarn cypress --env VTEX_ENV={{local|beta|stable}}
+$ yarn cypress --env VTEX_WORKSPACE={{example_workspace}}
+```
+
 To run ALL tests without sending to monitoring run:
 
 ```sh
