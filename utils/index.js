@@ -21,14 +21,16 @@ export function setup({
   isGiftList = false,
   skus,
   account = ACCOUNT_NAMES.DEFAULT,
+  salesChannel = 1,
 }) {
   let url = ""
 
   if (isGiftList) {
-    url = getAddGiftListEndpoint(getAddSkusEndpoint({ account, skus }), "21")
+    url = getAddGiftListEndpoint(getAddSkusEndpoint({ account, skus, salesChannel }), "21")
   } else {
-    url = getAddSkusEndpoint({ account, skus })
+    url = getAddSkusEndpoint({ account, skus, salesChannel })
   }
+
   cy.server()
 
   cy.route({ method: "POST", url: "/api/checkout/**" }).as("checkoutRequest")
@@ -64,7 +66,7 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
   }
 }
 
-export function getAddSkusEndpoint({ skus, account }) {
+export function getAddSkusEndpoint({ skus, account, salesChannel }) {
   deleteAllCookies()
 
   const baseURL =
@@ -74,7 +76,7 @@ export function getAddSkusEndpoint({ skus, account }) {
     }) + ADD_SKUS_ENDPOINT
 
   const skuEndpoint = (acumulatedSkus, sku, index) =>
-    `${acumulatedSkus}${index > 0 ? "&" : ""}sku=${sku}&qty=1&seller=1&sc=1`
+    `${acumulatedSkus}${index > 0 ? "&" : ""}sku=${sku}&qty=1&seller=1&sc=${salesChannel}`
 
   return Array.from(skus).reduce(skuEndpoint, baseURL)
 }
