@@ -1,4 +1,4 @@
-name: Healthcheck Beta
+name: Healthcheck IO Beta
 
 on:
   schedule:
