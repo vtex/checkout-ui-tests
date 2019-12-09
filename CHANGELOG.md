@@ -9,13 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Documentation for using cypress open
-- Ability to set `workspace` even if it's in `stable` environment
-- `.prettierrc`
+- Workflow for VTEX IO `beta` workspace running in `stable` environment.
+
+### Added
+
+- Documentation for using cypress open;
+- Ability to set `workspace` even if it's in `stable` environment;
+- `.prettierrc`.
 
 ### Changed
 
-- Cron value to have less intersection
+- Cron value to have less intersection.
 
 ## [0.0.6] - 2019-11-04
 
