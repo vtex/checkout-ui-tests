@@ -54,7 +54,7 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
     getBaseURL({
       ...BASE_CONFIG,
       accountName: account,
-    }) + CHECKOUT_ENDPOINT
+    }) + CHECKOUT_ENDPOINT,
   )
   cy.clearCookies()
   cy.clearLocalStorage()
@@ -88,7 +88,7 @@ export function identityPurchase(email) {
   deleteAllCookies()
 
   cy.request(`${BASE_URL}${PROFILE_ENDPOINT}?email=${email}&sc=1`).as(
-    "@checkoutRequest"
+    "@checkoutRequest",
   )
 }
 

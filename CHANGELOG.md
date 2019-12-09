@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Documentation for using cypress open
+- Ability to set `workspace` even if it's in `stable` environment
+- `.prettierrc`
+
 ### Changed
 
 - Cron value to have less intersection
