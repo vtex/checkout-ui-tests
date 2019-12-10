@@ -37,7 +37,6 @@ export function getSecondPurchaseGeolocationEmail() {
   return "second-purchase-geolocation@mailinator.com"
 }
 
-
 export function confirmSecondPurchase() {
   cy.wait(1000)
   cy.get("#btn-identified-user-button").click({ force: true })

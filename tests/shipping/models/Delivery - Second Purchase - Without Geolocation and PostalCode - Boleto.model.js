@@ -7,7 +7,7 @@ import {
 import { completePurchase, payWithBoleto } from "../../../utils/payment-actions"
 
 export default function test(account) {
-  describe(`Delivery - 2P - Boleto - ${account}`, () => {
+  describe(`Delivery - 2P - Without Geolocation and PostalCode - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
