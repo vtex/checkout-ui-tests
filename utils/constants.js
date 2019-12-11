@@ -3,7 +3,6 @@ const BASE_URL_COMPLETE = "http://vtexgame1.vtexlocal.com.br/"
 const ADD_SKUS_ENDPOINT = "/checkout/cart/add?"
 const CHECKOUT_ENDPOINT = "/checkout"
 const PROFILE_ENDPOINT = "/api/checkout/pub/profiles/"
-const BASE_WORKSPACE = "beta"
 
 const ACCOUNT_NAMES = {
   DEFAULT: "vtexgame1",
@@ -42,7 +41,6 @@ module.exports = {
   ADD_SKUS_ENDPOINT,
   CHECKOUT_ENDPOINT,
   PROFILE_ENDPOINT,
-  BASE_WORKSPACE,
   ENV_BASE_URLS,
   ACCOUNT_NAMES,
   getAccountName,

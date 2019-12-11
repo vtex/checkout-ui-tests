@@ -4,7 +4,6 @@ import {
   PROFILE_ENDPOINT,
   getBaseURL,
   CHECKOUT_ENDPOINT,
-  BASE_WORKSPACE,
   DEFAULT_ACCOUNT_NAME,
   getAccountName,
   ACCOUNT_NAMES,
@@ -13,7 +12,7 @@ import {
 const BASE_CONFIG = {
   accountName: DEFAULT_ACCOUNT_NAME,
   environment: Cypress.env("VTEX_ENV") || process.env.VTEX_ENV || "stable",
-  workspace: Cypress.env("VTEX_WORKSPACE") || BASE_WORKSPACE,
+  workspace: Cypress.env("VTEX_WORKSPACE"),
 }
 
 export function setup({
