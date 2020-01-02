@@ -20,7 +20,7 @@ import {
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 
 export default function test(account) {
-  describe(`Pickup + Delivery - Credit card - ${account}`, () => {
+  describe(`Pickup + Scheduled Delivery - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
