@@ -24,7 +24,7 @@ export default function test(account) {
     it("delivery with scheduled delivery with multiple items", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["35", "309"], account })
+      setup({ skus: ["35", "291"], account })
 
       fillEmail(email)
       fillProfile()
