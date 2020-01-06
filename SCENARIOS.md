@@ -26,6 +26,11 @@
 - [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery_Scheduled%20Pickup%20-%20Credit%20card.model.js)
 - [Recurring Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Delivery_Scheduled%20Pickup%20-%20Second%20Purchase%20-%20Credit%20card.model.js)
 
+### Delivery + Scheduled Delivery and Delivery (Payment: Credit card)
+
+- [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/fix/schedule-delivery-scenario/tests/shipping/models/Delivery_Scheduled%20Delivery%20and%20Delivery%20-%20Credit%20card.model.js)
+- Recurring Purchase
+
 ### Pickup (Payment: Credit card)
 
 - [First Purchase](https://github.com/vtex/checkout-ui-tests/blob/master/tests/shipping/models/Pickup%20-%20Credit%20card.model.js)
