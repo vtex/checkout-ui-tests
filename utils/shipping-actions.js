@@ -91,18 +91,18 @@ export function chooseDeliveryDate({ account, shouldActivate }) {
 }
 
 export function choosePickupDate({ account, shouldActivate }) {
-  chooseDate({ account, shouldActivate }, "#scheduled-delivery-pickup-in-point")
+  chooseDate({ account, shouldActivate }, "#scheduled-delivery-pickup-in-point", "pickup")
 }
 
-export function chooseDate({ account, shouldActivate }, buttonElementId) {
+export function chooseDate({ account, shouldActivate }, toggleElementId, buttonSpecificId = '') {
   if (shouldActivateDatePicker({ account, shouldActivate })) {
-    cy.waitAndGet(buttonElementId, 1000).click()
+    cy.waitAndGet(toggleElementId, 1000).click()
   }
 
   cy.get(".shp-datepicker-button")
     .filter(
       (_, $button) =>
-        $button.id && $button.id.includes("scheduled-delivery-choose")
+        $button.id && $button.id.includes(`scheduled-delivery-choose-${buttonSpecificId}`)
     )
     .click()
 
