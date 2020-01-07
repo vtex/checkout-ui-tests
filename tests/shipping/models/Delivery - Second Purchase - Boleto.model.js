@@ -5,6 +5,7 @@ import {
   confirmSecondPurchase,
 } from "../../../utils/profile-actions"
 import { completePurchase, payWithBoleto } from "../../../utils/payment-actions"
+import { SKU_DELIVERY_MULTIPLE_SLA } from "../../../utils/constants"
 
 export default function test(account) {
   xdescribe(`Delivery - 2P - Boleto - ${account}`, () => {
@@ -15,7 +16,7 @@ export default function test(account) {
     it("delivery with second purchase email", () => {
       const email = getSecondPurchaseEmail()
 
-      setup({ skus: ["289"], account })
+      setup({ skus: [SKU_DELIVERY_MULTIPLE_SLA], account })
       fillEmail(email)
       confirmSecondPurchase()
       payWithBoleto()

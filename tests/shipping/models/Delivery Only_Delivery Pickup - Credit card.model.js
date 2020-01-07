@@ -12,6 +12,10 @@ import {
 } from "../../../utils/shipping-actions"
 import { completePurchase, typeCVV, payWithCreditCard } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
+import {
+  SKU_PICKUP_1_SLA_AND_DELIVERY_MULTIPLE_SLA,
+  SKU_DELIVERY_MULTIPLE_SLA_AND_PICKUP_AT_PORTO_ALEGRE
+} from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery Only + Delivery/Pickup - Boleto - ${account}`, () => {
@@ -22,7 +26,10 @@ export default function test(account) {
     it("with only pickup", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["298", "290"], account })
+      setup({ skus: [
+        SKU_PICKUP_1_SLA_AND_DELIVERY_MULTIPLE_SLA,
+        SKU_DELIVERY_MULTIPLE_SLA_AND_PICKUP_AT_PORTO_ALEGRE
+      ], account })
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)

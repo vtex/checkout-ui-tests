@@ -18,7 +18,10 @@ import {
   unavailableDeliveryGoToPickup,
 } from "../../../utils/shipping-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import {
+  SKU_SCHEDULED_DELIVERY,
+  SKU_SCHEDULED_PICKUP,
+} from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
@@ -29,7 +32,10 @@ export default function test(account) {
     it("scheduled delivery with scheduled pickup", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["291", "296"], account })
+      setup({
+        skus: [SKU_SCHEDULED_DELIVERY, SKU_SCHEDULED_PICKUP],
+        account,
+      })
       fillEmail(email)
       fillProfile()
 
@@ -56,7 +62,7 @@ export default function test(account) {
       cy.contains("Agendada").should("be.visible")
       cy.contains("Retirar").should("be.visible")
       cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
-      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")      
+      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
     })
   })
 }

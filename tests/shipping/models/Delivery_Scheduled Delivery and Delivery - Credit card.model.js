@@ -13,7 +13,10 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import {
+  SKU_DELIVERY_AND_PICKUP,
+  SKU_SCHEDULED_DELIVERY_AND_DELIVERY_MULTIPLE_SLA
+} from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery and Delivery - Credit card - ${account}`, () => {
@@ -24,7 +27,13 @@ export default function test(account) {
     it("one item with delivery and another item with both scheduled delivery and delivery", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["35", "299"], account })
+      setup({
+        skus: [
+          SKU_DELIVERY_AND_PICKUP,
+          SKU_SCHEDULED_DELIVERY_AND_DELIVERY_MULTIPLE_SLA,
+        ],
+        account,
+      })
 
       fillEmail(email)
       fillProfile()

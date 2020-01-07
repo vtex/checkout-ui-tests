@@ -5,6 +5,7 @@ import {
   confirmSecondPurchase,
 } from "../../../utils/profile-actions"
 import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
+import { SKU_DELIVERY_CUSTOMIZATION_ATTACHMENT } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Gift List - Second Purchase - ${account}`, () => {
@@ -15,7 +16,12 @@ export default function test(account) {
     it("gift list with delivery", () => {
       const email = getSecondPurchaseEmail()
 
-      setup({ mobile: false, isGiftList: true, skus: ["31"], account })
+      setup({
+        mobile: false,
+        isGiftList: true,
+        skus: [SKU_DELIVERY_CUSTOMIZATION_ATTACHMENT],
+        account,
+      })
       fillEmail(email)
       confirmSecondPurchase()
       payWithBoleto()

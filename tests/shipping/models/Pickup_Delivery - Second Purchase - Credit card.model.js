@@ -12,7 +12,11 @@ import {
 } from "../../../utils/shipping-actions"
 import { completePurchase, typeCVV } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import {
+  ACCOUNT_NAMES,
+  SKU_PICKUP_1_SLA,
+  SKU_DELIVERY_MULTIPLE_SLA,
+} from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Pickup + Delivery - 2P - Credit card - ${account}`, () => {
@@ -23,7 +27,7 @@ export default function test(account) {
     it("with only pickup", () => {
       const email = getSecondPurchaseEmail()
 
-      setup({ skus: ["285", "289"], account })
+      setup({ skus: [SKU_PICKUP_1_SLA, SKU_DELIVERY_MULTIPLE_SLA], account })
       fillEmail(email)
       confirmSecondPurchase()
       unavailableDeliveryGoToPickup()
