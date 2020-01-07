@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 2020-01-07
+
+### Added
+
+- A scheduled delivery test where it's not mandatory
+
+### Changed
+
+- Test to use a product with mandatory scheduled delivery
+
 ### Added
 
 - Workflow for VTEX IO `beta` workspace running in `stable` environment.

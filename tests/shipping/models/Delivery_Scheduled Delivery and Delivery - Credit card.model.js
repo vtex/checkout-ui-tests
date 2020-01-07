@@ -16,20 +16,20 @@ import {
 import { ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
-  describe(`Delivery + Scheduled Delivery - Credit card - ${account}`, () => {
+  describe(`Delivery + Scheduled Delivery and Delivery - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
 
-    it("delivery with scheduled delivery with multiple items", () => {
+    it("one item with delivery and another item with both scheduled delivery and delivery", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["35", "291"], account })
+      setup({ skus: ["35", "299"], account })
 
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
-      chooseDeliveryDate({ account })
+      chooseDeliveryDate({ account, shouldActivate: true })
       goToPayment()
       payWithCreditCard()
       completePurchase()

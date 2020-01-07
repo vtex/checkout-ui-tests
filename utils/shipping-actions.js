@@ -87,29 +87,22 @@ export function chooseDeliveryShippingPreview() {
 }
 
 export function chooseDeliveryDate({ account, shouldActivate }) {
+  chooseDate({ account, shouldActivate }, "#scheduled-delivery-delivery")
+}
+
+export function choosePickupDate({ account, shouldActivate }) {
+  chooseDate({ account, shouldActivate }, "#scheduled-delivery-pickup-in-point")
+}
+
+export function chooseDate({ account, shouldActivate }, buttonElementId) {
   if (shouldActivateDatePicker({ account, shouldActivate })) {
-    cy.waitAndGet("#scheduled-delivery-delivery", 1000).click()
+    cy.waitAndGet(buttonElementId, 1000).click()
   }
 
   cy.get(".shp-datepicker-button")
     .filter(
       (_, $button) =>
-        $button.id && $button.id.includes("scheduled-delivery-choose-agendada")
-    )
-    .click()
-
-  cy.get(".react-datepicker__day--keyboard-selected").click()
-}
-
-export function choosePickupDate({ account, shouldActivate }) {
-  if (shouldActivateDatePicker({ account, shouldActivate })) {
-    cy.waitAndGet("#scheduled-delivery-pickup-in-point", 1000).click()
-  }
-
-  cy.get(".shp-datepicker-button")
-    .filter(
-      (_, $button) => 
-        $button.id && $button.id.includes("scheduled-delivery-choose-pickup")
+        $button.id && $button.id.includes("scheduled-delivery-choose")
     )
     .click()
 
