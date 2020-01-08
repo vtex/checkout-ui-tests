@@ -5,6 +5,7 @@ import {
   getSecondPurchaseGeolocationEmail,
 } from "../../../utils/profile-actions"
 import { completePurchase, payWithBoleto } from "../../../utils/payment-actions"
+import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery - 2P - Without Geolocation and PostalCode - Boleto - ${account}`, () => {
@@ -15,7 +16,7 @@ export default function test(account) {
     it("delivery with second purchase email", () => {
       const email = getSecondPurchaseGeolocationEmail()
 
-      setup({ skus: ["312"], account, salesChannel: 2 })
+      setup({ skus: [SKUS.PICKUP], account, salesChannel: 2 })
       fillEmail(email)
       confirmSecondPurchase()
       payWithBoleto()

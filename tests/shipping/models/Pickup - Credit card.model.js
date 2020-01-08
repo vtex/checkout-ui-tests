@@ -13,7 +13,7 @@ import {
   goToInvoiceAddress,
   fillInvoiceAddress,
 } from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Pickup - Credit card - ${account}`, () => {
@@ -24,7 +24,7 @@ export default function test(account) {
     it("with only pickup", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["285"], account })
+      setup({ skus: [SKUS.PICKUP_1_SLA], account })
       fillEmail(email)
       fillProfile()
       fillPickupAddress(account)

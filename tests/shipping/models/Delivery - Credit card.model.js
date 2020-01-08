@@ -12,7 +12,7 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery - Credit Card - ${account}`, () => {
@@ -23,7 +23,7 @@ export default function test(account) {
     it("with only delivery", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["289"], account })
+      setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)

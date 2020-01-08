@@ -9,6 +9,7 @@ import {
   chooseDeliveryDate,
   goToPayment,
 } from "../../../utils/shipping-actions"
+import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Scheduled Delivery - 2P - Credit card - ${account}`, () => {
@@ -19,7 +20,7 @@ export default function test(account) {
     it("start with delivery then, choosing pickup, then choosing delivery", () => {
       const email = getSecondPurchaseEmail()
 
-      setup({ skus: ["291"], account })
+      setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })
       fillEmail(email)
       confirmSecondPurchase()
       chooseDeliveryDate({ account })

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Use meaningful names instead of sku numbers on tests
+
 ## [0.0.7] - 2020-01-07
 
 ### Added

@@ -16,7 +16,8 @@ import {
   payWithCreditCard,
 } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
+
 export default function test(account) {
   describe(`Pickup + Delivery - Credit card - ${account}`, () => {
     before(() => {
@@ -26,7 +27,7 @@ export default function test(account) {
     it("with only pickup", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["285", "289"], account })
+      setup({ skus: [SKUS.PICKUP_1_SLA, SKUS.DELIVERY_MULTIPLE_SLA], account })
       fillEmail(email)
       fillProfile()
       unavailableDeliveryGoToPickup()

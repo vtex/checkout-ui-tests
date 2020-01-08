@@ -17,6 +17,7 @@ import {
   payWithCreditCard,
 } from '../../../utils/payment-actions'
 import { goToInvoiceAddress } from '../../../utils/invoice-actions'
+import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Pickup - Credit card - ${account}`, () => {
@@ -26,7 +27,14 @@ export default function test(account) {
 
     it('delivery with scheduled delivery and pickup point', () => {
       const email = getRandomEmail()
-      setup({ skus: ['285', '291', '31'], account })
+      setup({
+        skus: [
+          SKUS.PICKUP_1_SLA,
+          SKUS.SCHEDULED_DELIVERY,
+          SKUS.DELIVERY_CUSTOMIZATION_ATTACHMENT,
+        ],
+        account,
+      })
 
       fillEmail(email)
       fillProfile()

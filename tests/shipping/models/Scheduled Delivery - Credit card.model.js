@@ -13,6 +13,7 @@ import {
   chooseDeliveryDate,
   fillShippingInformation,
 } from "../../../utils/shipping-actions"
+import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Scheduled Delivery - Credit card - ${account}`, () => {
@@ -23,7 +24,7 @@ export default function test(account) {
     it("complete purchase with scheduled delivery", () => {
       const email = getRandomEmail()
 
-      setup({ skus: ["291"], account })
+      setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })
       fillEmail(email)
       fillProfile()
 

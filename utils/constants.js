@@ -12,6 +12,19 @@ const ACCOUNT_NAMES = {
   INVOICE: "vtexgame1invoice",
 }
 
+const SKUS = {
+  DELIVERY_CUSTOMIZATION_ATTACHMENT: "31",
+  DELIVERY_AND_PICKUP: "35",
+  PICKUP_1_SLA: "285",
+  DELIVERY_MULTIPLE_SLA: "289",
+  DELIVERY_MULTIPLE_SLA_AND_PICKUP_AT_PORTO_ALEGRE: "290",
+  SCHEDULED_DELIVERY: "291",
+  SCHEDULED_PICKUP: "296",
+  PICKUP_1_SLA_AND_DELIVERY_MULTIPLE_SLA: "298",
+  SCHEDULED_DELIVERY_AND_DELIVERY_MULTIPLE_SLA: "299",
+  PICKUP: "312",
+}
+
 const ENV_BASE_URLS = {
   local: (accountName, workspace) =>
     `http://${
@@ -45,4 +58,5 @@ module.exports = {
   ACCOUNT_NAMES,
   getAccountName,
   getBaseURL,
+  SKUS,
 }

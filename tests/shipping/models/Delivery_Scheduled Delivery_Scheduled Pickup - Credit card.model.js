@@ -21,6 +21,7 @@ import {
   goToPayment,
   unavailableDeliveryGoToPickup,
 } from '../../../utils/shipping-actions'
+import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
@@ -30,7 +31,14 @@ export default function test(account) {
 
     it('delivery with scheduled delivery and scheduled pickup', () => {
       const email = getRandomEmail()
-      setup({ skus: ['31', '291', '296'], account })
+      setup({
+        skus: [
+          SKUS.DELIVERY_CUSTOMIZATION_ATTACHMENT,
+          SKUS.SCHEDULED_DELIVERY,
+          SKUS.SCHEDULED_PICKUP,
+        ],
+        account,
+      })
 
       fillEmail(email)
       fillProfile()
