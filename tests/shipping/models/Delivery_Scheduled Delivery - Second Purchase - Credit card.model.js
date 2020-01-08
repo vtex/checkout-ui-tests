@@ -9,10 +9,7 @@ import {
   chooseDeliveryDate,
 } from "../../../utils/shipping-actions"
 import { completePurchase, typeCVV } from "../../../utils/payment-actions"
-import {
-  SKU_DELIVERY_AND_PICKUP,
-  SKU_SCHEDULED_DELIVERY,
-} from "../../../utils/constants"
+import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery - 2P - Credit card - ${account}`, () => {
@@ -24,7 +21,7 @@ export default function test(account) {
       const email = getSecondPurchaseEmail()
 
       setup({
-        skus: [SKU_DELIVERY_AND_PICKUP, SKU_SCHEDULED_DELIVERY],
+        skus: [SKUS.DELIVERY_AND_PICKUP, SKUS.SCHEDULED_DELIVERY],
         account,
       })
       fillEmail(email)

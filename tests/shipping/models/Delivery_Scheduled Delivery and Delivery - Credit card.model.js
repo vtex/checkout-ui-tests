@@ -13,10 +13,7 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
-import {
-  SKU_DELIVERY_AND_PICKUP,
-  SKU_SCHEDULED_DELIVERY_AND_DELIVERY_MULTIPLE_SLA
-} from "../../../utils/constants"
+import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery and Delivery - Credit card - ${account}`, () => {
@@ -29,8 +26,8 @@ export default function test(account) {
 
       setup({
         skus: [
-          SKU_DELIVERY_AND_PICKUP,
-          SKU_SCHEDULED_DELIVERY_AND_DELIVERY_MULTIPLE_SLA,
+          SKUS.DELIVERY_AND_PICKUP,
+          SKUS.SCHEDULED_DELIVERY_AND_DELIVERY_MULTIPLE_SLA,
         ],
         account,
       })

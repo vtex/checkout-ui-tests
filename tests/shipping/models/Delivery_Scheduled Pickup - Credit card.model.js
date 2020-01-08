@@ -17,7 +17,7 @@ import {
   payWithCreditCard,
 } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { SKU_DELIVERY_MULTIPLE_SLA, SKU_SCHEDULED_PICKUP } from "../../../utils/constants"
+import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
@@ -29,7 +29,7 @@ export default function test(account) {
       const email = getRandomEmail()
 
       setup({
-        skus: [SKU_DELIVERY_MULTIPLE_SLA, SKU_SCHEDULED_PICKUP],
+        skus: [SKUS.DELIVERY_MULTIPLE_SLA, SKUS.SCHEDULED_PICKUP],
         account,
       })
 

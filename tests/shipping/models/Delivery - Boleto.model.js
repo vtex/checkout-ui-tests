@@ -9,7 +9,7 @@ import {
   fillShippingInformation,
 } from "../../../utils/shipping-actions"
 import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
-import { ACCOUNT_NAMES, SKU_DELIVERY_MULTIPLE_SLA } from "../../../utils/constants"
+import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   xdescribe(`Delivery - Boleto - ${account}`, () => {
@@ -20,7 +20,7 @@ export default function test(account) {
     it("with only delivery", () => {
       const email = getRandomEmail()
 
-      setup({ skus: [SKU_DELIVERY_MULTIPLE_SLA], account })
+      setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
