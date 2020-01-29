@@ -19,7 +19,8 @@ function fillGeolocationOmnishipping() {
 }
 
 function fillAddressInformation() {
-  cy.waitAndGet('#ship-number', 3000).type('12')
+  cy.get("#ship-postalCode").blur()
+  cy.waitAndGet("#ship-number", 3000).type("12", { force: true })
 }
 
 function shouldActivateDatePicker({ account, shouldActivate }) {
@@ -48,6 +49,14 @@ export function fillShippingInformation(account) {
   }
 }
 
+export function fillRemainingShippingInfo(account) {
+  if (account !== ACCOUNT_NAMES.GEOLOCATION) {
+    fillAddressInformation()
+  } else {
+    fillGeolocationOmnishipping()
+  }
+}
+
 export function fillRemainingInfo() {
   cy.get('.vtex-omnishipping-1-x-btnDelivery').click()
 }
@@ -61,22 +70,29 @@ export function chooseDelivery() {
 }
 
 export function choosePickup() {
-  cy.get('#shipping-option-pickup-in-point').click()
+  cy.waitAndGet("#shipping-option-pickup-in-point", 1000).click()
 }
 
-export function fillShippingPreviewDelivery() {
-  cy.get('button#shipping-calculate-link').click()
+export function fillShippingPreviewDelivery(account) {
+  cy.get("button#shipping-calculate-link").click()
 
-  cy.get('#ship-postalCode').type('22071060')
-
-  cy.get('#cart-shipping-calculate').click()
+  if (account === ACCOUNT_NAMES.GEOLOCATION) {
+    fillGeolocationOmnishipping()
+  } else {
+    cy.get("#ship-postalCode").type("22071060")
+    cy.get("#cart-shipping-calculate").click()
+  }
 }
 
 export function choosePickupShippingPreview() {
-  cy.get('.srp-toggle__pickup').click()
+  cy.waitAndGet(".srp-toggle__pickup", 3000).click()
 
-  cy.contains('Retirar 1 item').should('be.visible')
-  cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
+  cy.get(".srp-data")
+    .contains("Retirar 1 item")
+    .should("be.visible")
+  cy.get(".srp-data")
+    .contains("Loja em Copacabana no Rio de Janeiro")
+    .should("be.visible")
 }
 
 export function chooseDeliveryShippingPreview() {
