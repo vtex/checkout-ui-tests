@@ -131,7 +131,13 @@ export function fillPickupAddress(account) {
       .first()
       .click({ force: true })
   }
-  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").click()
+  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").first().click()
 
+  cy.get(".pkpmodal-details-confirm-btn").click()
+}
+
+export function selectOtherPickup() {
+  cy.get("#change-pickup-button").click()
+  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").eq(1).click()
   cy.get(".pkpmodal-details-confirm-btn").click()
 }
