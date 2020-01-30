@@ -36,7 +36,7 @@ export default function test(account) {
       goToInvoiceAddress(account)
       fillInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard()
+      payWithCreditCard({ withAddress: true })
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
@@ -47,8 +47,8 @@ export default function test(account) {
       cy.contains("Cartão de crédito").should("be.visible")
       cy.contains("final 8936").should("be.visible")
       cy.contains("Retirar").should("be.visible")
-      cy.contains("Rua Marquês de Abrantes 5").should("be.visible")
-      cy.contains("Flamengo").should("be.visible")
+      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
+      cy.contains("Copacabana").should("be.visible")
     })
   })
 }

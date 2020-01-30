@@ -121,7 +121,7 @@ export function fillPickupAddress(account) {
     cy.waitAndGet("#pkpmodal-search #ship-postalCode", 3000).type("22071060")
   } else {
     cy.get("#find-pickups-manualy-button").click()
-    cy.waitAndGet("#pkpmodal-search input", 3000).type("Praia de Botafogo, 300")
+    cy.waitAndGet("#pkpmodal-search input", 3000).type("Rua Saint Roman, 12")
 
     cy.get(".pac-item")
       .first()
