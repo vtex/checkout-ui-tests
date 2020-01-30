@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Pickup + Unavailable Pickup scenarios;
+- Pickup + Unavailable Pickup + Delivery scenarios;
+- Pickup + Unavailable Pickup + Unavailable Delivery scenarios.
+
 ### Changed
 
 - Use meaningful names instead of sku numbers on tests

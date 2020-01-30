@@ -1,4 +1,4 @@
-import { waitLoad } from './'
+import { waitLoad } from "./"
 
 export function payWithBoleto() {
   cy.get("#payment-group-bankInvoicePaymentGroup:visible").click()
@@ -11,7 +11,10 @@ function getIframeBody($iframe) {
 }
 
 function queryIframe(callback) {
-  cy.waitAndGet("#iframe-placeholder-creditCardPaymentGroup > iframe", 3000).then(callback)
+  cy.waitAndGet(
+    "#iframe-placeholder-creditCardPaymentGroup > iframe",
+    3000,
+  ).then(callback)
 }
 
 function fillCreditCardInfo(options = { withAddress: false, id: "0" }) {
@@ -45,7 +48,7 @@ function fillCreditCardInfo(options = { withAddress: false, id: "0" }) {
       cy.wrap($body)
         .find(`#payment-billing-address-postalCode-${options.id || "0"}`)
         .type("22071060")
-      
+
       cy.wrap($body)
         .find(`#payment-billing-address-number-${options.id || "0"}`)
         .type("12")
@@ -53,10 +56,10 @@ function fillCreditCardInfo(options = { withAddress: false, id: "0" }) {
   })
 }
 
-export function payWithCreditCard(options) {
+export function payWithCreditCard(options = { withAddress: false }) {
   cy.waitAndGet("#payment-group-creditCardPaymentGroup", 3000).click()
   waitLoad()
-  fillCreditCardInfo(options)
+  fillCreditCardInfo({ withAddress: options.withAddress, id: 0 })
 }
 
 export function payWithTwoCreditCards(options = { withAddress: false }) {
@@ -96,7 +99,9 @@ export function typeCVV() {
 }
 
 export function completePurchase() {
-  cy.get(".payment-submit-wrap > button.submit:visible").should("not.have.attr", "disabled")
+  cy.get(".payment-submit-wrap > button.submit:visible").should(
+    "not.have.attr",
+    "disabled",
+  )
   cy.waitAndGet(".payment-submit-wrap > button.submit:visible", 3000).click()
 }
-

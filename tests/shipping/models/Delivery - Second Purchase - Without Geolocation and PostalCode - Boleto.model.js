@@ -16,7 +16,7 @@ export default function test(account) {
     it("delivery with second purchase email", () => {
       const email = getSecondPurchaseGeolocationEmail()
 
-      setup({ skus: [SKUS.PICKUP], account, salesChannel: 2 })
+      setup({ skus: [SKUS.GLOBAL_PRODUCT], account, salesChannel: 2 })
       fillEmail(email)
       confirmSecondPurchase()
       payWithBoleto()
