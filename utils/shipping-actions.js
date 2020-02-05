@@ -19,7 +19,7 @@ function fillGeolocationOmnishipping() {
 }
 
 function fillAddressInformation() {
-  cy.get("#ship-postalCode").blur()
+  cy.waitAndGet("#ship-postalCode", 1000).blur()
   cy.waitAndGet("#ship-number", 3000).type("12", { force: true })
 }
 
@@ -40,6 +40,11 @@ export function unavailableDeliveryGoToPickup() {
   cy.get('.vtex-omnishipping-1-x-pickupButton').click()
 }
 
+export function goToShippingPreviewPickup() {
+  cy.get("#shipping-calculate-link").click()
+  cy.waitAndGet(".srp-toggle__pickup", 1000).click()
+}
+
 export function fillShippingInformation(account) {
   if (account === ACCOUNT_NAMES.GEOLOCATION) {
     fillGeolocationOmnishipping()
@@ -52,8 +57,6 @@ export function fillShippingInformation(account) {
 export function fillRemainingShippingInfo(account) {
   if (account !== ACCOUNT_NAMES.GEOLOCATION) {
     fillAddressInformation()
-  } else {
-    fillGeolocationOmnishipping()
   }
 }
 
@@ -169,4 +172,31 @@ export function selectOtherPickup() {
     .eq(1)
     .click()
   cy.get('.pkpmodal-details-confirm-btn').click()
+}
+
+export function fillShippingPreviewPickupAddress(account) {
+  cy.get("#find-pickup-link").click()
+
+  if (
+    [
+      ACCOUNT_NAMES.CLEAN_NO_MAPS,
+      ACCOUNT_NAMES.NO_LEAN,
+      ACCOUNT_NAMES.INVOICE,
+    ].some(localAccount => localAccount === account)
+  ) {
+    cy.waitAndGet("#pkpmodal-search #ship-postalCode", 3000).type("22071060")
+  } else {
+    cy.waitAndGet("#pkpmodal-search input", 3000).type("Praia de Botafogo, 300")
+
+    cy.get(".pac-item")
+      .first()
+      .trigger("mouseover", { force: true })
+
+    cy.get(".pac-item")
+      .first()
+      .click({ force: true })
+  }
+  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").click()
+
+  cy.get(".pkpmodal-details-confirm-btn").click()
 }
