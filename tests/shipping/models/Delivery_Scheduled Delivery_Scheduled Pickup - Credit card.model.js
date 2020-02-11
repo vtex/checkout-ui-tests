@@ -1,8 +1,6 @@
 import { setup, visitAndClearCookies } from '../../../utils'
-import { ACCOUNT_NAMES } from '../../../utils/constants'
-import {
-  goToInvoiceAddress,
-} from '../../../utils/invoice-actions'
+import { SKUS } from '../../../utils/constants'
+import { goToInvoiceAddress } from '../../../utils/invoice-actions'
 import {
   completePurchase,
   payWithCreditCard,
@@ -21,7 +19,6 @@ import {
   goToPayment,
   unavailableDeliveryGoToPickup,
 } from '../../../utils/shipping-actions'
-import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {

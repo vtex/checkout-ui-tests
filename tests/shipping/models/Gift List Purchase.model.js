@@ -1,11 +1,11 @@
-import { setup, visitAndClearCookies } from "../../../utils"
+import { setup, visitAndClearCookies } from '../../../utils'
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-} from "../../../utils/profile-actions"
-import { payWithBoleto, completePurchase } from "../../../utils/payment-actions"
-import { SKUS } from "../../../utils/constants"
+} from '../../../utils/profile-actions'
+import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
+import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Gift List - ${account}`, () => {
@@ -13,7 +13,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it("gift list with delivery", () => {
+    it('gift list with delivery', () => {
       const email = getRandomEmail()
 
       setup({
@@ -27,11 +27,11 @@ export default function test(account) {
       payWithBoleto()
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
+      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
-      cy.contains(email).should("be.visible")
-      cy.contains("Fernando Coelho").should("be.visible")
-      cy.contains("Teste Endereço").should("be.visible")
+      cy.contains(email).should('be.visible')
+      cy.contains('Fernando Coelho').should('be.visible')
+      cy.contains('Teste Endereço').should('be.visible')
     })
   })
 }

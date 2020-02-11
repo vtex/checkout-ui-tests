@@ -24,18 +24,20 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("waitAndGet", (arg, time, options) => {
-  cy.get(arg, options).wait(time).get(arg, options)
+Cypress.Commands.add('waitAndGet', (arg, time, options) => {
+  cy.get(arg, options)
+    .wait(time)
+    .get(arg, options)
 })
 
-Cypress.Commands.add("iframe", { prevSubject: "element" }, $iframe => {
+Cypress.Commands.add('iframe', { prevSubject: 'element' }, $iframe => {
   if ($iframe.readyState === 'complete') {
-    return $iframe.contents().find("body")
+    return $iframe.contents().find('body')
   }
-  
+
   return new Cypress.Promise(resolve => {
-    $iframe.on("load", () => {
-      resolve($iframe.contents().find("body"))
+    $iframe.on('load', () => {
+      resolve($iframe.contents().find('body'))
     })
   })
 })

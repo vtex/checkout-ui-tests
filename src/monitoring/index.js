@@ -1,18 +1,20 @@
-require("dotenv").config()
-const cypress = require("cypress")
-const Promise = require("bluebird")
-const uuidv4 = require("uuid/v4")
-const getSpecDirectories = require("../../utils/specs")
-const monitoring = require("./monitoring")
-const s3 = require("./s3")
-const isIOEnv = process.env.VTEX_ENV === "beta-io"
+require('dotenv').config()
+const cypress = require('cypress')
+const Promise = require('bluebird')
+const uuidv4 = require('uuid/v4')
 
-const BASE_PATH = "./tests/"
+const getSpecDirectories = require('../../utils/specs')
+const monitoring = require('./monitoring')
+const s3 = require('./s3')
+
+const isIOEnv = process.env.VTEX_ENV === 'beta-io'
+
+const BASE_PATH = './tests/'
 const CONCURRENCY = 1
 const CYPRESS_CONFIG = {
   config: {
     chromeWebSecurity: false,
-    blacklistHosts: ["www.googletagmanager.com"],
+    blacklistHosts: ['www.googletagmanager.com'],
     pageLoadTimeout: 180000,
     viewportHeight: 660,
     viewportWidth: 1024,
@@ -20,13 +22,13 @@ const CYPRESS_CONFIG = {
     videoUploadOnPasses: false,
   },
   env: {
-    VTEX_ENV: isIOEnv ? "stable" : process.env.VTEX_ENV,
+    VTEX_ENV: isIOEnv ? 'stable' : process.env.VTEX_ENV,
     VTEX_WORKSPACE: process.env.VTEX_WORKSPACE,
   },
-  projectId: "kobqo4",
+  projectId: 'kobqo4',
   video: true,
   reporterOptions: {
-    reportDir: "cypress/results",
+    reportDir: 'cypress/results',
     overwrite: false,
     html: false,
     json: true,
@@ -37,12 +39,12 @@ const specs = getSpecDirectories({
   dir: BASE_PATH,
   basePath: BASE_PATH,
 }).filter(
-  spec => spec.indexOf("model") === -1 && spec.indexOf(".DS_Store") === -1,
+  spec => spec.indexOf('model') === -1 && spec.indexOf('.DS_Store') === -1
 )
 
 async function sendResults(result, spec) {
-  if (!result || result.message === "Could not find Cypress test run results") {
-    console.error("Could not find Cypress test run results")
+  if (!result || result.message === 'Could not find Cypress test run results') {
+    console.error('Could not find Cypress test run results')
     return
   }
 
@@ -57,7 +59,7 @@ async function sendResults(result, spec) {
         const { url: videoUrl } = await s3.uploadFile(
           run.video,
           `${runId}/${run.spec.name}.mp4`,
-          "video/mp4",
+          'video/mp4'
         )
 
         return { ...run, video: videoUrl }
@@ -65,7 +67,7 @@ async function sendResults(result, spec) {
         console.error(err)
         return run
       }
-    }),
+    })
   )
 
   console.log(`Sending result to monitoring for "${spec}"`)
@@ -74,10 +76,10 @@ async function sendResults(result, spec) {
       evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
       },
-      env: isIOEnv ? "beta" : process.env.VTEX_ENV,
-      applicationName: `checkout-ui${isIOEnv ? "-io" : ""}`,
+      env: isIOEnv ? 'beta' : process.env.VTEX_ENV,
+      applicationName: `checkout-ui${isIOEnv ? '-io' : ''}`,
       healthcheck: {
-        moduleName: `Checkout UI ${isIOEnv ? "(IO Beta)" : ""}`,
+        moduleName: `Checkout UI ${isIOEnv ? '(IO Beta)' : ''}`,
         status: result.totalFailed > 0 ? 0 : 1,
         title: spec,
       },
@@ -103,11 +105,11 @@ function runCypress(spec) {
 
 const run = async () => {
   try {
-    console.log("Downloading fixtures...")
+    console.log('Downloading fixtures...')
     await s3.downloadFixture()
-    console.log("Fixtures downloaded.")
+    console.log('Fixtures downloaded.')
 
-    console.log("Starting Tests...")
+    console.log('Starting Tests...')
     Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
     return
   } catch (err) {

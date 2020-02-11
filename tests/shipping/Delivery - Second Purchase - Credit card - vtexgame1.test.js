@@ -1,5 +1,3 @@
+import test from './models/Delivery - Second Purchase - Credit card.model.js'
 
-  import test from "./models/Delivery - Second Purchase - Credit card.model.js"
-
-  test("vtexgame1")
-  
+test('vtexgame1')

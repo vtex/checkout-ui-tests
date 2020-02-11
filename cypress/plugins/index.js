@@ -11,11 +11,14 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-module.exports = (on, config) => {
-  on("before:browser:launch", (browser = {}, args) => {
-    if (browser.name === "chrome") {
-      args.push("--disable-site-isolation-trials")
-      return args
+module.exports = on => {
+  // eslint-disable-next-line default-param-last
+  on('before:browser:launch', (browser = {}, args) => {
+    if (browser.name !== 'chrome') {
+      return
     }
+
+    args.push('--disable-site-isolation-trials')
+    return args
   })
 }

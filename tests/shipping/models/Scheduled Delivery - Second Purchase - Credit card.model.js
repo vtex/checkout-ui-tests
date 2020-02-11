@@ -1,15 +1,15 @@
-import { setup, visitAndClearCookies } from "../../../utils"
+import { setup, visitAndClearCookies } from '../../../utils'
 import {
   fillEmail,
   getSecondPurchaseEmail,
   confirmSecondPurchase,
-} from "../../../utils/profile-actions"
-import { completePurchase, typeCVV } from "../../../utils/payment-actions"
+} from '../../../utils/profile-actions'
+import { completePurchase, typeCVV } from '../../../utils/payment-actions'
 import {
   chooseDeliveryDate,
   goToPayment,
-} from "../../../utils/shipping-actions"
-import { SKUS } from "../../../utils/constants"
+} from '../../../utils/shipping-actions'
+import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Scheduled Delivery - 2P - Credit card - ${account}`, () => {
@@ -17,7 +17,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it("start with delivery then, choosing pickup, then choosing delivery", () => {
+    it('start with delivery then, choosing pickup, then choosing delivery', () => {
       const email = getSecondPurchaseEmail()
 
       setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })
@@ -28,11 +28,11 @@ export default function test(account) {
       typeCVV()
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
+      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
-      cy.contains(email).should("be.visible")
-      cy.contains("Receber").should("be.visible")
-      cy.contains("Cop*******").should("be.visible")
+      cy.contains(email).should('be.visible')
+      cy.contains('Receber').should('be.visible')
+      cy.contains('Cop*******').should('be.visible')
     })
   })
 }

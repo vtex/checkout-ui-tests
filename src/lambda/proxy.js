@@ -1,5 +1,5 @@
-console.log("Loading function")
-const axios = require("axios")
+console.log('Loading function')
+const axios = require('axios')
 
 const evidenceExpirationDefault = 86400 // 24h in seconds
 
@@ -11,27 +11,27 @@ const EVIDENCE_PATH = config =>
     evidenceExpirationDefault}`
 const HEALTHCHECK_HOST = `http://monitoring.vtex.com`
 const HEALTHCHECK_PATH = env =>
-  `/api/healthcheck/results?repository=${env || "beta"}`
+  `/api/healthcheck/results?repository=${env || 'beta'}`
 
 exports.handler = (event, context, callback) => {
   const done = (err, res) =>
     callback(null, {
-      statusCode: err ? "400" : "200",
+      statusCode: err ? '400' : '200',
       body: err ? err.message : JSON.stringify(res),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
 
   const data = JSON.parse(event.body)
-  console.log("data", data)
+  console.log('data', data)
 
-  const env = data.env
+  const { env } = data
   const healthcheckData = data.healthcheck
   const evidenceData = data.evidence
 
   const sendToMonitoring = evidenceHash => {
-    console.log("Entered sendToMonitoring")
+    console.log('Entered sendToMonitoring')
 
     const localHealthcheckData = {
       ...healthcheckData,
@@ -42,36 +42,36 @@ exports.handler = (event, context, callback) => {
     const requestData = JSON.stringify(localHealthcheckData)
     const monitoringRequestConfig = {
       url: monitoringURL,
-      method: "post",
+      method: 'post',
       data: requestData,
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
     }
 
     axios(monitoringRequestConfig)
       .then(() => {
-        console.log("Sent to monitoring successfully")
+        console.log('Sent to monitoring successfully')
         done(null)
       })
       .catch(err => done(new Error(`ERROR ${err}`)))
   }
 
   const sendHealthcheckData = () => {
-    console.log("Entered sendHealthcheckData")
+    console.log('Entered sendHealthcheckData')
     const evidenceURL = EVIDENCE_HOST + EVIDENCE_PATH(evidenceData)
     const evidenceRequestConfig = {
       url: evidenceURL,
       data: evidenceData.message,
-      method: "put",
+      method: 'put',
       headers: {
-        "content-type": "text/plain; charset=utf-8",
+        'content-type': 'text/plain; charset=utf-8',
       },
     }
 
     axios(evidenceRequestConfig)
       .then(response => {
-        console.log("Got evidence hash successfully")
+        console.log('Got evidence hash successfully')
         const evidenceHash = response.data
         sendToMonitoring(evidenceHash)
       })
@@ -79,8 +79,8 @@ exports.handler = (event, context, callback) => {
   }
 
   switch (event.httpMethod) {
-    case "POST":
-      console.log("Sending healthcheck data")
+    case 'POST':
+      console.log('Sending healthcheck data')
       sendHealthcheckData()
 
       break
