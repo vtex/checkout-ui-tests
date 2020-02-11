@@ -1,5 +1,3 @@
+import test from './models/Delivery - Second Purchase - Boleto.model.js'
 
-  import test from "./models/Delivery - Second Purchase - Boleto.model.js"
-
-  test("vtexgame1nolean")
-  
+test('vtexgame1nolean')

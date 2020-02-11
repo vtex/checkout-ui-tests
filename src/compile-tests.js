@@ -1,22 +1,18 @@
-const fs = require("fs")
+const fs = require('fs')
 
-const { ACCOUNT_NAMES } = require("../utils/constants")
+const { ACCOUNT_NAMES } = require('../utils/constants')
 
 function start() {
   const currentPath = process.cwd()
-  const testsPath = currentPath.replace("src", "tests")
+  const testsPath = currentPath.replace('src', 'tests')
 
   const files = getSpecDirectories({ dir: testsPath, basePath: testsPath })
 
-  const modelFiles = files.filter(file => file.includes("models"))
+  const modelFiles = files.filter(file => file.includes('models'))
   modelFiles.forEach(fileUrl => {
-    const fileContent = readFile(testsPath + fileUrl)
-
     Object.values(ACCOUNT_NAMES).forEach(account => {
-      const splittedFilePath = fileUrl.split("models/")
-      splittedFilePath[0] = splittedFilePath[0]
-      const filepath = splittedFilePath[0]
-      const fileTitle = splittedFilePath[1]
+      const splittedFilePath = fileUrl.split('models/')
+      const [filepath, fileTitle] = splittedFilePath
       writeResultsToJs({
         account,
         dir: testsPath + filepath,
@@ -26,17 +22,12 @@ function start() {
   })
 }
 
-function readFile(fileUrl) {
-  const fileContent = fs.readFileSync(fileUrl, "utf8")
-  return JSON.stringify(fileContent)
-}
-
 function getSpecDirectories({ dir, filelist, basePath }) {
   const files = fs.readdirSync(dir)
   filelist = filelist || []
   files
-    .filter(item => !/(^|\/)\.[^\/\.]/g.test(item))
-    .forEach(function(file) {
+    .filter(item => !/(^|\/)\.[^/.]/g.test(item))
+    .forEach(file => {
       if (fs.statSync(`${dir}/${file}`).isDirectory()) {
         filelist = getSpecDirectories({
           dir: `${dir}/${file}`,
@@ -44,7 +35,7 @@ function getSpecDirectories({ dir, filelist, basePath }) {
           basePath,
         })
       } else {
-        const path = basePath ? dir.replace(basePath, "") : dir
+        const path = basePath ? dir.replace(basePath, '') : dir
         filelist.push(`${path}/${file}`)
       }
     })
@@ -65,11 +56,11 @@ function writeResultsToJs({ account, dir, fileTitle }) {
     }
 
     const updatedFileTitle = fileTitle.replace(
-      ".model.js",
+      '.model.js',
       ` - ${account}.test.js`
     )
 
-    fs.writeFileSync(`${dir}/${updatedFileTitle}`, content, "utf8")
+    fs.writeFileSync(`${dir}/${updatedFileTitle}`, content, 'utf8')
   } catch (err) {
     console.error(err)
   }

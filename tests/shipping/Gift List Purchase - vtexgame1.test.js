@@ -1,5 +1,3 @@
+import test from './models/Gift List Purchase.model.js'
 
-  import test from "./models/Gift List Purchase.model.js"
-
-  test("vtexgame1")
-  
+test('vtexgame1')

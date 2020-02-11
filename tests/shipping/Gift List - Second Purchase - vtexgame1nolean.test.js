@@ -1,5 +1,3 @@
+import test from './models/Gift List - Second Purchase.model.js'
 
-  import test from "./models/Gift List - Second Purchase.model.js"
-
-  test("vtexgame1nolean")
-  
+test('vtexgame1nolean')

@@ -1,20 +1,20 @@
-import { setup, visitAndClearCookies } from "../../../utils"
+import { setup, visitAndClearCookies } from '../../../utils'
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-} from "../../../utils/profile-actions"
-import { fillPickupAddress, goToPayment } from "../../../utils/shipping-actions"
+} from '../../../utils/profile-actions'
+import { fillPickupAddress, goToPayment } from '../../../utils/shipping-actions'
 import {
   completePurchase,
   payWithCreditCard,
-} from "../../../utils/payment-actions"
+} from '../../../utils/payment-actions'
 import {
   goToInvoiceAddress,
   fillInvoiceAddress,
-} from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
-import { removeUnavailablePickups } from "../../../utils/items-actions"
+} from '../../../utils/invoice-actions'
+import { SKUS } from '../../../utils/constants'
+import { removeUnavailablePickups } from '../../../utils/items-actions'
 
 export default function test(account) {
   describe(`Pickup + Pickup Unavailable - Credit card - ${account}`, () => {
@@ -22,7 +22,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it("with only pickup", () => {
+    it('with only pickup', () => {
       const email = getRandomEmail()
 
       setup({
@@ -39,16 +39,16 @@ export default function test(account) {
       payWithCreditCard({ withAddress: true })
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
+      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
-      cy.contains(email).should("be.visible")
-      cy.contains("Fernando Coelho").should("be.visible")
-      cy.contains("5521999999999").should("be.visible")
-      cy.contains("Cartão de crédito").should("be.visible")
-      cy.contains("final 8936").should("be.visible")
-      cy.contains("Retirar").should("be.visible")
-      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
-      cy.contains("Copacabana").should("be.visible")
+      cy.contains(email).should('be.visible')
+      cy.contains('Fernando Coelho').should('be.visible')
+      cy.contains('5521999999999').should('be.visible')
+      cy.contains('Cartão de crédito').should('be.visible')
+      cy.contains('final 8936').should('be.visible')
+      cy.contains('Retirar').should('be.visible')
+      cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
+      cy.contains('Copacabana').should('be.visible')
     })
   })
 }

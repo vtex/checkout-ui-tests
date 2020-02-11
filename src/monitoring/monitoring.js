@@ -1,8 +1,9 @@
-require("node-window-polyfill").register()
+require('node-window-polyfill').register()
 
-const pug = require("pug")
-const http = require("axios")
-const fs = require("fs")
+const fs = require('fs')
+
+const pug = require('pug')
+const http = require('axios')
 
 const templateUrl = `${__dirname}/templates/evidence.pug`
 const compile = pug.compileFile(templateUrl)
@@ -11,14 +12,14 @@ const pad = (v, len = 2) => v.toString().padStart(len, 0)
 
 function msToTime(s) {
   s = parseInt(s, 10)
-  var ms = s % 1000
+  const ms = s % 1000
   s = (s - ms) / 1000
-  var secs = s % 60
+  const secs = s % 60
   s = (s - secs) / 60
-  var mins = s % 60
-  var hrs = (s - mins) / 60
+  const mins = s % 60
+  const hrs = (s - mins) / 60
 
-  return pad(hrs) + ":" + pad(mins) + ":" + pad(secs) + "." + pad(ms, 3)
+  return `${pad(hrs)}:${pad(mins)}:${pad(secs)}.${pad(ms, 3)}`
 }
 
 function format(date) {
@@ -38,14 +39,14 @@ const main = async data => {
   }
 
   const testsData = data.tests
-  const config = data.config
+  const { config } = data
 
-  const applicationName = config.applicationName
+  const { applicationName } = config
   const healthcheckConfig = config.healthcheck
   const evidenceConfig = config.evidence
 
   const healthcheckUrl =
-    "https://5gkb7l6p2k.execute-api.us-east-1.amazonaws.com/default/HorusProxy"
+    'https://5gkb7l6p2k.execute-api.us-east-1.amazonaws.com/default/HorusProxy'
 
   // Build message
   const message = compile({
@@ -62,7 +63,7 @@ const main = async data => {
 
   // Dev
   if (process.env.DEV || !process.env.HORUS_PROXY_KEY) {
-    fs.writeFileSync("./output.html", message)
+    fs.writeFileSync('./output.html', message)
   }
 
   // Send to Healthcheck
@@ -88,8 +89,8 @@ const main = async data => {
       healthcheckData,
       {
         headers: {
-          "Content-Type": "application/json",
-          "x-api-key": process.env.HORUS_PROXY_KEY,
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.HORUS_PROXY_KEY,
         },
       }
     )

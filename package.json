@@ -13,7 +13,9 @@
     "cypress:run": "cypress run",
     "test:ci-stable": "make ENVIRONMENT=stable",
     "test:ci-beta": "make ENVIRONMENT=beta",
-    "test:ci-beta-io": "make ENVIRONMENT=beta-io"
+    "test:ci-beta-io": "make ENVIRONMENT=beta-io",
+    "lint": "eslint --ext js,ts .",
+    "lint:fix": "eslint --fix --ext js,ts ."
   },
   "repository": {
     "type": "git",
@@ -69,5 +71,13 @@
         "error": true
       }
     }
+  },
+  "devDependencies": {
+    "@vtex/prettier-config": "^0.1.3",
+    "eslint": "^6.8.0",
+    "eslint-config-vtex": "^12.0.5",
+    "eslint-plugin-cypress": "^2.9.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
   }
 }

@@ -1,25 +1,25 @@
-import { ACCOUNT_NAMES } from "./constants"
+import { ACCOUNT_NAMES } from './constants'
 
 function fillPostalCodeOmnishipping() {
-  cy.get("#ship-postalCode").type("22071060")
+  cy.get('#ship-postalCode').type('22071060')
 }
 
 function fillGeolocationOmnishipping() {
-  cy.waitAndGet("#ship-addressQuery", 3000).type("Rua Saint Roman 12")
+  cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
 
-  cy.get(".pac-item")
+  cy.get('.pac-item')
     .first()
-    .trigger("mouseover")
+    .trigger('mouseover')
 
-  cy.get(".pac-item")
+  cy.get('.pac-item')
     .first()
     .click()
 
-  cy.contains("Rua Saint Roman 12")
+  cy.contains('Rua Saint Roman 12')
 }
 
 function fillAddressInformation() {
-  cy.waitAndGet("#ship-number", 3000).type("12")
+  cy.waitAndGet('#ship-number', 3000).type('12')
 }
 
 function shouldActivateDatePicker({ account, shouldActivate }) {
@@ -36,7 +36,7 @@ function shouldActivateDatePicker({ account, shouldActivate }) {
 }
 
 export function unavailableDeliveryGoToPickup() {
-  cy.get(".vtex-omnishipping-1-x-pickupButton").click()
+  cy.get('.vtex-omnishipping-1-x-pickupButton').click()
 }
 
 export function fillShippingInformation(account) {
@@ -49,64 +49,73 @@ export function fillShippingInformation(account) {
 }
 
 export function fillRemainingInfo() {
-  cy.get(".vtex-omnishipping-1-x-btnDelivery").click()
+  cy.get('.vtex-omnishipping-1-x-btnDelivery').click()
 }
 
 export function goToPayment() {
-  cy.waitAndGet(".btn-go-to-payment", 3000).click()
+  cy.waitAndGet('.btn-go-to-payment', 3000).click()
 }
 
 export function chooseDelivery() {
-  cy.get("#shipping-option-delivery").click()
+  cy.get('#shipping-option-delivery').click()
 }
 
 export function choosePickup() {
-  cy.get("#shipping-option-pickup-in-point").click()
+  cy.get('#shipping-option-pickup-in-point').click()
 }
 
 export function fillShippingPreviewDelivery() {
-  cy.get("button#shipping-calculate-link").click()
+  cy.get('button#shipping-calculate-link').click()
 
-  cy.get("#ship-postalCode").type("22071060")
+  cy.get('#ship-postalCode').type('22071060')
 
-  cy.get("#cart-shipping-calculate").click()
+  cy.get('#cart-shipping-calculate').click()
 }
 
 export function choosePickupShippingPreview() {
-  cy.get(".srp-toggle__pickup").click()
+  cy.get('.srp-toggle__pickup').click()
 
-  cy.contains("Retirar 1 item").should("be.visible")
-  cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
+  cy.contains('Retirar 1 item').should('be.visible')
+  cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
 }
 
 export function chooseDeliveryShippingPreview() {
-  cy.get(".srp-toggle__delivery").click()
+  cy.get('.srp-toggle__delivery').click()
 
-  cy.contains("Receber 1 item").should("be.visible")
-  cy.contains("22071-060").should("be.visible")
+  cy.contains('Receber 1 item').should('be.visible')
+  cy.contains('22071-060').should('be.visible')
 }
 
 export function chooseDeliveryDate({ account, shouldActivate }) {
-  chooseDate({ account, shouldActivate }, "#scheduled-delivery-delivery")
+  chooseDate({ account, shouldActivate }, '#scheduled-delivery-delivery')
 }
 
 export function choosePickupDate({ account, shouldActivate }) {
-  chooseDate({ account, shouldActivate }, "#scheduled-delivery-pickup-in-point", "pickup")
+  chooseDate(
+    { account, shouldActivate },
+    '#scheduled-delivery-pickup-in-point',
+    'pickup'
+  )
 }
 
-export function chooseDate({ account, shouldActivate }, toggleElementId, buttonSpecificId = '') {
+export function chooseDate(
+  { account, shouldActivate },
+  toggleElementId,
+  buttonSpecificId = ''
+) {
   if (shouldActivateDatePicker({ account, shouldActivate })) {
     cy.waitAndGet(toggleElementId, 1000).click()
   }
 
-  cy.get(".shp-datepicker-button")
+  cy.get('.shp-datepicker-button')
     .filter(
       (_, $button) =>
-        $button.id && $button.id.includes(`scheduled-delivery-choose-${buttonSpecificId}`)
+        $button.id &&
+        $button.id.includes(`scheduled-delivery-choose-${buttonSpecificId}`)
     )
     .click()
 
-  cy.get(".react-datepicker__day--keyboard-selected").click()
+  cy.get('.react-datepicker__day--keyboard-selected').click()
 }
 
 export function fillPickupAddress(account) {
@@ -117,27 +126,31 @@ export function fillPickupAddress(account) {
       ACCOUNT_NAMES.INVOICE,
     ].some(localAccount => localAccount === account)
   ) {
-    cy.get("#find-pickups-manualy-button-denied").click()
-    cy.waitAndGet("#pkpmodal-search #ship-postalCode", 3000).type("22071060")
+    cy.get('#find-pickups-manualy-button-denied').click()
+    cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type('22071060')
   } else {
-    cy.get("#find-pickups-manualy-button").click()
-    cy.waitAndGet("#pkpmodal-search input", 3000).type("Rua Saint Roman, 12")
+    cy.get('#find-pickups-manualy-button').click()
+    cy.waitAndGet('#pkpmodal-search input', 3000).type('Rua Saint Roman, 12')
 
-    cy.get(".pac-item")
+    cy.get('.pac-item')
       .first()
-      .trigger("mouseover", { force: true })
+      .trigger('mouseover', { force: true })
 
-    cy.get(".pac-item")
+    cy.get('.pac-item')
       .first()
       .click({ force: true })
   }
-  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").first().click()
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
+    .first()
+    .click()
 
-  cy.get(".pkpmodal-details-confirm-btn").click()
+  cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
 export function selectOtherPickup() {
-  cy.get("#change-pickup-button").click()
-  cy.get(".pkpmodal-points-list .pkpmodal-pickup-point-main").eq(1).click()
-  cy.get(".pkpmodal-details-confirm-btn").click()
+  cy.get('#change-pickup-button').click()
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
+    .eq(1)
+    .click()
+  cy.get('.pkpmodal-details-confirm-btn').click()
 }

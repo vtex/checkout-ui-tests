@@ -1,5 +1,3 @@
+import test from './models/Pickup_Scheduled Delivery - Credit card.model.js'
 
-  import test from "./models/Pickup_Scheduled Delivery - Credit card.model.js"
-
-  test("vtexgame1nolean")
-  
+test('vtexgame1nolean')

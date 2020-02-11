@@ -1,5 +1,3 @@
+import test from './models/Pickup_Unavailable Pickup - Credit card.model.js'
 
-  import test from "./models/Pickup_Unavailable Pickup - Credit card.model.js"
-
-  test("vtexgame1clean")
-  
+test('vtexgame1clean')
