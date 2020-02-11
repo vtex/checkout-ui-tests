@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Invoice address filling
 
+### Added
+
+- Eslint
+
 ## [0.0.8] - 2020-02-05
 
 ### Added
