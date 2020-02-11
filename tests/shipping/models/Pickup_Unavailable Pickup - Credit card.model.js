@@ -13,7 +13,7 @@ import {
   goToInvoiceAddress,
   fillInvoiceAddress,
 } from '../../../utils/invoice-actions'
-import { SKUS } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 import { removeUnavailablePickups } from '../../../utils/items-actions'
 
 export default function test(account) {
@@ -36,7 +36,7 @@ export default function test(account) {
       goToInvoiceAddress(account)
       fillInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard({ withAddress: true })
+      payWithCreditCard({ withAddress: account !== ACCOUNT_NAMES.INVOICE })
       completePurchase()
 
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
