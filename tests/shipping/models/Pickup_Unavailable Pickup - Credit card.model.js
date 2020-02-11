@@ -13,7 +13,7 @@ import {
   goToInvoiceAddress,
   fillInvoiceAddress,
 } from '../../../utils/invoice-actions'
-import { SKUS } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 import { removeUnavailablePickups } from '../../../utils/items-actions'
 
 export default function test(account) {
