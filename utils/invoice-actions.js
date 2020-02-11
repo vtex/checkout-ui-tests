@@ -15,9 +15,9 @@ export function fillInvoiceAddress(account) {
     return
   }
 
-  cy.waitAndGet(
-    '.vtex-omnishipping-1-x-addressFormPart1 #ship-postalCode',
-    1000
-  ).type('22071060')
-  cy.get('.vtex-omnishipping-1-x-teste #ship-number').type('12')
+  cy.waitAndGet(".vtex-omnishipping-1-x-addressFormPart1 #ship-postalCode", 1000)
+    .last()
+    .clear()
+    .type("22071060")
+  cy.get(".vtex-omnishipping-1-x-teste #ship-number").type("12")
 }
