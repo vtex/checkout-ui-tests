@@ -73,7 +73,7 @@ export function payWithTwoCreditCards(options = { withAddress: false }) {
 }
 
 export function selectTwoCards() {
-  cy.get('#payment-group-creditCardPaymentGroup').click()
+  cy.waitAndGet('#payment-group-creditCardPaymentGroup', 1000).click()
   queryIframe($iframe => {
     const $body = getIframeBody($iframe)
     cy.wrap($body)
@@ -84,7 +84,7 @@ export function selectTwoCards() {
 
 export function typeCVV() {
   waitLoad()
-  cy.get('#payment-group-creditCardPaymentGroup').click()
+  cy.waitAndGet('#payment-group-creditCardPaymentGroup', 1000).click()
   waitLoad()
 
   queryIframe($iframe => {
