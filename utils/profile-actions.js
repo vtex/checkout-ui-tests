@@ -19,7 +19,7 @@ export function getRandomEmail() {
 }
 
 export function getSecondPurchaseEmail() {
-  return 'second-purchase@mailinator.com'
+  return 'second-purchase-4@mailinator.com'
 }
 
 export function getSecondPurchaseGeolocationEmail() {
