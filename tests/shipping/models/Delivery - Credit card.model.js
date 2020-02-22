@@ -24,6 +24,7 @@ export default function test(account) {
       const email = getRandomEmail()
 
       setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
+      cy.get('#plzfailthxbye', { timeout: 1 })
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
