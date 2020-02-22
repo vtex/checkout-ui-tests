@@ -91,9 +91,13 @@ div(style={background: '#0a0c1c', color: '#fff'} class="flex items-center white 
               video(src=run.video class="w-100" controls autoplay loop)
             div(class="f6 center")= run.video
           each test in run.tests
+            if test.error
+              div(class="flex items-center white")
+                span(class="mr4") Orderform ID:
+                pre #{test.error}
             if test.stack
-              div(class="mt4 mb4 flex flex-column white")
-                span Stack
+              div(class="flex flex-column white")
+                span Stack:
                 pre(style={'white-space': 'pre-wrap', 'word-wrap':'break-word'}) #{test.stack}
         //- table(class="mt4" style={width:'100%', 'border-collapse': 'collapse'})
         //-   tbody
