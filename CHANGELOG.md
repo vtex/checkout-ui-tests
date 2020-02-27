@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.10] - 2020-02-27
+
+### Added
+
+- `orderFormId` to Monitoring results when a test fails.
+
 ### Changed
 
 - Second purchase email

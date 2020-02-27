@@ -49,6 +49,17 @@ export function setup({
 
   cy.visit(url)
 
+  let orderFormId
+
+  cy.getCookie('checkout.vtex.com').then(
+    cookie => (orderFormId = cookie.value.split('=')[1])
+  )
+
+  cy.on('fail', error => {
+    error.stack = `orderFormId: ${orderFormId}\n${error.stack}`
+    throw error
+  })
+
   return cy
 }
 
