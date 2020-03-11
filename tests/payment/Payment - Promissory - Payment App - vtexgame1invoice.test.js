@@ -1,5 +1,3 @@
+import test from './models/Payment - Promissory - Payment App.model.js'
 
-  import test from "./models/Payment - Promissory - Payment App.model.js"
-
-  test("vtexgame1invoice")
-  
+test('vtexgame1invoice')

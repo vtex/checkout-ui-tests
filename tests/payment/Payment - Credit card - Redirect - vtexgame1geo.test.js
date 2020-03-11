@@ -1,5 +1,3 @@
+import test from './models/Payment - Credit card - Redirect.model.js'
 
-  import test from "./models/Payment - Credit card - Redirect.model.js"
-
-  test("vtexgame1geo")
-  
+test('vtexgame1geo')

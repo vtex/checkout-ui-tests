@@ -1,5 +1,3 @@
+import test from './models/Payment - Promissory - Redirect.model.js'
 
-  import test from "./models/Payment - Promissory - Redirect.model.js"
-
-  test("vtexgame1")
-  
+test('vtexgame1')
