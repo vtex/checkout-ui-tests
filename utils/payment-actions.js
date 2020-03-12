@@ -33,7 +33,6 @@ export function fillCreditCardInfo(
   options = {
     withAddress: false,
     id: '0',
-    cardNumber: '4040240009008936',
   }
 ) {
   cy.wait(3000)
@@ -45,7 +44,7 @@ export function fillCreditCardInfo(
     const $body = getIframeBody($iframe)
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Number`)
-      .type(options.cardNumber)
+      .type('4040240009008936')
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Name`)
@@ -67,14 +66,8 @@ export function fillCreditCardInfo(
       .find(`#creditCardpayment-card-${options.id || '0'}Code`)
       .type('066')
 
-    if (options.withAddress) {
-      cy.wrap($body)
-        .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
-        .type('22071060')
-
-      cy.wrap($body)
-        .find(`#payment-billing-address-number-${options.id || '0'}`)
-        .type('12')
+    if (!options.withAddress) {
+      return
     }
 
     cy.wrap($body)
