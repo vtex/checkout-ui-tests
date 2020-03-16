@@ -12,7 +12,7 @@ import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
-  xdescribe(`Delivery - Boleto - ${account}`, () => {
+  describe(`Delivery - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
@@ -54,7 +54,7 @@ export default function test(account) {
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
-      cy.contains('Boleto bancário').should('be.visible')
+      cy.contains('Boleto Bancário').should('be.visible')
       cy.contains('Receber').should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')

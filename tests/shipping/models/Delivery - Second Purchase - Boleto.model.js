@@ -8,7 +8,7 @@ import { completePurchase, payWithBoleto } from '../../../utils/payment-actions'
 import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
-  xdescribe(`Delivery - 2P - Boleto - ${account}`, () => {
+  describe(`Delivery - 2P - Boleto - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
