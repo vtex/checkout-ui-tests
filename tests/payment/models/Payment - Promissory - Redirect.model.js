@@ -10,7 +10,6 @@ import {
 } from '../../../utils/shipping-actions'
 import {
   completePurchase,
-  confirmPaymentApp,
   payWithPromissoryPaymentApp,
   confirmRedirect,
 } from '../../../utils/payment-actions'
