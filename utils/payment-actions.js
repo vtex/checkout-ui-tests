@@ -113,7 +113,7 @@ export function payWithPaymentAppCreditCard(options = { withAddress: false }) {
 }
 
 export function confirmPaymentApp() {
-  cy.get('#payment-app-confirm', { timeout: 10000 }).click()
+  cy.get('#payment-app-confirm', { timeout: 120000 }).click()
 }
 
 export function confirmRedirect() {
