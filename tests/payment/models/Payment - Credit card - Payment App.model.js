@@ -59,7 +59,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Fernando Coelho').should('be.visible')
+      cy.contains('Fernando Application').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
       cy.contains('Cartão de crédito').should('be.visible')
       cy.contains('final 8936').should('be.visible')
