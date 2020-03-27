@@ -36,7 +36,7 @@
     "docker": "^1.0.0",
     "dotenv": "^8.1.0",
     "form-data": "^2.5.1",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "node-cmd": "^3.0.0",
     "node-window-polyfill": "^1.0.0",
     "pug": "^2.0.4",
