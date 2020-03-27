@@ -8,11 +8,15 @@ import {
   goToPayment,
   fillShippingInformation,
 } from '../../../utils/shipping-actions'
-import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
-import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
+import {
+  completePurchase,
+  confirmRedirect,
+  payWithCreditCard,
+} from '../../../utils/payment-actions'
+import { ACCOUNT_NAMES } from '../../../utils/constants'
 
 export default function test(account) {
-  describe(`Delivery - Boleto - ${account}`, () => {
+  describe(`Payment - Credit Card  - Two cards - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
@@ -20,9 +24,11 @@ export default function test(account) {
     it('with only delivery', () => {
       const email = getRandomEmail()
 
-      setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
+      setup({ skus: ['289'], account })
       fillEmail(email)
-      fillProfile()
+      fillProfile({
+        lastName: 'Redirect',
+      })
       fillShippingInformation(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         cy.get('#shipping-data')
@@ -46,15 +52,20 @@ export default function test(account) {
           .should('be.visible')
       }
       goToPayment()
-      payWithBoleto()
+      payWithCreditCard()
       completePurchase()
+
+      cy.url({ timeout: 120000 }).should('contain', 'vtexpayments.com.br')
+
+      confirmRedirect()
 
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Fernando Coelho').should('be.visible')
+      cy.contains('Fernando Redirect').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
-      cy.contains('Boleto Bancário').should('be.visible')
+      cy.contains('Cartão de crédito').should('be.visible')
+      cy.contains('final 8936').should('be.visible')
       cy.contains('Receber').should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')

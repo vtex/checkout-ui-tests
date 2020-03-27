@@ -13,12 +13,11 @@
 
 module.exports = on => {
   // eslint-disable-next-line default-param-last
-  on('before:browser:launch', (browser = {}, args) => {
+  on('before:browser:launch', (browser = {}, launchOptions) => {
     if (browser.name !== 'chrome') {
       return
     }
 
-    args.push('--disable-site-isolation-trials')
-    return args
+    launchOptions.args.push('--disable-site-isolation-trials')
   })
 }
