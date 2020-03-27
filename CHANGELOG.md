@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Tests for transaction apps scenarios.
+
+### Changed
+
+- Re-enable Boleto tests.
+
 ## [0.0.10] - 2020-02-27
 
 ### Added
