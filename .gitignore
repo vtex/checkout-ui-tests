@@ -7,3 +7,4 @@ cypress/results
 .env
 output.html
 yarn-error.log
+.eslintcache
