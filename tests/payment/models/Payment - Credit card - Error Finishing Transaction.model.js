@@ -10,7 +10,6 @@ import {
 } from '../../../utils/shipping-actions'
 import {
   completePurchase,
-  confirmRedirect,
   payWithCreditCard,
 } from '../../../utils/payment-actions'
 import { ACCOUNT_NAMES } from '../../../utils/constants'
