@@ -28,6 +28,19 @@ const SKUS = {
   PICKUP_RJ_BARRA: '331',
 }
 
+const DOCUMENTS = {
+  0: '00759459169',
+  1: '32657276881',
+  2: '83759685790',
+  3: '37740832588',
+  4: '61567614116',
+  5: '47848529568',
+  6: '25612241127',
+  7: '16110166227',
+  8: '35547830305',
+  9: '03618692587',
+}
+
 const ENV_BASE_URLS = {
   local: (accountName, workspace) =>
     `http://${
@@ -62,4 +75,5 @@ module.exports = {
   getAccountName,
   getBaseURL,
   SKUS,
+  DOCUMENTS,
 }
