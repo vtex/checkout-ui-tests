@@ -1,4 +1,5 @@
-import { ACCOUNT_NAMES, DOCUMENTS } from './constants'
+import { ACCOUNT_NAMES } from './constants'
+import getDocument from './document-generator'
 
 export function fillEmail(email) {
   cy.get('#cart-to-orderform').click()
@@ -20,11 +21,6 @@ export function fillProfile(
   cy.get('#client-phone').type('21999999999', { force: true })
 
   cy.get('#go-to-shipping').click()
-}
-
-export function getDocument() {
-  const idx = Math.floor(10 * Math.random())
-  return DOCUMENTS[idx]
 }
 
 export function getRandomEmail() {
