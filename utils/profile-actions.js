@@ -1,4 +1,5 @@
 import { ACCOUNT_NAMES } from './constants'
+import getDocument from './document-generator'
 
 export function fillEmail(email) {
   cy.get('#cart-to-orderform').click()
@@ -15,7 +16,7 @@ export function fillProfile(
 
   cy.get('#client-last-name').type(options.lastName, { force: true })
 
-  cy.get('#client-document').type('00759459169', { force: true })
+  cy.get('#client-document').type(getDocument(), { force: true })
 
   cy.get('#client-phone').type('21999999999', { force: true })
 
