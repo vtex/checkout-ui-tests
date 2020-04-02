@@ -43,7 +43,7 @@ export default function test(account) {
         .contains("Loja em Copacabana no Rio de Janeiro")
         .should("be.visible")
       fillRemainingInfo()
-      fillRemainingShippingInfo()
+      fillRemainingShippingInfo(account)
       goToInvoiceAddress(account)
       goToPayment()
       payWithCreditCard()

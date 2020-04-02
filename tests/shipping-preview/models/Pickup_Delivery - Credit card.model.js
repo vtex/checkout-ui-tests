@@ -15,7 +15,7 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
-import { goToInvoiceAddress } from "../../../utils/invoice-actions"
+import { goToInvoiceAddress, fillInvoiceAddress } from "../../../utils/invoice-actions"
 import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
 
 export default function test(account) {
@@ -26,6 +26,7 @@ export default function test(account) {
 
     it("with only pickup", () => {
       const email = getRandomEmail()
+      let options = {}
 
       setup({ skus: [SKUS.PICKUP_1_SLA, SKUS.DELIVERY_MULTIPLE_SLA], account })
       goToShippingPreviewPickup()
@@ -34,8 +35,11 @@ export default function test(account) {
       fillEmail(email)
       fillProfile()
       goToInvoiceAddress(account)
-      fillRemainingInfo()
-      fillShippingInformation(account)
+      if(account !== ACCOUNT_NAMES.GEOLOCATION){
+        fillRemainingInfo()
+        fillShippingInformation(account)
+      }
+
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         cy.get("#shipping-data")
           .contains("PAC")
@@ -49,16 +53,25 @@ export default function test(account) {
         cy.get("#shipping-data")
           .contains("PAC Lento")
           .should("be.visible")
-      } else {
-        cy.get("#shipping-data")
-          .contains("Mais rápida")
-          .should("be.visible")
-        cy.get("#shipping-data")
-          .contains("Mais econômica")
-          .should("be.visible")
+      } 
+
+      if(account === ACCOUNT_NAMES.INVOICE){
+        cy.get('.vtex-omnishipping-1-x-btnDelivery').click()
+      }
+
+      if(account === ACCOUNT_NAMES.GEOLOCATION){
+        cy.get('#open-shipping').click()
+        cy.get('#ship-addressQuery').type('Rua Saint Roman 12')
+        cy.get(".pac-item")
+          .first()
+          .trigger("mouseover", { force: true })
+
+        cy.get(".pac-item")
+          .first()
+          .click({ force: true })
       }
       goToPayment()
-      payWithCreditCard()
+      payWithCreditCard(options)
       completePurchase()
 
       cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")

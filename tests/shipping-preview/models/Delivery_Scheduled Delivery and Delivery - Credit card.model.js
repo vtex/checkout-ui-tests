@@ -15,7 +15,7 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
-import { SKUS } from "../../../utils/constants"
+import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery and Delivery - Credit card - ${account}`, () => {
@@ -39,7 +39,7 @@ export default function test(account) {
       fillEmail(email)
       fillProfile()
       fillRemainingShippingInfo(account)
-      chooseDeliveryDate({ account, shouldActivate: true })
+      cy.get('#ship-receiverName').type('Fernando Coelho')
       goToPayment()
       payWithCreditCard()
       completePurchase()
@@ -52,7 +52,6 @@ export default function test(account) {
       cy.contains("Receber").should("be.visible")
       cy.contains("Rua Saint Roman 12").should("be.visible")
       cy.contains("Copacabana").should("be.visible")
-      cy.contains("Agendada").should("be.visible")
     })
   })
 }

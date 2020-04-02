@@ -19,7 +19,7 @@ function fillGeolocationOmnishipping() {
 }
 
 function fillAddressInformation() {
-  cy.waitAndGet("#ship-postalCode", 1000).blur()
+  cy.waitAndGet("#ship-postalCode", 1000)
   cy.waitAndGet("#ship-number", 3000).type("12", { force: true })
 }
 
@@ -41,7 +41,7 @@ export function unavailableDeliveryGoToPickup() {
 }
 
 export function goToShippingPreviewPickup() {
-  cy.get("#shipping-calculate-link").click()
+  cy.waitAndGet("#shipping-calculate-link", 2000).click()
   cy.waitAndGet(".srp-toggle__pickup", 1000).click()
 }
 
@@ -78,12 +78,14 @@ export function choosePickup() {
 
 export function fillShippingPreviewDelivery(account) {
   cy.get("button#shipping-calculate-link").click()
+  cy.wait(3000)
 
   if (account === ACCOUNT_NAMES.GEOLOCATION) {
     fillGeolocationOmnishipping()
   } else {
     cy.get("#ship-postalCode").type("22071060")
-    cy.get("#cart-shipping-calculate").click()
+    cy.wait(3000)
+    // cy.get("#cart-shipping-calculate").click()
   }
 }
 
