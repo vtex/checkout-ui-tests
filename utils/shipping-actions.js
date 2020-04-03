@@ -85,7 +85,6 @@ export function fillShippingPreviewDelivery(account) {
   } else {
     cy.get("#ship-postalCode").type("22071060")
     cy.wait(3000)
-    // cy.get("#cart-shipping-calculate").click()
   }
 }
 
