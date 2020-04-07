@@ -32,7 +32,7 @@ export default function test(account) {
           .contains("PAC")
           .should("be.visible")
       } else {
-        cy.get(".srp-content")
+        cy.waitAndGet(".srp-content", 3000)
           .contains("Mais econômica")
           .should("be.visible")
       }
