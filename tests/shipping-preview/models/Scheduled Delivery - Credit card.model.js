@@ -28,14 +28,11 @@ export default function test(account) {
 
       setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })
       fillShippingPreviewDelivery(account)
-
+      cy.contains("Receber").should("be.visible")
       fillEmail(email)
       fillProfile()
 
       fillRemainingShippingInfo(account)
-      if (account === ACCOUNT_NAMES.GEOLOCATION) {
-        cy.get(".box-step > .btn").click()
-      }
       chooseDeliveryDate({ account })
 
       cy.get("#shipping-data")

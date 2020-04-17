@@ -31,7 +31,16 @@ export default function test(account) {
       setup({ skus: [SKUS.PICKUP_1_SLA, SKUS.DELIVERY_MULTIPLE_SLA], account })
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
-
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
+        cy.get(".srp-content")
+          .contains("PAC")
+          .should("be.visible")
+      } else {
+        cy.waitAndGet(".srp-content", 3000)
+          .contains("Mais econômica")
+          .should("be.visible")
+      }
+      cy.contains("Retirar").should("be.visible")
       fillEmail(email)
       fillProfile()
       goToInvoiceAddress(account)

@@ -83,7 +83,7 @@ export function fillCreditCardInfo(
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {
-  cy.waitAndGet('#payment-group-creditCardPaymentGroup', 3000).click()
+  cy.waitAndGet('#payment-group-creditCardPaymentGroup', 5000).click()
   waitLoad()
   fillCreditCardInfo({ withAddress: options.withAddress, id: 0 })
 }

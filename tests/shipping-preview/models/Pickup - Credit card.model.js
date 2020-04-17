@@ -30,7 +30,7 @@ export default function test(account) {
       setup({ skus: [SKUS.PICKUP_1_SLA], account })
       cy.get("#shipping-calculate-link", { force: true }).click()
       fillShippingPreviewPickupAddress(account)
-
+      cy.contains("Retirar").should("be.visible")
       fillEmail(email)
       fillProfile()
       goToInvoiceAddress(account)

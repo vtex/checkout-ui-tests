@@ -35,7 +35,12 @@ export default function test(account) {
       })
 
       fillShippingPreviewDelivery(account)
-
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
+        cy.get(".srp-content")
+          .contains("Expressa")
+          .should("be.visible")
+      }
+      cy.contains("Receber").should("be.visible")
       fillEmail(email)
       fillProfile()
       fillRemainingShippingInfo(account)

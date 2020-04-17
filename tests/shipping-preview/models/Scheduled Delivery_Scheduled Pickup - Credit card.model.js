@@ -18,7 +18,7 @@ import {
   goToShippingPreviewPickup,
 } from "../../../utils/shipping-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { SKUS } from "../../../utils/constants"
+import { SKUS, ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
@@ -36,6 +36,8 @@ export default function test(account) {
 
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
+      cy.contains("Retirar").should("be.visible")
+      cy.contains("Receber").should("be.visible")
       fillEmail(email)
       fillProfile()
 

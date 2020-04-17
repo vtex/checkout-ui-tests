@@ -21,6 +21,7 @@ function fillGeolocationOmnishipping() {
 function fillAddressInformation() {
   cy.waitAndGet("#ship-postalCode", 1000)
   cy.waitAndGet("#ship-number", 3000).type("12", { force: true })
+  cy.wait(3000)
 }
 
 function shouldActivateDatePicker({ account, shouldActivate }) {

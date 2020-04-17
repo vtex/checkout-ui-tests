@@ -17,7 +17,7 @@ import {
   payWithCreditCard,
 } from "../../../utils/payment-actions"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
-import { SKUS } from "../../../utils/constants"
+import { SKUS, ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery Only + Delivery/Pickup - Boleto - ${account}`, () => {
@@ -36,6 +36,15 @@ export default function test(account) {
         account,
       })
       fillShippingPreviewDelivery(account)
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
+        cy.get(".srp-content")
+          .contains("PAC")
+          .should("be.visible")
+      } else {
+        cy.waitAndGet(".srp-content", 3000)
+          .contains("Mais econômica")
+          .should("be.visible")
+      }
       fillEmail(email)
       fillProfile()
       choosePickup()

@@ -16,11 +16,15 @@ export function fillProfile(
   cy.get('#client-first-name').type('Fernando', { force: true })
 
   cy.get('#client-last-name').type(options.lastName, { force: true })
+
   cy.wait(3000)
+  
   cy.get('#client-document').type(getDocument(), { force: true })
 
   cy.get('#client-phone').type('21999999999', { force: true })
+
   cy.get(3000)
+
   cy.get('#go-to-shipping').click()
 }
 

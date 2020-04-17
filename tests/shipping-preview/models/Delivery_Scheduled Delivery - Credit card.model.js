@@ -15,7 +15,7 @@ import {
   completePurchase,
   payWithCreditCard,
 } from "../../../utils/payment-actions"
-import { SKUS } from "../../../utils/constants"
+import { SKUS, ACCOUNT_NAMES } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery - Credit card - ${account}`, () => {
@@ -32,7 +32,12 @@ export default function test(account) {
       })
 
       fillShippingPreviewDelivery(account)
-
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
+        cy.get(".srp-content")
+          .contains("Expressa")
+          .should("be.visible")
+      }
+      cy.contains("Receber").should("be.visible")
       fillEmail(email)
       fillProfile()
       fillRemainingShippingInfo(account)

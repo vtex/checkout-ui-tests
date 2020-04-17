@@ -1,5 +1,5 @@
 import { setup, visitAndClearCookies } from "../../../utils"
-import { ACCOUNT_NAMES } from "../../../utils/constants"
+import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
 import { goToInvoiceAddress } from "../../../utils/invoice-actions"
 import {
   completePurchase,
@@ -19,7 +19,6 @@ import {
   fillShippingPreviewPickupAddress,
   goToShippingPreviewPickup,
 } from "../../../utils/shipping-actions"
-import { SKUS } from "../../../utils/constants"
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
@@ -40,7 +39,13 @@ export default function test(account) {
 
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
-
+      if (account === ACCOUNT_NAMES.NO_LEAN) {
+        cy.get(".srp-content")
+          .contains("PAC")
+          .should("be.visible")
+      }
+      cy.contains("Receber").should("be.visible")
+      cy.contains("Retirar").should("be.visible")
       fillEmail(email)
       fillProfile()
       fillRemainingInfo()
