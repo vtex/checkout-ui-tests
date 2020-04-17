@@ -1,5 +1,3 @@
+import test from './models/Delivery - Boleto.model.js'
 
-  import test from "./models/Delivery - Boleto.model.js"
-
-  test("vtexgame1clean")
-  
+test('vtexgame1clean')

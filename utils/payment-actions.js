@@ -1,4 +1,4 @@
-import { waitLoad } from "./"
+import { waitLoad } from './'
 
 export function payWithBoleto() {
   cy.get('#payment-group-bankInvoicePaymentGroup:visible').click()

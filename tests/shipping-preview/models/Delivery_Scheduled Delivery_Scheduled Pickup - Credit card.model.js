@@ -1,15 +1,15 @@
-import { setup, visitAndClearCookies } from "../../../utils"
-import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
-import { goToInvoiceAddress } from "../../../utils/invoice-actions"
+import { setup, visitAndClearCookies } from '../../../utils'
+import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
+import { goToInvoiceAddress } from '../../../utils/invoice-actions'
 import {
   completePurchase,
   payWithCreditCard,
-} from "../../../utils/payment-actions"
+} from '../../../utils/payment-actions'
 import {
   fillEmail,
   fillProfile,
   getRandomEmail,
-} from "../../../utils/profile-actions"
+} from '../../../utils/profile-actions'
 import {
   chooseDeliveryDate,
   choosePickupDate,
@@ -18,7 +18,7 @@ import {
   goToPayment,
   fillShippingPreviewPickupAddress,
   goToShippingPreviewPickup,
-} from "../../../utils/shipping-actions"
+} from '../../../utils/shipping-actions'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
@@ -26,7 +26,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it("delivery with scheduled delivery and scheduled pickup", () => {
+    it('delivery with scheduled delivery and scheduled pickup', () => {
       const email = getRandomEmail()
       setup({
         skus: [
@@ -40,12 +40,12 @@ export default function test(account) {
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        cy.get(".srp-content")
-          .contains("PAC")
-          .should("be.visible")
+        cy.get('.srp-content')
+          .contains('PAC')
+          .should('be.visible')
       }
-      cy.contains("Receber").should("be.visible")
-      cy.contains("Retirar").should("be.visible")
+      cy.contains('Receber').should('be.visible')
+      cy.contains('Retirar').should('be.visible')
       fillEmail(email)
       fillProfile()
       fillRemainingInfo()
@@ -60,16 +60,16 @@ export default function test(account) {
       payWithCreditCard()
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
+      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
-      cy.contains(email).should("be.visible")
-      cy.contains("Fernando Coelho").should("be.visible")
-      cy.contains("5521999999999").should("be.visible")
-      cy.contains("Receber").should("be.visible")
-      cy.contains("Rua Saint Roman 12").should("be.visible")
-      cy.contains("Copacabana").should("be.visible")
-      cy.contains("Agendada").should("be.visible")
-      cy.contains("Retirar").should("be.visible")
+      cy.contains(email).should('be.visible')
+      cy.contains('Fernando Coelho').should('be.visible')
+      cy.contains('5521999999999').should('be.visible')
+      cy.contains('Receber').should('be.visible')
+      cy.contains('Rua Saint Roman 12').should('be.visible')
+      cy.contains('Copacabana').should('be.visible')
+      cy.contains('Agendada').should('be.visible')
+      cy.contains('Retirar').should('be.visible')
     })
   })
 }

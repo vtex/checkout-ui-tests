@@ -1,22 +1,22 @@
-import { setup, visitAndClearCookies } from "../../../utils"
+import { setup, visitAndClearCookies } from '../../../utils'
 import {
   fillEmail,
   getRandomEmail,
   fillProfile,
-} from "../../../utils/profile-actions"
+} from '../../../utils/profile-actions'
 import {
   goToPayment,
   fillRemainingInfo,
   fillShippingInformation,
   goToShippingPreviewPickup,
   fillShippingPreviewPickupAddress,
-} from "../../../utils/shipping-actions"
+} from '../../../utils/shipping-actions'
 import {
   completePurchase,
   payWithCreditCard,
-} from "../../../utils/payment-actions"
-import { goToInvoiceAddress, fillInvoiceAddress } from "../../../utils/invoice-actions"
-import { ACCOUNT_NAMES, SKUS } from "../../../utils/constants"
+} from '../../../utils/payment-actions'
+import { goToInvoiceAddress } from '../../../utils/invoice-actions'
+import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup + Delivery - Credit card - ${account}`, () => {
@@ -24,7 +24,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it("with only pickup", () => {
+    it('with only pickup', () => {
       const email = getRandomEmail()
       let options = {}
 
@@ -32,15 +32,15 @@ export default function test(account) {
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        cy.get(".srp-content")
-          .contains("PAC")
-          .should("be.visible")
+        cy.get('.srp-content')
+          .contains('PAC')
+          .should('be.visible')
       } else {
-        cy.waitAndGet(".srp-content", 3000)
-          .contains("Mais econômica")
-          .should("be.visible")
+        cy.waitAndGet('.srp-content', 3000)
+          .contains('Mais econômica')
+          .should('be.visible')
       }
-      cy.contains("Retirar").should("be.visible")
+      cy.contains('Retirar').should('be.visible')
       fillEmail(email)
       fillProfile()
       goToInvoiceAddress(account)
@@ -50,18 +50,18 @@ export default function test(account) {
       }
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        cy.get("#shipping-data")
-          .contains("PAC")
-          .should("be.visible")
-        cy.get("#shipping-data")
-          .contains("Motoboy")
-          .should("be.visible")
-        cy.get("#shipping-data")
-          .contains("Expressa")
-          .should("be.visible")
-        cy.get("#shipping-data")
-          .contains("PAC Lento")
-          .should("be.visible")
+        cy.get('#shipping-data')
+          .contains('PAC')
+          .should('be.visible')
+        cy.get('#shipping-data')
+          .contains('Motoboy')
+          .should('be.visible')
+        cy.get('#shipping-data')
+          .contains('Expressa')
+          .should('be.visible')
+        cy.get('#shipping-data')
+          .contains('PAC Lento')
+          .should('be.visible')
       } 
 
       if(account === ACCOUNT_NAMES.INVOICE){
@@ -71,11 +71,11 @@ export default function test(account) {
       if(account === ACCOUNT_NAMES.GEOLOCATION){
         cy.get('#open-shipping').click()
         cy.get('#ship-addressQuery').type('Rua Saint Roman 12')
-        cy.get(".pac-item")
+        cy.get('.pac-item')
           .first()
-          .trigger("mouseover", { force: true })
+          .trigger('mouseover', { force: true })
 
-        cy.get(".pac-item")
+        cy.get('.pac-item')
           .first()
           .click({ force: true })
       }
@@ -83,18 +83,18 @@ export default function test(account) {
       payWithCreditCard(options)
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should("contain", "/orderPlaced")
+      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
-      cy.contains(email).should("be.visible")
-      cy.contains("Fernando Coelho").should("be.visible")
-      cy.contains("5521999999999").should("be.visible")
-      cy.contains("Retirar").should("be.visible")
-      cy.contains("Loja em Copacabana no Rio de Janeiro").should("be.visible")
-      cy.contains("Rua General Azevedo Pimentel 5").should("be.visible")
-      cy.contains("Copacabana").should("be.visible")
-      cy.contains("Receber").should("be.visible")
-      cy.contains("Rua Saint Roman 12").should("be.visible")
-      cy.contains("Copacabana").should("be.visible")
+      cy.contains(email).should('be.visible')
+      cy.contains('Fernando Coelho').should('be.visible')
+      cy.contains('5521999999999').should('be.visible')
+      cy.contains('Retirar').should('be.visible')
+      cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
+      cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
+      cy.contains('Copacabana').should('be.visible')
+      cy.contains('Receber').should('be.visible')
+      cy.contains('Rua Saint Roman 12').should('be.visible')
+      cy.contains('Copacabana').should('be.visible')
     })
   })
 }
