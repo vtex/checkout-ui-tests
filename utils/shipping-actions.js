@@ -92,6 +92,10 @@ export function fillShippingPreviewDelivery(account) {
 export function choosePickupShippingPreview() {
   cy.waitAndGet('.srp-toggle__pickup', 3000).click()
 
+  checkShippingPreviewPickupResult()
+}
+
+export function checkShippingPreviewPickupResult() {
   cy.get('.srp-data')
     .contains('Retirar 1 item')
     .should('be.visible')
