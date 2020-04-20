@@ -7,7 +7,7 @@ import {
 import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
-  describe(`Pickup + Delivery - Credit card - ${account}`, () => {
+  describe(`Pickup + Delivery - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
