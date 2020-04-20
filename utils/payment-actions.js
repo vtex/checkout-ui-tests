@@ -46,11 +46,9 @@ export function fillCreditCardInfo(
       .find(`#creditCardpayment-card-${options.id || '0'}Number`)
       .type('4040240009008936')
 
-    cy.wait(2000)
-
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Name`)
-      .type('Fernando A Coelho', { force: true })
+      .type('Fernando A Coelho')
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
@@ -74,7 +72,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
-      .type('22071060', { force: true })
+      .type('22071060')
 
     cy.wrap($body)
       .find(`#payment-billing-address-number-${options.id || '0'}`)
@@ -83,7 +81,7 @@ export function fillCreditCardInfo(
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {
-  cy.waitAndGet('#payment-group-creditCardPaymentGroup', 5000).click()
+  cy.waitAndGet('#payment-group-creditCardPaymentGroup', 3000).click()
   waitLoad()
   fillCreditCardInfo({ withAddress: options.withAddress, id: 0 })
 }
