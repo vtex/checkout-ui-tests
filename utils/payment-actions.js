@@ -1,4 +1,4 @@
-import { waitLoad } from './'
+import { waitLoad } from '.'
 
 export function payWithBoleto() {
   cy.get('#payment-group-bankInvoicePaymentGroup:visible').click()
@@ -50,7 +50,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Name`)
-      .type('Fernando A Coelho', {force: true} )
+      .type('Fernando A Coelho', { force: true })
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
@@ -74,7 +74,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
-      .type('22071060', {force: true} )
+      .type('22071060', { force: true })
 
     cy.wrap($body)
       .find(`#payment-billing-address-number-${options.id || '0'}`)

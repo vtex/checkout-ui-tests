@@ -21,7 +21,6 @@ function fillGeolocationOmnishipping() {
 function fillAddressInformation() {
   cy.waitAndGet('#ship-postalCode', 1000)
   cy.waitAndGet('#ship-number', 3000).type('12', { force: true })
-  cy.wait(3000)
 }
 
 function shouldActivateDatePicker({ account, shouldActivate }) {
@@ -91,8 +90,6 @@ export function fillShippingPreviewDelivery(account) {
 
 export function choosePickupShippingPreview() {
   cy.waitAndGet('.srp-toggle__pickup', 3000).click()
-
-  checkShippingPreviewPickupResult()
 }
 
 export function checkShippingPreviewPickupResult() {
@@ -205,4 +202,19 @@ export function fillShippingPreviewPickupAddress(account) {
   cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').click()
 
   cy.get('.pkpmodal-details-confirm-btn').click()
+}
+
+export function checkShippingPreviewResult(selectors) {
+  selectors.forEach(selector => {
+    if (selector.name) {
+      cy.get('.srp-data')
+        .contains(selector.name)
+        .should('be.visible')
+    }
+    if (selector.text) {
+      cy.get('.srp-data')
+        .contains(selector.text)
+        .should('be.visible')
+    }
+  })
 }

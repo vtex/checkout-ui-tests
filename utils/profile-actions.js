@@ -4,7 +4,6 @@ import getDocument from './document-generator'
 export function fillEmail(email) {
   cy.get('#cart-to-orderform').click()
   cy.get('#client-pre-email').type(email)
-  cy.wait(3000)
   cy.get('#btn-client-pre-email').click()
 }
 
@@ -17,13 +16,9 @@ export function fillProfile(
 
   cy.get('#client-last-name').type(options.lastName, { force: true })
 
-  cy.wait(3000)
-  
   cy.get('#client-document').type(getDocument(), { force: true })
 
   cy.get('#client-phone').type('21999999999', { force: true })
-
-  cy.get(3000)
 
   cy.get('#go-to-shipping').click()
 }
