@@ -32,7 +32,7 @@ function shouldActivateDatePicker({ account, shouldActivate }) {
     ACCOUNT_NAMES.DEFAULT,
     ACCOUNT_NAMES.GEOLOCATION,
     ACCOUNT_NAMES.INVOICE,
-  ].includes(account)
+  ].some(localAccount => localAccount === account)
 }
 
 export function unavailableDeliveryGoToPickup() {
@@ -169,7 +169,7 @@ export function fillShippingPreviewPickupAddress(account) {
       ACCOUNT_NAMES.CLEAN_NO_MAPS,
       ACCOUNT_NAMES.NO_LEAN,
       ACCOUNT_NAMES.INVOICE,
-    ].some(localAccount => localAccount === account)
+    ].includes(account)
   ) {
     cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type('22071060')
   } else {
