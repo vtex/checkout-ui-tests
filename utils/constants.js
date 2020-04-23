@@ -14,7 +14,7 @@ const ACCOUNT_NAMES = {
 
 const SLA_IDS = {
   PICKUP: '#retirada-na-loja-141125d',
-  PICKUP_EN: '#pickup-141125d',
+  SCHEDULED_PICKUP: '#pickup-141125d',
   MULTIPLE_PICKUP: '#retirada-na-loja-múltiplos-pontos-rj-141125d',
   SCHEDULED: '#agendada',
   CHEAPEST: '#cheapest',
