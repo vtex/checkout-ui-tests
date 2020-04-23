@@ -191,7 +191,7 @@ export function fillShippingPreviewPickupAddress(account) {
 export function checkShippingPreviewResult(selectors) {
   selectors.forEach(selector => {
     if (selector.id) {
-      cy.get(selector.id).should('be.visible')
+      cy.get(`[data-testid="${selector.id}"]`).should('be.visible')
     }
     if (selector.name) {
       cy.get('.srp-data')
