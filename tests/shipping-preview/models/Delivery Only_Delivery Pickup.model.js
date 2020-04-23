@@ -4,7 +4,7 @@ import {
   choosePickupShippingPreview,
   fillShippingPreviewDelivery,
 } from '../../../utils/shipping-actions'
-import { SKUS, ACCOUNT_NAMES } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery Only + Delivery/Pickup - ${account}`, () => {
@@ -27,15 +27,17 @@ export default function test(account) {
 
       fillShippingPreviewDelivery(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        selectors.push({ name: 'PAC', text: 'Em até 10 dias úteis' })
+        selectors.push({ name: 'PAC' })
       } else {
-        selectors.push({ name: 'Mais econômica', text: 'Em até 10 dias úteis' })
+        selectors.push({ name: 'Mais econômica' })
       }
 
       checkShippingPreviewResult(selectors)
       choosePickupShippingPreview()
 
-      selectors.push({ text: 'Pronto em até 11 dias' })
+      selectors.push({
+        id: SLA_IDS.MULTIPLE_PICKUP,
+      })
 
       checkShippingPreviewResult(selectors)
     })

@@ -4,7 +4,7 @@ import {
   fillShippingPreviewPickupAddress,
   goToShippingPreviewPickup,
 } from '../../../utils/shipping-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Scheduled Delivery + Scheduled Pickup - ${account}`, () => {
@@ -18,10 +18,7 @@ export default function test(account) {
         account,
       })
 
-      const selectors = [
-        { text: 'A partir de hoje' },
-        { text: 'Pronto no mesmo dia' },
-      ]
+      const selectors = [{ id: SLA_IDS.SCHEDULED }, { id: SLA_IDS.PICKUP_EN }]
 
       cy.contains('Calcular').should('be.visible')
       goToShippingPreviewPickup()

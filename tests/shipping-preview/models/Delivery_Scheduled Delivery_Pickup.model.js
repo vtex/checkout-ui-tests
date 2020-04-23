@@ -4,7 +4,7 @@ import {
   fillShippingPreviewPickupAddress,
   goToShippingPreviewPickup,
 } from '../../../utils/shipping-actions'
-import { SKUS, ACCOUNT_NAMES } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Pickup - ${account}`, () => {
@@ -22,19 +22,16 @@ export default function test(account) {
         account,
       })
 
-      const selectors = [
-        { text: 'Pronto em até 2 dias úteis' },
-        { text: 'A partir de hoje' },
-      ]
+      const selectors = [{ id: SLA_IDS.PICKUP }, { id: SLA_IDS.SCHEDULED }]
 
       cy.contains('Calcular').should('be.visible')
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        selectors.push({ name: 'PAC', text: 'Em até 8 dias úteis' })
+        selectors.push({ name: 'PAC' })
       } else {
-        selectors.push({ text: 'Em até 8 dias úteis' })
+        selectors.push({ id: SLA_IDS.CHEAPEST })
       }
 
       checkShippingPreviewResult(selectors)

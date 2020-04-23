@@ -3,7 +3,7 @@ import {
   checkShippingPreviewResult,
   fillShippingPreviewDelivery,
 } from '../../../utils/shipping-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Scheduled Delivery - ${account}`, () => {
@@ -14,7 +14,7 @@ export default function test(account) {
     it('complete purchase with scheduled delivery', () => {
       setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })
 
-      const selectors = [{ text: 'A partir de hoje' }]
+      const selectors = [{ id: SLA_IDS.SCHEDULED }]
 
       cy.contains('Calcular').should('be.visible')
       fillShippingPreviewDelivery(account)

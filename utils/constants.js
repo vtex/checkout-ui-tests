@@ -12,6 +12,15 @@ const ACCOUNT_NAMES = {
   INVOICE: 'vtexgame1invoice',
 }
 
+const SLA_IDS = {
+  PICKUP: '#retirada-na-loja-141125d',
+  PICKUP_EN: '#pickup-141125d',
+  MULTIPLE_PICKUP: '#retirada-na-loja-múltiplos-pontos-rj-141125d',
+  SCHEDULED: '#agendada',
+  CHEAPEST: '#cheapest',
+  FASTEST: '#fastest',
+}
+
 const SKUS = {
   DELIVERY_CUSTOMIZATION_ATTACHMENT: '31',
   DELIVERY_AND_PICKUP: '35',
@@ -62,4 +71,5 @@ module.exports = {
   getAccountName,
   getBaseURL,
   SKUS,
+  SLA_IDS,
 }

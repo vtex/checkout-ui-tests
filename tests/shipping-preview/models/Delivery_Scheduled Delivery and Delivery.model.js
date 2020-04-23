@@ -3,7 +3,7 @@ import {
   checkShippingPreviewResult,
   fillShippingPreviewDelivery,
 } from '../../../utils/shipping-actions'
-import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery and Delivery - ${account}`, () => {
@@ -26,9 +26,9 @@ export default function test(account) {
       fillShippingPreviewDelivery(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        selectors.push({ name: 'Expressa', text: 'Em até 9 dias úteis' })
+        selectors.push({ name: 'Expressa' })
       } else {
-        selectors.push({ text: 'Em até 9 dias úteis' })
+        selectors.push({ id: SLA_IDS.CHEAPEST })
       }
 
       checkShippingPreviewResult(selectors)

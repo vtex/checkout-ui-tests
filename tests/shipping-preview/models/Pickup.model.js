@@ -3,7 +3,7 @@ import {
   checkShippingPreviewResult,
   fillShippingPreviewPickupAddress,
 } from '../../../utils/shipping-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup - ${account}`, () => {
@@ -14,7 +14,7 @@ export default function test(account) {
     it('with only pickup', () => {
       setup({ skus: [SKUS.PICKUP_1_SLA], account })
 
-      const selectors = [{ text: 'Pronto em até 2 dias úteis' }]
+      const selectors = [{ id: SLA_IDS.PICKUP }]
       cy.contains('Calcular').should('be.visible')
       cy.get('#shipping-calculate-link', { force: true }).click()
 

@@ -19,25 +19,17 @@ export default function test(account) {
       fillShippingPreviewDelivery(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        checkShippingPreviewResult([
-          { name: 'PAC', text: 'Em até 10 dias úteis' },
-        ])
+        checkShippingPreviewResult([{ name: 'PAC' }])
 
         cy.get('.srp-delivery-select').select('Motoboy')
 
-        checkShippingPreviewResult([
-          { name: 'Motoboy', text: 'Em até 7 dias úteis' },
-        ])
+        checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
-        checkShippingPreviewResult([
-          { name: 'Mais econômica', text: 'Em até 10 dias úteis' },
-        ])
+        checkShippingPreviewResult([{ name: 'Mais econômica' }])
 
         cy.get('.srp-delivery-select').select('FASTEST')
 
-        checkShippingPreviewResult([
-          { name: 'Mais rápida', text: 'Em até 7 dias úteis' },
-        ])
+        checkShippingPreviewResult([{ name: 'Mais rápida' }])
       }
     })
   })

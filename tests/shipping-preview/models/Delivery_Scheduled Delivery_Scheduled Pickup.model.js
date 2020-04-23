@@ -1,5 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
-import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS, SLA_IDS } from '../../../utils/constants'
 import {
   checkShippingPreviewResult,
   fillShippingPreviewPickupAddress,
@@ -22,10 +22,7 @@ export default function test(account) {
         account,
       })
 
-      const selectors = [
-        { text: 'Pronto no mesmo dia' },
-        { text: 'A partir de hoje' },
-      ]
+      const selectors = [{ id: SLA_IDS.PICKUP_EN }, { id: SLA_IDS.SCHEDULED }]
 
       cy.contains('Calcular').should('be.visible')
       goToShippingPreviewPickup()
@@ -34,11 +31,10 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({
           name: 'PAC',
-          text: 'Em até 8 dias úteis',
         })
       } else {
         selectors.push({
-          text: 'Em até 8 dias úteis',
+          id: SLA_IDS.CHEAPEST,
         })
       }
 

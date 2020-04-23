@@ -32,7 +32,7 @@ function shouldActivateDatePicker({ account, shouldActivate }) {
     ACCOUNT_NAMES.DEFAULT,
     ACCOUNT_NAMES.GEOLOCATION,
     ACCOUNT_NAMES.INVOICE,
-  ].some(localAccount => localAccount === account)
+  ].includes(account)
 }
 
 export function unavailableDeliveryGoToPickup() {
@@ -190,14 +190,12 @@ export function fillShippingPreviewPickupAddress(account) {
 
 export function checkShippingPreviewResult(selectors) {
   selectors.forEach(selector => {
+    if (selector.id) {
+      cy.get(selector.id).should('be.visible')
+    }
     if (selector.name) {
       cy.get('.srp-data')
         .contains(selector.name)
-        .should('be.visible')
-    }
-    if (selector.text) {
-      cy.get('.srp-data')
-        .contains(selector.text)
         .should('be.visible')
     }
   })
