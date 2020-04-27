@@ -22,6 +22,30 @@ function fillAddressInformation() {
   cy.waitAndGet('#ship-number', 3000).type('12')
 }
 
+function fillPickupLocation({ address }) {
+  cy.waitAndGet('#pkpmodal-search input', 3000).type(address)
+
+  cy.get('.pac-item')
+    .first()
+    .trigger('mouseover', { force: true })
+
+  cy.get('.pac-item')
+    .first()
+    .click({ force: true })
+}
+
+function chooseFirstPickupPoint() {
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
+    .first()
+    .click()
+
+  cy.get('.pkpmodal-details-confirm-btn').click()
+}
+
+function fillPickupPostalCode({ postalCode }) {
+  cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type(postalCode)
+}
+
 function shouldActivateDatePicker({ account, shouldActivate }) {
   if (shouldActivate !== undefined) {
     return shouldActivate
@@ -71,7 +95,6 @@ export function choosePickup() {
 
 export function fillShippingPreviewDelivery(account) {
   cy.get('button#shipping-calculate-link').click()
-  cy.wait(3000)
 
   if (account === ACCOUNT_NAMES.GEOLOCATION) {
     fillGeolocationOmnishipping()
@@ -130,27 +153,16 @@ export function fillPickupAddress(account) {
       ACCOUNT_NAMES.CLEAN_NO_MAPS,
       ACCOUNT_NAMES.NO_LEAN,
       ACCOUNT_NAMES.INVOICE,
-    ].some(localAccount => localAccount === account)
+    ].includes(account)
   ) {
     cy.get('#find-pickups-manualy-button-denied').click()
-    cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type('22071060')
+    fillPickupPostalCode({ postalCode: '22071060' })
   } else {
     cy.get('#find-pickups-manualy-button').click()
-    cy.waitAndGet('#pkpmodal-search input', 3000).type('Rua Saint Roman, 12')
-
-    cy.get('.pac-item')
-      .first()
-      .trigger('mouseover', { force: true })
-
-    cy.get('.pac-item')
-      .first()
-      .click({ force: true })
+    fillPickupLocation({ address: 'Rua Saint Roman, 12' })
   }
-  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
-    .first()
-    .click()
 
-  cy.get('.pkpmodal-details-confirm-btn').click()
+  chooseFirstPickupPoint()
 }
 
 export function selectOtherPickup() {
@@ -171,21 +183,12 @@ export function fillShippingPreviewPickupAddress(account) {
       ACCOUNT_NAMES.INVOICE,
     ].includes(account)
   ) {
-    cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type('22071060')
+    fillPickupPostalCode({ postalCode: '22071060' })
   } else {
-    cy.waitAndGet('#pkpmodal-search input', 3000).type('Praia de Botafogo, 300')
-
-    cy.get('.pac-item')
-      .first()
-      .trigger('mouseover', { force: true })
-
-    cy.get('.pac-item')
-      .first()
-      .click({ force: true })
+    fillPickupLocation({ address: 'Praia de Botafogo, 300' })
   }
-  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').click()
 
-  cy.get('.pkpmodal-details-confirm-btn').click()
+  chooseFirstPickupPoint()
 }
 
 export function checkShippingPreviewResult(selectors) {
