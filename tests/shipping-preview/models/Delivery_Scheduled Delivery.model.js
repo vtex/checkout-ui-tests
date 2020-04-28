@@ -19,7 +19,6 @@ export default function test(account) {
 
       const selectors = [{ id: SLA_IDS.SCHEDULED }]
 
-      cy.contains('Calcular').should('be.visible')
       fillShippingPreviewDelivery(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({ name: 'Expressa' })

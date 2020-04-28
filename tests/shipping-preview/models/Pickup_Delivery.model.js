@@ -17,7 +17,6 @@ export default function test(account) {
 
       const selectors = [{ id: SLA_IDS.PICKUP }]
 
-      cy.contains('Calcular').should('be.visible')
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
 

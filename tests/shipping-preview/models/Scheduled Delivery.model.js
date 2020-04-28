@@ -16,7 +16,6 @@ export default function test(account) {
 
       const selectors = [{ id: SLA_IDS.SCHEDULED }]
 
-      cy.contains('Calcular').should('be.visible')
       fillShippingPreviewDelivery(account)
       checkShippingPreviewResult(selectors)
     })

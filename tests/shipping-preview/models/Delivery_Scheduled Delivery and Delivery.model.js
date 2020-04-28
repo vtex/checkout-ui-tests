@@ -22,7 +22,6 @@ export default function test(account) {
 
       const selectors = []
 
-      cy.contains('Calcular').should('be.visible')
       fillShippingPreviewDelivery(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {

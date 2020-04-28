@@ -14,8 +14,6 @@ export default function test(account) {
     it('with only delivery', () => {
       setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
 
-      cy.contains('Calcular').should('be.visible')
-
       fillShippingPreviewDelivery(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {

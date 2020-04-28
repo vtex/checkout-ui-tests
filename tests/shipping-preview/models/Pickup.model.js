@@ -1,5 +1,6 @@
 import { setup, visitAndClearCookies } from '../../../utils'
 import {
+  calculateShippingPreview,
   checkShippingPreviewResult,
   fillShippingPreviewPickupAddress,
 } from '../../../utils/shipping-actions'
@@ -15,11 +16,9 @@ export default function test(account) {
       setup({ skus: [SKUS.PICKUP_1_SLA], account })
 
       const selectors = [{ id: SLA_IDS.PICKUP }]
-      cy.contains('Calcular').should('be.visible')
-      cy.get('#shipping-calculate-link', { force: true }).click()
 
+      calculateShippingPreview()
       fillShippingPreviewPickupAddress(account)
-
       checkShippingPreviewResult(selectors)
     })
   })

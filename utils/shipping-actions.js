@@ -1,5 +1,13 @@
 import { ACCOUNT_NAMES } from './constants'
 
+function chooseFirstPickupPoint() {
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
+    .first()
+    .click()
+
+  cy.get('.pkpmodal-details-confirm-btn').click()
+}
+
 function fillPostalCodeOmnishipping() {
   cy.get('#ship-postalCode').type('22071060')
 }
@@ -34,14 +42,6 @@ function fillPickupLocation({ address }) {
     .click({ force: true })
 }
 
-function chooseFirstPickupPoint() {
-  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
-    .first()
-    .click()
-
-  cy.get('.pkpmodal-details-confirm-btn').click()
-}
-
 function fillPickupPostalCode({ postalCode }) {
   cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type(postalCode)
 }
@@ -59,12 +59,16 @@ function shouldActivateDatePicker({ account, shouldActivate }) {
   ].some(localAccount => localAccount === account)
 }
 
+export function calculateShippingPreview() {
+  cy.waitAndGet('#shipping-calculate-link', 2000).click()
+}
+
 export function unavailableDeliveryGoToPickup() {
   cy.get('.vtex-omnishipping-1-x-pickupButton').click()
 }
 
 export function goToShippingPreviewPickup() {
-  cy.waitAndGet('#shipping-calculate-link', 2000).click()
+  calculateShippingPreview()
   choosePickupShippingPreview()
 }
 
@@ -94,7 +98,7 @@ export function choosePickup() {
 }
 
 export function fillShippingPreviewDelivery(account) {
-  cy.get('button#shipping-calculate-link').click()
+  calculateShippingPreview()
 
   if (account === ACCOUNT_NAMES.GEOLOCATION) {
     fillGeolocationOmnishipping()

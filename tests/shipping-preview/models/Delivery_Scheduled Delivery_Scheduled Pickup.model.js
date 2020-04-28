@@ -27,7 +27,6 @@ export default function test(account) {
         { id: SLA_IDS.SCHEDULED },
       ]
 
-      cy.contains('Calcular').should('be.visible')
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
 
