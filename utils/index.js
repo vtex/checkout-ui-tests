@@ -70,6 +70,7 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
       accountName: account,
     }) + CHECKOUT_ENDPOINT
   )
+  cy.wait(3000)
   cy.clearCookies()
   cy.clearLocalStorage()
 
