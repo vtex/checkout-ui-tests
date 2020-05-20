@@ -36,6 +36,10 @@ export function setup({
 
   cy.route({ method: 'POST', url: '/api/checkout/**' }).as('checkoutRequest')
   cy.route({ method: 'GET', url: '/api/checkout/**' }).as('checkoutRequest')
+  cy.route({
+    method: 'GET',
+    url: `/legacy-extensions/checkout?__disableSSR&locale=pt-BR&v=3`,
+  }).as('getRuntimeContext')
 
   if (Cypress.env('isLogged')) {
     cy.route({ method: 'GET', url: '/api/vtexid/**' }).as('vtexId')
@@ -59,6 +63,10 @@ export function setup({
     error.stack = `orderFormId: ${orderFormId}\n${error.stack}`
     throw error
   })
+
+  cy.wait('@getRuntimeContext', { timeout: 60000 })
+    .its('status')
+    .should('eq', 200)
 
   return cy
 }
