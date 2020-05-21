@@ -42,13 +42,15 @@ export function fillCreditCardInfo(
 
   queryIframe($iframe => {
     const $body = getIframeBody($iframe)
+
+    // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Number`)
-      .type('4040240009008936')
+      .type('4040240009008936', { force: true })
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Name`)
-      .type('Fernando A Coelho')
+      .type('Fernando A Coelho', { force: true })
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
@@ -64,7 +66,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Code`)
-      .type('066')
+      .type('066', { force: true })
 
     if (!options.withAddress) {
       return
@@ -72,11 +74,11 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
-      .type('22071060')
+      .type('22071060', { force: true })
 
     cy.wrap($body)
       .find(`#payment-billing-address-number-${options.id || '0'}`)
-      .type('12')
+      .type('12', { force: true })
   })
 }
 
@@ -136,7 +138,7 @@ export function typeCVV() {
 
     cy.wrap($body)
       .find('#creditCardpayment-card-0Code')
-      .type('066')
+      .type('066', { force: true })
   })
 }
 
