@@ -21,7 +21,7 @@ import {
 } from '../../../utils/shipping-actions'
 
 export default function test(account) {
-  describe(`Delivery + Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
+  xdescribe(`Delivery + Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })

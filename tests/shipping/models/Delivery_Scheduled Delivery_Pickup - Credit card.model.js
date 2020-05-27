@@ -20,7 +20,7 @@ import { goToInvoiceAddress } from '../../../utils/invoice-actions'
 import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
-  describe(`Delivery + Scheduled Delivery + Pickup - Credit card - ${account}`, () => {
+  xdescribe(`Delivery + Scheduled Delivery + Pickup - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })

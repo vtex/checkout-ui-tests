@@ -11,6 +11,7 @@ function start() {
   const modelFiles = files.filter(file => file.includes('models'))
   modelFiles.forEach(fileUrl => {
     Object.values(ACCOUNT_NAMES).forEach(account => {
+      if (account === ACCOUNT_NAMES.GEOLOCATION) return
       const splittedFilePath = fileUrl.split('models/')
       const [filepath, fileTitle] = splittedFilePath
       writeResultsToJs({

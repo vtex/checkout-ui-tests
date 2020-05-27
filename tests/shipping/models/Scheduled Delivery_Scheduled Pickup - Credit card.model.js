@@ -21,7 +21,7 @@ import { goToInvoiceAddress } from '../../../utils/invoice-actions'
 import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
-  describe(`Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
+  describe.skip(`Scheduled Delivery + Scheduled Pickup - Credit card - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
