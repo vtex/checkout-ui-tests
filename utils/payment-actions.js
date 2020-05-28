@@ -149,3 +149,9 @@ export function completePurchase() {
   )
   cy.waitAndGet('.payment-submit-wrap > button.submit:visible', 3000).click()
 }
+
+export function insertCoupon() {
+  cy.get('#cart-link-coupon-add').click({ force: true })
+  cy.get('#cart-coupon').type('carlos', { force: true })
+  cy.get('#cart-coupon-add').click({ force: true })
+}
