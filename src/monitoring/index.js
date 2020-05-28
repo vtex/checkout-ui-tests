@@ -1,4 +1,7 @@
 require('dotenv').config()
+
+const fs = require('fs').promises
+
 const cypress = require('cypress')
 const Promise = require('bluebird')
 const uuidv4 = require('uuid/v4')
@@ -53,7 +56,11 @@ async function sendResults(result, spec) {
   result.runs = await Promise.all(
     result.runs.map(async run => {
       try {
-        if (run.stats.failures === 0) return run
+        if (run.stats.failures === 0) {
+          await fs.unlink(`cypress/videos/${run.spec.name}.mp4`)
+          return run
+        }
+
         console.log(`Uploading video for ${run.spec.name}`)
 
         const { url: videoUrl } = await s3.uploadFile(
