@@ -32,9 +32,9 @@ export default function test(account) {
       fillProfile()
       unavailableDeliveryGoToPickup()
       fillPickupAddress(account)
-      goToInvoiceAddress(account)
       fillRemainingInfo()
       fillShippingInformation(account)
+      goToInvoiceAddress(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         cy.get('#shipping-data')
           .contains('PAC')
