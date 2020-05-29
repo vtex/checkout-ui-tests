@@ -37,6 +37,10 @@ export function setup({
   cy.route({ method: 'POST', url: '/api/checkout/**' }).as('checkoutRequest')
   cy.route({ method: 'GET', url: '/api/checkout/**' }).as('checkoutRequest')
   cy.route({
+    method: 'POST',
+    url: '/api/checkout/pub/orderForm/*/items/update',
+  }).as('itemsUpdateRequest')
+  cy.route({
     method: 'GET',
     url: `/legacy-extensions/checkout?__disableSSR&locale=pt-BR&v=3`,
   }).as('getRuntimeContext')
