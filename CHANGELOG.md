@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2020-05-29
+
 ### Changed
 
 - Tests now wait for the `getRuntimeContext` request to finish before starting.
