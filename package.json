@@ -9,7 +9,6 @@
     "test:beta-io": "VTEX_ENV=beta-io VTEX_WORKSPACE=beta node ./src/monitoring/index.js",
     "test:beta": "VTEX_ENV=beta node ./src/monitoring/index.js",
     "compile": "node ./src/compile-tests.js",
-    "cypress": "cypress open",
     "cypress:run": "cypress run",
     "test:ci-stable": "make ENVIRONMENT=stable",
     "test:ci-beta": "make ENVIRONMENT=beta",
