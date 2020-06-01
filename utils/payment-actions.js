@@ -152,6 +152,6 @@ export function completePurchase() {
 
 export function insertFreeShippingCoupon() {
   cy.get('#cart-link-coupon-add').click({ force: true })
-  cy.get('#cart-coupon').type('carlos', { force: true })
+  cy.get('#cart-coupon').type('freeshipping', { force: true })
   cy.get('#cart-coupon-add').click({ force: true })
 }
