@@ -1,5 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
-import { insertCoupon } from '../../../utils/payment-actions'
+import { insertFreeShippingCoupon } from '../../../utils/payment-actions'
 import {
   checkShippingPreviewResult,
   fillShippingPreviewDelivery,
@@ -15,16 +15,13 @@ export default function test(account) {
     it('with only delivery', () => {
       setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
 
-      const selectors = []
-
       fillShippingPreviewDelivery(account)
-      insertCoupon()
+      insertFreeShippingCoupon()
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         checkShippingPreviewResult([{ name: 'PAC' }])
       } else {
-        selectors.push({ id: SLA_IDS.FASTEST })
-        checkShippingPreviewResult(selectors)
+        checkShippingPreviewResult([{ id: SLA_IDS.FASTEST }])
       }
     })
   })
