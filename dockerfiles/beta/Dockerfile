@@ -8,13 +8,12 @@ ENV HORUS_COGNITO_CREDENTIALS=$HORUS_COGNITO_CREDENTIALS
 
 RUN \
   apt-get update && \
-  yarn global add cypress && \
-  rm -rf /var/lib/apt/lists/* && \
-  cypress verify
+  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 COPY ./ ./
 
 RUN \
-  yarn install
+  yarn install && \
+  yarn cypress verify
