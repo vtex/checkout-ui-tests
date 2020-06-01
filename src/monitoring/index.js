@@ -1,4 +1,7 @@
 require('dotenv').config()
+
+const fs = require('fs').promises
+
 const cypress = require('cypress')
 const Promise = require('bluebird')
 const uuidv4 = require('uuid/v4')
@@ -53,7 +56,11 @@ async function sendResults(result, spec) {
   result.runs = await Promise.all(
     result.runs.map(async run => {
       try {
-        if (run.stats.failures === 0) return run
+        if (run.stats.failures === 0) {
+          await fs.unlink(`cypress/videos/${run.spec.name}.mp4`)
+          return run
+        }
+
         console.log(`Uploading video for ${run.spec.name}`)
 
         const { url: videoUrl } = await s3.uploadFile(
@@ -76,10 +83,10 @@ async function sendResults(result, spec) {
       evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
       },
-      env: isIOEnv ? 'beta' : process.env.VTEX_ENV,
+      env: 'beta',
       applicationName: `checkout-ui${isIOEnv ? '-io' : ''}`,
       healthcheck: {
-        moduleName: `Checkout UI ${isIOEnv ? '(IO Beta)' : ''}`,
+        moduleName: `Checkout UI (${process.env.VTEX_ENV})`,
         status: result.totalFailed > 0 ? 0 : 1,
         title: spec,
       },

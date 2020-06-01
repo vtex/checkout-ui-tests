@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2020-06-01
+
+### Changed
+
+- Video of passing tests are deleted.
+- All test results are sent to Monitoring's beta environment.
+- Disabled Delivery + Scheduled Delivery and Delivery scenario.
+- Fixed Cypress version at 4.6.0.
+
+### Fixed
+
+- Docker running tests on image creation.
+
 ## [0.1.4] - 2020-06-01
 
 ### Fixed

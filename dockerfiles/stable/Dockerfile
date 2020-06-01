@@ -17,5 +17,4 @@ WORKDIR /app
 COPY ./ ./
 
 RUN \
-  yarn install && \
-  yarn test:stable
+  yarn install
