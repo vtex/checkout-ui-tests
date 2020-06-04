@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Checkout UI stable tests are now sent to Monitoring's stable environment.
+
 ### Added
 
 - Test for `shipping-preview` same price packages scenario.
