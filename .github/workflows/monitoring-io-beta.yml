@@ -2,7 +2,10 @@ name: Healthcheck IO Beta
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    # every 80 minutes
+    - cron: '0 0/4 * * *'
+    - cron: '20 1/4 * * *'
+    - cron: '40 2/4 * * *'
 
 jobs:
   build:
