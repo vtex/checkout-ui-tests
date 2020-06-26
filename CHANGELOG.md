@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2020-06-26
+
 ### Changed
 
 - Second purchase email to `second-purchase-5@mailinator.com`.
