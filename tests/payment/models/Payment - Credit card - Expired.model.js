@@ -45,7 +45,7 @@ export default function test(account) {
       })
     })
 
-    it.only('with no valid cards', () => {
+    it('with no valid cards', () => {
       const email = getEmailWithAllExpiredCards()
 
       setup({ skus: ['289'], account })
