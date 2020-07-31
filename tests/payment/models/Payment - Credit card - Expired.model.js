@@ -13,7 +13,7 @@ import {
 
 export default function test(account) {
   describe(`Payment - Credit Card  - Expired - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 
