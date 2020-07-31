@@ -18,11 +18,11 @@ export function payWithPromissoryPaymentApp() {
   })
 }
 
-function getIframeBody($iframe) {
+export function getIframeBody($iframe) {
   return $iframe.contents().find('body')
 }
 
-function queryIframe(callback) {
+export function queryIframe(callback) {
   cy.waitAndGet(
     '#iframe-placeholder-creditCardPaymentGroup > iframe',
     3000
@@ -82,8 +82,12 @@ export function fillCreditCardInfo(
   })
 }
 
-export function payWithCreditCard(options = { withAddress: false }) {
+export function selectCreditCardGroup() {
   cy.waitAndGet('#payment-group-creditCardPaymentGroup', 3000).click()
+}
+
+export function payWithCreditCard(options = { withAddress: false }) {
+  selectCreditCardGroup()
   waitLoad()
   fillCreditCardInfo({ withAddress: options.withAddress, id: 0 })
 }
