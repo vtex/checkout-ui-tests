@@ -17,7 +17,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it('with two valid and one expired cards', () => {
+    it('should not be able to select expired credit card', () => {
       const email = getEmailWithSomeExpiredCard()
 
       setup({ skus: ['289'], account })
