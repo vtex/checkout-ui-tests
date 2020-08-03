@@ -42,7 +42,7 @@ export default function test(account) {
       })
     })
 
-    it('with no valid cards', () => {
+    it('should show credit card form if all cards are expired', () => {
       const email = getEmailWithAllExpiredCards()
 
       setup({ skus: ['289'], account })
