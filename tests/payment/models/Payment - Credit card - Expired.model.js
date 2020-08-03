@@ -53,8 +53,8 @@ export default function test(account) {
         const body = getIframeBody($iframe)
 
         cy.wrap(body)
-          .contains('Cartão vencido')
-          .should('not.exist')
+          .find(`#creditCardpayment-card-0Number`)
+          .should('exist')
       })
     })
   })
