@@ -35,6 +35,14 @@ export function getSecondPurchaseGeolocationEmail() {
   return 'second-purchase-geolocation@mailinator.com'
 }
 
+export function getEmailWithSomeExpiredCard() {
+  return 'someexpired@mailinator.com'
+}
+
+export function getEmailWithAllExpiredCards() {
+  return 'allexpired@mailinator.com'
+}
+
 export function confirmSecondPurchase() {
   cy.get('#btn-identified-user-button').click()
 }
