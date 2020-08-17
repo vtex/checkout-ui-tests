@@ -1,21 +1,13 @@
-const fs = require('fs')
+const globby = require('globby')
 
-function getSpecDirectories({ dir, filelist, basePath }) {
-  const files = fs.readdirSync(dir)
-  filelist = filelist || []
-  files.forEach(file => {
-    if (fs.statSync(`${dir}/${file}`).isDirectory()) {
-      filelist = getSpecDirectories({
-        dir: `${dir}/${file}`,
-        filelist,
-        basePath,
-      })
-    } else {
-      const path = basePath ? dir.replace(basePath, '') : dir
-      filelist.push(`${path}/${file}`)
-    }
-  })
-  return filelist
+function getTestFiles({ dir, accounts, pattern = '?' }) {
+  let globPattern = `**/*${pattern}*.test.{js,ts}`
+
+  if (accounts.length > 0) {
+    globPattern = `**/*${pattern}*+(${accounts.join('|')}).test.{js,ts}`
+  }
+
+  return globby(globPattern, { onlyFiles: true, cwd: dir })
 }
 
-module.exports = getSpecDirectories
+module.exports = { getTestFiles }
