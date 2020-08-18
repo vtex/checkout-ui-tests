@@ -64,7 +64,7 @@ export function calculateShippingPreview() {
 }
 
 export function unavailableDeliveryGoToPickup() {
-  cy.get('.vtex-omnishipping-1-x-pickupButton').click()
+  cy.get('.vtex-omnishipping-1-x-pickupButton').click({ force: true })
 }
 
 export function goToShippingPreviewPickup() {
