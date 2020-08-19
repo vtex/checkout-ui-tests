@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.8] - 2020-08-18
+
+### Fixed
+
+- Flexible runtime context request query parameters.
+
 ## [0.2.7] - 2020-08-17
 
 ### Fixed

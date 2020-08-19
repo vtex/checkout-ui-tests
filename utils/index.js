@@ -42,7 +42,7 @@ export function setup({
   }).as('itemsUpdateRequest')
   cy.route({
     method: 'GET',
-    url: `/legacy-extensions/checkout?__disableSSR&locale=pt-BR&v=3`,
+    url: '/legacy-extensions/checkout?*',
   }).as('getRuntimeContext')
 
   if (Cypress.env('isLogged')) {
