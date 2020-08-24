@@ -5,7 +5,7 @@
   "main": "src/monitoring/index.js",
   "scripts": {
     "test": "node ./src/monitoring/index.js",
-    "test:stable": "node ./src/monitoring/index.js --env STABLE",
+    "test:stable": "node ./src/monitoring/index.js --env stable",
     "test:beta-io": "node ./src/monitoring/index.js --env beta-io --workspace beta",
     "test:beta": "node ./src/monitoring/index.js --env beta",
     "compile": "node ./src/compile-tests.js",
