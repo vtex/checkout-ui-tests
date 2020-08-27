@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.10] - 2020-08-27
+
 ### Added
 
 - Action to click on the `shipping-preview` calculate button.
