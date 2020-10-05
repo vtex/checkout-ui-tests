@@ -22,5 +22,12 @@ export function fillInvoiceAddress(account) {
     .last()
     .clear()
     .type('22071060')
-  cy.get('.vtex-omnishipping-1-x-teste #ship-number').type('12')
+    .should('have.value', '22071-060')
+
+  cy.wait('@checkoutRequest')
+
+  cy.waitAndGet('.vtex-omnishipping-1-x-teste #ship-number', 1000)
+    .last()
+    .clear()
+    .type('12')
 }
