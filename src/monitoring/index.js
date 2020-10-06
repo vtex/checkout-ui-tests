@@ -107,7 +107,11 @@ async function sendResults(result, spec) {
     result.runs.map(async run => {
       try {
         if (run.stats.failures === 0 || program.skipUpload) {
-          await fs.unlink(`cypress/videos/${run.spec.name}.mp4`)
+          try {
+            await fs.unlink(`cypress/videos/${run.spec.name}.mp4`)
+          } catch {
+            // ignored
+          }
           return run
         }
 
