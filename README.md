@@ -85,6 +85,10 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `typeCVV` - Types CVV for recurring purchases
 - `completePurchase` - Clicks finish purchase button
 
+**Summary**
+
+- `goBackToCart` - Turns back from the checkout to cart
+
 ## Contributing
 
 The main purpose of this repository build a more effective e2e test suite for the Checkout UI. Read below to learn how you can contribute.
