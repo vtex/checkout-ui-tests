@@ -17,7 +17,7 @@ import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup Invoice Address - Credit card - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 
