@@ -31,3 +31,18 @@ export function fillInvoiceAddress(account) {
     .clear()
     .type('12')
 }
+
+export function invalidateInvoiceAddress(account) {
+  if (account !== ACCOUNT_NAMES.INVOICE) {
+    return
+  }
+
+  cy.waitAndGet('#ship-number', 1000)
+    .last()
+    .clear()
+    .blur()
+  cy.get('#btn-go-to-payment').should('not.exist')
+  cy.get('.ship-number .error')
+    .should('exist')
+    .contains('Campo obrigatório.')
+}
