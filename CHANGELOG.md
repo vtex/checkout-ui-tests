@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.10] - 2020-10-14
+
+### Added
+
+- Test for `shipping-preview` second purchase scenario.
+
+## [0.2.9] - 2020-10-14
+
 ### Fixed
 
 - Tests failing on stable
