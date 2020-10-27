@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Tests for invalid invoice address scenarios.
+
 ## [0.2.10] - 2020-10-14
 
 ### Added
