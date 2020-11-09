@@ -8,6 +8,7 @@ export function goToInvoiceAddress(account) {
 
   waitLoad()
   cy.waitAndGet('.vtex-omnishipping-1-x-btnDelivery', 1000).click()
+  cy.focused().blur()
 }
 
 export function fillInvoiceAddress(account) {
