@@ -20,11 +20,6 @@ export default function test(account) {
       fillEmail(email)
       confirmSecondPurchase()
       payWithBoleto()
-
-      cy.get('#shipping-data')
-        .contains('21')
-        .should('be.visible')
-
       completePurchase()
 
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
