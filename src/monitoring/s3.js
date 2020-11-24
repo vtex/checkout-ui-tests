@@ -3,7 +3,7 @@ const fs = require('fs')
 const AWS = require('aws-sdk')
 
 const ACL = 'public-read'
-const BUCKET = 'vtex-id-hc'
+const BUCKET = 'healthcheck-io'
 const KEY_PREFIX = 'healthcheck/tests/'
 const REGION = 'us-east-1'
 

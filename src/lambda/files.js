@@ -3,7 +3,7 @@ const AWS = require('aws-sdk')
 
 const s3 = new AWS.S3()
 const ACL = 'public-read'
-const BUCKET = 'vtex-id-hc'
+const BUCKET = 'healthcheck-io'
 const KEY_PREFIX = 'healthcheck/tests/'
 
 exports.handler = async (event, context, callback) => {
