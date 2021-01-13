@@ -1,13 +1,17 @@
 const globby = require('globby')
 
-function getTestFiles({ dir, accounts, pattern = '?' }) {
-  let globPattern = `**/*${pattern}*.test.{js,ts}`
+function getTestFiles({ dir, accounts, pattern }) {
+  const globPattern = pattern ? `${pattern}*.test.{js,ts}` : `**/*.test.{js,ts}`
 
-  if (accounts.length > 0) {
-    globPattern = `**/*${pattern}*+(${accounts.join('|')}).test.{js,ts}`
-  }
+  return globby(globPattern, { onlyFiles: true, cwd: dir }).then(specs => {
+    if (accounts && accounts.length > 0) {
+      return specs.filter(spec =>
+        accounts.some(account => spec.includes(`${account}.`))
+      )
+    }
 
-  return globby(globPattern, { onlyFiles: true, cwd: dir })
+    return specs
+  })
 }
 
 module.exports = { getTestFiles }

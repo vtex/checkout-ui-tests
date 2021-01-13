@@ -68,7 +68,6 @@ if (process.env.VTEX_WORKSPACE != null) {
 const isIOEnv = program.env === 'beta-io'
 
 const BASE_PATH = path.resolve(__dirname, '..', '..', 'tests')
-const CONCURRENCY = 1
 const CYPRESS_CONFIG = {
   headed: !program.headless,
   headless: program.headless,
@@ -156,7 +155,7 @@ async function sendResults(result, spec) {
 function runCypress(spec) {
   return cypress
     .run({
-      spec: `./tests/${spec}`,
+      spec,
       ...CYPRESS_CONFIG,
     })
     .then(result => {
@@ -188,7 +187,9 @@ const run = async () => {
     console.log('Fixtures downloaded.')
 
     console.log('Starting Tests...')
-    Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
+
+    await runCypress(specs.map(spec => `./tests/${spec}`).join(','))
+
     return
   } catch (err) {
     console.log(err.message)
