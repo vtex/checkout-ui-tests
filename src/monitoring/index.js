@@ -74,7 +74,7 @@ const CYPRESS_CONFIG = {
   headless: program.headless,
   config: {
     chromeWebSecurity: false,
-    blacklistHosts: ['www.googletagmanager.com'],
+    blockHosts: ['www.googletagmanager.com'],
     pageLoadTimeout: 180000,
     viewportHeight: 660,
     viewportWidth: 1024,
