@@ -9,7 +9,7 @@
         "AWS_REGION": "us-east-1",
         "IMAGE_NAME": "healthcheck/webtests/checkout",
         "SLACK_CHANNEL": "jenkins-notifications",
-        "DOCKER_FILE": "dockerfiles/stable"
+        "DOCKER_FILE": "dockerfiles/stable/Dockerfile"
       }
     }
   }]
