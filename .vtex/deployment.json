@@ -1,0 +1,15 @@
+[{
+    "name": "checkout-ui-tests",
+    "description": "The repository for mapped and implemented purchase testing scenarios for the Checkout UI",
+    "build": {
+      "provider": "jenkins",
+      "type": "docker-ecr",
+      "parameters": {
+        "AWS_ACCOUNT_ID": "558830342743",
+        "AWS_REGION": "us-east-1",
+        "IMAGE_NAME": "healthcheck/webtests/checkout",
+        "SLACK_CHANNEL": "jenkins-notifications",
+        "DOCKER_FILE": "dockerfiles/stable/Dockerfile"
+      }
+    }
+  }]
