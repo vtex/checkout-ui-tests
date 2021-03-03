@@ -41,7 +41,7 @@
     "minimist": "^1.2.3",
     "node-cmd": "^3.0.0",
     "node-window-polyfill": "^1.0.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "uuid": "^3.3.3"
   },
   "horus": {
