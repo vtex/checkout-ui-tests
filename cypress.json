@@ -1,4 +1,5 @@
 {
+  "$schema": "https://on.cypress.io/cypress.schema.json",
   "integrationFolder": "tests",
   "testFiles": "**/*.test.js",
   "chromeWebSecurity": false,
