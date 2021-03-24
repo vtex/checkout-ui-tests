@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Duplicated test scenarios
 
+### Fixed
+- Scenario names not corresponding to its specs
+
 ## [0.3.2] - 2020-10-27
 
 ### Fixed
