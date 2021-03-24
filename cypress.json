@@ -9,5 +9,9 @@
   "projectId": "kobqo4",
   "key": "6ecaeca9-8292-49d5-b954-f5d330526703",
   "pageLoadTimeout": 180000,
-  "defaultCommandTimeout": 15000
+  "defaultCommandTimeout": 15000,
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  }
 }
