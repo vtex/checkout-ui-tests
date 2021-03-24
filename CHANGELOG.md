@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2021-03-24
+
+### Added
+
+- Expired credit card tests for other accounts than `vtexgame1`
+
+### Changed
+
+- Updated cypress version to 6.4.0
+- Now failed tests retry by 2 times
+
+### Removed
+
+- Duplicated test scenarios
+
+## [0.3.2] - 2020-10-27
+
 ### Fixed
 
 - Tests for second purchase without geolocation and postal code.
