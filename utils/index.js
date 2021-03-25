@@ -32,21 +32,31 @@ export function setup({
     url = getAddSkusEndpoint({ account, skus, salesChannel })
   }
 
-  cy.server()
-
-  cy.route({ method: 'POST', url: '/api/checkout/**' }).as('checkoutRequest')
-  cy.route({ method: 'GET', url: '/api/checkout/**' }).as('checkoutRequest')
-  cy.route({
+  cy.intercept({
     method: 'POST',
-    url: '/api/checkout/pub/orderForm/*/items/update',
-  }).as('itemsUpdateRequest')
-  cy.route({
+    path: '/api/checkout/**',
+  }).as('checkoutRequest')
+
+  cy.intercept({
     method: 'GET',
-    url: '/legacy-extensions/checkout?*',
+    path: '/api/checkout/**',
+  }).as('checkoutRequest')
+
+  cy.intercept({
+    method: 'POST',
+    path: '/api/checkout/pub/orderForm/*/items/update',
+  }).as('itemsUpdateRequest')
+
+  cy.intercept({
+    method: 'GET',
+    path: '/legacy-extensions/checkout?*',
   }).as('getRuntimeContext')
 
   if (Cypress.env('isLogged')) {
-    cy.route({ method: 'GET', url: '/api/vtexid/**' }).as('vtexId')
+    cy.intercept({
+      method: 'GET',
+      path: '/api/vtexid/**',
+    }).as('vtexId')
   }
 
   if (mobile) {
@@ -69,7 +79,7 @@ export function setup({
   })
 
   cy.wait('@getRuntimeContext', { timeout: 60000 })
-    .its('status')
+    .its('response.statusCode')
     .should('eq', 200)
 
   return cy
