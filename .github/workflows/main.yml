@@ -1,0 +1,63 @@
+name: End-to-end tests
+on:
+  workflow_dispatch:
+    env:
+      description: 'Environment (local, beta or stable)'
+      default: 'stable'
+    workspace:
+      description: 'VTEX workspace, defaults to master'
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        containers:
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+          ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2.9.5
+        with:
+          tag: ${{ github.event.inputs.env }}
+          group: ''
+          record: true
+          parallel: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY}}
+          CYPRESS_VTEX_ENV: ${{ github.event.inputs.env }}
+          CYPRESS_VTEX_WORKSPACE: ${{ github.event.inputs.workspace }}
