@@ -1,5 +1,6 @@
 import { ACCOUNT_NAMES } from './constants'
 import getDocument from './document-generator'
+import { between } from './utils'
 
 export function fillEmail(email) {
   cy.get('#cart-to-orderform').click()
@@ -28,7 +29,8 @@ export function getRandomEmail() {
 }
 
 export function getSecondPurchaseEmail() {
-  return 'second-purchase-5@mailinator.com'
+  const number = between(10, 110)
+  return `second-purchase-${number}@mailinator.com`
 }
 
 export function getSecondPurchaseGeolocationEmail() {
