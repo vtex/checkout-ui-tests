@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Second purchase mail now returns a random mail from a pool, so tests can be parallelized
+
 ## [0.4.1] - 2021-05-08
 
 ### Changed
