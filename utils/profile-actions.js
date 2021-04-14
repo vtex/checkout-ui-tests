@@ -29,8 +29,8 @@ export function getRandomEmail() {
 }
 
 export function getSecondPurchaseEmail() {
-  const number = between(10, 110)
-  return `second-purchase-${number}@mailinator.com`
+  const NUMBER = between(10, 110)
+  return `second-purchase-${NUMBER}@mailinator.com`
 }
 
 export function getSecondPurchaseGeolocationEmail() {
