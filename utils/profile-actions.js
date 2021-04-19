@@ -1,6 +1,6 @@
+import { getRandomInt } from '.'
 import { ACCOUNT_NAMES } from './constants'
 import getDocument from './document-generator'
-import { between } from './utils'
 
 export function fillEmail(email) {
   cy.get('#cart-to-orderform').click()
@@ -29,8 +29,11 @@ export function getRandomEmail() {
 }
 
 export function getSecondPurchaseEmail() {
-  const NUMBER = between(10, 110)
-  return `second-purchase-${NUMBER}@mailinator.com`
+  // there is a known issue that the same account can't make two or more
+  // purchases at the same time, so in order to use test parallelization,
+  // we must use different accounts each time.
+  const index = getRandomInt(10, 110)
+  return `second-purchase-${index}@mailinator.com`
 }
 
 export function getSecondPurchaseGeolocationEmail() {
