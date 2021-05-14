@@ -1,10 +1,10 @@
-const BASE_URL = 'http://vtexgame1.vtexlocal.com.br:3000/'
-const BASE_URL_COMPLETE = 'http://vtexgame1.vtexlocal.com.br/'
-const ADD_SKUS_ENDPOINT = '/checkout/cart/add?'
-const CHECKOUT_ENDPOINT = '/checkout'
-const PROFILE_ENDPOINT = '/api/checkout/pub/profiles/'
+export const BASE_URL = 'http://vtexgame1.vtexlocal.com.br:3000/'
+export const BASE_URL_COMPLETE = 'http://vtexgame1.vtexlocal.com.br/'
+export const ADD_SKUS_ENDPOINT = '/checkout/cart/add?'
+export const CHECKOUT_ENDPOINT = '/checkout'
+export const PROFILE_ENDPOINT = '/api/checkout/pub/profiles/'
 
-const ACCOUNT_NAMES = {
+export const ACCOUNT_NAMES = {
   DEFAULT: 'vtexgame1',
   CLEAN_NO_MAPS: 'vtexgame1clean',
   GEOLOCATION: 'vtexgame1geo',
@@ -12,7 +12,7 @@ const ACCOUNT_NAMES = {
   INVOICE: 'vtexgame1invoice',
 }
 
-const SLA_IDS = {
+export const SLA_IDS = {
   PICKUP: 'retirada-na-loja-141125d',
   SCHEDULED_PICKUP: 'pickup-141125d',
   MULTIPLE_PICKUP: 'retirada-na-loja-múltiplos-pontos-rj-141125d',
@@ -21,7 +21,7 @@ const SLA_IDS = {
   FASTEST: 'fastest',
 }
 
-const SKUS = {
+export const SKUS = {
   DELIVERY_CUSTOMIZATION_ATTACHMENT: '31',
   DELIVERY_AND_PICKUP: '35',
   PICKUP_1_SLA: '285',
@@ -37,7 +37,7 @@ const SKUS = {
   PICKUP_RJ_BARRA: '331',
 }
 
-const ENV_BASE_URLS = {
+export const ENV_BASE_URLS = {
   local: (accountName, workspace) =>
     `http://${
       workspace ? `${workspace}--` : ''
@@ -52,24 +52,10 @@ const ENV_BASE_URLS = {
     }${accountName}.vtexcommercestable.com.br`,
 }
 
-function getBaseURL({ accountName, environment, workspace }) {
+export function getBaseURL({ accountName, environment, workspace }) {
   return ENV_BASE_URLS[environment](accountName, workspace)
 }
 
-function getAccountName(type) {
+export function getAccountName(type) {
   return ACCOUNT_NAMES[type]
-}
-
-module.exports = {
-  BASE_URL,
-  BASE_URL_COMPLETE,
-  ADD_SKUS_ENDPOINT,
-  CHECKOUT_ENDPOINT,
-  PROFILE_ENDPOINT,
-  ENV_BASE_URLS,
-  ACCOUNT_NAMES,
-  getAccountName,
-  getBaseURL,
-  SKUS,
-  SLA_IDS,
 }
