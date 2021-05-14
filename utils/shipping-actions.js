@@ -1,5 +1,9 @@
 import { ACCOUNT_NAMES } from './constants'
 
+export function selectCountry(country) {
+  cy.get('#ship-country').select(country)
+}
+
 function chooseFirstPickupPoint() {
   cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
     .first()
