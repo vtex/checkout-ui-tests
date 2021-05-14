@@ -1,6 +1,8 @@
 import { ACCOUNT_NAMES } from './constants'
 
 export function selectCountry(country) {
+  cy.wait(3000)
+
   cy.get('#ship-country').select(country)
 }
 
