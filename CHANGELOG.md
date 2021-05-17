@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Gift list second purchase tests that assert user name
+
 ## [0.4.2] - 2021-05-17
 
 ### Changed
