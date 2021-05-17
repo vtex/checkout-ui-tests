@@ -149,3 +149,7 @@ export function waitLoad() {
   cy.get('#vtexIdUI-global-loader').should('not.exist')
   cy.get('.icon-spinner').should('not.be.visible')
 }
+
+export function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
