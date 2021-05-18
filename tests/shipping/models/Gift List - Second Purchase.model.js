@@ -30,7 +30,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('aut* aut*').should('be.visible')
+      cy.contains('Sec*** Pur*****').should('be.visible')
       cy.contains('Teste Endereço').should('be.visible')
     })
   })
