@@ -26,6 +26,7 @@ jobs:
         run: bash .github/setup-containers.sh ${{ github.event.inputs.containers }}
   cypress_run:
     runs-on: ubuntu-20.04
+    needs: setup_containers
     timeout-minutes: 30
     strategy:
       fail-fast: false
