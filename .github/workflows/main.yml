@@ -1,11 +1,14 @@
 name: End-to-end tests
 on:
   workflow_dispatch:
-    env:
-      description: 'Environment (local, beta or stable)'
-      default: 'stable'
-    workspace:
-      description: 'VTEX workspace, defaults to master'
+    inputs:
+      env:
+        description: 'Environment (local, beta or stable)'
+        required: false
+        default: 'stable'
+      workspace:
+        description: 'VTEX workspace, defaults to master'
+        required: false
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
