@@ -9,46 +9,28 @@ on:
       workspace:
         description: 'VTEX workspace, defaults to master'
         required: false
+      containers:
+        description: 'Number of parallel containers'
+        required: false
+        default: '30'
 jobs:
-  cypress-run:
+  setup_containers:
+    runs-on: ubuntu-20.04
+    outputs:
+      containers: ${{ steps.setup-containers.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup containers
+        id: setup-containers
+        run: bash .github/setup-containers.sh ${{ github.event.inputs.containers }}
+  cypress_run:
     runs-on: ubuntu-20.04
     timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        containers:
-          [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-          ]
+        containers: ${{fromJson(needs.setup_containers.outputs.containers)}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
