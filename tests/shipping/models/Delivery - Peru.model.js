@@ -25,7 +25,9 @@ export default function test(account) {
       selectCountry('PER')
 
       if (account === ACCOUNT_NAMES.GEOLOCATION) {
-        cy.waitAndGet('#ship-addressQuery', 3000).type('Av. Javier Prado Este')
+        cy.waitAndGet('#ship-addressQuery', 3000).type(
+          'Av. Javier Prado Este, 2465'
+        )
 
         cy.get('.pac-item')
           .first()
@@ -35,8 +37,9 @@ export default function test(account) {
           .first()
           .click()
 
-        cy.contains('Avenida Javier Prado Este')
-        cy.get('#ship-number').type('2465')
+        cy.get('#ship-receiverName').type('{selectAll}{backspace}Checkout Team')
+
+        cy.contains('Avenida Javier Prado Este 2465')
       } else {
         cy.get('#ship-state').select('Lima')
         cy.get('#ship-city').select('Lima')
