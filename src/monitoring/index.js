@@ -87,6 +87,8 @@ const CYPRESS_CONFIG = {
     video: !program.skipUpload,
   },
   projectId: 'kobqo4',
+  key: '6ecaeca9-8292-49d5-b954-f5d330526703',
+  record: true,
   reporterOptions: {
     reportDir: 'cypress/results',
     overwrite: false,
