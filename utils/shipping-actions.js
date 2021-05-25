@@ -2,6 +2,13 @@ import { ACCOUNT_NAMES } from './constants'
 
 export function selectCountry(country) {
   cy.get('#ship-country').select(country)
+
+  // Updating an element with a UI framework (such as React) in result of
+  // another one updating it (such as our country selector updating the
+  // geolocation input element) is a known issue of Cypress, so we need to wait
+  // zero seconds to avoid raising a "detached element" error
+  // https://github.com/cypress-io/cypress/issues/7306
+  cy.wait(0)
 }
 
 function chooseFirstPickupPoint() {
