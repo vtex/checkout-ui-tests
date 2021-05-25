@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated shipping preview delivery test to use the actual option label instead 
+  of the option value.
+
 ## [0.4.3] - 2021-05-17
 
 ### Fixed
