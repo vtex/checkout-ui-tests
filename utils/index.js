@@ -1,7 +1,5 @@
 import {
   ADD_SKUS_ENDPOINT,
-  BASE_URL,
-  PROFILE_ENDPOINT,
   getBaseURL,
   CHECKOUT_ENDPOINT,
   DEFAULT_ACCOUNT_NAME,
@@ -121,14 +119,6 @@ export function getAddSkusEndpoint({ skus, account, salesChannel }) {
 export function getAddGiftListEndpoint(url, giftRegistry) {
   deleteAllCookies()
   return `${url}&gr=${giftRegistry}`
-}
-
-export function identityPurchase(email) {
-  deleteAllCookies()
-
-  cy.request(`${BASE_URL}${PROFILE_ENDPOINT}?email=${email}&sc=1`).as(
-    '@checkoutRequest'
-  )
 }
 
 export function deleteAllCookies() {

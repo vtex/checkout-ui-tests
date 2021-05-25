@@ -25,9 +25,7 @@ export default function test(account) {
       selectCountry('PER')
 
       if (account === ACCOUNT_NAMES.GEOLOCATION) {
-        cy.waitAndGet('#ship-addressQuery', 3000).type(
-          'Av. Javier Prado Este, 2465'
-        )
+        cy.get('#ship-addressQuery').type('Av. Javier Prado Este, 2465')
 
         cy.get('.pac-item')
           .first()

@@ -21,7 +21,19 @@ export function fillProfile(
 
   cy.get('#client-phone').type('21999999999', { force: true })
 
+  cy.intercept(
+    'POST',
+    '/api/checkout/pub/orderForm/*/attachments/clientProfileData'
+  ).as('updateClientProfileData')
+  cy.intercept(
+    'POST',
+    '/api/checkout/pub/orderForm/*/attachments/clientPreferencesData'
+  ).as('updateClientPreferencesData')
+
   cy.get('#go-to-shipping').click()
+
+  cy.wait('@updateClientProfileData')
+  cy.wait('@updateClientPreferencesData')
 }
 
 export function getRandomEmail() {
