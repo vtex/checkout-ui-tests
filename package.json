@@ -39,7 +39,8 @@
     "minimist": "^1.2.3",
     "node-window-polyfill": "^1.0.0",
     "pug": "^2.0.4",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "websocket": "^1.0.34"
   },
   "horus": {
     "host": "vtexgame1.vtexcommercestable.com.br/checkout",
