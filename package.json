@@ -34,12 +34,9 @@
     "commander": "^6.0.0",
     "cypress": "^6.4.0",
     "cypress-log-to-output": "^1.0.4",
-    "docker": "^1.0.0",
     "dotenv": "^8.1.0",
-    "form-data": "^2.5.1",
     "globby": "^11.0.1",
     "minimist": "^1.2.3",
-    "node-cmd": "^3.0.0",
     "node-window-polyfill": "^1.0.0",
     "pug": "^2.0.4",
     "uuid": "^3.3.3"
