@@ -31,15 +31,7 @@ export default function test(account) {
 
         cy.get('.pac-item')
           .first()
-          .trigger('mouseover')
-
-        cy.get('.pac-item')
-          .first()
           .click()
-
-        cy.get('#force-shipping-fields')
-          .first()
-          .trigger('mouseover')
 
         cy.get('#force-shipping-fields')
           .first()
