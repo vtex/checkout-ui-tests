@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Flaky tests that fail on Saturday to be skipped
+
 ## [0.4.3] - 2021-05-17
 
 ### Fixed

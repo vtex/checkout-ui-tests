@@ -6,7 +6,7 @@ import {
 import { SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
-  describe(`Scheduled Delivery - ${account}`, () => {
+  describe.skip(`Scheduled Delivery - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
