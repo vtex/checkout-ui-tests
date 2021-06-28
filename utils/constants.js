@@ -35,6 +35,7 @@ export const SKUS = {
   GLOBAL_PRODUCT: '312',
   PICKUP_RJ: '307',
   PICKUP_RJ_BARRA: '331',
+  DELIVERY_ARG: '370',
 }
 
 export const ENV_BASE_URLS = {
