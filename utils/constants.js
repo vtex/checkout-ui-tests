@@ -10,6 +10,7 @@ export const ACCOUNT_NAMES = {
   GEOLOCATION: 'vtexgame1geo',
   NO_LEAN: 'vtexgame1nolean',
   INVOICE: 'vtexgame1invoice',
+  UK: 'eurocoin',
 }
 
 export const SLA_IDS = {
@@ -36,6 +37,25 @@ export const SKUS = {
   PICKUP_RJ: '307',
   PICKUP_RJ_BARRA: '331',
   PARAGUAY_DELIVERY: '369',
+  RARE_COIN: '63778',
+}
+
+export const CREDIT_CARD = {
+  NUMBER: '4040240009008936',
+  NAME: 'Fernando A Coelho',
+  BRAND: { VISA: '1' },
+  EXPIRATION_DATE_MONTH: '02',
+  EXPIRATION_DATE_YEAR: '22',
+  CVV: '066',
+}
+
+export const FOOD_VOUCHER = {
+  NUMBER: '123456789101',
+  NAME: 'Alice L Lima',
+  BRAND: { PRIVATE_LABEL: '1' },
+  EXPIRATION_DATE_MONTH: '01',
+  EXPIRATION_DATE_YEAR: '30',
+  CVV: '123',
 }
 
 export const ENV_BASE_URLS = {

@@ -7,7 +7,7 @@ import {
 } from '../../../utils/profile-actions'
 import {
   selectCreditCardGroup,
-  queryIframe,
+  queryCreditCardIframe,
   getIframeBody,
 } from '../../../utils/payment-actions'
 
@@ -24,7 +24,7 @@ export default function test(account) {
       fillEmail(email)
       confirmSecondPurchase()
       selectCreditCardGroup()
-      queryIframe($iframe => {
+      queryCreditCardIframe($iframe => {
         const body = getIframeBody($iframe)
 
         cy.wrap(body)
@@ -49,7 +49,7 @@ export default function test(account) {
       fillEmail(email)
       confirmSecondPurchase()
       selectCreditCardGroup()
-      queryIframe($iframe => {
+      queryCreditCardIframe($iframe => {
         const body = getIframeBody($iframe)
 
         cy.wrap(body)

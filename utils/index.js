@@ -30,6 +30,39 @@ export function setup({
     url = getAddSkusEndpoint({ account, skus, salesChannel })
   }
 
+  if (mobile) {
+    cy.viewport(414, 736)
+  } else {
+    cy.viewport(1280, 800)
+  }
+
+  cy.window().then(win => {
+    return win.vtexjs.checkout.addToCart(
+      skus.map(skuId => ({ id: skuId, quantity: 1, seller: '1' }))
+    )
+  })
+
+  let orderFormId
+
+  cy.getCookie('checkout.vtex.com').then(
+    cookie => (orderFormId = cookie.value.split('=')[1])
+  )
+
+  cy.on('fail', error => {
+    error.stack = `orderFormId: ${orderFormId}\n${error.stack}`
+    throw error
+  })
+
+  cy.wait('@getRuntimeContext', { timeout: 60000 })
+    .its('response.statusCode')
+    .should('eq', 200)
+
+  return cy
+}
+
+export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
+  cy.clearCookies()
+
   cy.intercept({
     method: 'POST',
     path: '/api/checkout/**',
@@ -57,33 +90,6 @@ export function setup({
     }).as('vtexId')
   }
 
-  if (mobile) {
-    cy.viewport(414, 736)
-  } else {
-    cy.viewport(1280, 800)
-  }
-
-  cy.visit(url)
-
-  let orderFormId
-
-  cy.getCookie('checkout.vtex.com').then(
-    cookie => (orderFormId = cookie.value.split('=')[1])
-  )
-
-  cy.on('fail', error => {
-    error.stack = `orderFormId: ${orderFormId}\n${error.stack}`
-    throw error
-  })
-
-  cy.wait('@getRuntimeContext', { timeout: 60000 })
-    .its('response.statusCode')
-    .should('eq', 200)
-
-  return cy
-}
-
-export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
   cy.visit(
     getBaseURL({
       ...BASE_CONFIG,
@@ -91,7 +97,6 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
     }) + CHECKOUT_ENDPOINT
   )
   cy.wait(3000)
-  cy.clearCookies()
   cy.clearLocalStorage()
 
   if (BASE_CONFIG.environment === 'beta') {
@@ -100,7 +105,7 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
 }
 
 export function getAddSkusEndpoint({ skus, account, salesChannel }) {
-  deleteAllCookies()
+  // deleteAllCookies()
 
   const baseURL =
     getBaseURL({
@@ -117,7 +122,7 @@ export function getAddSkusEndpoint({ skus, account, salesChannel }) {
 }
 
 export function getAddGiftListEndpoint(url, giftRegistry) {
-  deleteAllCookies()
+  // deleteAllCookies()
   return `${url}&gr=${giftRegistry}`
 }
 
