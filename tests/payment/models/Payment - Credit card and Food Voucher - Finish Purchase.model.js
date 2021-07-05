@@ -9,13 +9,12 @@ import {
   fillShippingInformation,
 } from '../../../utils/shipping-actions'
 import {
-  completePurchase,
   combinePaymentMethods,
   selectSamsungPayGroup,
   fillCreditCardInfo,
   fillFoodVoucherInfo,
 } from '../../../utils/payment-actions'
-import { ACCOUNT_NAMES, PHONES, SKUS } from '../../../utils/constants'
+import { PHONES, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Credit Card and Food Voucher - Finish Purchase - ${account}`, () => {
@@ -30,6 +29,9 @@ export default function test(account) {
       fillProfile({ phone: PHONES.UK, lastName: 'Foo' })
       fillShippingInformation(account)
       goToPayment()
+      cy.contains(
+        'Adicione até duas opções de pagamento para combiná-las'
+      ).should('not.be.visible')
       selectSamsungPayGroup()
       combinePaymentMethods()
       cy.contains('Pagamentos (0)').should('be.visible')
