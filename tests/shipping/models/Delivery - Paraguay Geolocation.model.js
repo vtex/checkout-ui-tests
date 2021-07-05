@@ -5,7 +5,11 @@ import {
   fillProfile,
 } from '../../../utils/profile-actions'
 import { SKUS } from '../../../utils/constants'
-import { selectCountry, goToPayment } from '../../../utils/shipping-actions'
+import {
+  selectCountry,
+  goToPayment,
+  interceptAutoCompleteResponse,
+} from '../../../utils/shipping-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 
 export default function test(account) {
@@ -29,6 +33,52 @@ export default function test(account) {
       cy.get('.pac-item')
         .first()
         .trigger('mouseover')
+
+      interceptAutoCompleteResponse({
+        address_components: [
+          {
+            long_name: 'Avenida Brasilia',
+            short_name: 'Av Brasilia',
+            types: ['route'],
+          },
+          {
+            long_name: 'Asunción',
+            short_name: 'Asunción',
+            types: ['locality', 'political'],
+          },
+          {
+            long_name: 'Asunción',
+            short_name: 'Asunción',
+            types: ['administrative_area_level_2', 'political'],
+          },
+          {
+            long_name: 'Asunción',
+            short_name: 'Asunción',
+            types: ['administrative_area_level_1', 'political'],
+          },
+          {
+            long_name: 'Paraguay',
+            short_name: 'PY',
+            types: ['country', 'political'],
+          },
+        ],
+        geometry: {
+          location: {
+            lat: -25.2768615,
+            lng: -57.5995792,
+          },
+          viewport: {
+            northeast: {
+              lat: -25.2755125197085,
+              lng: -57.5982302197085,
+            },
+            southwest: {
+              lat: -25.2782104802915,
+              lng: -57.60092818029151,
+            },
+          },
+        },
+      })
 
       cy.get('.pac-item')
         .first()
