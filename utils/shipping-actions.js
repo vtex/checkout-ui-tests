@@ -23,10 +23,6 @@ function fillPostalCodeOmnishipping() {
   cy.get('#ship-postalCode').type('22071060')
 }
 
-function fillUKDefaultPostalCode() {
-  cy.get('#ship-postalCode').type('SW1W 0NY')
-}
-
 function fillGeolocationOmnishipping() {
   cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
 
@@ -43,12 +39,6 @@ function fillGeolocationOmnishipping() {
 
 function fillAddressInformation() {
   cy.waitAndGet('#ship-number', 3000).type('12')
-}
-
-function fillUKDefaultAddressInformation() {
-  cy.waitAndGet('#ship-street', 3000).type('Buckingham Palace')
-  cy.waitAndGet('#ship-city', 3000).type('Londres')
-  cy.waitAndGet('#ship-state', 3000).type('United Kingdom')
 }
 
 function fillPickupLocation({ address }) {
@@ -96,9 +86,6 @@ export function goToShippingPreviewPickup() {
 export function fillShippingInformation(account) {
   if (account === ACCOUNT_NAMES.GEOLOCATION) {
     fillGeolocationOmnishipping()
-  } else if (account === ACCOUNT_NAMES.UK) {
-    fillUKDefaultPostalCode()
-    fillUKDefaultAddressInformation()
   } else {
     fillPostalCodeOmnishipping()
     fillAddressInformation()
