@@ -36,11 +36,15 @@ export function setup({
     cy.viewport(1280, 800)
   }
 
-  cy.window().then(win => {
-    return win.vtexjs.checkout.addToCart(
-      skus.map(skuId => ({ id: skuId, quantity: 1, seller: '1' }))
-    )
-  })
+  if (BASE_CONFIG.environment !== 'local') {
+    cy.visit(url)
+  } else {
+    cy.window().then(win => {
+      return win.vtexjs.checkout.addToCart(
+        skus.map(skuId => ({ id: skuId, quantity: 1, seller: '1' }))
+      )
+    })
+  }
 
   let orderFormId
 
@@ -105,7 +109,9 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
 }
 
 export function getAddSkusEndpoint({ skus, account, salesChannel }) {
-  // deleteAllCookies()
+  if (BASE_CONFIG.environment !== 'local') {
+    deleteAllCookies()
+  }
 
   const baseURL =
     getBaseURL({
@@ -122,7 +128,9 @@ export function getAddSkusEndpoint({ skus, account, salesChannel }) {
 }
 
 export function getAddGiftListEndpoint(url, giftRegistry) {
-  // deleteAllCookies()
+  if (BASE_CONFIG.environment !== 'local') {
+    deleteAllCookies()
+  }
   return `${url}&gr=${giftRegistry}`
 }
 
