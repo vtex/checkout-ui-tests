@@ -218,3 +218,20 @@ export function checkShippingPreviewResult(selectors) {
     }
   })
 }
+
+export function interceptAutoCompleteResponse(responseObject) {
+  cy.intercept(
+    'https://maps.googleapis.com/maps/api/place/js/PlaceService.GetPlaceDetails',
+    req => {
+      const searchParams = new URLSearchParams(req.url)
+      const callbackFunctionName = searchParams.get('callback')
+
+      req.reply(`
+${callbackFunctionName} && ${callbackFunctionName}(${JSON.stringify({
+        result: responseObject,
+        status: 'OK',
+      })})
+`)
+    }
+  )
+}
