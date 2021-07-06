@@ -13,8 +13,9 @@ import {
   selectSamsungPayGroup,
   fillCreditCardInfo,
   fillFoodVoucherInfo,
+  completePurchase,
 } from '../../../utils/payment-actions'
-import { PHONES, SKUS } from '../../../utils/constants'
+import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Credit Card and Food Voucher - Finish Purchase - ${account}`, () => {
@@ -26,7 +27,7 @@ export default function test(account) {
       const email = getRandomEmail()
       setup({ skus: [SKUS.RARE_COIN], account })
       fillEmail(email)
-      fillProfile({ phone: PHONES.UK, lastName: 'Foo' })
+      fillProfile()
       fillShippingInformation(account)
       goToPayment()
       cy.contains(
@@ -34,12 +35,15 @@ export default function test(account) {
       ).should('not.be.visible')
       selectSamsungPayGroup()
       combinePaymentMethods()
+      cy.contains(
+        'Adicione até duas opções de pagamento para combiná-las'
+      ).should('be.visible')
       cy.contains('Pagamentos (0)').should('be.visible')
       fillCreditCardInfo()
       cy.contains('Pagamentos (1)').should('be.visible')
       fillFoodVoucherInfo()
       cy.contains('Pagamentos (2)').should('be.visible')
-      //   completePurchase()
+      completePurchase()
     })
   })
 }
