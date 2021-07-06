@@ -9,7 +9,7 @@ import { completePurchase, payWithBoleto } from '../../../utils/payment-actions'
 import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
-  describe(`Delivery - Credit Card - ${account}`, () => {
+  describe(`Delivery - Address with no number - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
@@ -35,7 +35,7 @@ export default function test(account) {
 
       goToPayment()
 
-      cy.contains('Este campo é obrigatório.')
+      cy.contains('Campo obrigatório.')
 
       cy.get('#ship-number').type(12)
 
@@ -52,7 +52,6 @@ export default function test(account) {
       cy.contains('Receber').should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
-      cy.contains('PAC').should('be.visible')
     })
   })
 }

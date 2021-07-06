@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Test for geolocation in Paraguay without postal code.
+- Tests for geolocation when no number is provided.
 
 ## [0.4.6] - 2021-06-01
 
