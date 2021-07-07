@@ -71,11 +71,6 @@ export default function test(account) {
             short_name: 'X5000',
             types: ['postal_code'],
           },
-          {
-            long_name: 'HTF',
-            short_name: 'HTF',
-            types: ['postal_code_suffix'],
-          },
         ],
         geometry: {
           location: {
@@ -101,9 +96,7 @@ export default function test(account) {
 
       cy.contains('Avenida Castro Barros 523')
 
-      cy.contains('#ship-city')
-      cy.get('#ship-city').select('Córdoba')
-      cy.wait(0)
+      cy.contains('Capital, Córdoba')
 
       goToPayment()
       payWithBoleto()
@@ -112,8 +105,8 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Paraguay').should('be.visible')
-      cy.contains('Asunción - Asunción').should('be.visible')
+      cy.contains('Argentina').should('be.visible')
+      cy.contains('Capital, Córdoba').should('be.visible')
     })
   })
 }
