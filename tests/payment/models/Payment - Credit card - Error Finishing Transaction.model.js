@@ -27,6 +27,7 @@ export default function test(account) {
       fillEmail(email)
       fillProfile({
         lastName: 'Denied',
+        phone: '21999999999',
       })
       fillShippingInformation(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
