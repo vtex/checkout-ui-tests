@@ -52,13 +52,13 @@ export default function test(account) {
             types: ['locality', 'political'],
           },
           {
-            long_name: 'Capital',
-            short_name: 'Capital',
+            long_name: 'City Does Not Exist',
+            short_name: 'City',
             types: ['administrative_area_level_2', 'political'],
           },
           {
-            long_name: 'Córdoba',
-            short_name: 'Córdoba',
+            long_name: 'State Does Not Exist',
+            short_name: 'State',
             types: ['administrative_area_level_1', 'political'],
           },
           {
@@ -96,7 +96,7 @@ export default function test(account) {
 
       cy.contains('Avenida Castro Barros 523')
 
-      cy.contains('Capital, Córdoba')
+      cy.contains('City Does Not Exist, State Does Not Exist')
 
       goToPayment()
       payWithBoleto()
@@ -106,7 +106,9 @@ export default function test(account) {
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains('Argentina').should('be.visible')
-      cy.contains('Capital, Córdoba').should('be.visible')
+      cy.contains('City Does Not Exist, State Does Not Exist').should(
+        'be.visible'
+      )
     })
   })
 }
