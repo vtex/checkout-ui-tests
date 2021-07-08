@@ -252,12 +252,6 @@ export function insertFreeShippingCoupon() {
   cy.get('#cart-coupon-add').click({ force: true })
 }
 
-export function payWithFoodVoucher(options = { withAddress: false }) {
-  selectFoodVoucherGroup()
-  waitLoad()
-  fillFoodVoucherInfo({ withAddress: options.withAddress, id: 0 })
-}
-
-export function combinePaymentMethods() {
-  cy.waitAndGet('#combine-payment-methods', 3000).click()
+export function goBackToShipping() {
+  cy.get('#open-shipping').click()
 }
