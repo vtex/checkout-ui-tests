@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.8] - 2021-07-08
+
+### Added
+
+- Test for cities/states with no match in our lists.
+
 ## [0.4.7] - 2021-07-08
 
 ### Added
