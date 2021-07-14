@@ -21,36 +21,37 @@ export default function test(account) {
     it('with only delivery', () => {
       const email = getRandomEmail()
 
-      setup({ skus: [SKUS.DELIVERY_ARGENTINA], account })
+      setup({ skus: [SKUS.GLOBAL_PRODUCT], account, salesChannel: 2 })
 
       fillEmail(email)
       fillProfile()
 
       selectCountry('ARG')
 
-      cy.get('#ship-addressQuery').type('Santa Fe')
+      cy.get('#ship-addressQuery').type('Hipolito Yrigoyen 2255, Santa Fé')
 
       cy.get('.pac-item')
-        .eq(2)
+        .first()
         .trigger('mouseover')
 
       cy.get('.pac-item')
-        .eq(2)
+        .first()
         .click()
 
-      cy.get('#ship-receiverName').type('{selectAll}{backspace}Checkout Team')
-
-      cy.contains('Santa Fe')
+      cy.contains('Hipólito Yrigoyen 2255')
 
       goToPayment()
 
       goBackToShipping()
 
+      cy.get('#force-shipping-fields').trigger('mouseover')
       cy.get('#force-shipping-fields').click()
 
-      cy.contains('#ship-addressQuery')
+      cy.get('#ship-addressQuery').should('be.visible')
 
-      cy.get('#ship-addressQuery').type('Guatemala')
+      selectCountry('ARG')
+
+      cy.get('#ship-addressQuery').type('Hipolito Yrigoyen 2255, Santa Fé')
 
       cy.get('.pac-item')
         .first()
@@ -67,8 +68,8 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Peru').should('be.visible')
-      cy.contains('Lima, Lima').should('be.visible')
+      cy.contains('Argentina').should('be.visible')
+      cy.contains('La Capital, Santa Fé').should('be.visible')
     })
   })
 }
