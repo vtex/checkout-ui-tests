@@ -4,7 +4,11 @@ import {
   getRandomEmail,
   fillProfile,
 } from '../../../utils/profile-actions'
-import { goToPayment, selectCountry } from '../../../utils/shipping-actions'
+import {
+  goToPayment,
+  selectCountry,
+  interceptAutoCompleteResponse,
+} from '../../../utils/shipping-actions'
 import {
   completePurchase,
   fillBillingAddress,
@@ -35,6 +39,57 @@ export default function test(account) {
       cy.get('.pac-item')
         .first()
         .trigger('mouseover')
+
+      interceptAutoCompleteResponse({
+        address_components: [
+          {
+            long_name: '240',
+            short_name: '240',
+            types: ['street_number'],
+          },
+          {
+            long_name: 'Corrientes',
+            short_name: 'Corrientess',
+            types: ['route'],
+          },
+          {
+            long_name: 'Las Varillas',
+            short_name: 'Las Varillas',
+            types: ['locality', 'political'],
+          },
+          {
+            long_name: 'San Justo',
+            short_name: 'San Justo',
+            types: ['administrative_area_level_2', 'political'],
+          },
+          {
+            long_name: 'Córdoba',
+            short_name: 'Córdoba',
+            types: ['administrative_area_level_1', 'political'],
+          },
+          {
+            long_name: 'Argentina',
+            short_name: 'AR',
+            types: ['country', 'political'],
+          },
+        ],
+        geometry: {
+          location: {
+            lat: -31.86611169999999,
+            lng: -62.71555590000001,
+          },
+          viewport: {
+            northeast: {
+              lat: -31.8647362197085,
+              lng: -62.71417041970849,
+            },
+            southwest: {
+              lat: -31.86743418029149,
+              lng: -62.71686838029151,
+            },
+          },
+        },
+      })
 
       cy.get('.pac-item')
         .first()
