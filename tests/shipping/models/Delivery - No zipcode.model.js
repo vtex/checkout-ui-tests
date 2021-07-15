@@ -7,6 +7,7 @@ import {
 import { goToPayment, selectCountry } from '../../../utils/shipping-actions'
 import {
   completePurchase,
+  fillBillingAddress,
   payWithCreditCard,
 } from '../../../utils/payment-actions'
 import { SKUS } from '../../../utils/constants'
@@ -45,14 +46,15 @@ export default function test(account) {
       goToPayment()
       payWithCreditCard()
 
-      cy.contains('Código Postal')
+      fillBillingAddress({
+        id: 0,
+        postalCode: '5940',
+        number: '240',
+        street: 'Corrientes',
+        city: 'Córdoba',
+      })
 
-      cy.get('#payment-billing-address-postalCode-0').type('5940')
-
-      cy.waitAndGet('#payment-billing-address-street-0', 3000).type(
-        'Corrientes'
-      )
-      cy.get('#payment-billing-address-number-0').type('240')
+      // cy.get('#payment-billing-address-postalCode-0').type('5940')
 
       completePurchase()
 
