@@ -72,13 +72,38 @@ export function fillCreditCardInfo(
       return
     }
 
-    cy.wrap($body)
-      .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
-      .type('22071060', { force: true })
+    fillBillingAddress({ id: options.id, postalCode: '22071060', number: '12' })
+  })
+}
 
-    cy.wrap($body)
-      .find(`#payment-billing-address-number-${options.id || '0'}`)
-      .type('12', { force: true })
+export function fillBillingAddress(
+  options = {
+    id: 0,
+  }
+) {
+  queryIframe($iframe => {
+    const $body = getIframeBody($iframe)
+
+    // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
+    if (options.postalCode !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
+        .type(options.postalCode, { force: true })
+
+    if (options.number !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-number-${options.id || '0'}`)
+        .type(options.number, { force: true })
+
+    if (options.street !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-street-${options.id || '0'}`)
+        .type(options.street, { force: true })
+
+    if (options.city !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-city-${options.id || '0'}`)
+        .select(options.city)
   })
 }
 

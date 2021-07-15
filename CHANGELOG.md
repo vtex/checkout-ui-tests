@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Test to validate the requirement of zipcode for billing address.
+
 ## [0.4.8] - 2021-07-08
 
 ### Added
