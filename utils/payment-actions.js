@@ -159,3 +159,7 @@ export function insertFreeShippingCoupon() {
   cy.get('#cart-coupon').type('freeshipping', { force: true })
   cy.get('#cart-coupon-add').click({ force: true })
 }
+
+export function goBackToShipping() {
+  cy.get('#open-shipping').click()
+}
