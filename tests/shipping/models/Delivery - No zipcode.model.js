@@ -54,8 +54,6 @@ export default function test(account) {
         city: 'Córdoba',
       })
 
-      // cy.get('#payment-billing-address-postalCode-0').type('5940')
-
       completePurchase()
 
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
