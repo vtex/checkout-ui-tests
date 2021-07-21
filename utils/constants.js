@@ -37,12 +37,13 @@ export const SKUS = {
   PICKUP_RJ_BARRA: '331',
   PARAGUAY_DELIVERY: '369',
   RARE_COIN: '63778',
+  CC_FOOD_VOUCHER: '82',
 }
 
 export const CREDIT_CARD = {
   NUMBER: '4040240009008936',
   NAME: 'Fernando A Coelho',
-  BRAND: { VISA: '1' },
+  INSTALLMENTS: '1',
   EXPIRATION_DATE_MONTH: '02',
   EXPIRATION_DATE_YEAR: '22',
   CVV: '066',
@@ -51,7 +52,7 @@ export const CREDIT_CARD = {
 export const FOOD_VOUCHER = {
   NUMBER: '123456789101',
   NAME: 'Alice L Lima',
-  BRAND: { PRIVATE_LABEL: '1' },
+  INSTALLMENTS: '1',
   EXPIRATION_DATE_MONTH: '01',
   EXPIRATION_DATE_YEAR: '30',
   CVV: '123',

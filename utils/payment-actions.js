@@ -25,14 +25,14 @@ export function getIframeBody($iframe) {
 
 export function queryCreditCardIframe(callback) {
   cy.waitAndGet(
-    '#iframe-placeholder-creditCardPaymentGroup > iframe',
+    '[id^=iframe-placeholder-creditCardPaymentGroup-]:first > iframe',
     3000
   ).then(callback)
 }
 
 export function queryFoodVoucherIframe(callback) {
   cy.waitAndGet(
-    '#iframe-placeholder-customPrivate_405PaymentGroup > iframe',
+    '[id^=iframe-placeholder-customPrivate_404PaymentGroup-]:first > iframe',
     3000
   ).then(callback)
 }
@@ -62,7 +62,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
-      .select(CREDIT_CARD.BRAND.VISA)
+      .select(CREDIT_CARD.INSTALLMENTS)
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Month`)
@@ -97,7 +97,7 @@ export function fillFoodVoucherInfo(
   }
 ) {
   cy.wait(3000)
-  cy.get('#payment-group-customPrivate_405PaymentGroup').click({ force: true })
+  cy.get('#payment-group-customPrivate_404PaymentGroup').click({ force: true })
 
   cy.wait(5000)
 
@@ -115,7 +115,7 @@ export function fillFoodVoucherInfo(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
-      .select(FOOD_VOUCHER.BRAND.PRIVATE_LABEL)
+      .select(FOOD_VOUCHER.INSTALLMENTS)
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Month`)
@@ -148,7 +148,7 @@ export function selectCreditCardGroup() {
 }
 
 export function selectFoodVoucherGroup() {
-  cy.waitAndGet('#payment-group-customPrivate_405PaymentGroup', 3000).click()
+  cy.waitAndGet('#payment-group-customPrivate_404PaymentGroup', 3000).click()
 }
 
 export function selectSamsungPayGroup() {
