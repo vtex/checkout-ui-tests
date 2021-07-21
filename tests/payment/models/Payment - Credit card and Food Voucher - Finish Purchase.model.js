@@ -25,7 +25,7 @@ export default function test(account) {
 
     it('Completing purchase using Credit Card and Food Voucher', () => {
       const email = getRandomEmail()
-      setup({ skus: [SKUS.RARE_COIN], account })
+      setup({ skus: [SKUS.CC_FOOD_VOUCHER], account })
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
