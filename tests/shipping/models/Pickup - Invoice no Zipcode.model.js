@@ -76,7 +76,7 @@ export default function test(account) {
 
       fillInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard({ withAddress: true })
+      payWithCreditCard()
       completePurchase()
 
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
