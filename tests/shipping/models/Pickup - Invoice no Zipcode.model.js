@@ -82,7 +82,6 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Rua Saint Roman').should('be.visible')
     })
   })
 }
