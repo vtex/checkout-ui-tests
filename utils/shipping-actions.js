@@ -98,6 +98,9 @@ export function fillRemainingInfo() {
 
 export function goToPayment() {
   cy.get('.btn-go-to-payment').should('be.visible')
+
+  cy.wait(3000)
+
   cy.get('.btn-go-to-payment').focus()
   cy.get('.btn-go-to-payment').click()
 }
