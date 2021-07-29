@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.9] - 2021-07-29
+
 ### Added
 
 - Test to guarantee the geolocation input is being shown correctly.
