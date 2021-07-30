@@ -10,6 +10,7 @@ export const ACCOUNT_NAMES = {
   GEOLOCATION: 'vtexgame1geo',
   NO_LEAN: 'vtexgame1nolean',
   INVOICE: 'vtexgame1invoice',
+  GEOLOCATION_INVOICE: 'vtexgame1geoinvoice',
 }
 
 export const SLA_IDS = {

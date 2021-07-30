@@ -97,7 +97,12 @@ export function fillRemainingInfo() {
 }
 
 export function goToPayment() {
-  cy.waitAndGet('.btn-go-to-payment', 3000).click()
+  cy.get('.btn-go-to-payment').should('be.visible')
+
+  cy.wait(3000)
+
+  cy.get('.btn-go-to-payment').focus()
+  cy.get('.btn-go-to-payment').click()
 }
 
 export function chooseDelivery() {
