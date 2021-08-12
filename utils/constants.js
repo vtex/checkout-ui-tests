@@ -43,12 +43,12 @@ export const SKUS = {
 }
 
 export const CREDIT_CARD = {
-  NUMBER: '4040240009008936',
-  NAME: 'Fernando A Coelho',
+  NUMBER: '5555666677778884',
+  NAME: 'Ana Luiza M Gomes',
   INSTALLMENTS: '1',
-  EXPIRATION_DATE_MONTH: '02',
+  EXPIRATION_DATE_MONTH: '12',
   EXPIRATION_DATE_YEAR: '22',
-  CVV: '066',
+  CVV: '123',
 }
 
 export const FOOD_VOUCHER = {

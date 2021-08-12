@@ -122,6 +122,12 @@ export function fillFoodVoucherInfo(
       .select(FOOD_VOUCHER.EXPIRATION_DATE_MONTH)
 
     cy.wrap($body)
+      .find('.Warning >button')
+      .should('exist')
+      .contains('sim, o número está correto')
+      .click()
+
+    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Year`)
       .select(FOOD_VOUCHER.EXPIRATION_DATE_YEAR)
 
