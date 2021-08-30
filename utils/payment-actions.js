@@ -25,14 +25,14 @@ export function getIframeBody($iframe) {
 
 export function queryCreditCardIframe(callback) {
   cy.waitAndGet(
-    '[id^=iframe-placeholder-creditCardPaymentGroup-]:first > iframe',
+    '[id^=iframe-placeholder-creditCardPaymentGroup]:first > iframe',
     3000
   ).then(callback)
 }
 
 export function queryFoodVoucherIframe(callback) {
   cy.waitAndGet(
-    '[id^=iframe-placeholder-customPrivate_404PaymentGroup-]:first > iframe',
+    '[id^=iframe-placeholder-customPrivate_403PaymentGroup]:first > iframe',
     3000
   ).then(callback)
 }
@@ -80,13 +80,7 @@ export function fillCreditCardInfo(
       return
     }
 
-    cy.wrap($body)
-      .find(`#payment-billing-address-postalCode-${options.id || '0'}`)
-      .type('22071060', { force: true })
-
-    cy.wrap($body)
-      .find(`#payment-billing-address-number-${options.id || '0'}`)
-      .type('12', { force: true })
+    fillBillingAddress({ id: options.id, postalCode: '22071060', number: '12' })
   })
 }
 
@@ -97,7 +91,7 @@ export function fillFoodVoucherInfo(
   }
 ) {
   cy.wait(3000)
-  cy.get('#payment-group-customPrivate_404PaymentGroup').click({ force: true })
+  cy.get('#payment-group-customPrivate_403PaymentGroup').click({ force: true })
 
   cy.wait(5000)
 
@@ -122,12 +116,6 @@ export function fillFoodVoucherInfo(
       .select(FOOD_VOUCHER.EXPIRATION_DATE_MONTH)
 
     cy.wrap($body)
-      .find('.Warning >button')
-      .should('exist')
-      .contains('sim, o número está correto')
-      .click()
-
-    cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Year`)
       .select(FOOD_VOUCHER.EXPIRATION_DATE_YEAR)
 
@@ -144,7 +132,7 @@ export function fillFoodVoucherInfo(
 }
 
 export function fillBillingAddress(options) {
-  queryIframe($iframe => {
+  queryCreditCardIframe($iframe => {
     const $body = getIframeBody($iframe)
 
     const id = options.id || '0'
@@ -180,8 +168,8 @@ export function selectFoodVoucherGroup() {
   cy.waitAndGet('#payment-group-customPrivate_404PaymentGroup', 3000).click()
 }
 
-export function selectSamsungPayGroup() {
-  cy.waitAndGet('#payment-group-SamsungPayPaymentGroup', 3000).click()
+export function selectPayPalGroup() {
+  cy.waitAndGet('#payment-group-payPalPaymentGroup', 3000).click()
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {
@@ -270,4 +258,16 @@ export function payWithFoodVoucher(options = { withAddress: false }) {
 
 export function combinePaymentMethods() {
   cy.waitAndGet('#combine-payment-methods', 3000).click()
+}
+
+export function validateOrderPlaced(email) {
+  cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
+  cy.wait(2000)
+  cy.contains(email).should('be.visible')
+  cy.contains('Fernando Coelho').should('be.visible')
+  cy.contains('Rua Saint Roman 12').should('be.visible')
+  cy.contains('Copacabana').should('be.visible')
+  cy.contains('5521999999999').should('be.visible')
+  cy.contains('Cartão de crédito').should('be.visible')
+  cy.contains(`${CREDIT_CARD.FINAL}`).should('be.visible')
 }

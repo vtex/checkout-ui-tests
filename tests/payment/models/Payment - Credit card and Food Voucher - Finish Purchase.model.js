@@ -11,9 +11,10 @@ import {
 import {
   completePurchase,
   combinePaymentMethods,
-  selectSamsungPayGroup,
+  selectPayPalGroup,
   fillCreditCardInfo,
   fillFoodVoucherInfo,
+  validateOrderPlaced,
 } from '../../../utils/payment-actions'
 import { SKUS } from '../../../utils/constants'
 
@@ -25,12 +26,13 @@ export default function test(account) {
 
     it('Completing purchase using Credit Card and Food Voucher', () => {
       const email = getRandomEmail()
+
       setup({ skus: [SKUS.CC_FOOD_VOUCHER], account })
       fillEmail(email)
       fillProfile()
       fillShippingInformation(account)
       goToPayment()
-      selectSamsungPayGroup()
+      selectPayPalGroup()
       combinePaymentMethods()
       cy.contains(
         'Adicione até duas opções de pagamento para combiná-las'
@@ -41,6 +43,8 @@ export default function test(account) {
       fillFoodVoucherInfo()
       cy.contains('Pagamentos (2)').should('be.visible')
       completePurchase()
+
+      validateOrderPlaced(email)
     })
   })
 }
