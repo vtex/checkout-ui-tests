@@ -86,7 +86,6 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `completePurchase` - Clicks finish purchase button
 - `payWithFoodVoucher` - Selects Food Voucher payment method
 - `combinePaymentMethods` - Clicks to combine payment methods
-- `validateOrderPlaced` - Validates info on order placed page
 
 **Summary**
 

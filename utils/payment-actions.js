@@ -259,15 +259,3 @@ export function payWithFoodVoucher(options = { withAddress: false }) {
 export function combinePaymentMethods() {
   cy.waitAndGet('#combine-payment-methods', 3000).click()
 }
-
-export function validateOrderPlaced(email) {
-  cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
-  cy.wait(2000)
-  cy.contains(email).should('be.visible')
-  cy.contains('Fernando Coelho').should('be.visible')
-  cy.contains('Rua Saint Roman 12').should('be.visible')
-  cy.contains('Copacabana').should('be.visible')
-  cy.contains('5521999999999').should('be.visible')
-  cy.contains('Cartão de crédito').should('be.visible')
-  cy.contains(`${CREDIT_CARD.FINAL}`).should('be.visible')
-}
