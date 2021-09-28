@@ -32,7 +32,7 @@ export function queryCreditCardIframe(callback) {
 
 export function queryFoodVoucherIframe(callback) {
   cy.waitAndGet(
-    '[id^=iframe-placeholder-customPrivate_403PaymentGroup]:first > iframe',
+    '[id^=iframe-placeholder-customPrivate_404PaymentGroup]:first > iframe',
     3000
   ).then(callback)
 }
@@ -91,7 +91,7 @@ export function fillFoodVoucherInfo(
   }
 ) {
   cy.wait(3000)
-  cy.get('#payment-group-customPrivate_403PaymentGroup').click({ force: true })
+  cy.get('#payment-group-customPrivate_404PaymentGroup').click({ force: true })
 
   cy.wait(5000)
 
@@ -168,8 +168,8 @@ export function selectFoodVoucherGroup() {
   cy.waitAndGet('#payment-group-customPrivate_404PaymentGroup', 3000).click()
 }
 
-export function selectPayPalGroup() {
-  cy.waitAndGet('#payment-group-payPalPaymentGroup', 3000).click()
+export function selectSamsungPay() {
+  cy.waitAndGet('#payment-group-SamsungPayPaymentGroup', 3000).click()
 }
 
 export function payWithCreditCard(options = { withAddress: false }) {

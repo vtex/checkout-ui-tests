@@ -11,7 +11,7 @@ import {
 import {
   completePurchase,
   combinePaymentMethods,
-  selectPayPalGroup,
+  selectSamsungPay,
   fillCreditCardInfo,
   fillFoodVoucherInfo,
 } from '../../../utils/payment-actions'
@@ -31,7 +31,7 @@ export default function test(account) {
       fillProfile()
       fillShippingInformation(account)
       goToPayment()
-      selectPayPalGroup()
+      selectSamsungPay()
       combinePaymentMethods()
       cy.contains(
         'Adicione até duas opções de pagamento para combiná-las'
