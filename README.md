@@ -84,8 +84,6 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `payWithCreditCard` - Selects Credit card payment method
 - `typeCVV` - Types CVV for recurring purchases
 - `completePurchase` - Clicks finish purchase button
-- `payWithFoodVoucher` - Selects Food Voucher payment method
-- `combinePaymentMethods` - Clicks to combine payment methods
 
 **Summary**
 

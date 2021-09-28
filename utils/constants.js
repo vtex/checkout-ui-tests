@@ -38,26 +38,6 @@ export const SKUS = {
   PICKUP_RJ_BARRA: '331',
   PARAGUAY_DELIVERY: '369',
   DELIVERY_ARGENTINA: '370',
-  CC_FOOD_VOUCHER: '42',
-}
-
-export const CREDIT_CARD = {
-  NUMBER: '4040240009008936',
-  FINAL: '8936',
-  NAME: 'Fernando Coelho',
-  INSTALLMENTS: '1',
-  EXPIRATION_DATE_MONTH: '02',
-  EXPIRATION_DATE_YEAR: '22',
-  CVV: '066',
-}
-
-export const FOOD_VOUCHER = {
-  NUMBER: '123456789101',
-  NAME: 'Alice L Lima',
-  INSTALLMENTS: '1',
-  EXPIRATION_DATE_MONTH: '01',
-  EXPIRATION_DATE_YEAR: '30',
-  CVV: '123',
 }
 
 export const ENV_BASE_URLS = {

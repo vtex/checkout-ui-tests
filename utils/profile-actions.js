@@ -11,7 +11,6 @@ export function fillEmail(email) {
 export function fillProfile(
   options = {
     lastName: 'Coelho',
-    phone: '21999999999',
   }
 ) {
   cy.get('#client-first-name').type('Fernando', { force: true })
@@ -20,7 +19,7 @@ export function fillProfile(
 
   cy.get('#client-document').type(getDocument(), { force: true })
 
-  cy.get('#client-phone').type(options.phone, { force: true })
+  cy.get('#client-phone').type('21999999999', { force: true })
 
   cy.intercept(
     'POST',

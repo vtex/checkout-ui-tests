@@ -1,5 +1,4 @@
 import { waitLoad } from '.'
-import { CREDIT_CARD, FOOD_VOUCHER } from './constants'
 
 export function payWithBoleto() {
   cy.get('#payment-group-bankInvoicePaymentGroup:visible').click()
@@ -23,16 +22,9 @@ export function getIframeBody($iframe) {
   return $iframe.contents().find('body')
 }
 
-export function queryCreditCardIframe(callback) {
+export function queryIframe(callback) {
   cy.waitAndGet(
-    '[id^=iframe-placeholder-creditCardPaymentGroup]:first > iframe',
-    3000
-  ).then(callback)
-}
-
-export function queryFoodVoucherIframe(callback) {
-  cy.waitAndGet(
-    '[id^=iframe-placeholder-customPrivate_404PaymentGroup]:first > iframe',
+    '#iframe-placeholder-creditCardPaymentGroup > iframe',
     3000
   ).then(callback)
 }
@@ -48,80 +40,33 @@ export function fillCreditCardInfo(
 
   cy.wait(5000)
 
-  queryCreditCardIframe($iframe => {
+  queryIframe($iframe => {
     const $body = getIframeBody($iframe)
 
     // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Number`)
-      .type(CREDIT_CARD.NUMBER, { force: true })
+      .type('4040240009008936', { force: true })
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Name`)
-      .type(CREDIT_CARD.NAME, { force: true })
+      .type('Fernando A Coelho', { force: true })
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
-      .select(CREDIT_CARD.INSTALLMENTS)
+      .select('1')
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Month`)
-      .select(CREDIT_CARD.EXPIRATION_DATE_MONTH)
+      .select('02')
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Year`)
-      .select(CREDIT_CARD.EXPIRATION_DATE_YEAR)
+      .select('22')
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Code`)
-      .type(CREDIT_CARD.CVV, { force: true })
-
-    if (!options.withAddress) {
-      return
-    }
-
-    fillBillingAddress({ id: options.id, postalCode: '22071060', number: '12' })
-  })
-}
-
-export function fillFoodVoucherInfo(
-  options = {
-    withAddress: false,
-    id: '0',
-  }
-) {
-  cy.wait(3000)
-  cy.get('#payment-group-customPrivate_404PaymentGroup').click({ force: true })
-
-  cy.wait(5000)
-
-  queryFoodVoucherIframe($iframe => {
-    const $body = getIframeBody($iframe)
-
-    // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
-    cy.wrap($body)
-      .find(`#creditCardpayment-card-${options.id || '0'}Number`)
-      .type(FOOD_VOUCHER.NUMBER, { force: true })
-
-    cy.wrap($body)
-      .find(`#creditCardpayment-card-${options.id || '0'}Name`)
-      .type(FOOD_VOUCHER.NAME, { force: true })
-
-    cy.wrap($body)
-      .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
-      .select(FOOD_VOUCHER.INSTALLMENTS)
-
-    cy.wrap($body)
-      .find(`#creditCardpayment-card-${options.id || '0'}Month`)
-      .select(FOOD_VOUCHER.EXPIRATION_DATE_MONTH)
-
-    cy.wrap($body)
-      .find(`#creditCardpayment-card-${options.id || '0'}Year`)
-      .select(FOOD_VOUCHER.EXPIRATION_DATE_YEAR)
-
-    cy.wrap($body)
-      .find(`#creditCardpayment-card-${options.id || '0'}Code`)
-      .type(FOOD_VOUCHER.CVV, { force: true })
+      .type('066', { force: true })
 
     if (!options.withAddress) {
       return
@@ -132,7 +77,7 @@ export function fillFoodVoucherInfo(
 }
 
 export function fillBillingAddress(options) {
-  queryCreditCardIframe($iframe => {
+  queryIframe($iframe => {
     const $body = getIframeBody($iframe)
 
     const id = options.id || '0'
@@ -164,14 +109,6 @@ export function selectCreditCardGroup() {
   cy.waitAndGet('#payment-group-creditCardPaymentGroup', 3000).click()
 }
 
-export function selectFoodVoucherGroup() {
-  cy.waitAndGet('#payment-group-customPrivate_404PaymentGroup', 3000).click()
-}
-
-export function selectSamsungPay() {
-  cy.waitAndGet('#payment-group-SamsungPayPaymentGroup', 3000).click()
-}
-
 export function payWithCreditCard(options = { withAddress: false }) {
   selectCreditCardGroup()
   waitLoad()
@@ -188,7 +125,7 @@ export function payWithTwoCreditCards(options = { withAddress: false }) {
 
 export function selectTwoCards() {
   cy.waitAndGet('#payment-group-creditCardPaymentGroup', 1000).click()
-  queryCreditCardIframe($iframe => {
+  queryIframe($iframe => {
     const $body = getIframeBody($iframe)
     cy.wrap($body)
       .find('.ChangeNumberOfPayments a:visible')
@@ -219,7 +156,7 @@ export function typeCVV() {
   cy.waitAndGet('#payment-group-creditCardPaymentGroup', 1000).click()
   waitLoad()
 
-  queryCreditCardIframe($iframe => {
+  queryIframe($iframe => {
     const $body = getIframeBody($iframe)
 
     cy.wrap($body)
@@ -248,14 +185,4 @@ export function insertFreeShippingCoupon() {
 
 export function goBackToShipping() {
   cy.get('#open-shipping').click()
-}
-
-export function payWithFoodVoucher(options = { withAddress: false }) {
-  selectFoodVoucherGroup()
-  waitLoad()
-  fillFoodVoucherInfo({ withAddress: options.withAddress, id: 0 })
-}
-
-export function combinePaymentMethods() {
-  cy.waitAndGet('#combine-payment-methods', 3000).click()
 }
