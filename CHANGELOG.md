@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2021-09-28
+### Added
+- Test to validate finish purchase using credit card and food voucher.
+
 ## [0.5.1] - 2021-08-02
 ### Added
 
