@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Some tests breaking due to undefined variables. Reverts v0.5.2
 
-## [0.5.2] - 2021-09-28  [YANKED]
+## [0.5.2] - 2021-09-28 [YANKED]
 ### Added
 - Test to validate finish purchase using credit card and food voucher.
 
