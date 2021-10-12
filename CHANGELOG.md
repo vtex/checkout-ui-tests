@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.4] - 2021-10-12
+### Added
+- Test to validate finish purchase for free.
+
 ## [0.5.3] - 2021-09-28
 ### Fixed
 - Some tests breaking due to undefined variables. Reverts v0.5.2
