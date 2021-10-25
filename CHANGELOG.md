@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.5] - 2021-10-25
+### Added
+- Test to ensure that is possible to update billing address after error
+- Test to ensure that form fields are validated after error
+
 ## [0.5.4] - 2021-10-12
 ### Added
 - Test to validate finish purchase for free.
