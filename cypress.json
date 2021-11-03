@@ -10,8 +10,14 @@
   "key": "6ecaeca9-8292-49d5-b954-f5d330526703",
   "pageLoadTimeout": 180000,
   "defaultCommandTimeout": 15000,
+  "viewportWidth": 1440,
+  "viewportHeight": 900,
   "retries": {
     "runMode": 2,
     "openMode": 0
+  },
+  "env": {
+    "grepFilterSpecs": true,
+    "grepOmitFiltered": true
   }
 }

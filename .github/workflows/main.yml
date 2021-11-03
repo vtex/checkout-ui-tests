@@ -13,6 +13,9 @@ on:
         description: 'Number of parallel containers'
         required: false
         default: '30'
+      grep:
+        description: 'Part of the test title'
+        required: false
 jobs:
   setup_containers:
     runs-on: ubuntu-20.04
@@ -39,7 +42,8 @@ jobs:
         uses: cypress-io/github-action@v2.9.5
         with:
           tag: ${{ github.event.inputs.env }}
-          group: ''
+          env: 'grep=${{ github.event.inputs.grep }}'
+          group: 'grep=${{ github.event.inputs.grep }}'
           record: true
           parallel: true
         env:
