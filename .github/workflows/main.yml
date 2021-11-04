@@ -13,6 +13,10 @@ on:
       workspace:
         description: 'VTEX workspace, defaults to master'
         required: false
+      spec:
+        description: 'Specify the files to run. Example: **/*vtexgame1.test.js run only vtexgame1 tests'
+        required: false
+        default: '*'
       containers:
         description: 'Number of parallel containers'
         required: false
@@ -44,6 +48,7 @@ jobs:
         with:
           tag: ${{ github.event.inputs.env }}
           group: ''
+          spec: ${{ github.event.inputs.spec }}
           record: true
           parallel: true
         env:
