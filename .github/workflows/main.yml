@@ -46,7 +46,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2.9.5
         with:
-          tag: ${{ github.event.inputs.env }}
+          tag: 'env:${{ github.event.inputs.env }},wks:${{ github.event.inputs.workspace }},spec:${{ github.event.inputs.spec }}'
           group: ''
           spec: ${{ github.event.inputs.spec }}
           record: true
