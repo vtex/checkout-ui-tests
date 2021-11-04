@@ -53,3 +53,4 @@ jobs:
           CYPRESS_VTEX_WORKSPACE: ${{ github.event.inputs.workspace }}
           COMMIT_INFO_MESSAGE: ${{ github.event.inputs.title }}
           COMMIT_INFO_AUTHOR: ${{ github.actor }}
+          COMMIT_INFO_EMAIL: checkout-ui@vtex.com.br
