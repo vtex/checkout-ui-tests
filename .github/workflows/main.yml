@@ -2,6 +2,10 @@ name: End-to-end tests
 on:
   workflow_dispatch:
     inputs:
+      title:
+        description: 'Title that will appear in the Dashboard'
+        required: false
+        default: 'E2E tests'
       env:
         description: 'Environment (local, beta or stable)'
         required: false
@@ -47,3 +51,4 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY}}
           CYPRESS_VTEX_ENV: ${{ github.event.inputs.env }}
           CYPRESS_VTEX_WORKSPACE: ${{ github.event.inputs.workspace }}
+          COMMIT_INFO_MESSAGE: ${{ github.event.inputs.title }}
