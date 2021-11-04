@@ -7,12 +7,13 @@ on:
         required: false
         default: 'E2E tests'
       env:
-        description: 'Environment (local, beta or stable)'
+        description: 'Environment (beta or stable)'
         required: false
         default: 'stable'
       workspace:
-        description: 'VTEX workspace, defaults to master'
+        description: 'VTEX workspace'
         required: false
+        default: 'master'
       spec:
         description: 'Specify the files to run. Example: **/*vtexgame1.test.js run only vtexgame1 tests'
         required: false
@@ -39,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: ${{fromJson(needs.setup_containers.outputs.containers)}}
+        containers: ${{ fromJson(needs.setup_containers.outputs.containers) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
