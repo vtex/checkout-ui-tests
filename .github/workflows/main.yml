@@ -52,3 +52,4 @@ jobs:
           CYPRESS_VTEX_ENV: ${{ github.event.inputs.env }}
           CYPRESS_VTEX_WORKSPACE: ${{ github.event.inputs.workspace }}
           COMMIT_INFO_MESSAGE: ${{ github.event.inputs.title }}
+          COMMIT_INFO_AUTHOR: ${{ github.actor }}
