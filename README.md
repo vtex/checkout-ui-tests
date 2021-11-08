@@ -2,7 +2,7 @@
 
 ## Description
 
-The repository for mapped and implemented purchase testing scenarios for the Checkout UI.
+The repository for mapped and implemented purchase end-to-end testing scenarios for the Checkout UI.
 
 The test engine is composed by four main utilities:
 
@@ -12,6 +12,22 @@ The test engine is composed by four main utilities:
 - **Horus Proxy** - AWS Lambda function to send status to monitoring
 
 This repo has two Github Actions (BETA and STABLE) with a cron schedule to run all tests using Cypress, then sending videos to s3, evidences and the run result to monitoring.
+
+## Manual usage
+
+This repository uses a GitHub Workflow Action to trigger the end-to-end tests execution on our [Cypress Dashboard project](https://dashboard.cypress.io/projects/kobqo4/).
+
+To trigger this workflow, follow those steps:
+
+1. Access the [End-to-End tests GitHub Workflow](https://github.com/vtex/checkout-ui-tests/actions/workflows/main.yml)
+2. Click in the `Run workflow` button and fill the form
+3. After triggering the workflow, wait for about one minute and check the [Checkout UI Cypress Dashboard page](https://dashboard.cypress.io/projects/kobqo4/) to find your run.
+
+> ℹ️ Running the complete suite with 30 containers take about 7 minutes to end.
+
+> ⚠️ Also, each complete suite run cost about \$1, so be mindful about how many executions are being made. To better understand how this is billed, check the [Cypress pricing page](https://www.cypress.io/pricing/).
+
+You can also trigger this action via the GitHub CLI using `gh workflow run`.
 
 ## Developing
 
