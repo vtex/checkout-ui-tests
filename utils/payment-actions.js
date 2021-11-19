@@ -186,3 +186,50 @@ export function insertFreeShippingCoupon() {
 export function goBackToShipping() {
   cy.get('#open-shipping').click()
 }
+
+export function fillCreditCardAndSelectInstallmentWithInterest(
+  options = {
+    withAddress: false,
+    id: '0',
+  }
+) {
+  cy.wait(3000)
+  cy.get('#payment-group-creditCardPaymentGroup').click({ force: true })
+
+  cy.wait(5000)
+
+  queryIframe($iframe => {
+    const $body = getIframeBody($iframe)
+
+    // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
+    cy.wrap($body)
+      .find(`#creditCardpayment-card-${options.id || '0'}Number`)
+      .type('5090691111111118', { force: true })
+
+    cy.wrap($body)
+      .find(`#creditCardpayment-card-${options.id || '0'}Name`)
+      .type('Fernando A Coelho', { force: true })
+
+    cy.wrap($body)
+      .find(`#creditCardpayment-card-${options.id || '0'}Brand`)
+      .select('3')
+
+    cy.wrap($body)
+      .find(`#creditCardpayment-card-${options.id || '0'}Month`)
+      .select('02')
+
+    cy.wrap($body)
+      .find(`#creditCardpayment-card-${options.id || '0'}Year`)
+      .select('22')
+
+    cy.wrap($body)
+      .find(`#creditCardpayment-card-${options.id || '0'}Code`)
+      .type('066', { force: true })
+
+    if (!options.withAddress) {
+      return
+    }
+
+    fillBillingAddress({ id: options.id, postalCode: '22071060', number: '12' })
+  })
+}
