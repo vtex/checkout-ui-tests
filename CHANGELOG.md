@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.6] - 2021-11-22
+### Added
+- Test to ensure that interest infos are displayed at `checkout` and `orderPlaced` pages
+
 ## [0.5.5] - 2021-10-25
 ### Added
 - Test to ensure that is possible to update billing address after error
