@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- Test to ensure that interest infos are displayed at `checkout` and `orderPlaced` pages
 
 ## [0.5.5] - 2021-10-25
 ### Added
