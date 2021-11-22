@@ -100,6 +100,7 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `payWithCreditCard` - Selects Credit card payment method
 - `typeCVV` - Types CVV for recurring purchases
 - `completePurchase` - Clicks finish purchase button
+- `fillCreditCardAndSelectInstallmentWithInterest` - Fills credit card with Elo flag and select an installment with interest
 
 **Summary**
 
