@@ -37,7 +37,7 @@ export const SKUS = {
   PICKUP_RJ: '307',
   PICKUP_RJ_BARRA: '331',
   PARAGUAY_DELIVERY: '369',
-  DELIVERY_ARGENTINA: '370',
+  POLYGON_ARGENTINA: '370',
 }
 
 export const ENV_BASE_URLS = {
