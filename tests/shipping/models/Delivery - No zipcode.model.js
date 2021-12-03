@@ -25,7 +25,7 @@ export default function test(account) {
     it('with only delivery', () => {
       const email = getRandomEmail()
 
-      setup({ skus: [SKUS.DELIVERY_ARG], account })
+      setup({ skus: [SKUS.POLYGON_ARGENTINA], account })
 
       fillEmail(email)
       fillProfile()
