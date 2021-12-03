@@ -33,7 +33,7 @@ export default function test(account) {
 
       cy.contains('Rua Saint Roman')
 
-      cy.get('.btn-go-to-payment').click()
+      cy.get('.box-step > .btn').click()
 
       cy.contains('Campo obrigatório.')
 
