@@ -8,7 +8,6 @@
     "test:stable": "node ./src/monitoring/index.js --env stable",
     "test:beta-io": "node ./src/monitoring/index.js --env beta-io --workspace beta",
     "test:beta": "node ./src/monitoring/index.js --env beta",
-    "compile": "node ./src/compile-tests.js",
     "cypress:run": "cypress run",
     "test:ci-stable": "make ENVIRONMENT=stable",
     "test:ci-beta": "make ENVIRONMENT=beta",
