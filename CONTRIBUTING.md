@@ -96,5 +96,3 @@ cy.contains("Copacabana").should("be.visible")
 cy.contains("PAC").should("be.visible")
 ...
 ```
-
-After the test is done you should update [`SCENARIOS`](https://github.com/vtex/checkout-ui-tests/blob/master/SCENARIOS.md) and [`CHANGELOG`](https://github.com/vtex/checkout-ui-tests/blob/master/CHANGELOG.md) adding the implemented scenario. Also if an new action is implemented you should add it to the [`README`](https://github.com/vtex/checkout-ui-tests/blob/master/README.md) as well.
