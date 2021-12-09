@@ -1,27 +1,19 @@
 # How to contribute
 
-To to contribute with this repository, you should go to our [`SCENARIOS`](https://github.com/vtex/checkout-ui-tests/blob/master/SCENARIOS.md) file and check the scenarios which we still need to cover, as well as read how to implement a e2e test.
-
 ## Creating model and test files
 
-Once you chose the scenario you want to cover at [`SCENARIOS`](https://github.com/vtex/checkout-ui-tests/blob/master/SCENARIOS.md), you should create a `TITLE - SCENARIO - PAYMENT METHOD.model.js` in the `tests/` folder.
+Once you chose the scenario you want to cover, you should create a `TITLE - SCENARIO - PAYMENT METHOD.model.js` in the `tests/` folder.
 
 Let's say you chose `Delivery (Payment: Boleto) - Recurring Purchase`, since it's a `Shipping` scenario you will create a file in the `shipping` folder called `Delivery - Recurring Purchase - Boleto.model.js`.
 
-Once you have created the `.model.js` file you will run the following command to generate the `.test.js` files:
+Once you have created the `.model.js` file you will need to create a `.test.js` file for each account where you want to test. Here are the currently available accounts:
 
-```sh
-$ yarn compile
-```
-
-This command generates 5 test files, as a result of each scenario needs to run in 5 different accounts with multiple configurations between them. Their configuration is as follows:
-
-|                 | `vtexgame1` | `vtexgame1geo` | `vtexgame1nolean` | `vtexgame1clean` | `vtexgame1invoice` |
-| --------------- | ----------- | -------------- | ----------------- | ---------------- | ------------------ |
-| Lean Shipping   | true        | true           | false             | false            | true               |
-| Geolocation     | false       | true           | false             | false            | false              |
-| Google Maps Key | YES         | YES            | NO                | NO               | NO                 |
-| Invoice Address | false       | false          | false             | false            | true               |
+|                 | `vtexgame1` | `vtexgame1geo` | `vtexgame1nolean` | `vtexgame1clean` | `vtexgame1invoice` | `vtexgame1geoinvoice` |
+| --------------- | ----------- | -------------- | ----------------- | ---------------- | ------------------ | --------------------- |
+| Lean Shipping   | true        | true           | false             | true             | true               | true                  |
+| Geolocation     | false       | true           | false             | false            | false              | true                  |
+| Google Maps Key | true        | true           | false             | false            | false              | true                  |
+| Invoice Address | false       | false          | false             | false            | true               | true                  |
 
 ## Implementing a scenario
 
