@@ -1,3 +1,3 @@
-import test from './models/Pickup_Scheduled Delivery.model.js'
+// import test from './models/Pickup_Scheduled Delivery.model.js'
 
-test('vtexgame1geo')
+// test('vtexgame1geo')
