@@ -113,3 +113,16 @@ The main purpose of this repository build a more effective e2e test suite for th
 ### [Contributing Guide](https://github.com/vtex/checkout-ui-tests/blob/master/CONTRIBUTING.md)
 
 Read the [contributing guide](https://github.com/vtex/checkout-ui-tests/blob/master/CONTRIBUTING.md) to learn about the development process and how to build a new test scenario.
+
+## Old removed tests
+
+In the end of 2021 we realized that some all-time-broken tests were impacting our confiability, so we decided to fix them. Unfortunately some of them represented real bugs with Checkout, but after finding out how rare and hard to fix those scenarios were, some investigation, we opted to just discard those tests.
+
+Those tests were:
+
+- \[Shipping\] Delivery + Scheduled Delivery and Delivery - Credit card (vtexgame1, clean, geo, invoice, nolean)
+- [Shipping Preview] Delivery + Scheduled Delivery + Pickup (vtexgame1nolean)
+- [Shipping Preview] Delivery + Scheduled Delivery + Scheduled Pickup (vtexgame1nolean)
+- [Shipping Preview] Delivery Only + Delivery Pickup (vtexgame1nolean)
+
+You can check them using version control ([last commit before removal](https://github.com/vtex/checkout-ui-tests/tree/65f0b6ce9f70dcbea5a0ec77567d5aa380809b4b)) but additional information can be found [here](https://www.notion.so/vtexhandbook/Ressurrei-o-de-testes-E2E-e1b3fcea081342e2bcd1defedd0dddab).

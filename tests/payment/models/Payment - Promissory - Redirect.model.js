@@ -16,7 +16,7 @@ import {
 import { ACCOUNT_NAMES } from '../../../utils/constants'
 
 export default function test(account) {
-  describe.skip(`Payment - Promissory - Redirect - ${account}`, () => {
+  describe(`Payment - Promissory - Redirect - ${account}`, () => {
     before(() => {
       visitAndClearCookies(account)
     })
