@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.10] - 2021-12-23
+### Fixed
+- Test that failed on weekends (all accounts).
+
+## [0.5.9] - 2021-12-17
+### Fixed
+- Test that failed on weekends (testing fix for single account).
+
 ## [0.5.8] - 2021-12-03
 ### Fixed
 - 'No zipcode' test.
