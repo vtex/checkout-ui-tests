@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.11] - 2021-12-23
+
 ## [0.5.10] - 2021-12-23
 ### Fixed
 - Test that failed on weekends (all accounts).
