@@ -28,7 +28,7 @@ export default function test(account) {
 
       selectCountry('ARG')
 
-      cy.get('#ship-addressQuery').type('Hipolito Yrigoyen 2255, Santa Fé')
+      cy.get('#ship-addressQuery').type('Hipólito Irigoyen 2255, Santa Fé')
 
       cy.get('.pac-item')
         .first()
@@ -38,7 +38,7 @@ export default function test(account) {
         .first()
         .click()
 
-      cy.contains('Hipólito Yrigoyen 2255')
+      cy.contains('Hipólito Irigoyen 2255')
 
       goToPayment()
 
@@ -51,7 +51,7 @@ export default function test(account) {
 
       selectCountry('ARG')
 
-      cy.get('#ship-addressQuery').type('Hipolito Yrigoyen 2255, Santa Fé')
+      cy.get('#ship-addressQuery').type('Hipólito Irigoyen 2255, Santa Fé')
 
       cy.get('.pac-item')
         .first()

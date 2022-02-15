@@ -17,7 +17,7 @@ on:
       spec:
         description: 'Specify the files to run. Example: **/*vtexgame1.test.js run only vtexgame1 tests'
         required: false
-        default: '*'
+        default: '**/*'
       containers:
         description: 'Number of parallel containers'
         required: false

@@ -7,51 +7,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.12] - 2022-02-15
+
+### Changed
+
+- Street name at `Delivery - Geolocation Input.model.js`
+- Fix spec's default value
+
 ## [0.5.11] - 2021-12-23
+
 ### Removed
+
 - Outdated and broken tests
 
 ### Changed
-- Documentation 
+
+- Documentation
 
 ## [0.5.10] - 2021-12-23
+
 ### Fixed
+
 - Test that failed on weekends (all accounts).
 
 ## [0.5.9] - 2021-12-17
+
 ### Fixed
+
 - Test that failed on weekends (testing fix for single account).
 
 ## [0.5.8] - 2021-12-03
+
 ### Fixed
+
 - 'No zipcode' test.
 
 ## [0.5.7] - 2021-12-02
+
 ### Fixed
+
 - 'No number' test.
 
 ## [0.5.6] - 2021-11-22
+
 ### Added
+
 - Test to ensure that interest infos are displayed at `checkout` and `orderPlaced` pages
 
 ## [0.5.5] - 2021-10-25
+
 ### Added
+
 - Test to ensure that is possible to update billing address after error
 - Test to ensure that form fields are validated after error
 
 ## [0.5.4] - 2021-10-12
+
 ### Added
+
 - Test to validate finish purchase for free.
 
 ## [0.5.3] - 2021-09-28
+
 ### Fixed
+
 - Some tests breaking due to undefined variables. Reverts v0.5.2
 
 ## [0.5.2] - 2021-09-28 [YANKED]
+
 ### Added
+
 - Test to validate finish purchase using credit card and food voucher.
 
 ## [0.5.1] - 2021-08-02
+
 ### Added
 
 - Test to validate the requirement of zipcode for billing address.
@@ -423,3 +452,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - End to end tests.
+
+
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...HEAD
+[0.5.12]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.11...v0.5.12
