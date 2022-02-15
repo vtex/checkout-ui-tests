@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.12] - 2022-02-15
+
 ### Changed
 
 - Street name at `Delivery - Geolocation Input.model.js`
@@ -450,3 +452,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - End to end tests.
+
+
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...HEAD
+[0.5.12]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.11...v0.5.12
