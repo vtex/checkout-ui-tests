@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.13] - 2022-03-04
+
 ### Fixed
 
 - Credit card expiration.
@@ -458,5 +460,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - End to end tests.
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.13...HEAD
+[0.5.13]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...v0.5.13
 [0.5.12]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.11...v0.5.12
