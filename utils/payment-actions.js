@@ -62,7 +62,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Year`)
-      .select('22')
+      .select('40')
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Code`)

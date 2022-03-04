@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Credit card expiration.
+
 ## [0.5.12] - 2022-02-15
 
 ### Changed
