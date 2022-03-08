@@ -98,13 +98,14 @@ const CYPRESS_CONFIG = {
 async function sendResults(result, spec) {
   if (!result || result.message === 'Could not find Cypress test run results') {
     console.error('Could not find Cypress test run results')
+
     return
   }
 
   const runId = uuidv4()
 
   result.runs = await Promise.all(
-    result.runs.map(async run => {
+    result.runs.map(async (run) => {
       try {
         if (run.stats.failures === 0 || program.skipUpload) {
           try {
@@ -112,6 +113,7 @@ async function sendResults(result, spec) {
           } catch {
             // ignored
           }
+
           return run
         }
 
@@ -126,6 +128,7 @@ async function sendResults(result, spec) {
         return { ...run, video: videoUrl }
       } catch (err) {
         console.error(err)
+
         return run
       }
     })
@@ -159,11 +162,12 @@ function runCypress(spec) {
       spec: `./tests/${spec}`,
       ...CYPRESS_CONFIG,
     })
-    .then(result => {
+    .then((result) => {
       sendResults(result, spec)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err)
+
       return Promise.resolve()
     })
 }
@@ -177,6 +181,7 @@ const run = async () => {
 
   if (!specs.length) {
     console.log('No spec files were found...')
+
     return
   }
 
@@ -189,6 +194,7 @@ const run = async () => {
 
     console.log('Starting Tests...')
     Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
+
     return
   } catch (err) {
     console.log(err.message)

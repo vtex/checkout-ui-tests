@@ -53,6 +53,8 @@ export const ENV_BASE_URLS = {
     `https://${
       workspace ? `${workspace}--` : ''
     }${accountName}.vtexcommercestable.com.br`,
+  io: (accountName, workspace) =>
+    `https://${workspace ?? 'master'}--${accountName}.myvtex.com`,
 }
 
 export function getBaseURL({ accountName, environment, workspace }) {
