@@ -75,7 +75,7 @@
     "@vtex/prettier-config": "^1.0.0",
     "eslint": "^7",
     "eslint-config-vtex": "^14.1.2",
-    "eslint-plugin-cypress": "^2.9.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "husky": ">=4",
     "lint-staged": ">=10",
     "prettier": "^2.5.1",
