@@ -57,6 +57,8 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY}}
           CYPRESS_VTEX_ENV: ${{ github.event.inputs.env }}
           CYPRESS_VTEX_WORKSPACE: ${{ github.event.inputs.workspace }}
+          CYPRESS_APP_KEY: ${{ secrets.APP_KEY }}
+          CYPRESS_APP_TOKEN: ${{ secrets.APP_TOKEN }}
           COMMIT_INFO_MESSAGE: ${{ github.event.inputs.title }}
           COMMIT_INFO_AUTHOR: ${{ github.actor }}
           COMMIT_INFO_EMAIL: checkout-ui@vtex.com.br
