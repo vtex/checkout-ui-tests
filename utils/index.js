@@ -115,8 +115,6 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
 }
 
 export function getAddSkusEndpoint({ skus, account, salesChannel }) {
-  deleteAllCookies()
-
   const baseURL =
     getBaseURL({
       ...BASE_CONFIG,
