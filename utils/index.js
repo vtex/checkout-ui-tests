@@ -2,16 +2,17 @@ import {
   ADD_SKUS_ENDPOINT,
   getBaseURL,
   CHECKOUT_ENDPOINT,
-  DEFAULT_ACCOUNT_NAME,
   ACCOUNT_NAMES,
+  DEFAULT_ACCOUNT_NAME,
 } from './constants'
+import { vtexEnv, workspace, appKey, appToken } from './environment'
 
 const baseConfig = {
   accountName: DEFAULT_ACCOUNT_NAME,
-  environment: Cypress.env('VTEX_ENV') || process.env.VTEX_ENV || 'stable',
-  workspace: Cypress.env('VTEX_WORKSPACE'),
-  appKey: Cypress.env('APP_KEY'),
-  appToken: Cypress.env('APP_TOKEN'),
+  environment: vtexEnv,
+  workspace,
+  appKey,
+  appToken,
 }
 
 export function setup({

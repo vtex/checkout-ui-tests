@@ -1,3 +1,5 @@
+import { vtexEnv } from './environment'
+
 export const BASE_URL = 'http://vtexgame1.vtexlocal.com.br:3000/'
 export const BASE_URL_COMPLETE = 'http://vtexgame1.vtexlocal.com.br/'
 export const ADD_SKUS_ENDPOINT = '/checkout/cart/add?'
@@ -40,8 +42,8 @@ export const SKUS = {
   POLYGON_ARGENTINA: '370',
 }
 
-export const DELIVERY_TEXT = 'Entrega em casa'
-export const PICKUP_TEXT = 'Retirada no ponto'
+export const DELIVERY_TEXT = vtexEnv === 'io' ? 'Entrega em casa' : 'Receber'
+export const PICKUP_TEXT = vtexEnv === 'io' ? 'Retirada no ponto' : 'Retirar'
 export const SCHEDULED_TEXT = 'Agendada'
 
 const envBaseURLs = {
