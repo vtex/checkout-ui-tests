@@ -40,7 +40,7 @@ export const SKUS = {
   POLYGON_ARGENTINA: '370',
 }
 
-export const ENV_BASE_URLS = {
+const envBaseURLs = {
   local: (accountName, workspace) =>
     `http://${
       workspace ? `${workspace}--` : ''
@@ -58,7 +58,7 @@ export const ENV_BASE_URLS = {
 }
 
 export function getBaseURL({ accountName, environment, workspace }) {
-  return ENV_BASE_URLS[environment](accountName, workspace)
+  return envBaseURLs[environment](accountName, workspace)
 }
 
 export function getAccountName(type) {

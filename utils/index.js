@@ -6,7 +6,7 @@ import {
   ACCOUNT_NAMES,
 } from './constants'
 
-const BASE_CONFIG = {
+const baseConfig = {
   accountName: DEFAULT_ACCOUNT_NAME,
   environment: Cypress.env('VTEX_ENV') || process.env.VTEX_ENV || 'stable',
   workspace: Cypress.env('VTEX_WORKSPACE'),
@@ -88,7 +88,7 @@ export function setup({
 export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
   cy.visit(
     getBaseURL({
-      ...BASE_CONFIG,
+      ...baseConfig,
       accountName: account,
     }) + CHECKOUT_ENDPOINT
   )
@@ -96,17 +96,17 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
   cy.clearCookies()
   cy.clearLocalStorage()
 
-  if (BASE_CONFIG.environment === 'beta') {
+  if (baseConfig.environment === 'beta') {
     cy.setCookie('vtex-commerce-env', 'beta')
   }
 
-  if (BASE_CONFIG.environment === 'io') {
+  if (baseConfig.environment === 'io') {
     cy.request(
       'POST',
       `http://api.vtexcommercestable.com.br/api/vtexid/apptoken/login?an=${account}`,
       {
-        appkey: BASE_CONFIG.appKey,
-        apptoken: BASE_CONFIG.appToken,
+        appkey: baseConfig.appKey,
+        apptoken: baseConfig.appToken,
       }
     ).then((response) => {
       cy.setCookie('VtexIdclientAutCookie', response.body.token)
@@ -117,7 +117,7 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
 export function getAddSkusEndpoint({ skus, account, salesChannel }) {
   const baseURL =
     getBaseURL({
-      ...BASE_CONFIG,
+      ...baseConfig,
       accountName: account,
     }) + ADD_SKUS_ENDPOINT
 
