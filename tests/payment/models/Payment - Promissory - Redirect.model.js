@@ -13,7 +13,7 @@ import {
   payWithPromissoryPaymentApp,
   confirmRedirect,
 } from '../../../utils/payment-actions'
-import { ACCOUNT_NAMES } from '../../../utils/constants'
+import { ACCOUNT_NAMES, DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Promissory - Redirect - ${account}`, () => {
@@ -65,7 +65,7 @@ export default function test(account) {
       cy.contains('Fernando Redirect').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
       cy.contains('paymentApp').should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
       cy.contains('PAC').should('be.visible')

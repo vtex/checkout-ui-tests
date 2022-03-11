@@ -17,7 +17,12 @@ import {
   payWithCreditCard,
 } from '../../../utils/payment-actions'
 import { goToInvoiceAddress } from '../../../utils/invoice-actions'
-import { SKUS } from '../../../utils/constants'
+import {
+  SKUS,
+  DELIVERY_TEXT,
+  PICKUP_TEXT,
+  SCHEDULED_TEXT,
+} from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Pickup - Credit card - ${account}`, () => {
@@ -53,11 +58,11 @@ export default function test(account) {
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
-      cy.contains('Agendada').should('be.visible')
-      cy.contains('Retirar').should('be.visible')
+      cy.contains(SCHEDULED_TEXT).should('be.visible')
+      cy.contains(PICKUP_TEXT).should('be.visible')
     })
   })
 }

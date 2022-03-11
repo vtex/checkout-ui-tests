@@ -8,7 +8,7 @@ import {
 import { completePurchase, typeCVV } from '../../../utils/payment-actions'
 import { goToPayment } from '../../../utils/shipping-actions'
 import { goToInvoiceAddress } from '../../../utils/invoice-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, PICKUP_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup - 2P - Credit card - ${account}`, () => {
@@ -33,7 +33,7 @@ export default function test(account) {
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
-      cy.contains('Retirar').should('be.visible')
+      cy.contains(PICKUP_TEXT).should('be.visible')
     })
   })
 }

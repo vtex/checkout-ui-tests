@@ -5,7 +5,7 @@ import {
   confirmSecondPurchase,
 } from '../../../utils/profile-actions'
 import { completePurchase, payWithBoleto } from '../../../utils/payment-actions'
-import { SKUS } from '../../../utils/constants'
+import { DELIVERY_TEXT, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - 2P - Boleto - ${account}`, () => {
@@ -25,7 +25,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Boleto').should('be.visible')
       cy.contains('PAC').should('be.visible')
     })

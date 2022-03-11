@@ -40,6 +40,10 @@ export const SKUS = {
   POLYGON_ARGENTINA: '370',
 }
 
+export const DELIVERY_TEXT = 'Entrega em casa'
+export const PICKUP_TEXT = 'Retirada no ponto'
+export const SCHEDULED_TEXT = 'Agendada'
+
 const envBaseURLs = {
   local: (accountName, workspace) =>
     `http://${

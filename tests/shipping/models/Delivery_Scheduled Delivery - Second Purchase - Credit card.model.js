@@ -9,7 +9,7 @@ import {
   chooseDeliveryDate,
 } from '../../../utils/shipping-actions'
 import { completePurchase, typeCVV } from '../../../utils/payment-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery - 2P - Credit card - ${account}`, () => {
@@ -34,7 +34,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Cop*******').should('be.visible')
     })
   })

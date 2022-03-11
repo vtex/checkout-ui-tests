@@ -20,7 +20,7 @@ import {
   goToInvoiceAddress,
   fillInvoiceAddress,
 } from '../../../utils/invoice-actions'
-import { SKUS } from '../../../utils/constants'
+import { PICKUP_TEXT, SKUS } from '../../../utils/constants'
 import { removeUnavailablePickups } from '../../../utils/items-actions'
 
 export default function test(account) {
@@ -60,8 +60,8 @@ export default function test(account) {
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
       cy.contains('Cartão de crédito').should('be.visible')
-      cy.contains('final 8936').should('be.visible')
-      cy.contains('Retirar').should('be.visible')
+      cy.contains(/final 8936/i).should('be.visible')
+      cy.contains(PICKUP_TEXT).should('be.visible')
       cy.contains('Rua Marquês de Abrantes 5').should('be.visible')
       cy.contains('Flamengo').should('be.visible')
       cy.contains('Delivery').should('be.visible')

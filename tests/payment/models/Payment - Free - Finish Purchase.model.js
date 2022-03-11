@@ -9,6 +9,7 @@ import {
   fillShippingInformation,
 } from '../../../utils/shipping-actions'
 import { completePurchase } from '../../../utils/payment-actions'
+import { DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Free - Finish Purchase - ${account}`, () => {
@@ -36,7 +37,7 @@ export default function test(account) {
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
     })

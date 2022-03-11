@@ -9,7 +9,7 @@ import {
   fillShippingInformation,
 } from '../../../utils/shipping-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
-import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS, DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - Boleto - ${account}`, () => {
@@ -55,7 +55,7 @@ export default function test(account) {
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
       cy.contains('Boleto Bancário').should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
       cy.contains('PAC').should('be.visible')

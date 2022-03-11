@@ -13,7 +13,12 @@ import {
 } from '../../../utils/shipping-actions'
 import { completePurchase, typeCVV } from '../../../utils/payment-actions'
 import { goToInvoiceAddress } from '../../../utils/invoice-actions'
-import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
+import {
+  ACCOUNT_NAMES,
+  SKUS,
+  PICKUP_TEXT,
+  SCHEDULED_TEXT,
+} from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup + Scheduled Delivery - 2P - Credit card - ${account}`, () => {
@@ -43,11 +48,11 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Retirar').should('be.visible')
+      cy.contains(PICKUP_TEXT).should('be.visible')
       cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
       cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
-      cy.contains('Agendada').should('be.visible')
+      cy.contains(SCHEDULED_TEXT).should('be.visible')
       if (account === ACCOUNT_NAMES.INVOICE) {
         cy.contains('Rua Saint Roman 12').should('be.visible')
       } else {

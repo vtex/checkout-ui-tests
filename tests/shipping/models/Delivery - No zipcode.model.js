@@ -14,7 +14,7 @@ import {
   fillBillingAddress,
   payWithCreditCard,
 } from '../../../utils/payment-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - No zipcode - ${account}`, () => {
@@ -117,8 +117,8 @@ export default function test(account) {
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
       cy.contains('Cartão de crédito').should('be.visible')
-      cy.contains('final 8936').should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(/final 8936/i).should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Corrientes 240').should('be.visible')
       cy.contains('San Justo').should('be.visible')
     })

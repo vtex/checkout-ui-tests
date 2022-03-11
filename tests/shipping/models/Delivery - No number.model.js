@@ -6,7 +6,7 @@ import {
 } from '../../../utils/profile-actions'
 import { goToPayment } from '../../../utils/shipping-actions'
 import { completePurchase, payWithBoleto } from '../../../utils/payment-actions'
-import { SKUS } from '../../../utils/constants'
+import { SKUS, DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - Address with no number - ${account}`, () => {
@@ -49,7 +49,7 @@ export default function test(account) {
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5521999999999').should('be.visible')
-      cy.contains('Receber').should('be.visible')
+      cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
     })
