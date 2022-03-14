@@ -5,7 +5,7 @@ import {
   fillProfile,
 } from '../../../utils/profile-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
-import { SKUS } from '../../../utils/constants'
+import { shouldAssertGiftRegistry, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Gift List - ${account}`, () => {
@@ -31,7 +31,10 @@ export default function test(account) {
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')
-      cy.contains('Teste Endereço').should('be.visible')
+
+      if (shouldAssertGiftRegistry) {
+        cy.contains('Teste Endereço').should('be.visible')
+      }
     })
   })
 }

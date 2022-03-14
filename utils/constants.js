@@ -52,6 +52,14 @@ export const SCHEDULED_TEXT = 'Agendada'
 export const PERU_TEXT = vtexEnv === 'io' ? 'PER' : 'Peru'
 export const ARGENTINA_TEXT = vtexEnv === 'io' ? 'ARG' : 'Argentina'
 
+/**
+ * On the newer orderPlaced screen, we don't have the information about the Gift
+ * Registry used on the order. So, when we run the tests using the "io" env,
+ * which in turn uses this new screen, we should skip the assertions about gift
+ * registry on orderPlaced.
+ */
+export const shouldAssertGiftRegistry = vtexEnv !== 'io'
+
 const envBaseURLs = {
   local: (accountName, workspace) =>
     `http://${
