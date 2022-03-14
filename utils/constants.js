@@ -45,6 +45,7 @@ export const SKUS = {
 export const DELIVERY_TEXT = vtexEnv === 'io' ? 'Entrega em casa' : 'Receber'
 export const PICKUP_TEXT = vtexEnv === 'io' ? 'Retirada no ponto' : 'Retirar'
 export const SCHEDULED_TEXT = 'Agendada'
+export const PERU_TEXT = vtexEnv === 'io' ? 'PER' : 'Peru'
 
 const envBaseURLs = {
   local: (accountName, workspace) =>

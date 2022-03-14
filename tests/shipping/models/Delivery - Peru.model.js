@@ -4,7 +4,7 @@ import {
   fillEmail,
   fillProfile,
 } from '../../../utils/profile-actions'
-import { SKUS, ACCOUNT_NAMES } from '../../../utils/constants'
+import { SKUS, ACCOUNT_NAMES, PERU_TEXT } from '../../../utils/constants'
 import { selectCountry, goToPayment } from '../../../utils/shipping-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 
@@ -54,7 +54,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Peru').should('be.visible')
+      cy.contains(PERU_TEXT).should('be.visible')
       cy.contains('Lima, Lima').should('be.visible')
     })
   })
