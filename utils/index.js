@@ -131,8 +131,6 @@ export function getAddSkusEndpoint({ skus, account, salesChannel }) {
 }
 
 export function getAddGiftListEndpoint(url, giftRegistry) {
-  deleteAllCookies()
-
   return `${url}&gr=${giftRegistry}`
 }
 
