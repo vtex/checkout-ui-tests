@@ -8,7 +8,7 @@ import { SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

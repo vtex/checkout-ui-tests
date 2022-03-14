@@ -21,7 +21,7 @@ import { SKUS, PICKUP_TEXT, SCHEDULED_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup + Scheduled Delivery - Credit card - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

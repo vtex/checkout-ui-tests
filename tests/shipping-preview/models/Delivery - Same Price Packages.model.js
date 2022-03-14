@@ -8,7 +8,7 @@ import { ACCOUNT_NAMES, SKUS, SLA_IDS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - Same Price Packages - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

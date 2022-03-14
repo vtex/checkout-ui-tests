@@ -14,7 +14,7 @@ import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 
 export default function test(account) {
   describe(`Delivery - Paraguay - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

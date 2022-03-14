@@ -9,7 +9,7 @@ import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Gift List - Second Purchase - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

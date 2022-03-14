@@ -14,7 +14,7 @@ import {
 
 export default function test(account) {
   describe(`Delivery - Geolocation Input - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

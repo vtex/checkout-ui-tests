@@ -12,7 +12,7 @@ import { SKUS, PICKUP_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup - 2P - Credit card - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

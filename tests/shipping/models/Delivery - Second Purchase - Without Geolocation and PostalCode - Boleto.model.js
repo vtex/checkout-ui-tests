@@ -9,7 +9,7 @@ import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - 2P - Without Geolocation and PostalCode - Boleto - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

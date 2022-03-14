@@ -17,7 +17,7 @@ import { ACCOUNT_NAMES, DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Credit Card - Payment App - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

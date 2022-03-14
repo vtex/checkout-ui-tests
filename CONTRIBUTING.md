@@ -25,12 +25,12 @@ export default function test(account) {
 }
 ```
 
-After implementing the test function you should implement the test itself simulating a purchase and asserting the results. Every scenario should be have it's own file with one describe and one it for the context not to reflect on other tests. Also, every test must implement the `before()` calling `visitAndClearCookies(account)` to clean cookies and set the `beta` cookie if necessary. The initial describe should be as follows:
+After implementing the test function you should implement the test itself simulating a purchase and asserting the results. Every scenario should be have it's own file with one describe and one it for the context not to reflect on other tests. Also, every test must implement the `beforeEach()` calling `visitAndClearCookies(account)` to clean cookies and set the `beta` cookie if necessary. The initial describe should be as follows:
 
 ```js
 ...
 describe(`Delivery - Recurring Purchase - Boleto - ${account}`, () => {
-  before(() => {
+  beforeEach(() => {
     visitAndClearCookies(account)
   })
 

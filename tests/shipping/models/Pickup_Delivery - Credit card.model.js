@@ -25,7 +25,7 @@ import {
 
 export default function test(account) {
   describe(`Pickup + Delivery - Credit card - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

@@ -13,7 +13,7 @@ import { DELIVERY_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Free - Finish Purchase - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

@@ -8,7 +8,7 @@ import {
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery + Scheduled Pickup - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

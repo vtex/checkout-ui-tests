@@ -9,7 +9,7 @@ import { DELIVERY_TEXT, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery - 2P - Boleto - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

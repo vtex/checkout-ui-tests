@@ -18,7 +18,7 @@ import { ACCOUNT_NAMES } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Payment - Credit Card - Error Finishing Transaction - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

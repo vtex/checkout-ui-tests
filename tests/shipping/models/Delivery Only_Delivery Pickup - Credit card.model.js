@@ -19,7 +19,7 @@ import { SKUS, DELIVERY_TEXT, PICKUP_TEXT } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery Only + Delivery/Pickup - Boleto - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 

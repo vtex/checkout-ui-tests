@@ -25,7 +25,7 @@ import { removeUnavailablePickups } from '../../../utils/items-actions'
 
 export default function test(account) {
   describe(`Pickup + Pickup Unavailable + Delivery - Credit card - ${account}`, () => {
-    before(() => {
+    beforeEach(() => {
       visitAndClearCookies(account)
     })
 
