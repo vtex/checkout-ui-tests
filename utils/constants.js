@@ -42,10 +42,15 @@ export const SKUS = {
   POLYGON_ARGENTINA: '370',
 }
 
+// The following constants depend on the version of the order placed page shown
+// after checkout, so we check which environment we are running on and change
+// accordingly. This way all tests will work on either environment.
 export const DELIVERY_TEXT = vtexEnv === 'io' ? 'Entrega em casa' : 'Receber'
 export const PICKUP_TEXT = vtexEnv === 'io' ? 'Retirada no ponto' : 'Retirar'
 export const SCHEDULED_TEXT = 'Agendada'
+
 export const PERU_TEXT = vtexEnv === 'io' ? 'PER' : 'Peru'
+export const ARGENTINA_TEXT = vtexEnv === 'io' ? 'ARG' : 'Argentina'
 
 const envBaseURLs = {
   local: (accountName, workspace) =>

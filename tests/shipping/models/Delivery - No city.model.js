@@ -4,7 +4,7 @@ import {
   fillEmail,
   fillProfile,
 } from '../../../utils/profile-actions'
-import { SKUS } from '../../../utils/constants'
+import { ARGENTINA_TEXT, SKUS } from '../../../utils/constants'
 import {
   selectCountry,
   goToPayment,
@@ -30,9 +30,7 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Castro Barros 523, Córdoba, Argentina')
 
-      cy.get('.pac-item')
-        .first()
-        .trigger('mouseover')
+      cy.get('.pac-item').first().trigger('mouseover')
 
       interceptAutoCompleteResponse({
         address_components: [
@@ -90,9 +88,7 @@ export default function test(account) {
         },
       })
 
-      cy.get('.pac-item')
-        .first()
-        .click()
+      cy.get('.pac-item').first().click()
 
       cy.contains('Avenida Castro Barros 523')
 
@@ -105,7 +101,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Argentina').should('be.visible')
+      cy.contains(ARGENTINA_TEXT).should('be.visible')
       cy.contains('City Does Not Exist, State Does Not Exist').should(
         'be.visible'
       )

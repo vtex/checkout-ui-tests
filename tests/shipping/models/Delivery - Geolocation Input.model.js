@@ -4,7 +4,7 @@ import {
   fillEmail,
   fillProfile,
 } from '../../../utils/profile-actions'
-import { SKUS } from '../../../utils/constants'
+import { ARGENTINA_TEXT, SKUS } from '../../../utils/constants'
 import { selectCountry, goToPayment } from '../../../utils/shipping-actions'
 import {
   payWithBoleto,
@@ -30,13 +30,9 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Hipólito Irigoyen 2255, Santa Fé')
 
-      cy.get('.pac-item')
-        .first()
-        .trigger('mouseover')
+      cy.get('.pac-item').first().trigger('mouseover')
 
-      cy.get('.pac-item')
-        .first()
-        .click()
+      cy.get('.pac-item').first().click()
 
       cy.contains('Hipólito Irigoyen 2255')
 
@@ -53,13 +49,9 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Hipólito Irigoyen 2255, Santa Fé')
 
-      cy.get('.pac-item')
-        .first()
-        .trigger('mouseover')
+      cy.get('.pac-item').first().trigger('mouseover')
 
-      cy.get('.pac-item')
-        .first()
-        .click()
+      cy.get('.pac-item').first().click()
 
       goToPayment()
       payWithBoleto()
@@ -68,7 +60,7 @@ export default function test(account) {
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Argentina').should('be.visible')
+      cy.contains(ARGENTINA_TEXT).should('be.visible')
       cy.contains('La Capital, Santa Fé').should('be.visible')
     })
   })
