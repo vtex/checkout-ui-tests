@@ -4,16 +4,16 @@
   "description": "",
   "main": "src/monitoring/index.js",
   "scripts": {
-    "test": "node ./src/monitoring/index.js",
-    "test:stable": "node ./src/monitoring/index.js --env stable",
-    "test:beta-io": "node ./src/monitoring/index.js --env beta-io --workspace beta",
-    "test:beta": "node ./src/monitoring/index.js --env beta",
+    "test": "node ./src/monitoring/index.mjs",
+    "test:stable": "node ./src/monitoring/index.mjs --env stable",
+    "test:beta-io": "node ./src/monitoring/index.mjs --env beta-io --workspace beta",
+    "test:beta": "node ./src/monitoring/index.mjs --env beta",
     "cypress:run": "cypress run",
     "test:ci-stable": "make ENVIRONMENT=stable",
     "test:ci-beta": "make ENVIRONMENT=beta",
     "test:ci-beta-io": "make ENVIRONMENT=beta-io",
-    "lint": "eslint --ext js,ts .",
-    "lint:fix": "eslint --fix --ext js,ts ."
+    "lint": "eslint --ext js,ts,mjs .",
+    "lint:fix": "eslint --fix --ext js,ts,mjs ."
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,9 @@
     "url": "https://github.com/vtex/checkout-ui-tests/issues"
   },
   "homepage": "https://github.com/vtex/checkout-ui-tests#readme",
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "aws-sdk": "^2.515.0",
     "axios": "^0.19.0",
@@ -33,7 +36,7 @@
     "commander": "^6.0.0",
     "cypress": "^6.4.0",
     "cypress-log-to-output": "^1.0.4",
-    "dotenv": "^8.1.0",
+    "dotenv": "^16.0.0",
     "globby": "^11.0.1",
     "minimist": "^1.2.3",
     "node-window-polyfill": "^1.0.0",
@@ -87,7 +90,9 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix",
-    "*.{js,css}": "prettier --write"
+    "*.{js,ts}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   }
 }

@@ -1,6 +1,6 @@
-const globby = require('globby')
+import globby from 'globby'
 
-function getTestFiles({ dir, accounts, pattern = '?' }) {
+export function getTestFiles({ dir, accounts, pattern = '?' }) {
   let globPattern = `**/*${pattern}*.test.{js,ts}`
 
   if (accounts.length > 0) {
@@ -9,5 +9,3 @@ function getTestFiles({ dir, accounts, pattern = '?' }) {
 
   return globby(globPattern, { onlyFiles: true, cwd: dir })
 }
-
-module.exports = { getTestFiles }

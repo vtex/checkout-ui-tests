@@ -2,10 +2,6 @@ const commaSeparatedList = (value) => {
   return value.split(',')
 }
 
-const customProcessing = {
+export const customProcessing = {
   commaSeparatedList,
-}
-
-module.exports = {
-  customProcessing,
 }

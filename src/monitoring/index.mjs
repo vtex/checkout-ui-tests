@@ -1,19 +1,22 @@
-require('dotenv').config()
+import 'dotenv/config'
 
-const fs = require('fs').promises
-const path = require('path')
+import { promises as fs } from 'fs'
+import { fileURLToPath } from 'url'
 
-const cypress = require('cypress')
-const Promise = require('bluebird')
-const uuidv4 = require('uuid/v4')
-const commander = require('commander')
-const chalk = require('chalk')
+import cypress from 'cypress'
+import Promise from 'bluebird'
+import uuidv4 from 'uuid/v4.js'
+import commander from 'commander'
+import chalk from 'chalk'
 
-const { getTestFiles } = require('../../utils/specs')
-const monitoring = require('./monitoring')
-const s3 = require('./s3')
-const { customProcessing } = require('./cli-utils')
-const pkg = require('../../package.json')
+import sendToMonitoring from './monitoringApi.mjs'
+import { getTestFiles } from './utils/specs.mjs'
+import { customProcessing } from './utils/cli.mjs'
+import * as s3 from './s3.mjs'
+
+const pkg = JSON.parse(
+  await fs.readFile(new URL('../../package.json', import.meta.url))
+)
 
 const program = commander
   .version(pkg.version)
@@ -67,7 +70,8 @@ if (process.env.VTEX_WORKSPACE != null) {
 
 const isIOEnv = program.env === 'beta-io'
 
-const BASE_PATH = path.resolve(__dirname, '..', '..', 'tests')
+const BASE_PATH = fileURLToPath(new URL('../../tests', import.meta.url))
+
 const CONCURRENCY = 1
 const CYPRESS_CONFIG = {
   headed: !program.headless,
@@ -139,7 +143,8 @@ async function sendResults(result, spec) {
   }
 
   console.log(`Sending result to monitoring for "${spec}"`)
-  await monitoring({
+
+  await sendToMonitoring({
     config: {
       evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days

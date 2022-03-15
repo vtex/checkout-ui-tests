@@ -1,12 +1,13 @@
-require('node-window-polyfill').register()
+import fs from 'fs'
+import { fileURLToPath } from 'url'
 
-const fs = require('fs')
-const path = require('path')
+import pug from 'pug'
+import http from 'axios'
 
-const pug = require('pug')
-const http = require('axios')
+const templateUrl = fileURLToPath(
+  new URL('./templates/evidence.pug', import.meta.url)
+)
 
-const templateUrl = path.join(__dirname, 'templates/evidence.pug')
 const compile = pug.compileFile(templateUrl)
 
 const pad = (v, len = 2) => v.toString().padStart(len, 0)
@@ -37,7 +38,7 @@ function format(date) {
   return `${hour}:${minute}:${second} ${day}/${month}/${year}`
 }
 
-const main = async (data) => {
+export default async function sendToMonitoring(data) {
   if (!data || !data.tests || !data.config) {
     return false
   }
@@ -106,5 +107,3 @@ const main = async (data) => {
     console.log(error.response)
   }
 }
-
-module.exports = main

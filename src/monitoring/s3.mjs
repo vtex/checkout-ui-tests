@@ -1,7 +1,8 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const AWS = require('aws-sdk')
+import AWS from 'aws-sdk'
 
 const ACL = 'public-read'
 const BUCKET = 'vtex-id-hc'
@@ -14,9 +15,10 @@ AWS.config.update({
     IdentityPoolId: process.env.HORUS_COGNITO_CREDENTIALS,
   }),
 })
+
 const s3 = new AWS.S3()
 
-const uploadFile = async (src, dst, contentType = null) => {
+export const uploadFile = async (src, dst, contentType = null) => {
   const key = KEY_PREFIX + dst
 
   try {
@@ -39,8 +41,11 @@ const uploadFile = async (src, dst, contentType = null) => {
   }
 }
 
-const downloadFixture = async () => {
-  const fixturesDir = path.join(__dirname, '../../cypress/fixtures')
+export const downloadFixture = async () => {
+  const fixturesDir = fileURLToPath(
+    new URL('../../cypress/fixtures', import.meta.url)
+  )
+
   const fixturesFile = path.join(fixturesDir, 'users.json')
 
   if (fs.existsSync(fixturesFile)) return
@@ -59,5 +64,3 @@ const downloadFixture = async () => {
     console.log(err)
   }
 }
-
-module.exports = { uploadFile, downloadFixture }
