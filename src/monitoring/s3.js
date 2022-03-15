@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 const AWS = require('aws-sdk')
 
@@ -39,8 +40,9 @@ const uploadFile = async (src, dst, contentType = null) => {
 }
 
 const downloadFixture = async () => {
-  const fixturesDir = `${__dirname}/../../cypress/fixtures`
-  const fixturesFile = `${fixturesDir}/users.json`
+  const fixturesDir = path.join(__dirname, '../../cypress/fixtures')
+  const fixturesFile = path.join(fixturesDir, 'users.json')
+
   if (fs.existsSync(fixturesFile)) return
 
   if (!fs.existsSync(fixturesDir)) {
@@ -51,6 +53,7 @@ const downloadFixture = async () => {
     const response = await s3
       .getObject({ Bucket: BUCKET, Key: 'healthcheck/users.json' })
       .promise()
+
     fs.writeFileSync(fixturesFile, response.Body)
   } catch (err) {
     console.log(err)

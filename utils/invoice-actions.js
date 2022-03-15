@@ -32,13 +32,9 @@ export function fillInvoiceAddress(account) {
   } else if (account === ACCOUNT_NAMES.GEOLOCATION_INVOICE) {
     cy.waitAndGet('#ship-addressQuery', 1000).type('Rua Saint Roman')
 
-    cy.get('.pac-item')
-      .first()
-      .trigger('mouseover')
+    cy.get('.pac-item').first().trigger('mouseover')
 
-    cy.get('.pac-item')
-      .first()
-      .click()
+    cy.get('.pac-item').first().click()
 
     cy.contains('Rua Saint Roman')
   }
@@ -56,12 +52,7 @@ export function invalidateInvoiceAddress(account) {
     return
   }
 
-  cy.waitAndGet('#ship-number', 1000)
-    .last()
-    .clear()
-    .blur()
+  cy.waitAndGet('#ship-number', 1000).last().clear().blur()
   cy.get('#btn-go-to-payment').should('not.exist')
-  cy.get('.ship-number .error')
-    .should('exist')
-    .contains('Campo obrigatório.')
+  cy.get('.ship-number .error').should('exist').contains('Campo obrigatório.')
 }

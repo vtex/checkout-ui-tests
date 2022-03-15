@@ -60,6 +60,7 @@ export default function test(account) {
       } else {
         cy.contains('Rua ***** **man **').should('be.visible')
       }
+
       cy.contains('PAC').should('be.visible')
     })
   })

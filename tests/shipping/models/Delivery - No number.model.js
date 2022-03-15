@@ -23,13 +23,9 @@ export default function test(account) {
 
       cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman')
 
-      cy.get('.pac-item')
-        .first()
-        .trigger('mouseover')
+      cy.get('.pac-item').first().trigger('mouseover')
 
-      cy.get('.pac-item')
-        .first()
-        .click()
+      cy.get('.pac-item').first().click()
 
       cy.contains('Rua Saint Roman')
 

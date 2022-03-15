@@ -32,6 +32,7 @@ export default function test(account) {
 
     it('delivery with scheduled delivery and pickup point', () => {
       const email = getRandomEmail()
+
       setup({
         skus: [
           SKUS.PICKUP_1_SLA,

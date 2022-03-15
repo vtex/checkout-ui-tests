@@ -1,11 +1,12 @@
 require('node-window-polyfill').register()
 
 const fs = require('fs')
+const path = require('path')
 
 const pug = require('pug')
 const http = require('axios')
 
-const templateUrl = `${__dirname}/templates/evidence.pug`
+const templateUrl = path.join(__dirname, 'templates/evidence.pug')
 const compile = pug.compileFile(templateUrl)
 
 const pad = (v, len = 2) => v.toString().padStart(len, 0)
@@ -13,8 +14,10 @@ const pad = (v, len = 2) => v.toString().padStart(len, 0)
 function msToTime(s) {
   s = parseInt(s, 10)
   const ms = s % 1000
+
   s = (s - ms) / 1000
   const secs = s % 60
+
   s = (s - secs) / 60
   const mins = s % 60
   const hrs = (s - mins) / 60
@@ -30,10 +33,11 @@ function format(date) {
   const day = pad(d.getDate(), 2)
   const month = pad(d.getMonth() + 1, 2)
   const year = pad(d.getFullYear(), 4)
+
   return `${hour}:${minute}:${second} ${day}/${month}/${year}`
 }
 
-const main = async data => {
+const main = async (data) => {
   if (!data || !data.tests || !data.config) {
     return false
   }
@@ -81,6 +85,7 @@ const main = async data => {
       Module: healthcheckConfig.moduleName,
     },
   }
+
   if (!process.env.HORUS_PROXY_KEY) return
 
   try {
@@ -94,10 +99,12 @@ const main = async data => {
         },
       }
     )
+
     console.log({ hcResponseData, status })
   } catch (error) {
     console.log({ error })
     console.log(error.response)
   }
 }
+
 module.exports = main

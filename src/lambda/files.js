@@ -22,6 +22,7 @@ exports.handler = async (event, context, callback) => {
 
   const uploadFile = async () => {
     const key = KEY_PREFIX + destPath
+
     console.log('key', key)
     await s3
       .putObject({
@@ -44,6 +45,7 @@ exports.handler = async (event, context, callback) => {
       console.log('Uploading file')
       await uploadFile()
       break
+
     default:
       done(new Error(`Unsupported method "${event.httpMethod}"`))
   }

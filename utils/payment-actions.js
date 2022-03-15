@@ -40,7 +40,7 @@ export function fillCreditCardInfo(
 
   cy.wait(5000)
 
-  queryIframe($iframe => {
+  queryIframe(($iframe) => {
     const $body = getIframeBody($iframe)
 
     // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
@@ -77,7 +77,7 @@ export function fillCreditCardInfo(
 }
 
 export function fillBillingAddress(options) {
-  queryIframe($iframe => {
+  queryIframe(($iframe) => {
     const $body = getIframeBody($iframe)
 
     const id = options.id || '0'
@@ -125,11 +125,10 @@ export function payWithTwoCreditCards(options = { withAddress: false }) {
 
 export function selectTwoCards() {
   cy.waitAndGet('#payment-group-creditCardPaymentGroup', 1000).click()
-  queryIframe($iframe => {
+  queryIframe(($iframe) => {
     const $body = getIframeBody($iframe)
-    cy.wrap($body)
-      .find('.ChangeNumberOfPayments a:visible')
-      .click()
+
+    cy.wrap($body).find('.ChangeNumberOfPayments a:visible').click()
   })
 }
 
@@ -146,9 +145,7 @@ export function confirmPaymentApp() {
 }
 
 export function confirmRedirect() {
-  cy.get('a', { timeout: 10000 })
-    .first()
-    .click()
+  cy.get('a', { timeout: 10000 }).first().click()
 }
 
 export function typeCVV() {
@@ -156,12 +153,10 @@ export function typeCVV() {
   cy.waitAndGet('#payment-group-creditCardPaymentGroup', 1000).click()
   waitLoad()
 
-  queryIframe($iframe => {
+  queryIframe(($iframe) => {
     const $body = getIframeBody($iframe)
 
-    cy.wrap($body)
-      .find('#creditCardpayment-card-0Brand')
-      .select('1')
+    cy.wrap($body).find('#creditCardpayment-card-0Brand').select('1')
 
     cy.wrap($body)
       .find('#creditCardpayment-card-0Code')
@@ -198,7 +193,7 @@ export function fillCreditCardAndSelectInstallmentWithInterest(
 
   cy.wait(5000)
 
-  queryIframe($iframe => {
+  queryIframe(($iframe) => {
     const $body = getIframeBody($iframe)
 
     // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830

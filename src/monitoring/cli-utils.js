@@ -1,4 +1,4 @@
-const commaSeparatedList = value => {
+const commaSeparatedList = (value) => {
   return value.split(',')
 }
 

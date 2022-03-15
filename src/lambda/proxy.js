@@ -4,13 +4,13 @@ const axios = require('axios')
 const evidenceExpirationDefault = 86400 // 24h in seconds
 
 const EVIDENCE_HOST = `http://evidence.vtex.com`
-const EVIDENCE_PATH = config =>
-  `/api/evidence?application=${
-    config.applicationName
-  }&expirationInSeconds=${config.expirationInSeconds ||
-    evidenceExpirationDefault}`
+const EVIDENCE_PATH = (config) =>
+  `/api/evidence?application=${config.applicationName}&expirationInSeconds=${
+    config.expirationInSeconds || evidenceExpirationDefault
+  }`
+
 const HEALTHCHECK_HOST = `http://monitoring.vtex.com`
-const HEALTHCHECK_PATH = env =>
+const HEALTHCHECK_PATH = (env) =>
   `/api/healthcheck/results?repository=${env || 'beta'}`
 
 exports.handler = (event, context, callback) => {
@@ -24,13 +24,14 @@ exports.handler = (event, context, callback) => {
     })
 
   const data = JSON.parse(event.body)
+
   console.log('data', data)
 
   const { env } = data
   const healthcheckData = data.healthcheck
   const evidenceData = data.evidence
 
-  const sendToMonitoring = evidenceHash => {
+  const sendToMonitoring = (evidenceHash) => {
     console.log('Entered sendToMonitoring')
 
     const localHealthcheckData = {
@@ -54,7 +55,7 @@ exports.handler = (event, context, callback) => {
         console.log('Sent to monitoring successfully')
         done(null)
       })
-      .catch(err => done(new Error(`ERROR ${err}`)))
+      .catch((err) => done(new Error(`ERROR ${err}`)))
   }
 
   const sendHealthcheckData = () => {
@@ -70,12 +71,13 @@ exports.handler = (event, context, callback) => {
     }
 
     axios(evidenceRequestConfig)
-      .then(response => {
+      .then((response) => {
         console.log('Got evidence hash successfully')
         const evidenceHash = response.data
+
         sendToMonitoring(evidenceHash)
       })
-      .catch(err => done(new Error(`ERROR ${err}`)))
+      .catch((err) => done(new Error(`ERROR ${err}`)))
   }
 
   switch (event.httpMethod) {
@@ -84,6 +86,7 @@ exports.handler = (event, context, callback) => {
       sendHealthcheckData()
 
       break
+
     default:
       done(new Error(`Unsupported method "${event.httpMethod}"`))
   }

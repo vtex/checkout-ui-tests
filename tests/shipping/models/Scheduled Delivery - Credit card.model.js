@@ -31,12 +31,8 @@ export default function test(account) {
       fillShippingInformation(account)
       chooseDeliveryDate({ account })
 
-      cy.get('#shipping-data')
-        .contains('agendada')
-        .should('be.visible')
-      cy.get('#shipping-data')
-        .contains('agendada-top')
-        .should('be.visible')
+      cy.get('#shipping-data').contains('agendada').should('be.visible')
+      cy.get('#shipping-data').contains('agendada-top').should('be.visible')
 
       goToPayment()
       payWithCreditCard()

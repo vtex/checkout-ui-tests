@@ -36,9 +36,7 @@ export default function test(account) {
         'Corrientes 240, Las Varillas, Córdoba, Argentina'
       )
 
-      cy.get('.pac-item')
-        .first()
-        .trigger('mouseover')
+      cy.get('.pac-item').first().trigger('mouseover')
 
       interceptAutoCompleteResponse({
         address_components: [
@@ -91,9 +89,7 @@ export default function test(account) {
         },
       })
 
-      cy.get('.pac-item')
-        .first()
-        .click()
+      cy.get('.pac-item').first().click()
 
       cy.contains('Corrientes 240')
       cy.contains('San Justo, Córdoba')

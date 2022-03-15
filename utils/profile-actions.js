@@ -45,6 +45,7 @@ export function getSecondPurchaseEmail() {
   // purchases at the same time, so in order to use test parallelization,
   // we must use different accounts each time.
   const index = getRandomInt(10, 110)
+
   return `second-purchase-${index}@mailinator.com`
 }
 

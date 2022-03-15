@@ -30,9 +30,7 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Avenida Brasilia')
 
-      cy.get('.pac-item')
-        .first()
-        .trigger('mouseover')
+      cy.get('.pac-item').first().trigger('mouseover')
 
       interceptAutoCompleteResponse({
         address_components: [
@@ -80,9 +78,7 @@ export default function test(account) {
         },
       })
 
-      cy.get('.pac-item')
-        .first()
-        .click()
+      cy.get('.pac-item').first().click()
 
       cy.contains('Avenida Brasilia')
 

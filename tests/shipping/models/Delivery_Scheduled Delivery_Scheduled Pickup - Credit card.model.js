@@ -33,6 +33,7 @@ export default function test(account) {
 
     it('delivery with scheduled delivery and scheduled pickup', () => {
       const email = getRandomEmail()
+
       setup({
         skus: [
           SKUS.DELIVERY_CUSTOMIZATION_ATTACHMENT,

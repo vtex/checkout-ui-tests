@@ -12,9 +12,7 @@ export function selectCountry(country) {
 }
 
 function chooseFirstPickupPoint() {
-  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
-    .first()
-    .click()
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').first().click()
 
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
@@ -26,13 +24,9 @@ function fillPostalCodeOmnishipping() {
 function fillGeolocationOmnishipping() {
   cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
 
-  cy.get('.pac-item')
-    .first()
-    .trigger('mouseover')
+  cy.get('.pac-item').first().trigger('mouseover')
 
-  cy.get('.pac-item')
-    .first()
-    .click()
+  cy.get('.pac-item').first().click()
 
   cy.contains('Rua Saint Roman 12')
 }
@@ -44,13 +38,9 @@ function fillAddressInformation() {
 function fillPickupLocation({ address }) {
   cy.waitAndGet('#pkpmodal-search input', 3000).type(address)
 
-  cy.get('.pac-item')
-    .first()
-    .trigger('mouseover', { force: true })
+  cy.get('.pac-item').first().trigger('mouseover', { force: true })
 
-  cy.get('.pac-item')
-    .first()
-    .click({ force: true })
+  cy.get('.pac-item').first().click({ force: true })
 }
 
 function fillPickupPostalCode({ postalCode }) {
@@ -67,7 +57,7 @@ function shouldActivateDatePicker({ account, shouldActivate }) {
     ACCOUNT_NAMES.DEFAULT,
     ACCOUNT_NAMES.GEOLOCATION,
     ACCOUNT_NAMES.INVOICE,
-  ].some(localAccount => localAccount === account)
+  ].some((localAccount) => localAccount === account)
 }
 
 export function calculateShippingPreview() {
@@ -187,9 +177,7 @@ export function fillPickupAddress(account) {
 
 export function selectOtherPickup() {
   cy.get('#change-pickup-button').click()
-  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main')
-    .eq(1)
-    .click()
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').eq(1).click()
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
@@ -212,14 +200,13 @@ export function fillShippingPreviewPickupAddress(account) {
 }
 
 export function checkShippingPreviewResult(selectors) {
-  selectors.forEach(selector => {
+  selectors.forEach((selector) => {
     if (selector.id) {
       cy.get(`[data-testid="${selector.id}"]`).should('be.visible')
     }
+
     if (selector.name) {
-      cy.get('.srp-data')
-        .contains(selector.name)
-        .should('be.visible')
+      cy.get('.srp-data').contains(selector.name).should('be.visible')
     }
   })
 }
@@ -227,7 +214,7 @@ export function checkShippingPreviewResult(selectors) {
 export function interceptAutoCompleteResponse(responseObject) {
   cy.intercept(
     'https://maps.googleapis.com/maps/api/place/js/PlaceService.GetPlaceDetails',
-    req => {
+    (req) => {
       const searchParams = new URLSearchParams(req.url)
       const callbackFunctionName = searchParams.get('callback')
 

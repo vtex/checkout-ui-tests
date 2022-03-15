@@ -32,26 +32,15 @@ export default function test(account) {
       })
       fillShippingInformation(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        cy.get('#shipping-data')
-          .contains('PAC')
-          .should('be.visible')
-        cy.get('#shipping-data')
-          .contains('Motoboy')
-          .should('be.visible')
-        cy.get('#shipping-data')
-          .contains('Expressa')
-          .should('be.visible')
-        cy.get('#shipping-data')
-          .contains('PAC Lento')
-          .should('be.visible')
+        cy.get('#shipping-data').contains('PAC').should('be.visible')
+        cy.get('#shipping-data').contains('Motoboy').should('be.visible')
+        cy.get('#shipping-data').contains('Expressa').should('be.visible')
+        cy.get('#shipping-data').contains('PAC Lento').should('be.visible')
       } else {
-        cy.get('#shipping-data')
-          .contains('Mais rápida')
-          .should('be.visible')
-        cy.get('#shipping-data')
-          .contains('Mais econômica')
-          .should('be.visible')
+        cy.get('#shipping-data').contains('Mais rápida').should('be.visible')
+        cy.get('#shipping-data').contains('Mais econômica').should('be.visible')
       }
+
       goToPayment()
       payWithCreditCard()
       completePurchase()
@@ -82,16 +71,12 @@ export default function test(account) {
       cy.get('.payment-unauthorized-button').click()
       cy.get('.payment-unauthorized-modal').should('not.be.visible')
 
-      queryIframe($iframe => {
+      queryIframe(($iframe) => {
         const body = getIframeBody($iframe)
 
-        cy.wrap(body)
-          .find(`#address-toggle-0`)
-          .click()
+        cy.wrap(body).find(`#address-toggle-0`).click()
 
-        cy.wrap(body)
-          .contains('Endereço de cobrança')
-          .should('be.visible')
+        cy.wrap(body).contains('Endereço de cobrança').should('be.visible')
       })
     })
 
@@ -114,22 +99,18 @@ export default function test(account) {
       cy.get('.payment-unauthorized-button').click()
       cy.get('.payment-unauthorized-modal').should('not.be.visible')
 
-      queryIframe($iframe => {
+      queryIframe(($iframe) => {
         const body = getIframeBody($iframe)
 
-        cy.wrap(body)
-          .find('#creditCardpayment-card-0Code')
-          .clear()
+        cy.wrap(body).find('#creditCardpayment-card-0Code').clear()
       })
 
       completePurchase()
 
-      queryIframe($iframe => {
+      queryIframe(($iframe) => {
         const body = getIframeBody($iframe)
 
-        cy.wrap(body)
-          .contains('Campo obrigatório')
-          .should('be.visible')
+        cy.wrap(body).contains('Campo obrigatório').should('be.visible')
       })
     })
   })

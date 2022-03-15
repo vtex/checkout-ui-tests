@@ -16,6 +16,7 @@ export default function test(account) {
 
     it('with only delivery', () => {
       const email = getSecondPurchaseEmail()
+
       setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
 
       fillEmail(email)

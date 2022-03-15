@@ -27,13 +27,9 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.GEOLOCATION) {
         cy.get('#ship-addressQuery').type('Av. Javier Prado Este, 2465')
 
-        cy.get('.pac-item')
-          .first()
-          .trigger('mouseover')
+        cy.get('.pac-item').first().trigger('mouseover')
 
-        cy.get('.pac-item')
-          .first()
-          .click()
+        cy.get('.pac-item').first().click()
 
         cy.get('#ship-receiverName').type('{selectAll}{backspace}Checkout Team')
 

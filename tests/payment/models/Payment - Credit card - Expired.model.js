@@ -24,7 +24,7 @@ export default function test(account) {
       fillEmail(email)
       confirmSecondPurchase()
       selectCreditCardGroup()
-      queryIframe($iframe => {
+      queryIframe(($iframe) => {
         const body = getIframeBody($iframe)
 
         cy.wrap(body)
@@ -32,9 +32,7 @@ export default function test(account) {
           .should('be.visible')
           .children('input')
           .should('not.be.checked')
-        cy.wrap(body)
-          .contains('Cartão vencido')
-          .click()
+        cy.wrap(body).contains('Cartão vencido').click()
         cy.wrap(body)
           .contains('Cartão vencido')
           .children('input')
@@ -49,12 +47,10 @@ export default function test(account) {
       fillEmail(email)
       confirmSecondPurchase()
       selectCreditCardGroup()
-      queryIframe($iframe => {
+      queryIframe(($iframe) => {
         const body = getIframeBody($iframe)
 
-        cy.wrap(body)
-          .find(`#creditCardpayment-card-0Number`)
-          .should('exist')
+        cy.wrap(body).find(`#creditCardpayment-card-0Number`).should('exist')
       })
     })
   })
