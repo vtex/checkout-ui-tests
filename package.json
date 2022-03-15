@@ -1,6 +1,6 @@
 {
   "name": "checkout-ui-tests",
-  "version": "0.5.13",
+  "version": "0.6.0",
   "description": "",
   "main": "src/monitoring/index.js",
   "scripts": {
