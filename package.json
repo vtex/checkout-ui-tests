@@ -13,7 +13,8 @@
     "test:ci-beta": "make ENVIRONMENT=beta",
     "test:ci-beta-io": "make ENVIRONMENT=beta-io",
     "lint": "eslint --ext js,ts,mjs .",
-    "lint:fix": "eslint --fix --ext js,ts,mjs ."
+    "lint:fix": "eslint --fix --ext js,ts,mjs .",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -29,9 +30,9 @@
     "node": ">=14"
   },
   "dependencies": {
-    "aws-sdk": "^2.515.0",
+    "aws-sdk": "^2.1093.0",
     "axios": "^0.19.0",
-    "bluebird": "^3.5.5",
+    "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
     "commander": "^6.0.0",
     "cypress": "^6.4.0",
@@ -40,8 +41,8 @@
     "globby": "^11.0.1",
     "minimist": "^1.2.3",
     "node-window-polyfill": "^1.0.0",
-    "pug": "^2.0.4",
-    "uuid": "^3.3.3"
+    "pug": "^3.0.2",
+    "uuid": "^8.3.2"
   },
   "horus": {
     "host": "vtexgame1.vtexcommercestable.com.br/checkout",
@@ -76,18 +77,13 @@
   "devDependencies": {
     "@types/node": "^14.0.27",
     "@vtex/prettier-config": "^1.0.0",
-    "eslint": "^7",
-    "eslint-config-vtex": "^14.1.2",
+    "eslint": "^8.11.0",
+    "eslint-config-vtex": "^15.0.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "husky": ">=4",
-    "lint-staged": ">=10",
+    "husky": "^7.0.0",
+    "lint-staged": ">=12.3.5",
     "prettier": "^2.5.1",
     "typescript": "^4.6.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,ts}": [

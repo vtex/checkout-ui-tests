@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 
 import cypress from 'cypress'
 import Promise from 'bluebird'
-import uuidv4 from 'uuid/v4.js'
+import { v4 as uuidv4 } from 'uuid'
 import commander from 'commander'
 import chalk from 'chalk'
 
