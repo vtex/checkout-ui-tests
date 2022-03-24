@@ -1,0 +1,48 @@
+kind: pipeline
+type: kubernetes
+name: Deployment Stable
+
+steps:
+- name: docker-build
+  image: docker
+  pull: if-not-exists
+  environment:
+    DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+  commands:
+    - docker build --network=host -t $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest
+  volumes:
+    - name: dockersock
+      path: /var/run
+- name: publish
+  image: 558830342743.dkr.ecr.us-east-1.amazonaws.com/reliability/jenkins/docker:latest
+  pull: if-not-exists
+  when:
+    ref:
+    - refs/tags/**
+  environment:
+    AWS_DEFAULT_REGION: us-east-1
+    AWS_ACCESS_KEY_ID:
+      from_secret: 558830342743_AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: 558830342743_AWS_SECRET_ACCESS_KEY
+    AWS_ACCOUNT_ID: "558830342743"
+    AWS_REGION: us-east-1
+    DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    REPOSITORY: healthcheck/webtests/checkout
+  commands:
+    - |
+      aws-ecr-login
+
+      docker push $$DOCKER_REGISTRY/$$REPOSITORY:latest
+  volumes:
+    - name: dockersock
+      path: /var/run
+
+trigger:
+  event:
+    - push
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/

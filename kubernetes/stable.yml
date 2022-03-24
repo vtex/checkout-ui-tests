@@ -1,0 +1,48 @@
+kubernetes:
+  base:
+    repoName: webtests/checkout
+    repoOrg: healthcheck
+    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    environment: stable
+    secretsManager:
+      enabled: true
+      secretsName: stable/checkout-ui-tests/checkout-ui-tests
+    version: latest
+  apps:
+  - name: checkout-tests-cronjob
+    kind: cronjob
+    schedule: "* * * * *"
+    activeDeadlineSeconds: 2400
+    startingDeadlineSeconds: 6000
+    envs:
+    - name: VTEX_ENV
+      value: stable
+    - name: HORUS_PROXY_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: HORUS_PROXY_KEY
+    - name: HORUS_COGNITO_CREDENTIALS
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: HORUS_COGNITO_CREDENTIALS
+    - name: APP_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: APP_KEY
+    - name: APP_TOKEN
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: APP_TOKEN
+    dockerfile: Dockerfile
+    imageRepoName: healthcheck/webtests/checkout
+    resources:
+      requests:
+        cpu: 2
+        memory: 2Gi
+      limits:
+        cpu: 2
+        memory: 2Gi
