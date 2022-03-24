@@ -9,11 +9,7 @@ steps:
   environment:
     DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
   commands:
-    - docker build \
-        --network=host \
-        -t $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest \
-        -f ./dockerfiles/stable/Dockerfile \
-        .
+    - docker build --network=host -t $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest -f ./dockerfiles/stable/Dockerfile .
   volumes:
     - name: dockersock
       path: /var/run
