@@ -18,7 +18,10 @@ steps:
   pull: if-not-exists
   when:
     ref:
-    - refs/tags/**
+      include:
+        - refs/tags/**
+      exclude:
+        - refs/tags/*-*
   environment:
     AWS_DEFAULT_REGION: us-east-1
     AWS_ACCESS_KEY_ID:
