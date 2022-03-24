@@ -12,7 +12,8 @@ steps:
     - docker build \
         --network=host \
         -t $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest \
-        -f ./dockerfiles/stable/Dockerfile
+        -f ./dockerfiles/stable/Dockerfile \
+        .
   volumes:
     - name: dockersock
       path: /var/run
