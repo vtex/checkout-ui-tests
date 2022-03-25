@@ -1,5 +1,7 @@
 # Checkout UI Test Engine
 
+[![Build Status](https://drone-robots.vtex.com/api/badges/vtex/checkout-ui-tests/status.svg)](https://drone-robots.vtex.com/vtex/checkout-ui-tests)
+
 ## Description
 
 The repository for mapped and implemented purchase end-to-end testing scenarios for the Checkout UI.
