@@ -14,8 +14,8 @@ steps:
     - name: dockersock
       path: /var/run
 - name: publish
-  image: 558830342743.dkr.ecr.us-east-1.amazonaws.com/reliability/jenkins/docker:latest
-  pull: if-not-exists
+  image: 053131491888.dkr.ecr.us-east-1.amazonaws.com/vtex/drone-builder:latest
+  pull: always
   when:
     ref:
       include:
@@ -28,15 +28,14 @@ steps:
       from_secret: 558830342743_AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY:
       from_secret: 558830342743_AWS_SECRET_ACCESS_KEY
-    AWS_ACCOUNT_ID: "558830342743"
-    AWS_REGION: us-east-1
+    GIT_TOKEN:
+      from_secret: GIT_TOKEN
+    GIT_USER_NAME: ${DRONE_COMMIT_AUTHOR}
+    GIT_USER_EMAIL: ${DRONE_COMMIT_AUTHOR_EMAIL}
     DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
-    REPOSITORY: healthcheck/webtests/checkout
+    ENVIRONMENT: stable
   commands:
-    - |
-      aws-ecr-login
-
-      docker push $$DOCKER_REGISTRY/$$REPOSITORY:latest
+    - python3 /app/toolbelt/main.py
   volumes:
     - name: dockersock
       path: /var/run
@@ -44,6 +43,9 @@ steps:
 trigger:
   event:
     - push
+  branch:
+    - master
+    - main
 
 volumes:
 - name: dockersock
