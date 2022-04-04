@@ -37,7 +37,7 @@ kubernetes:
         configMapKeyRef:
           name: checkout-ui-tests-configmap
           key: APP_TOKEN
-    dockerfile: Dockerfile
+    dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     resources:
       requests:
@@ -74,7 +74,7 @@ kubernetes:
         configMapKeyRef:
           name: checkout-ui-tests-configmap
           key: APP_TOKEN
-    dockerfile: Dockerfile
+    dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     resources:
       requests:
