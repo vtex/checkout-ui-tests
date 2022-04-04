@@ -35,6 +35,7 @@ steps:
     DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
     ENVIRONMENT: stable
     CICD_FORCE_NO_BUMP: true
+    CICD_K8S_CLUSTER: EKS-Robots
   commands:
     - python3 /app/toolbelt/main.py
   volumes:
