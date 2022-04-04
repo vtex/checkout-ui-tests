@@ -14,7 +14,7 @@ steps:
     - name: dockersock
       path: /var/run
 - name: publish
-  image: 558830342743.dkr.ecr.us-east-1.amazonaws.com/vtex/drone-builder:latest
+  image: 053131491888.dkr.ecr.us-east-1.amazonaws.com/vtex/drone-builder:latest
   pull: always
   when:
     ref:
