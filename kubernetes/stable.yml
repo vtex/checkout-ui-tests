@@ -1,7 +1,7 @@
 kubernetes:
   base:
-    repoName: webtests/checkout
-    repoOrg: healthcheck
+    repoName: checkout-ui-tests
+    repoOrg: vtex
     imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
     environment: stable
     secretsManager:
@@ -44,6 +44,9 @@ kubernetes:
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
+    volumes:
+    - name: dshm
+      mountPath: /dev/shm
     serviceAccount:
       arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
     resources:
@@ -88,6 +91,9 @@ kubernetes:
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
+    volumes:
+    - name: dshm
+      mountPath: /dev/shm
     serviceAccount:
       arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
     resources:
