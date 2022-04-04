@@ -2,7 +2,7 @@ kubernetes:
   base:
     repoName: webtests/checkout
     repoOrg: healthcheck
-    imageRepository: 053131491888.dkr.ecr.us-east-1.amazonaws.com
+    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
     environment: stable
     secretsManager:
       enabled: true
@@ -39,6 +39,9 @@ kubernetes:
           key: APP_TOKEN
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
+    imagePullPolicy: Always
+    serviceAccount:
+      arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
     resources:
       requests:
         cpu: 2
@@ -76,6 +79,9 @@ kubernetes:
           key: APP_TOKEN
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
+    imagePullPolicy: Always
+    serviceAccount:
+      arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
     resources:
       requests:
         cpu: 2
