@@ -7,7 +7,7 @@ steps:
   image: docker
   pull: if-not-exists
   environment:
-    DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    DOCKER_REGISTRY: 053131491888.dkr.ecr.us-east-1.amazonaws.com
   commands:
     - docker build --network=host -t $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest -f ./dockerfiles/stable/Dockerfile .
   volumes:
@@ -25,14 +25,14 @@ steps:
   environment:
     AWS_DEFAULT_REGION: us-east-1
     AWS_ACCESS_KEY_ID:
-      from_secret: 558830342743_AWS_ACCESS_KEY_ID
+      from_secret: 053131491888_AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY:
-      from_secret: 558830342743_AWS_SECRET_ACCESS_KEY
+      from_secret: 053131491888_AWS_SECRET_ACCESS_KEY
     GIT_TOKEN:
       from_secret: GIT_TOKEN
     GIT_USER_NAME: ${DRONE_COMMIT_AUTHOR}
     GIT_USER_EMAIL: ${DRONE_COMMIT_AUTHOR_EMAIL}
-    DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    DOCKER_REGISTRY: 053131491888.dkr.ecr.us-east-1.amazonaws.com
     ENVIRONMENT: stable
     CICD_FORCE_NO_BUMP: true
   commands:

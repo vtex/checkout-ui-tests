@@ -2,7 +2,7 @@ kubernetes:
   base:
     repoName: webtests/checkout
     repoOrg: healthcheck
-    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    imageRepository: 053131491888.dkr.ecr.us-east-1.amazonaws.com
     environment: stable
     secretsManager:
       enabled: true
