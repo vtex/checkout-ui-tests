@@ -19,24 +19,28 @@ kubernetes:
       value: stable
     - name: HORUS_PROXY_KEY
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: HORUS_PROXY_KEY
+          optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: HORUS_COGNITO_CREDENTIALS
+          optional: false
     - name: APP_KEY
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: APP_KEY
+          optional: false
     - name: APP_TOKEN
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: APP_TOKEN
+          optional: false
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
@@ -59,24 +63,28 @@ kubernetes:
       value: io
     - name: HORUS_PROXY_KEY
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: HORUS_PROXY_KEY
+          optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: HORUS_COGNITO_CREDENTIALS
+          optional: false
     - name: APP_KEY
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: APP_KEY
+          optional: false
     - name: APP_TOKEN
       valueFrom:
-        configMapKeyRef:
-          name: checkout-ui-tests-configmap
+        secretKeyRef:
+          name: checkout-ui-tests
           key: APP_TOKEN
+          optional: false
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
