@@ -43,9 +43,7 @@ steps:
 trigger:
   event:
     - push
-  branch:
-    - master
-    - main
+    - tag
 
 volumes:
 - name: dockersock
