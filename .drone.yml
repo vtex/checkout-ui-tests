@@ -34,6 +34,7 @@ steps:
     GIT_USER_EMAIL: ${DRONE_COMMIT_AUTHOR_EMAIL}
     DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
     ENVIRONMENT: stable
+    CICD_FORCE_NO_BUMP: true
   commands:
     - python3 /app/toolbelt/main.py
   volumes:
