@@ -46,3 +46,40 @@ kubernetes:
       limits:
         cpu: 2
         memory: 2Gi
+  - name: checkout-io-tests-cronjob
+    kind: cronjob
+    schedule: "* * * * *"
+    activeDeadlineSeconds: 2400
+    startingDeadlineSeconds: 6000
+    envs:
+    - name: VTEX_ENV
+      value: io
+    - name: HORUS_PROXY_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: HORUS_PROXY_KEY
+    - name: HORUS_COGNITO_CREDENTIALS
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: HORUS_COGNITO_CREDENTIALS
+    - name: APP_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: APP_KEY
+    - name: APP_TOKEN
+      valueFrom:
+        configMapKeyRef:
+          name: checkout-ui-tests-configmap
+          key: APP_TOKEN
+    dockerfile: Dockerfile
+    imageRepoName: healthcheck/webtests/checkout
+    resources:
+      requests:
+        cpu: 2
+        memory: 2Gi
+      limits:
+        cpu: 2
+        memory: 2Gi

@@ -68,7 +68,8 @@ if (process.env.VTEX_WORKSPACE != null) {
   program.workspace = process.env.VTEX_WORKSPACE
 }
 
-const isIOEnv = program.env === 'beta-io'
+const isIOBetaEnv = program.env === 'beta-io'
+const isIOEnv = program.env === 'io'
 
 const BASE_PATH = fileURLToPath(new URL('../../tests', import.meta.url))
 
@@ -85,7 +86,7 @@ const CYPRESS_CONFIG = {
     trashAssetsBeforeRuns: false,
     videoUploadOnPasses: false,
     env: {
-      VTEX_ENV: isIOEnv ? 'stable' : program.env,
+      VTEX_ENV: isIOBetaEnv ? 'stable' : program.env,
       VTEX_WORKSPACE: program.workspace,
     },
     video: !program.skipUpload,
@@ -149,10 +150,12 @@ async function sendResults(result, spec) {
       evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
       },
-      env: isIOEnv ? 'beta' : program.env,
-      applicationName: `checkout-ui${isIOEnv ? '-io' : ''}`,
+      env: isIOBetaEnv ? 'beta' : program.env,
+      applicationName: `checkout-ui${isIOBetaEnv || isIOEnv ? '-io' : ''}`,
       healthcheck: {
-        moduleName: `Checkout UI ${isIOEnv ? '(IO Beta)' : ''}`,
+        moduleName: `Checkout UI ${
+          isIOBetaEnv || isIOEnv ? `(IO${isIOBetaEnv ? ' Beta' : ''})` : ''
+        }`,
         status: result.totalFailed > 0 ? 0 : 1,
         title: spec,
       },
