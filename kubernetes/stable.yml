@@ -77,13 +77,13 @@ kubernetes:
           name: checkout-ui-tests
           key: HORUS_COGNITO_CREDENTIALS
           optional: false
-    - name: APP_KEY
+    - name: CYPRESS_APP_KEY
       valueFrom:
         secretKeyRef:
           name: checkout-ui-tests
           key: APP_KEY
           optional: false
-    - name: APP_TOKEN
+    - name: CYPRESS_APP_TOKEN
       valueFrom:
         secretKeyRef:
           name: checkout-ui-tests
