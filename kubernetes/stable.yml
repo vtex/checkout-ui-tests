@@ -44,6 +44,7 @@ kubernetes:
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
+    command: ["yarn", "test"]
     volumes:
     - name: dshm
       mountPath: /dev/shm
@@ -91,6 +92,7 @@ kubernetes:
     dockerfile: ./dockerfiles/stable/Dockerfile
     imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
+    command: ["yarn", "test"]
     volumes:
     - name: dshm
       mountPath: /dev/shm
