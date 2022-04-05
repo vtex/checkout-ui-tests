@@ -150,7 +150,7 @@ async function sendResults(result, spec) {
       evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
       },
-      env: isIOBetaEnv ? 'beta' : program.env,
+      env: isIOBetaEnv ? 'beta' : isIOEnv ? 'stable' : program.env,
       applicationName: `checkout-ui${isIOBetaEnv || isIOEnv ? '-io' : ''}`,
       healthcheck: {
         moduleName: `Checkout UI ${
