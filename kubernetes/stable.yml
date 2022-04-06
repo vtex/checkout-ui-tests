@@ -12,7 +12,7 @@ kubernetes:
   - name: checkout-tests-cronjob
     kind: cronjob
     schedule: "* * * * *"
-    activeDeadlineSeconds: 2400
+    activeDeadlineSeconds: 4800
     startingDeadlineSeconds: 6000
     envs:
     - name: VTEX_ENV
@@ -60,7 +60,7 @@ kubernetes:
   - name: checkout-io-tests-cronjob
     kind: cronjob
     schedule: "* * * * *"
-    activeDeadlineSeconds: 2400
+    activeDeadlineSeconds: 4800
     startingDeadlineSeconds: 6000
     envs:
     - name: VTEX_ENV
