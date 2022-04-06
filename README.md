@@ -42,7 +42,7 @@ $ yarn cypress
 Optional parameters can be set such as `environment` and vtex io `workspace` as follows:
 
 ```sh
-$ yarn cypress --env VTEX_ENV={{local|beta|stable}}
+$ yarn cypress --env VTEX_ENV={{local|beta|stable|io|beta-io}}
 $ yarn cypress --env VTEX_WORKSPACE={{example_workspace}}
 ```
 
@@ -51,6 +51,9 @@ Multiple parameters should be separated by comma, e.g.:
 ```sh
 $ yarn cypress --env VTEX_ENV=beta,VTEX_WORKSPACE=myWorkspace
 ```
+
+> Optionally, you can also set them as regular environment variables in your
+> shell, just prepend them with `CYPRESS_`, for example `CYPRESS_VTEX_ENV`
 
 To run ALL tests without sending to monitoring run:
 
@@ -66,6 +69,31 @@ To run the suite locally actually sending the results to monitoring run:
 $ yarn test # for tests using STABLE environment
 $ yarn test:beta # for tests using BETA environment
 ```
+
+### Environments
+
+We currently support 4 different environments values (which are passed as `VTEX_ENV`), and this sections explains each one.
+
+- `stable`: This is our usual environment for testing. It opens the tests using
+  the `vtexcommercestable.com.br` domain, and uses Portal V2 as the rendering
+  backend. It is expected that all tests pass when using this environment.
+- `beta`: This is the environment we use for testing prerelease versions. It
+  uses the `vtexcommercebeta.com.br` domain, and also uses Portal V2 as the
+  rendering backend. This environment will use all beta versions of the
+  services (both UI and API), and is not expected that all tests pass.
+- `io`: This is our newest environment, and what we hope to replace `stable`
+  with. This opens our testing environment using the `myvtex.com` domain, and
+  uses the new [Portal IO](https://github.com/vtex/portal-io) rendering
+  backend. It requires two environment variables to be able to access myvtex
+  without authentication: `APP_KEY` and `APP_TOKEN`. It is also expected that
+  all tests pass when using this environment.
+- `beta-io`: This is an older environment which we used for running the stable
+  tests on a prerelease version of `omnishipping` or `shipping-preview`. It
+  uses the `vtexcommercestable.com.br` domain, but with the workspace `beta`.
+  We used to link (or install) the version we wanted to test in this workspace
+  of our tests accounts and wait for the result on the healthcheck page. This
+  was mainly used for running tests on a development version, so the tests were
+  not expected to pass.
 
 ### Actions
 
