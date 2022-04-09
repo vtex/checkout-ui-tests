@@ -17,12 +17,6 @@ kubernetes:
     envs:
     - name: VTEX_ENV
       value: stable
-    - name: HORUS_PROXY_KEY
-      valueFrom:
-        secretKeyRef:
-          name: checkout-ui-tests
-          key: HORUS_PROXY_KEY
-          optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
@@ -65,12 +59,6 @@ kubernetes:
     envs:
     - name: VTEX_ENV
       value: io
-    - name: HORUS_PROXY_KEY
-      valueFrom:
-        secretKeyRef:
-          name: checkout-ui-tests
-          key: HORUS_PROXY_KEY
-          optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
