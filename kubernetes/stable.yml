@@ -17,6 +17,8 @@ kubernetes:
     envs:
     - name: VTEX_ENV
       value: stable
+    - name: HORUS_PROXY_KEY
+      value: ""
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
@@ -59,6 +61,8 @@ kubernetes:
     envs:
     - name: VTEX_ENV
       value: io
+    - name: HORUS_PROXY_KEY
+      value: ""
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
