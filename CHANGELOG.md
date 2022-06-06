@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.17] - 2022-06-06
+
 ## [0.8.16] - 2022-04-09
 
 ## [0.8.15] - 2022-04-09
@@ -503,6 +505,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - End to end tests.
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.13...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.8.17...HEAD
 [0.5.13]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...v0.5.13
 [0.5.12]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.11...v0.5.12
+
+[0.8.17]: https://github.com/vtex/checkout-ui-tests/compare/v0.8.16...v0.8.17
