@@ -12,13 +12,17 @@ kubernetes:
   - name: checkout-tests-cronjob
     kind: cronjob
     schedule: "* * * * *"
-    activeDeadlineSeconds: 10800 # 3 hours
+    activeDeadlineSeconds: 2400 # 40 minutes
     startingDeadlineSeconds: 6000
     envs:
     - name: VTEX_ENV
       value: stable
     - name: HORUS_PROXY_KEY
-      value: ""
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: HORUS_PROXY_KEY
+          optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
@@ -56,13 +60,17 @@ kubernetes:
   - name: checkout-io-tests-cronjob
     kind: cronjob
     schedule: "* * * * *"
-    activeDeadlineSeconds: 10800 # 3 hours
+    activeDeadlineSeconds: 2400 # 40 minutes
     startingDeadlineSeconds: 6000
     envs:
     - name: VTEX_ENV
       value: io
     - name: HORUS_PROXY_KEY
-      value: ""
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: HORUS_PROXY_KEY
+          optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
