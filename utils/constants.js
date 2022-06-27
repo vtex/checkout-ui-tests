@@ -40,6 +40,7 @@ export const SKUS = {
   PICKUP_RJ_BARRA: '331',
   PARAGUAY_DELIVERY: '369',
   POLYGON_ARGENTINA: '370',
+  GIFT_CARD: '324',
 }
 
 // The following constants depend on the version of the order placed page shown

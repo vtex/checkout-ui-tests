@@ -228,3 +228,18 @@ export function fillCreditCardAndSelectInstallmentWithInterest(
     fillBillingAddress({ id: options.id, postalCode: '22071060', number: '12' })
   })
 }
+
+export function fillGiftCard(
+  options = {
+    voucher: false,
+  }
+) {
+  cy.wait(3000)
+  cy.get('#show-gift-card-group').click()
+
+  cy.wait(5000)
+
+  cy.waitAndGet('#payment-discounts-code', 3000).type(options.voucher)
+
+  cy.get('#btn-add-gift-card').click()
+}
