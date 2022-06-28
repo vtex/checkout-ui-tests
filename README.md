@@ -131,6 +131,7 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `typeCVV` - Types CVV for recurring purchases
 - `completePurchase` - Clicks finish purchase button
 - `fillCreditCardAndSelectInstallmentWithInterest` - Fills credit card with Elo flag and select an installment with interest
+- `fillGiftCard` - Opens Gift card input and fills with a voucher
 
 **Summary**
 

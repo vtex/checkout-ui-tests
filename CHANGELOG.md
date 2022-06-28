@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2022-06-28
+### Added
+
+- Test for Gift card covering the full order value
+
 ## [0.8.17] - 2022-06-06
 
 ## [0.8.16] - 2022-04-09
