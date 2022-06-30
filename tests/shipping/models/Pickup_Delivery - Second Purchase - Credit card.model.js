@@ -52,12 +52,12 @@ export default function test(account) {
         cy.get('#shipping-data').contains('22071-060').should('be.visible')
       } else {
         cy.get('#shipping-data')
-          .contains('Rua ***** **man **')
+          .contains('Rua*** ***man ***')
           .should('be.visible')
         cy.get('#shipping-data')
-          .contains('Cop******* - Rio ** ******* - RJ')
+          .contains('Cop*** - Rio*** *** - RJ')
           .should('be.visible')
-        cy.get('#shipping-data').contains('******060').should('be.visible')
+        cy.get('#shipping-data').contains('***60').should('be.visible')
       }
 
       goToPayment()
@@ -75,7 +75,7 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.INVOICE) {
         cy.contains('Rua Saint Roman 12').should('be.visible')
       } else {
-        cy.contains('Rua ***** **man **').should('be.visible')
+        cy.contains('Rua*** ***man ***').should('be.visible')
       }
     })
   })

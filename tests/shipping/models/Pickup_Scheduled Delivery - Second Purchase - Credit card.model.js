@@ -56,7 +56,7 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.INVOICE) {
         cy.contains('Rua Saint Roman 12').should('be.visible')
       } else {
-        cy.contains('Rua ***** **man **').should('be.visible')
+        cy.contains('Rua*** ***man ***').should('be.visible')
       }
 
       cy.contains('Copacabana').should('be.visible')

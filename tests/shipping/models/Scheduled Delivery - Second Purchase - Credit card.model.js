@@ -32,7 +32,7 @@ export default function test(account) {
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains(DELIVERY_TEXT).should('be.visible')
-      cy.contains('Cop*******').should('be.visible')
+      cy.contains('Cop***').should('be.visible')
     })
   })
 }
