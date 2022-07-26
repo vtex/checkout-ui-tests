@@ -62,7 +62,7 @@ export function fillCreditCardInfo(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Year`)
-      .select('40')
+      .select(getCreditCardExpiryYear())
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Code`)
@@ -215,7 +215,7 @@ export function fillCreditCardAndSelectInstallmentWithInterest(
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Year`)
-      .select('22')
+      .select(getCreditCardExpiryYear())
 
     cy.wrap($body)
       .find(`#creditCardpayment-card-${options.id || '0'}Code`)
@@ -242,4 +242,8 @@ export function fillGiftCard(
   cy.waitAndGet('#payment-discounts-code', 3000).type(options.voucher)
 
   cy.get('#btn-add-gift-card').click()
+}
+
+function getCreditCardExpiryYear() {
+  return ((new Date().getFullYear() % 100) + 1).toString()
 }
