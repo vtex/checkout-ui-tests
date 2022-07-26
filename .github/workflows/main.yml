@@ -1,5 +1,6 @@
 name: End-to-end tests
 on:
+  pull_request:
   workflow_dispatch:
     inputs:
       title:
@@ -22,6 +23,7 @@ on:
         description: 'Number of parallel containers'
         required: false
         default: '30'
+
 jobs:
   setup_containers:
     runs-on: ubuntu-20.04
