@@ -2,8 +2,6 @@ name: ESLint
 
 on:
   pull_request:
-    branches:
-    - master
 
 jobs:
   lint:
