@@ -17,7 +17,7 @@ function chooseFirstPickupPoint() {
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
-function fillPostalCodeOmnishipping() {
+export function fillPostalCodeOmnishipping() {
   cy.get('#ship-postalCode').type('22071060')
 }
 
