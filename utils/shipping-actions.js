@@ -11,7 +11,7 @@ export function selectCountry(country) {
   cy.wait(0)
 }
 
-function chooseFirstPickupPoint() {
+export function chooseFirstPickupPoint() {
   cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').first().click()
 
   cy.get('.pkpmodal-details-confirm-btn').click()

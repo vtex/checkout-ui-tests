@@ -20,7 +20,7 @@ export function setup({
   isGiftList = false,
   skus,
   account = ACCOUNT_NAMES.DEFAULT,
-  salesChannel = 1,
+  salesChannel = '1',
 }) {
   let url = ''
 

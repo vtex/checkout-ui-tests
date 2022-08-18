@@ -2,6 +2,17 @@ import { getRandomInt } from '.'
 import { ACCOUNT_NAMES } from './constants'
 import getDocument from './document-generator'
 
+const PROFILE_DATA = {
+  BRA: {
+    document: getDocument(),
+    phone: '21999999999',
+  },
+  PER: {
+    document: '12345678',
+    phone: '12345678',
+  },
+}
+
 export function fillEmail(email) {
   cy.get('#cart-to-orderform').click()
   cy.get('#client-pre-email').type(email)
@@ -11,15 +22,20 @@ export function fillEmail(email) {
 export function fillProfile(
   options = {
     lastName: 'Coelho',
+    country: 'BRA',
   }
 ) {
+  const { lastName = 'Coelho', country = 'BRA' } = options
+
+  const data = PROFILE_DATA[country] ?? PROFILE_DATA.BRA
+
   cy.get('#client-first-name').type('Fernando', { force: true })
 
-  cy.get('#client-last-name').type(options.lastName, { force: true })
+  cy.get('#client-last-name').type(lastName, { force: true })
 
-  cy.get('#client-document').type(getDocument(), { force: true })
+  cy.get('#client-document').type(data.document, { force: true })
 
-  cy.get('#client-phone').type('21999999999', { force: true })
+  cy.get('#client-phone').type(data.phone, { force: true })
 
   cy.intercept(
     'POST',
