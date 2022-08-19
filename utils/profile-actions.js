@@ -1,5 +1,5 @@
-import { getRandomInt } from '.'
-import { ACCOUNT_NAMES } from './constants'
+import { baseConfig, getRandomInt } from '.'
+import { ACCOUNT_NAMES, getBaseURL } from './constants'
 import getDocument from './document-generator'
 
 const PROFILE_DATA = {
@@ -89,4 +89,13 @@ export function login(account) {
   cy.get('#loginWithUserAndPasswordBtn').click()
   cy.get('#inputPassword').type('Abcd1234')
   cy.waitAndGet('#classicLoginBtn', 1000).click()
+}
+
+export function postProfileData({ account, profileData, orderFormId }) {
+  const url = `${getBaseURL({
+    ...baseConfig,
+    accountName: account,
+  })}/api/checkout/pub/orderForm/${orderFormId}/attachments/clientProfileData`
+
+  cy.request('POST', url, profileData)
 }

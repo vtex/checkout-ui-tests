@@ -1,4 +1,5 @@
-import { waitLoad } from '.'
+import { baseConfig, waitLoad } from '.'
+import { ACCOUNT_NAMES, CHECKOUT_ENDPOINT, getBaseURL } from './constants'
 
 export function payWithBoleto() {
   cy.get('#payment-group-bankInvoicePaymentGroup:visible').click()
@@ -242,6 +243,16 @@ export function fillGiftCard(
   cy.waitAndGet('#payment-discounts-code', 3000).type(options.voucher)
 
   cy.get('#btn-add-gift-card').click()
+}
+
+export function visitPayment({ account = ACCOUNT_NAMES.DEFAULT, orderFormId }) {
+  cy.visit({
+    url: `${getBaseURL({
+      ...baseConfig,
+      accountName: account,
+    })}${CHECKOUT_ENDPOINT}?orderFormId=${orderFormId}#/payment`,
+    method: 'GET',
+  })
 }
 
 function getCreditCardExpiryYear() {

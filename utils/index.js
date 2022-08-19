@@ -7,7 +7,7 @@ import {
 } from './constants'
 import { vtexEnv, workspace, appKey, appToken } from './environment'
 
-const baseConfig = {
+export const baseConfig = {
   accountName: DEFAULT_ACCOUNT_NAME,
   environment: vtexEnv,
   workspace,

@@ -1,4 +1,5 @@
-import { ACCOUNT_NAMES } from './constants'
+import { ACCOUNT_NAMES, getBaseURL } from './constants'
+import { baseConfig } from '.'
 
 export function selectCountry(country) {
   cy.get('#ship-country').select(country)
@@ -226,4 +227,13 @@ ${callbackFunctionName} && ${callbackFunctionName}(${JSON.stringify({
 `)
     }
   )
+}
+
+export function postShippingData({ account, shippingData, orderFormId }) {
+  const url = `${getBaseURL({
+    ...baseConfig,
+    accountName: account,
+  })}/api/checkout/pub/orderForm/${orderFormId}/attachments/shippingData`
+
+  cy.request('POST', url, shippingData)
 }
