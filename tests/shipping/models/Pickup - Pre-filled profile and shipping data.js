@@ -50,7 +50,7 @@ export default function test(account) {
       })
 
       cy.getCookie('checkout.vtex.com').then((cookie) => {
-        const orderFormId = cookie.value.split('=')[1]
+        const [, orderFormId] = cookie.value.split('=')
 
         postProfileData({ account, profileData, orderFormId })
         postShippingData({ account, shippingData, orderFormId })
