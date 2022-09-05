@@ -44,7 +44,7 @@ function fillPickupLocation({ address }) {
   cy.get('.pac-item').first().click({ force: true })
 }
 
-function fillPickupPostalCode({ postalCode }) {
+export function fillPickupPostalCode({ postalCode }) {
   cy.waitAndGet('#pkpmodal-search #ship-postalCode', 3000).type(postalCode)
 }
 
