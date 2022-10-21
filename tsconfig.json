@@ -18,12 +18,12 @@
     "strictPropertyInitialization": true,
     "target": "es2017",
     "typeRoots": ["node_modules/@types"],
-    "types": ["node", "jest"],
+    "types": ["node", "cypress", "@testing-library/cypress"],
     "allowJs": true,
     "checkJs": true
   },
   "exclude": ["node_modules"],
-  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"],
+  "include": ["./typings/*.d.ts", "./**/*.js", "./**/*.mjs", "./**/*.ts"],
   "typeAcquisition": {
     "enable": false
   }

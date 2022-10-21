@@ -18,8 +18,8 @@ export function chooseFirstPickupPoint() {
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
-function fillPostalCodeOmnishipping() {
-  cy.get('#ship-postalCode').type('22071060')
+function fillPostalCodeOmnishipping(postalCode = '22071060') {
+  cy.get('#ship-postalCode').type(postalCode)
 }
 
 function fillGeolocationOmnishipping() {
@@ -214,7 +214,10 @@ export function checkShippingPreviewResult(selectors) {
 
 export function interceptAutoCompleteResponse(responseObject) {
   cy.intercept(
-    'https://maps.googleapis.com/maps/api/place/js/PlaceService.GetPlaceDetails',
+    {
+      url: 'https://maps.googleapis.com/maps/api/place/js/PlaceService.GetPlaceDetails?*',
+      times: 1,
+    },
     (req) => {
       const searchParams = new URLSearchParams(req.url)
       const callbackFunctionName = searchParams.get('callback')
@@ -226,7 +229,7 @@ ${callbackFunctionName} && ${callbackFunctionName}(${JSON.stringify({
       })})
 `)
     }
-  )
+  ).as('googleMapsAutocomplete')
 }
 
 export function postShippingData({ account, shippingData, orderFormId }) {

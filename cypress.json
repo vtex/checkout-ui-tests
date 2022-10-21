@@ -1,7 +1,7 @@
 {
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "integrationFolder": "tests",
-  "testFiles": "**/*.test.js",
+  "testFiles": "**/*.test.{js,ts}",
   "chromeWebSecurity": false,
   "blockHosts": ["www.googletagmanager.com"],
   "record": true,

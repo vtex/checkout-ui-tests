@@ -2,13 +2,13 @@ import {
   ADD_SKUS_ENDPOINT,
   getBaseURL,
   CHECKOUT_ENDPOINT,
-  ACCOUNT_NAMES,
-  DEFAULT_ACCOUNT_NAME,
+  Accounts,
+  DEFAULT_SALES_CHANNEL,
 } from './constants'
 import { vtexEnv, workspace, appKey, appToken } from './environment'
 
 export const baseConfig = {
-  accountName: DEFAULT_ACCOUNT_NAME,
+  accountName: Accounts.DEFAULT,
   environment: vtexEnv,
   workspace,
   appKey,
@@ -19,8 +19,8 @@ export function setup({
   mobile = false,
   isGiftList = false,
   skus,
-  account = ACCOUNT_NAMES.DEFAULT,
-  salesChannel = '1',
+  account = Accounts.DEFAULT,
+  salesChannel = DEFAULT_SALES_CHANNEL,
 }) {
   let url = ''
 
@@ -68,10 +68,10 @@ export function setup({
 
   cy.visit(url)
 
-  let orderFormId
+  let orderFormId = ''
 
   cy.getCookie('checkout.vtex.com').then(
-    (cookie) => (orderFormId = cookie.value.split('=')[1])
+    (cookie) => (orderFormId = cookie?.value.split('=')[1] ?? '')
   )
 
   cy.on('fail', (error) => {
@@ -86,7 +86,7 @@ export function setup({
   return cy
 }
 
-export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
+export function visitAndClearCookies(account = Accounts.DEFAULT) {
   cy.visit(
     getBaseURL({
       ...baseConfig,
@@ -115,19 +115,24 @@ export function visitAndClearCookies(account = ACCOUNT_NAMES.DEFAULT) {
   }
 }
 
-export function getAddSkusEndpoint({ skus, account, salesChannel }) {
+export function getAddSkusEndpoint({
+  skus,
+  account = Accounts.DEFAULT,
+  salesChannel = DEFAULT_SALES_CHANNEL,
+}) {
   const baseURL =
     getBaseURL({
       ...baseConfig,
       accountName: account,
     }) + ADD_SKUS_ENDPOINT
 
-  const skuEndpoint = (acumulatedSkus, sku, index) =>
-    `${acumulatedSkus}${
-      index > 0 ? '&' : ''
-    }sku=${sku}&qty=1&seller=1&sc=${salesChannel}`
-
-  return Array.from(skus).reduce(skuEndpoint, baseURL)
+  return Array.from(skus).reduce(
+    (url, sku, index) =>
+      `${url}${
+        index > 0 ? '&' : ''
+      }sku=${sku}&qty=1&seller=1&sc=${salesChannel}`,
+    baseURL
+  )
 }
 
 export function getAddGiftListEndpoint(url, giftRegistry) {

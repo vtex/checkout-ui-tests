@@ -21,15 +21,20 @@ export function fillEmail(email) {
 
 export function fillProfile(
   options = {
+    firstName: 'Fernando',
     lastName: 'Coelho',
     country: 'BRA',
   }
 ) {
-  const { lastName = 'Coelho', country = 'BRA' } = options
+  const {
+    firstName = 'Fernando',
+    lastName = 'Coelho',
+    country = 'BRA',
+  } = options
 
   const data = PROFILE_DATA[country] ?? PROFILE_DATA.BRA
 
-  cy.get('#client-first-name').type('Fernando', { force: true })
+  cy.get('#client-first-name').type(firstName, { force: true })
 
   cy.get('#client-last-name').type(lastName, { force: true })
 

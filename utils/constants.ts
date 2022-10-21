@@ -5,17 +5,22 @@ export const BASE_URL_COMPLETE = 'http://vtexgame1.vtexlocal.com.br/'
 export const ADD_SKUS_ENDPOINT = '/checkout/cart/add?'
 export const CHECKOUT_ENDPOINT = '/checkout'
 export const PROFILE_ENDPOINT = '/api/checkout/pub/profiles/'
+export const DEFAULT_SELLER_ID = '1'
+export const DEFAULT_SALES_CHANNEL = '1'
 
-export const ACCOUNT_NAMES = {
-  DEFAULT: 'vtexgame1',
+export const Accounts = {
   CLEAN_NO_MAPS: 'vtexgame1clean',
+  DEFAULT: 'vtexgame1',
   GEOLOCATION: 'vtexgame1geo',
-  NO_LEAN: 'vtexgame1nolean',
-  INVOICE: 'vtexgame1invoice',
   GEOLOCATION_INVOICE: 'vtexgame1geoinvoice',
+  GEOLOCATION_NO_LEAN: 'vtexgame1geonolean',
+  INVOICE: 'vtexgame1invoice',
+  NO_LEAN: 'vtexgame1nolean',
 }
 
-export const SLA_IDS = {
+export { Accounts as ACCOUNT_NAMES }
+
+export const SLAIds = {
   PICKUP: 'retirada-na-loja-141125d',
   SCHEDULED_PICKUP: 'pickup-141125d',
   MULTIPLE_PICKUP: 'retirada-na-loja-múltiplos-pontos-rj-141125d',
@@ -24,7 +29,9 @@ export const SLA_IDS = {
   FASTEST: 'fastest',
 }
 
-export const SKUS = {
+export { SLAIds as SLA_IDS }
+
+export const SKUs = {
   DELIVERY_CUSTOMIZATION_ATTACHMENT: '31',
   DELIVERY_AND_PICKUP: '35',
   PICKUP_1_SLA: '285',
@@ -42,7 +49,10 @@ export const SKUS = {
   PARAGUAY_DELIVERY: '369',
   POLYGON_ARGENTINA: '370',
   GIFT_CARD: '324',
+  DELIVERY_NORTHEAST: '98729706',
 }
+
+export { SKUs as SKUS }
 
 // The following constants depend on the version of the order placed page shown
 // after checkout, so we check which environment we are running on and change
@@ -63,26 +73,34 @@ export const ARGENTINA_TEXT = vtexEnv === 'io' ? 'ARG' : 'Argentina'
 export const shouldAssertGiftRegistry = vtexEnv !== 'io'
 
 const envBaseURLs = {
-  local: (accountName, workspace) =>
+  local: (accountName: string, workspace: string) =>
     `http://${
       workspace ? `${workspace}--` : ''
     }${accountName}.vtexlocal.com.br`,
-  beta: (accountName, workspace) =>
+  beta: (accountName: string, workspace: string) =>
     `https://${
       workspace ? `${workspace}--` : ''
     }${accountName}.vtexcommercebeta.com.br`,
-  stable: (accountName, workspace) =>
+  stable: (accountName: string, workspace: string) =>
     `https://${
       workspace ? `${workspace}--` : ''
     }${accountName}.vtexcommercestable.com.br`,
-  io: (accountName, workspace) =>
+  io: (accountName: string, workspace: string) =>
     `https://${workspace ?? 'master'}--${accountName}.myvtex.com`,
 }
 
-export function getBaseURL({ accountName, environment, workspace }) {
+export function getBaseURL({
+  accountName,
+  environment,
+  workspace,
+}: {
+  accountName: string
+  workspace: string
+  environment: keyof typeof envBaseURLs
+}): string {
   return envBaseURLs[environment](accountName, workspace)
 }
 
-export function getAccountName(type) {
-  return ACCOUNT_NAMES[type]
+export function getAccountName(type: keyof typeof Accounts) {
+  return Accounts[type]
 }
