@@ -1,15 +1,7 @@
-#### What is the purpose of this pull request?
-<!--- Describe your changes in detail. -->
+## Summary
 
-#### What problem is this solving?
-<!--- What is the motivation and context for this change? -->
+<!-- Add a brief description of your changes -->
 
-#### How should this be manually tested?
+## Test scenarios
 
-#### Screenshots or example usage
-
-#### Types of changes
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to change)
-- [ ] Requires change to documentation, which has been updated accordingly.
+<!-- Describe the scenario of the test you are creating, if adding new tests -->
