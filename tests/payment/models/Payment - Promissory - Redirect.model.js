@@ -21,7 +21,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it('with only delivery', () => {
+    it.skip('with only delivery', () => {
       const email = getRandomEmail()
 
       setup({ skus: ['289'], account })
