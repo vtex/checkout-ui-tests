@@ -1,22 +1,7 @@
 [
   {
-    "items": ["663"],
-    "itemsUrl": ["/-panettone-lingua-de-gato-exagero-1500-kg-/p"],
-    "destinationCEP": ["29060180"]
-  },
-  {
-    "items": ["43"],
-    "itemsUrl": ["/lg-de-gato-pack-170g-1101000901/p"],
-    "destinationCEP": ["60842-350"]
-  },
-  {
-    "items": ["173"],
-    "itemsUrl": ["/lingua-de-gato-soul-good-85g1102017301/p"],
-    "destinationCEP": ["22630-010"]
-  },
-  {
-    "items": ["41"],
-    "itemsUrl": ["/lg-de-gato-85g-1101000801/p"],
-    "destinationCEP": ["12327-673"]
+    "items": [{ "sku": "633", "qty": "100" }],
+    "itemsUrl": ["/caixa-degrade-240g-1102017501/p"],
+    "destinationCEP": ["39900-000"]
   }
 ]

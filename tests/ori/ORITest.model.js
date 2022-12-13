@@ -52,10 +52,13 @@ export default function test(account) {
     })
 
     items.forEach((item) => {
-      it(`Replay for items ${item.items}`, () => {
+      it(`Replay for items ${item.items.reduce(
+        (prev, { sku }) => `${prev} ${sku}`,
+        ''
+      )}`, () => {
         const email = getRandomEmail()
 
-        setup({ skus: [item.items], account })
+        setup({ skus: item.items, account })
         fillEmail(email)
         cy.get('#client-email').should('have.value', '')
         cy.get('#client-email').type(email)
