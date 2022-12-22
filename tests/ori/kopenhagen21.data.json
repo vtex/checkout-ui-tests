@@ -1,6 +1,6 @@
 [
   {
-    "items": [{ "sku": "633", "qty": "100" }],
+    "items": [{ "sku": "633", "qty": "10" }],
     "itemsUrl": ["/caixa-degrade-240g-1102017501/p"],
     "destinationCEP": ["39900-000"]
   }

@@ -2,8 +2,6 @@ import { setup, visitAndClearCookies } from '../../utils'
 import { fillEmail, getRandomEmail } from '../../utils/profile-actions'
 import getDocument from '../../utils/document-generator'
 
-const items = require('./ORITest.data.json')
-
 const PROFILE_DATA = {
   BRA: {
     document: getDocument(),
@@ -46,37 +44,50 @@ function fillProfile(
 }
 
 export default function test(account) {
-  describe(`Ori synthetic replay - ${account}`, () => {
+  let items;
+
+  try {
+    items = require(`./${account}.data.json`)
+  } catch (e) {
+    throw new Error(`No test data found for account ${account}`)
+  }
+
+  describe.only(`Ori synthetic replay - ${account}`, () => {
     beforeEach(() => {
       visitAndClearCookies(account)
     })
+    const implementedAccounts = {
+      kopenhagen21: {
+        code: (item) => {
+          const email = getRandomEmail()
+
+          fillEmail(email)
+          cy.get('#client-email').should('have.value', '')
+          cy.get('#client-email').type(email)
+          cy.get('#optin-kopclub').click()
+          fillProfile()
+          cy.get('#btn-profile-fake').click()
+          cy.waitAndGet('#ship-postalCode', 3000).type(item.destinationCEP[0])
+        },
+      },
+      ceahml: {
+        code: (item) => {
+          cy.get('.vtex-front-messages-close-all').click()
+          cy.get('#shipping-calculate-link').click()
+          cy.waitAndGet('#ship-postalCode', 3000).type(item.destinationCEP[0])
+        },
+      },
+    }
 
     items.forEach((item) => {
       it(`Replay for items ${item.items.reduce(
         (prev, { sku }) => `${prev} ${sku}`,
         ''
       )}`, () => {
-        const email = getRandomEmail()
-
         setup({ skus: item.items, account })
-        fillEmail(email)
-        cy.get('#client-email').should('have.value', '')
-        cy.get('#client-email').type(email)
-        cy.get('#optin-kopclub').click()
-        fillProfile()
-        cy.get('#btn-profile-fake').click()
-        cy.waitAndGet('#ship-postalCode', 3000).type(item.destinationCEP[0])
-      })
 
-      // if (account === ACCOUNT_NAMES.NO_LEAN) {
-      //   cy.get('#shipping-data').contains('PAC').should('be.visible')
-      //   cy.get('#shipping-data').contains('Motoboy').should('be.visible')
-      //   cy.get('#shipping-data').contains('Expressa').should('be.visible')
-      //   cy.get('#shipping-data').contains('PAC Lento').should('be.visible')
-      // } else {
-      //   cy.get('#shipping-data').contains('Mais rápida').should('be.visible')
-      //   cy.get('#shipping-data').contains('Mais econômica').should('be.visible')
-      // }
+        implementedAccounts[account].code(item)
+      })
     })
   })
 }

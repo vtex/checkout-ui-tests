@@ -1,3 +1,3 @@
 import test from './ORITest.model.js'
 
-test('kopenhagen21')
+test(Cypress.env('ACCOUNT'))
