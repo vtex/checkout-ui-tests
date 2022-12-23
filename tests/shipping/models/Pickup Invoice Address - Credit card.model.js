@@ -106,7 +106,7 @@ export default function test(account) {
         .blur()
       cy.get('.ship-postalCode .error')
         .should('exist')
-        .contains('Código postal inválido.')
+        .contains('CEP inválido.')
 
       cy.get('#btn-go-to-payment').should('not.exist')
 
