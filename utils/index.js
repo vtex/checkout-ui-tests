@@ -63,7 +63,7 @@ export function setup({
   if (mobile) {
     cy.viewport(414, 736)
   } else {
-    cy.viewport(1280, 800)
+    cy.viewport(1280, 1200)
   }
 
   cy.visit(url)
