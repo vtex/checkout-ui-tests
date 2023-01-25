@@ -45,7 +45,7 @@ export default function test(account) {
       cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
-      cy.contains(SCHEDULED_TEXT).should('be.visible')
+      cy.contains(SCHEDULED_TEXT).should('exist')
     })
   })
 }

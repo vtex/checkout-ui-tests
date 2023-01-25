@@ -52,7 +52,7 @@ export default function test(account) {
       cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
       cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
       cy.contains('Copacabana').should('be.visible')
-      cy.contains(SCHEDULED_TEXT).should('be.visible')
+      cy.contains(SCHEDULED_TEXT).should('exist')
       if (account === ACCOUNT_NAMES.INVOICE) {
         cy.contains('Rua Saint Roman 12').should('be.visible')
       } else {

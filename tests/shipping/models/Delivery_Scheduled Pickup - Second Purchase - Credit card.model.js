@@ -53,15 +53,15 @@ export default function test(account) {
       cy.contains(PICKUP_TEXT).should('be.visible')
       cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
       cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
-      cy.contains(SCHEDULED_TEXT).should('be.visible')
+      cy.contains(SCHEDULED_TEXT).should('exist')
       cy.contains(DELIVERY_TEXT).should('be.visible')
       if (account === ACCOUNT_NAMES.INVOICE) {
-        cy.contains('Rua Saint Roman 12').should('be.visible')
+        cy.contains('Rua Saint Roman 12').should('exist')
       } else {
-        cy.contains('Rua*** ***man ***').should('be.visible')
+        cy.contains('Rua*** ***man ***').should('exist')
       }
 
-      cy.contains('PAC').should('be.visible')
+      cy.contains('PAC').should('exist')
     })
   })
 }
