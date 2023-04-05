@@ -42,7 +42,7 @@ function fillAddressInformation() {
   cy.waitAndGet('#ship-number', 3000).type('12')
 }
 
-function fillPickupLocation({ address }) {
+export function fillPickupLocation({ address }) {
   cy.waitAndGet('#pkpmodal-search input', 3000).type(address)
 
   cy.get('.pac-item').first().trigger('mouseover', { force: true })
