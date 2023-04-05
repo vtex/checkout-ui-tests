@@ -34,6 +34,8 @@ describe('CHK-2201', () => {
     cy.contains('Receber 1 item em Avenida João Wallig')
     cy.contains('Seu item não está disponível para receber no seu endereço.')
     cy.waitAndGet('.srp-toggle__pickup', 3000).click()
+    cy.get('.srp-toggle__delivery').click()
+    cy.waitAndGet('.srp-toggle__pickup', 3000).click()
     cy.contains(
       'Retirar 1 item em Loja em Copacabana no Rio de Janeiro'
     ).should('be.visible')
