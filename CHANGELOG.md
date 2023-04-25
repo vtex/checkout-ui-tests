@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.12.1] - 2023-04-25
 ### Fixed
 - Scheduled pickup tests failing due to change in pickup order.
 
@@ -548,7 +550,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - End to end tests.
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.1...HEAD
 [0.5.13]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...v0.5.13
 [0.5.12]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.11...v0.5.12
 
@@ -561,5 +563,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.9.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.9.0...v0.9.1
 
+[0.12.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.4...v0.12.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
