@@ -21,7 +21,7 @@ export default function test(account) {
       const selectors = [{ id: SLA_IDS.SCHEDULED_PICKUP }]
 
       goToShippingPreviewPickup()
-      fillShippingPreviewPickupAddress(account)
+      fillShippingPreviewPickupAddress(account, SLA_IDS.SCHEDULED_PICKUP)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({

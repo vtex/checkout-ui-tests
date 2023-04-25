@@ -12,6 +12,12 @@ export function selectCountry(country) {
   cy.wait(0)
 }
 
+export function choosePickupPoint(slaId = '') {
+  cy.get(`#${slaId} .pkpmodal-pickup-point-main`).first().click()
+
+  cy.get('.pkpmodal-details-confirm-btn').click()
+}
+
 export function chooseFirstPickupPoint() {
   cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').first().click()
 
@@ -182,7 +188,7 @@ export function selectOtherPickup() {
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
-export function fillShippingPreviewPickupAddress(account) {
+export function fillShippingPreviewPickupAddress(account, pickupPointId = '') {
   cy.get('#find-pickup-link').click()
 
   if (
@@ -197,7 +203,11 @@ export function fillShippingPreviewPickupAddress(account) {
     fillPickupLocation({ address: 'Praia de Botafogo, 300' })
   }
 
-  chooseFirstPickupPoint()
+  if (pickupPointId) {
+    choosePickupPoint(pickupPointId)
+  } else {
+    chooseFirstPickupPoint()
+  }
 }
 
 export function checkShippingPreviewResult(selectors) {
