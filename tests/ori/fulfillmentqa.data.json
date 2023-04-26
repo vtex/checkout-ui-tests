@@ -1,0 +1,4 @@
+[
+  { "items": [{ "sku": "2", "qty": 4 }], "destinationCEP": ["09911290"] },
+  { "items": [{ "sku": "4", "qty": 3 }], "destinationCEP": ["02321210"] }
+]

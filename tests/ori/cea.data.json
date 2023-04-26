@@ -1,0 +1,222 @@
+[
+  {
+    "items": [
+      {
+        "sku": "5677703",
+        "qty": "1"
+      }
+    ],
+    "destinationCEP": [
+      "09993020"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5677704",
+        "qty": "5"
+      }
+    ],
+    "destinationCEP": [
+      "04187290"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580476",
+        "qty": "3"
+      }
+    ],
+    "destinationCEP": [
+      "12030760"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580477",
+        "qty": "5"
+      }
+    ],
+    "destinationCEP": [
+      "02975020"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580478",
+        "qty": "1"
+      }
+    ],
+    "destinationCEP": [
+      "17209656"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580479",
+        "qty": "5"
+      }
+    ],
+    "destinationCEP": [
+      "08590225"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5472237",
+        "qty": "2"
+      }
+    ],
+    "destinationCEP": [
+      "08331060"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580480",
+        "qty": "5"
+      }
+    ],
+    "destinationCEP": [
+      "16012535"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580481",
+        "qty": "2"
+      }
+    ],
+    "destinationCEP": [
+      "14077390"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580483",
+        "qty": "1"
+      }
+    ],
+    "destinationCEP": [
+      "08773200"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580484",
+        "qty": "3"
+      }
+    ],
+    "destinationCEP": [
+      "13976338"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580485",
+        "qty": "1"
+      }
+    ],
+    "destinationCEP": [
+      "13605282"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580486",
+        "qty": "4"
+      }
+    ],
+    "destinationCEP": [
+      "18061381"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5580487",
+        "qty": "3"
+      }
+    ],
+    "destinationCEP": [
+      "13342150"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "4925679",
+        "qty": "5"
+      }
+    ],
+    "destinationCEP": [
+      "13185682"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "2692784",
+        "qty": "3"
+      }
+    ],
+    "destinationCEP": [
+      "02226040"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "5770570",
+        "qty": "2"
+      }
+    ],
+    "destinationCEP": [
+      "03375130"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "4925679",
+        "qty": "5"
+      }
+    ],
+    "destinationCEP": [
+      "12321556"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "2000013",
+        "qty": "4"
+      }
+    ],
+    "destinationCEP": [
+      "18705816"
+    ]
+  },
+  {
+    "items": [
+      {
+        "sku": "4254248",
+        "qty": "3"
+      }
+    ],
+    "destinationCEP": [
+      "11250318"
+    ]
+  }
+]

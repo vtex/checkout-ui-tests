@@ -127,10 +127,10 @@ export function getAddSkusEndpoint({
     }) + ADD_SKUS_ENDPOINT
 
   return Array.from(skus).reduce(
-    (url, sku, index) =>
-      `${url}${
-        index > 0 ? '&' : ''
-      }sku=${sku}&qty=1&seller=1&sc=${salesChannel}`,
+    (url, { sku, qty }, index) =>
+      `${url}${index > 0 ? '&' : ''}sku=${sku}&qty=${
+        qty ?? '1'
+      }&seller=1&sc=${salesChannel}`,
     baseURL
   )
 }
