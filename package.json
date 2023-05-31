@@ -57,16 +57,6 @@
       "integration": "6ecaeca9-8292-49d5-b954-f5d330526703"
     },
     "monitoringFolder": "tests",
-    "cypressConfig": {
-      "local": {
-        "record": false,
-        "video": false
-      },
-      "remote": {
-        "record": false,
-        "video": false
-      }
-    },
     "slack": {
       "hook": "https://hooks.slack.com/services/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",
       "notify": {
