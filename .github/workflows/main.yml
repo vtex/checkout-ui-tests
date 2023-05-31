@@ -31,7 +31,7 @@ jobs:
       containers: ${{ steps.setup-containers.outputs.matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup containers
         id: setup-containers
         run: bash .github/setup-containers.sh ${{ github.event.inputs.containers }}
