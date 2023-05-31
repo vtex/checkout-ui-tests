@@ -15,4 +15,4 @@ done
 # Format bash array as JSON array: https://stackoverflow.com/a/26809318/7651928
 containers_json=$(for f in "${containers[@]}"; do printf '%s' "$f" | jq -R -s .; done | jq -s .)
 
-echo "matrix='$containers_json'"
+echo "matrix='$containers_json'" >> $GITHUB_OUTPUT
