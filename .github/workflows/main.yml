@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cypress run
-        uses: cypress-io/github-action@v2.9.5
+        uses: cypress-io/github-action@v3.0.0
         with:
           tag: 'env:${{ github.event.inputs.env }},wks:${{ github.event.inputs.workspace }},spec:${{ github.event.inputs.spec }}'
           group: ''
