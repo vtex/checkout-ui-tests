@@ -15,4 +15,4 @@ done
 # Format bash array as JSON array: https://stackoverflow.com/a/67489301
 containers_json=$(jq --compact-output --null-input '$ARGS.positional' --args -- "${containers[@]}")
 
-echo "containers=$containers_json" >> $GITHUB_OUTPUT
+echo "matrix=$containers_json" >> $GITHUB_OUTPUT
