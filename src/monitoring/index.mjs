@@ -154,8 +154,9 @@ async function sendResults(result, spec) {
       env: isIOBetaEnv ? 'beta' : isIOEnv ? 'stable' : program.env,
       applicationName: `checkout-ui${isIOBetaEnv || isIOEnv ? '-io' : ''}`,
       healthcheck: {
-        moduleName: `Checkout UI ${isIOBetaEnv || isIOEnv ? `(IO${isIOBetaEnv ? ' Beta' : ''})` : ''
-          }`,
+        moduleName: `Checkout UI ${
+          isIOBetaEnv || isIOEnv ? `(IO${isIOBetaEnv ? ' Beta' : ''})` : ''
+        }`,
         status: result.totalFailed > 0 ? 0 : 1,
         title: spec,
       },
