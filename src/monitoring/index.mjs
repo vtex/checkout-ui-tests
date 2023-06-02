@@ -79,7 +79,7 @@ const CYPRESS_CONFIG = {
   headless: program.headless,
   config: {
     chromeWebSecurity: false,
-    blockHosts: ['www.googletagmanager.com'],
+    blockHosts: 'www.googletagmanager.com',
     pageLoadTimeout: 180000,
     viewportHeight: 660,
     viewportWidth: 1024,
@@ -92,6 +92,7 @@ const CYPRESS_CONFIG = {
     video: !program.skipUpload,
   },
   projectId: 'kobqo4',
+  key: process.env.CYPRESS_RECORD_KEY,
   reporterOptions: {
     reportDir: 'cypress/results',
     overwrite: false,

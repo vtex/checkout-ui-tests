@@ -31,7 +31,7 @@ jobs:
       containers: ${{ steps.setup-containers.outputs.matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup containers
         id: setup-containers
         run: bash .github/setup-containers.sh ${{ github.event.inputs.containers }}
@@ -45,10 +45,11 @@ jobs:
         containers: ${{ fromJson(needs.setup_containers.outputs.containers) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cypress run
-        uses: cypress-io/github-action@v2.9.5
+        uses: cypress-io/github-action@v3.0.0
         with:
+          config-file: cypress.config.ts
           tag: 'env:${{ github.event.inputs.env }},wks:${{ github.event.inputs.workspace }},spec:${{ github.event.inputs.spec }}'
           group: ''
           spec: ${{ github.event.inputs.spec }}

@@ -12,7 +12,7 @@ for ((i=1; i<=$container_count; i++)); do
   containers+=($i);
 done
 
-# Format bash array as JSON array: https://stackoverflow.com/a/26809318/7651928
-containers_json=$(for f in "${containers[@]}"; do printf '%s' "$f" | jq -R -s .; done | jq -s .)
+# Format bash array as JSON array: https://stackoverflow.com/a/67489301
+containers_json=$(jq --compact-output --null-input '$ARGS.positional' --args -- "${containers[@]}")
 
-echo ::set-output name=matrix::$containers_json
+echo "matrix=$containers_json" >> $GITHUB_OUTPUT
