@@ -41,11 +41,11 @@ kubernetes:
               name: checkout-ui-tests
               key: APP_TOKEN
               optional: false
-        - name: RECORD_KEY
+        - name: CYPRESS_RECORD_KEY
           valueFrom:
             secretKeyRef:
               name: checkout-ui-tests
-              key: CYPRESS_RECORD_KEY
+              key: RECORD_KEY
               optional: false
       dockerfile: ./dockerfiles/stable/Dockerfile
       imageRepoName: healthcheck/webtests/checkout
