@@ -6,48 +6,70 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Migrating to Cypress @ 10.11.0
 
 ## [0.12.1] - 2023-04-25
+
 ### Fixed
+
 - Scheduled pickup tests failing due to change in pickup order.
 
 ## [0.12.0] - 2023-04-04
+
 ### Added
+
 - Regression test for task CHK-2059.
 
 ## [0.11.4] - 2022-12-23
+
 ### Fixed
+
 - Invalid cep string.
 
 ## [0.11.3] - 2022-11-22
+
 ### Removed
+
 - Checkout UI (IO) module from healthcheck.
 
 ## [0.11.2] - 2022-11-22
+
 ### Changed
+
 - Flaky test disabled during BF week
 
 ## [0.11.1] - 2022-11-04
+
 ### Added
+
 - Regression tests for task CHK-1904.
 
 ## [0.11.0] - 2022-10-26
+
 ### Changed
+
 - Upgrade Cypress to major 9.
 
 ## [0.10.0] - 2022-09-06
+
 ### Added
+
 - Test for pickup purchases with pre-filled profile and shipping info.
 
 ## [0.9.2] - 2022-07-26
+
 ### Fixed
+
 - Credit card test failing due to invalid expiry date.
 
 ## [0.9.1] - 2022-06-30
+
 ### Fixed
+
 - Masks assertions on orderPlaced screen
 
 ## [0.9.0] - 2022-06-28
+
 ### Added
 
 - Test for Gift card covering the full order value
@@ -87,10 +109,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.8.1] - 2022-04-04
 
 ## [0.8.0] - 2022-04-04
+
 ### Added
+
 - New module on healthcheck.
 
 ### Changed
+
 - Update healthcheck title when `VTEX_ENV` is `io`.
 
 ## [0.7.0] - 2022-03-21
@@ -549,20 +574,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - End to end tests.
 
-
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.1...HEAD
+[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.1...HEAD
 [0.5.13]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.12...v0.5.13
 [0.5.12]: https://github.com/vtex/checkout-ui-tests/compare/v0.5.11...v0.5.12
-
 [0.8.17]: https://github.com/vtex/checkout-ui-tests/compare/v0.8.16...v0.8.17
-
 [0.11.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.9.2...v0.10.0
 [0.9.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.9.0...v0.9.1
-
 [0.12.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.4...v0.12.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
