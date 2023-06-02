@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Regression test for task CHK-2201
 
 ## [0.15.0] - 2023-06-05
 - Updating the number of parallel containers in the setup workflow
@@ -31,9 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migrating to Cypress @ 10.11.0
 
 ## [0.12.1] - 2023-04-25
-
 ### Fixed
-
 - Scheduled pickup tests failing due to change in pickup order.
 
 ## [0.12.0] - 2023-04-04
