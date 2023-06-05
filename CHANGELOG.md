@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.16.0] - 2023-06-05
+### Added
+- Added a regression test for task CHK-2201
+
 ## [0.15.0] - 2023-06-05
 - Updating the number of parallel containers in the setup workflow
 
@@ -31,9 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migrating to Cypress @ 10.11.0
 
 ## [0.12.1] - 2023-04-25
-
 ### Fixed
-
 - Scheduled pickup tests failing due to change in pickup order.
 
 ## [0.12.0] - 2023-04-04
@@ -611,7 +613,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.15.0...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...HEAD
+[0.16.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.15.0...v0.16.0
 [0.15.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.3...v0.14.0
 [0.13.3]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.2...v0.13.3

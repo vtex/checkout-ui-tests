@@ -50,6 +50,7 @@ export const SKUs = {
   POLYGON_ARGENTINA: '370',
   GIFT_CARD: '324',
   DELIVERY_NORTHEAST: '98729706',
+  ONLY_PICKUP_2_SLA_RJ: '341',
 }
 
 export { SKUs as SKUS }
