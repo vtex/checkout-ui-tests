@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Regression test for task CHK-2201.
+- Added a regression test for task CHK-2201
 
 ## [0.15.0] - 2023-06-05
 - Updating the number of parallel containers in the setup workflow
