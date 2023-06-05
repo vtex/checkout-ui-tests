@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.2] - 2023-06-05
+
 ## [0.13.1] - 2023-06-02
 ### Fixed
 - Fixed CYPRESS_RECORD_KEY reference in the CI config
@@ -596,5 +598,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.2...HEAD
+[0.13.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
