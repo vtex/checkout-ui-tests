@@ -22,7 +22,7 @@ on:
       containers:
         description: 'Number of parallel containers'
         required: false
-        default: '30'
+        default: '35'
 
 jobs:
   setup_containers:
