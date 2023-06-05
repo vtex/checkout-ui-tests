@@ -5,7 +5,7 @@
 # About: https://github.com/cypress-io/github-action#parallel
 set -e
 
-container_count=${1:-30}
+container_count=${1:-35}
 
 containers=()
 for ((i=1; i<=$container_count; i++)); do
