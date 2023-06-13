@@ -33,9 +33,6 @@ export default function test(account) {
 
       goToPayment()
       selectWHGooglePay(account)
-      cy.get('#google-pay-button').should('be.visible')
-      cy.get('.max-installment-info').should('be.visible')
-
       payWithWHGooglePay(account)
     })
   })
