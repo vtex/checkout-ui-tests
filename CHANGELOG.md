@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Regression test for task CHK-1969.
+
 ## [0.17.0] - 2023-06-21
 
 ### Changed
@@ -644,6 +648,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.3]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.2...v0.13.3
 [0.13.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
-
-
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
+[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
