@@ -6,38 +6,61 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.17.0] - 2023-06-21
+
+### Changed
+
+- Increasing timeout minutes to ensure that all tests have enough time
+
 ### Added
+
 - Test for Google Pay payment method
 
 ## [0.16.0] - 2023-06-05
+
 ### Added
+
 - Added a regression test for task CHK-2201
 
 ## [0.15.0] - 2023-06-05
+
 - Updating the number of parallel containers in the setup workflow
 
 ## [0.14.0] - 2023-06-05
+
 ## Changed
+
 - Increasing the number of parallel containers
 
 ## [0.13.3] - 2023-06-05
+
 ### Changed
+
 - Fixed monitoring build
 
 ## [0.13.2] - 2023-06-05
+
 ### Changed
+
 - Updating cypress docker image
 
 ## [0.13.1] - 2023-06-02
+
 ### Fixed
+
 - Fixed CYPRESS_RECORD_KEY reference in the CI config
 
 ## [13.0.0] - 2023-06-02
+
 ### Changed
+
 - Migrating to Cypress @ 10.11.0
 
 ## [0.12.1] - 2023-04-25
+
 ### Fixed
+
 - Scheduled pickup tests failing due to change in pickup order.
 
 ## [0.12.0] - 2023-04-04
@@ -613,12 +636,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.12.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.4...v0.12.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
-
-
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...HEAD
+[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...HEAD
+[0.17.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...v0.17.0
 [0.16.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.15.0...v0.16.0
 [0.15.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.3...v0.14.0
 [0.13.3]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.2...v0.13.3
 [0.13.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
+
+
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
