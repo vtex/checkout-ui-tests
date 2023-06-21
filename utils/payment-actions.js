@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { baseConfig, waitLoad } from '.'
 import { ACCOUNT_NAMES, CHECKOUT_ENDPOINT, getBaseURL } from './constants'
 
@@ -17,6 +18,55 @@ export function payWithPromissoryPaymentApp() {
   cy.get('#payment-group-custom205PaymentGroupPaymentGroup').click({
     force: true,
   })
+}
+
+/**
+ * @param {string} account
+ */
+export function selectWHGooglePay(account) {
+  cy.intercept({
+    method: 'GET',
+    url: 'https://wallet-hub.services.vtexpayments.com/wallet-hub/pub/wallets/googlePay/merchant-info*',
+    query: { merchantOrigin: '*', an: account },
+  }).as('walletHubMerchantInfo')
+
+  cy.waitAndGet('[id="payment-group-WH Google PayPaymentGroup"]', 3000).click({
+    force: true,
+  })
+
+  cy.wait(3000)
+
+  cy.wait('@walletHubMerchantInfo')
+    .its('response')
+    .then((response) => {
+      expect(response).to.have.property('statusCode', 200)
+      expect(response.body).to.have.property('allowedAuthMethods')
+      expect(response.body).to.have.property('merchantId')
+      expect(response.body).to.have.property('merchantName')
+      expect(response.body).to.have.property('merchantOrigin')
+    })
+}
+
+/**
+ * @param {string} account
+ */
+export function payWithWHGooglePay(account) {
+  cy.intercept({
+    method: 'GET',
+    url: 'https://wallet-hub.services.vtexpayments.com/wallet-hub/pub/wallets/googlePay/auth-info*',
+    query: { merchantOrigin: '*', an: account, merchantName: '*' },
+  }).as('walletHubAuthInfo')
+
+  cy.waitAndGet('#google-pay-button', 3000).should('be.visible').click()
+
+  cy.wait(3000)
+
+  cy.wait('@walletHubAuthInfo')
+    .its('response')
+    .then((response) => {
+      expect(response).to.have.property('statusCode', 200)
+      expect(response.body).to.have.property('authJwt')
+    })
 }
 
 export function getIframeBody($iframe) {

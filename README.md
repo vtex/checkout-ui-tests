@@ -132,6 +132,8 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 - `completePurchase` - Clicks finish purchase button
 - `fillCreditCardAndSelectInstallmentWithInterest` - Fills credit card with Elo flag and select an installment with interest
 - `fillGiftCard` - Opens Gift card input and fills with a voucher
+- `selectWHGooglePay` - Selects Google Pay payment method
+- `payWithWHGooglePay`- Click on 'Pay with Google Pay' button
 
 **Summary**
 
