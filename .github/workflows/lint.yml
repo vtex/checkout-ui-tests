@@ -2,11 +2,6 @@ name: ESLint
 
 on:
   pull_request:
-    paths:
-      - tests/**
-      - cypress/**
-      - src/**
-      - utils/**
 jobs:
   lint:
     runs-on: ubuntu-latest

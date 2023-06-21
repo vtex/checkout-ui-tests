@@ -4,6 +4,7 @@ on:
     paths:
       - tests/**
       - cypress/**
+      - utils/**
   workflow_dispatch:
     inputs:
       title:
