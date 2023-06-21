@@ -25,7 +25,7 @@ To trigger this workflow, follow those steps:
 2. Click in the `Run workflow` button and fill the form
 3. After triggering the workflow, wait for about one minute and check the [Checkout UI Cypress Dashboard page](https://dashboard.cypress.io/projects/kobqo4/) to find your run.
 
-> ℹ️ Running the complete suite with 30 containers take about 7 minutes to end.
+> ℹ️ Running the complete suite with 30 containers take about ~11 minutes to end.
 
 > ⚠️ Also, each complete suite run cost about \$1, so be mindful about how many executions are being made. To better understand how this is billed, check the [Cypress pricing page](https://www.cypress.io/pricing/).
 
