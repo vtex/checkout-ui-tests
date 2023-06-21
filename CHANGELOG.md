@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Decreasing the number of parallel containers
+- Removing dead code
+- Disabled recording for Github Actions
+
 ## [0.18.0] - 2023-06-21
 
 ### Added
@@ -653,5 +659,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
 
+<<<<<<< HEAD
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
+# [Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
+
+> > > > > > > a8ec855 (updating CHANGELOG.md)
