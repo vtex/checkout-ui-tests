@@ -64,7 +64,6 @@ export function payWithWHGooglePay(account) {
   cy.wait('@walletHubAuthInfo')
     .its('response')
     .then((response) => {
-      console.log('response: ', response)
       expect(response).to.have.property('statusCode', 200)
       expect(response.body).to.have.property('authJwt')
     })
