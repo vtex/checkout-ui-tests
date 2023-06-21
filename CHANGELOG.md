@@ -660,7 +660,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # [Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
 
-> > > > > > > a8ec855 (updating CHANGELOG.md)
+> > > > > > > # a8ec855 (updating CHANGELOG.md)
+
+[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
+
+> > > > > > > cc52b41 (Release v0.18.0)
