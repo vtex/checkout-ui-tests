@@ -1,6 +1,10 @@
 name: End-to-end tests
 on:
   pull_request:
+    paths:
+      - tests/**
+      - cypress/**
+      - utils/**
   workflow_dispatch:
     inputs:
       title:
@@ -22,7 +26,7 @@ on:
       containers:
         description: 'Number of parallel containers'
         required: false
-        default: '35'
+        default: '30'
 
 jobs:
   setup_containers:

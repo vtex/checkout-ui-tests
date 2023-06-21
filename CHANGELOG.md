@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.0] - 2023-06-21
+
+### Added
+
+- Decreasing the number of parallel containers
+- Removing dead code
+- Disabled recording for Github Actions
+
 ## [0.18.0] - 2023-06-21
 
 ### Added
@@ -643,6 +651,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.12.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.4...v0.12.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...HEAD
+[0.19.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...v0.18.0
 [0.17.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...v0.17.0
 [0.16.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.15.0...v0.16.0
@@ -653,5 +662,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
+# [Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.0...HEAD
+
+> > > > > > > # a8ec855 (updating CHANGELOG.md)
+
+[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
+
+> > > > > > > cc52b41 (Release v0.18.0)
