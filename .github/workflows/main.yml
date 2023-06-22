@@ -58,7 +58,7 @@ jobs:
           tag: 'env:${{ github.event.inputs.env }},wks:${{ github.event.inputs.workspace }},spec:${{ github.event.inputs.spec }}'
           group: ''
           spec: ${{ github.event.inputs.spec }}
-          record: true
+          record: false
           parallel: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
