@@ -59,7 +59,7 @@ jobs:
           group: ''
           spec: ${{ github.event.inputs.spec }}
           record: false
-          parallel: true
+          parallel: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY}}
