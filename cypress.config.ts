@@ -4,7 +4,6 @@ export default defineConfig({
   chromeWebSecurity: false,
   blockHosts: ['www.googletagmanager.com'],
   video: false,
-  projectId: 'kobqo4',
   pageLoadTimeout: 180000,
   defaultCommandTimeout: 15000,
   retries: {

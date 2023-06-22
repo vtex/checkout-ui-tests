@@ -5,6 +5,7 @@ on:
       - tests/**
       - cypress/**
       - utils/**
+      - cypress.config.ts
   workflow_dispatch:
     inputs:
       title:
