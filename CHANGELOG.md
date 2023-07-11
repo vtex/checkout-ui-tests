@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fill billing address when invoice data does not have postal code
+- Skip Google Pay test
+
 ### Added
 
 - Regression test for task CHK-2308.

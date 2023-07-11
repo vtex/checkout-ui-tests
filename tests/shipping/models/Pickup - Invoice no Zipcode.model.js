@@ -1,5 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
-import { SKUS } from '../../../utils/constants'
+import { ACCOUNT_NAMES, SKUS } from '../../../utils/constants'
 import {
   goToInvoiceAddress,
   fillInvoiceAddress,
@@ -76,7 +76,7 @@ export default function test(account) {
 
       fillInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard()
+      payWithCreditCard({ withAddress: account !== ACCOUNT_NAMES.INVOICE })
       completePurchase()
 
       cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')

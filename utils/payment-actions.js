@@ -44,27 +44,6 @@ export function selectWHGooglePay(account) {
       expect(response.body).to.have.property('merchantId')
       expect(response.body).to.have.property('merchantName')
       expect(response.body).to.have.property('merchantOrigin')
-    })
-}
-
-/**
- * @param {string} account
- */
-export function payWithWHGooglePay(account) {
-  cy.intercept({
-    method: 'GET',
-    url: 'https://wallet-hub.services.vtexpayments.com/wallet-hub/pub/wallets/googlePay/auth-info*',
-    query: { merchantOrigin: '*', an: account, merchantName: '*' },
-  }).as('walletHubAuthInfo')
-
-  cy.waitAndGet('#google-pay-button', 3000).should('be.visible').click()
-
-  cy.wait(3000)
-
-  cy.wait('@walletHubAuthInfo')
-    .its('response')
-    .then((response) => {
-      expect(response).to.have.property('statusCode', 200)
       expect(response.body).to.have.property('authJwt')
     })
 }
