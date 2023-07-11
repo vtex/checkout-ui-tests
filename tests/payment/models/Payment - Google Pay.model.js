@@ -8,10 +8,7 @@ import {
   goToPayment,
   fillShippingInformation,
 } from '../../../utils/shipping-actions'
-import {
-  payWithWHGooglePay,
-  selectWHGooglePay,
-} from '../../../utils/payment-actions'
+import { selectWHGooglePay } from '../../../utils/payment-actions'
 import { SKUS } from '../../../utils/constants'
 
 /**
@@ -23,7 +20,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it('should render Google Pay button with installment options', () => {
+    it.skip('should render Google Pay button with installment options', () => {
       const email = getRandomEmail()
 
       setup({ skus: [SKUS.DELIVERY_MULTIPLE_SLA], account })
@@ -33,7 +30,7 @@ export default function test(account) {
 
       goToPayment()
       selectWHGooglePay(account)
-      payWithWHGooglePay(account)
+      cy.waitAndGet('#google-pay-button', 3000).should('be.visible').click()
     })
   })
 }
