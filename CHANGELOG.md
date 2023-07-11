@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.1] - 2023-07-11
+
 ### Fixed
 
 - Fill billing address when invoice data does not have postal code
@@ -660,6 +662,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.12.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.4...v0.12.0
 [0.11.4]: https://github.com/vtex/checkout-ui-tests/compare/v0.11.3...v0.11.4
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...HEAD
+[0.19.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.0...v0.19.1
 [0.19.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...v0.18.0
 [0.17.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.16.0...v0.17.0
