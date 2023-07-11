@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fill billing address when invoice data does not have postal code
 - Skip Google Pay test
 
 ### Added
@@ -670,14 +669,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-# [Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.0...HEAD
-
-> > > > > > > # a8ec855 (updating CHANGELOG.md)
-
-[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.18.0...HEAD
-
-> > > > > > > cc52b41 (Release v0.18.0)
