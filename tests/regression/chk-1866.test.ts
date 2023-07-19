@@ -20,8 +20,6 @@ describe('CHK-1866', () => {
       cy.get('#ship-postalCode').type('22250-040')
       cy.wait(3000)
 
-      // .srp-summary-result .monetary
-
       cy.get('.srp-shipping-current-single__price').then(
         ($shippingPreviewPrice) => {
           const shippingPreviewPrice = $shippingPreviewPrice.text()
