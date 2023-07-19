@@ -10,7 +10,7 @@ describe('CHK-1866', () => {
 
     it('should the price shown in the shipping preview will be the same as shown in the cart summary', () => {
       setup({
-        skus: [SKUs.ONLY_PICKUP_2_SLA_RJ, '75530389'],
+        skus: [SKUs.ONLY_PICKUP_2_SLA_RJ, SKUs.SCHEDULED_DELIVERY_SLA_RJ],
         salesChannel: '1',
         account: Accounts.DEFAULT,
       })
