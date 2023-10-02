@@ -1,0 +1,20 @@
+- acronym: checkout-ui-tests
+  build:
+    pipelines:
+    - name: drone-builder-v1
+      parameters:
+        awsAccountId: "558830342743"
+        awsRegion: us-east-1
+        cicdForceNoBump: "true"
+        cicdK8sCluster: EKS-Robots
+        environment: stable
+      runtime:
+        architecture: amd64
+      when:
+      - event: push
+        source: branch
+      - event: push
+        source: tag
+    provider: dkcicd
+  description: Deploy with drone-builder
+  name: checkout-ui-tests

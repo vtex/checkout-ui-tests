@@ -1,53 +1,25 @@
 kind: pipeline
 type: kubernetes
 name: Deployment Stable
-
 steps:
-- name: docker-build
-  image: docker
-  pull: if-not-exists
-  environment:
-    DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
-  commands:
-    - docker build --network=host -t $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest -f ./dockerfiles/stable/Dockerfile .
-  volumes:
-    - name: dockersock
-      path: /var/run
-- name: publish
-  image: 053131491888.dkr.ecr.us-east-1.amazonaws.com/vtex/drone-builder:latest
-  pull: always
-  when:
-    ref:
-      include:
-        - refs/tags/**
-      exclude:
-        - refs/tags/*-*
-  environment:
-    AWS_DEFAULT_REGION: us-east-1
-    AWS_ACCESS_KEY_ID:
-      from_secret: 558830342743_AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: 558830342743_AWS_SECRET_ACCESS_KEY
-    GIT_TOKEN:
-      from_secret: GIT_TOKEN
-    GIT_USER_NAME: ${DRONE_COMMIT_AUTHOR}
-    GIT_USER_EMAIL: ${DRONE_COMMIT_AUTHOR_EMAIL}
-    DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
-    ENVIRONMENT: stable
-    CICD_FORCE_NO_BUMP: true
-    CICD_K8S_CLUSTER: EKS-Robots
-  commands:
-    - python3 /app/toolbelt/main.py
-  volumes:
-    - name: dockersock
-      path: /var/run
-
+  - name: docker-build
+    image: docker
+    pull: if-not-exists
+    environment:
+      DOCKER_REGISTRY: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    commands:
+      - >-
+        docker build --network=host -t
+        $$DOCKER_REGISTRY/healthcheck/webtests/checkout:latest -f
+        ./dockerfiles/stable/Dockerfile .
+    volumes:
+      - name: dockersock
+        path: /var/run
 trigger:
   event:
     - push
     - tag
-
 volumes:
-- name: dockersock
-  host:
-    path: /var/run/
+  - name: dockersock
+    host:
+      path: /var/run/
