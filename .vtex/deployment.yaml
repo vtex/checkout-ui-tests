@@ -13,8 +13,7 @@
       when:
       - event: push
         source: branch
-      - event: push
-        source: tag
+        regex: main
     provider: dkcicd
   description: Deploy with drone-builder
   name: checkout-ui-tests
