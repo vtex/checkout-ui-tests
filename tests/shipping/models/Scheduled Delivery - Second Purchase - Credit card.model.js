@@ -17,7 +17,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it.skip('start with delivery then, choosing pickup, then choosing delivery', () => {
+    it('start with delivery then, choosing pickup, then choosing delivery', () => {
       const email = getSecondPurchaseEmail()
 
       setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })

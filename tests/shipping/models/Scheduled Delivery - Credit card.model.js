@@ -21,7 +21,7 @@ export default function test(account) {
       visitAndClearCookies(account)
     })
 
-    it.skip('complete purchase with scheduled delivery', () => {
+    it('complete purchase with scheduled delivery', () => {
       const email = getRandomEmail()
 
       setup({ skus: [SKUS.SCHEDULED_DELIVERY], account })
