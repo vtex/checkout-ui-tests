@@ -1,0 +1,67 @@
+kubernetes:
+  base:
+    repoName: checkout-ui-tests
+    repoOrg: vtex
+    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    environment: stable
+    secretsManager:
+      enabled: true
+      secretsName: stable/checkout-ui-tests/checkout-ui-tests
+    version: 0.19.1
+  apps:
+  - name: checkout-tests-cronjob
+    kind: cronjob
+    schedule: '* * * * *'
+    activeDeadlineSeconds: 2400
+    startingDeadlineSeconds: 6000
+    envs:
+    - name: VTEX_ENV
+      value: stable
+    - name: HORUS_PROXY_KEY
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: HORUS_PROXY_KEY
+          optional: false
+    - name: HORUS_COGNITO_CREDENTIALS
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: HORUS_COGNITO_CREDENTIALS
+          optional: false
+    - name: CYPRESS_APP_KEY
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: APP_KEY
+          optional: false
+    - name: CYPRESS_APP_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: APP_TOKEN
+          optional: false
+    - name: CYPRESS_RECORD_KEY
+      valueFrom:
+        secretKeyRef:
+          name: checkout-ui-tests
+          key: RECORD_KEY
+          optional: false
+    dockerfile: ./dockerfiles/stable/Dockerfile
+    imageRepoName: healthcheck/webtests/checkout
+    imagePullPolicy: Always
+    command:
+    - yarn
+    - test
+    volumes:
+    - name: dshm
+      mountPath: /dev/shm
+    serviceAccount:
+      arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
+    resources:
+      requests:
+        cpu: 2
+        memory: 2Gi
+      limits:
+        cpu: 2
+        memory: 2Gi
