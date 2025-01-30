@@ -10,7 +10,6 @@
         applicationName: checkout-ui-tests
         applicationType: k8s
         contextPath: ./dockerfiles/stable
-        dockerfilePath: ./Dockerfile
         environmentType: stable
         imageRepo: vtex/checkout-ui-tests
         imageTag: '{{ ref_name }}'
