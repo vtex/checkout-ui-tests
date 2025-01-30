@@ -18,38 +18,20 @@
         chartName: sre-provisioning
         baseBranch: main
       when:
-      - event: push
-        source: branch
-        regex: main
+        - event: push
+          source: tag
+          regex: (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(\.(0|[1-9]\d*))?$
       runtime:
         architecture: amd64
-    - name: application-build-v1
-      parameters:
-        acronym: checkout-ui-tests
-        applicationName: checkout-ui-tests
-        applicationType: k8s
-        dockerfilePath: ./Dockerfile
-        contextPath: ./dockerfiles/stable
-        environmentType: stable
-        imageRepo: vtex/checkout-ui-tests
-        imageTag: '{{ ref_name }}'
-        rollout: "true"
-        chartName: sre-provisioning
-        baseBranch: main
-      when:
-      - event: push
-        source: branch
-        regex: main
-      runtime:
-        architecture: amd64
+
     - name: application-deploy-v2
       parameters:
         acronym: checkout-ui-tests
         projectName: sre-apps
         baseBranch: main
       when:
-      - event: push
-        source: branch
-        regex: main
+        - event: push
+          source: branch
+          regex: ^(main)$
       runtime:
         architecture: amd64
