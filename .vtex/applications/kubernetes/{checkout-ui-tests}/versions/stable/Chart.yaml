@@ -1,0 +1,8 @@
+apiVersion: v2
+dependencies:
+- name: sre-provisioning
+  repository: oci://053131491888.dkr.ecr.us-east-1.amazonaws.com
+  version: 0.2.4
+description: Default Kubernetes Helm Template
+name: vai-links-management-0.19.1
+version: 0.19.1
