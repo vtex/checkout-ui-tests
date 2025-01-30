@@ -1,67 +1,68 @@
-kubernetes:
+sre-provisioning:
   base:
+    environment: stable
+    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    namespace: checkout-ui-tests-stable
     repoName: checkout-ui-tests
     repoOrg: vtex
-    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
-    environment: stable
     secretsManager:
       enabled: true
       secretsName: stable/checkout-ui-tests/checkout-ui-tests
-    version: 0.19.1
+    version: 0.19.10
   apps:
-  - name: checkout-tests-cronjob
-    kind: cronjob
-    schedule: '* * * * *'
-    activeDeadlineSeconds: 2400
-    startingDeadlineSeconds: 6000
+  - activeDeadlineSeconds: 2400
+    command:
+    - yarn
+    - test
+    dockerfile: ./dockerfiles/stable/Dockerfile
     envs:
     - name: VTEX_ENV
       value: stable
     - name: HORUS_PROXY_KEY
       valueFrom:
         secretKeyRef:
-          name: checkout-ui-tests
           key: HORUS_PROXY_KEY
+          name: checkout-ui-tests
           optional: false
     - name: HORUS_COGNITO_CREDENTIALS
       valueFrom:
         secretKeyRef:
-          name: checkout-ui-tests
           key: HORUS_COGNITO_CREDENTIALS
+          name: checkout-ui-tests
           optional: false
     - name: CYPRESS_APP_KEY
       valueFrom:
         secretKeyRef:
-          name: checkout-ui-tests
           key: APP_KEY
+          name: checkout-ui-tests
           optional: false
     - name: CYPRESS_APP_TOKEN
       valueFrom:
         secretKeyRef:
-          name: checkout-ui-tests
           key: APP_TOKEN
+          name: checkout-ui-tests
           optional: false
     - name: CYPRESS_RECORD_KEY
       valueFrom:
         secretKeyRef:
-          name: checkout-ui-tests
           key: RECORD_KEY
+          name: checkout-ui-tests
           optional: false
-    dockerfile: ./dockerfiles/stable/Dockerfile
-    imageRepoName: healthcheck/webtests/checkout
     imagePullPolicy: Always
-    command:
-    - yarn
-    - test
-    volumes:
-    - name: dshm
-      mountPath: /dev/shm
-    serviceAccount:
-      arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
+    imageRepoName: healthcheck/webtests/checkout
+    kind: cronjob
+    name: checkout-tests-cronjob
     resources:
-      requests:
-        cpu: 2
-        memory: 2Gi
       limits:
         cpu: 2
         memory: 2Gi
+      requests:
+        cpu: 2
+        memory: 2Gi
+    schedule: '* * * * *'
+    serviceAccount:
+      arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
+    startingDeadlineSeconds: 6000
+    volumes:
+    - mountPath: /dev/shm
+      name: dshm
