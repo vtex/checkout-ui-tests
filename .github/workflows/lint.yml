@@ -2,6 +2,10 @@ name: ESLint
 
 on:
   pull_request:
+    paths-ignore:
+      - 'Dockerfile'
+      - '.vtex/**'
+
 jobs:
   lint:
     runs-on: ubuntu-latest
