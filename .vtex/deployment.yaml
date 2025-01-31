@@ -4,6 +4,7 @@
   build:
     provider: dkcicd
     pipelines:
+
     - name: application-build-v1
       parameters:
         acronym: checkout-ui-tests
