@@ -1,7 +1,7 @@
 sre-provisioning:
   base:
     environment: stable
-    imageRepository: 558830342743.dkr.ecr.us-east-1.amazonaws.com
+    imageRepository: 053131491888.dkr.ecr.us-east-1.amazonaws.com
     namespace: checkout-ui-tests-stable
     repoName: checkout-ui-tests
     repoOrg: vtex
