@@ -46,7 +46,6 @@ apps:
         name: checkout-ui-tests
         key: RECORD_KEY
         optional: false
-  dockerfile: ./dockerfiles/stable/Dockerfile
   imageRepoName: healthcheck/webtests/checkout
   imagePullPolicy: Always
   command:
