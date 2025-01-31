@@ -1,8 +1,8 @@
 apiVersion: v2
 dependencies:
 - name: sre-provisioning
-  repository: oci://558830342743.dkr.ecr.us-east-1.amazonaws.com
+  repository: oci://053131491888.dkr.ecr.us-east-1.amazonaws.com
   version: 0.2.5
 description: Default Kubernetes Helm Template
-name: checkout-ui-tests-0.19.10
-version: 0.19.10
+name: checkout-ui-tests-0.19.11
+version: 0.19.11

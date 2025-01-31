@@ -8,7 +8,7 @@ sre-provisioning:
     secretsManager:
       enabled: true
       secretsName: stable/checkout-ui-tests/checkout-ui-tests
-    version: 0.19.10
+    version: 0.19.11
   apps:
   - activeDeadlineSeconds: 2400
     command:
