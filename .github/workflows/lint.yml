@@ -1,4 +1,4 @@
-name: ESLint
+name: lint
 
 on:
   push:
@@ -13,7 +13,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14.x
