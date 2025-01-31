@@ -14,7 +14,6 @@ sre-provisioning:
     command:
     - yarn
     - test
-    dockerfile: ./dockerfiles/stable/Dockerfile
     envs:
     - name: VTEX_ENV
       value: stable
