@@ -46,7 +46,7 @@ apps:
         name: checkout-ui-tests
         key: RECORD_KEY
         optional: false
-  imageRepoName: healthcheck/webtests/checkout
+  imageRepoName: vtex/checkout-ui-tests
   imagePullPolicy: Always
   command:
   - yarn
