@@ -4,7 +4,6 @@
 
 ## Description
 
-
 The repository for mapped and implemented purchase end-to-end testing scenarios for the Checkout UI.
 
 The test engine is composed by four main utilities:

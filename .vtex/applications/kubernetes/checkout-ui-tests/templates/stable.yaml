@@ -6,7 +6,7 @@ base:
   secretsManager:
     enabled: true
     secretsName: stable/checkout-ui-tests/checkout-ui-tests
-  version: 0.19.1
+  version: 0.19.12
 apps:
 - name: checkout-tests-cronjob
   kind: cronjob
