@@ -4,5 +4,5 @@ dependencies:
   repository: oci://053131491888.dkr.ecr.us-east-1.amazonaws.com
   version: 0.2.5
 description: Default Kubernetes Helm Template
-name: checkout-ui-tests-0.19.12
-version: 0.19.12
+name: checkout-ui-tests-0.19.14
+version: 0.19.14
