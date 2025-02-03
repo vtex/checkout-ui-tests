@@ -48,7 +48,7 @@ sre-provisioning:
           name: checkout-ui-tests
           optional: false
     imagePullPolicy: Always
-    imageRepoName: healthcheck/webtests/checkout
+    imageRepoName: vtex/checkout-ui-tests
     kind: cronjob
     name: checkout-tests-cronjob
     resources:
