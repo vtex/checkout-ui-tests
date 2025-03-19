@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Regression test for task CHK-1866.
+
 ## [0.19.1] - 2023-07-11
 
 ### Fixed
