@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.15] - 2025-05-16
+
 ### Changed
 
 - Disable failing Credit Card Expired test
@@ -677,3 +679,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
+
+
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.15...HEAD
+[0.19.15]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.14...v0.19.15
