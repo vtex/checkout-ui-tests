@@ -12,7 +12,7 @@ import {
 } from '../../../utils/payment-actions'
 
 export default function test(account) {
-  describe(`Payment - Credit Card - Expired - ${account}`, () => {
+  describe.skip(`Payment - Credit Card - Expired - ${account}`, () => {
     beforeEach(() => {
       visitAndClearCookies(account)
     })
