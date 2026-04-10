@@ -1,6 +1,7 @@
 - acronym: checkout-ui-tests
   description: Deploy checkout-ui-tests with DK CICD
   name: checkout-ui-tests
+  referenceId: PLACEHOLDER
   build:
     provider: dkcicd
     pipelines:
@@ -34,3 +35,16 @@
           regex: ^(main)$
       runtime:
         architecture: amd64
+
+    - name: node-ci-v2
+      parameters:
+        sonarProjectName: checkout-ui-tests
+        nodeVersion: 20-bookworm
+      runtime:
+        architecture: amd64
+      when:
+        - event: pull_request
+          source: branch
+        - event: push
+          source: branch
+          regex: main
