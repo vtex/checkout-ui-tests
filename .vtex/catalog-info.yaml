@@ -2,8 +2,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: checkout-ui-tests
-  description: Suite de testes end-to-end do Checkout UI v6 (Cypress + GitHub
-    Actions + Lambda Horus).
+  description: Checkout UI v6 end-to-end test suite (Cypress + GitHub 
+Actions + Lambda Horus).
   tags:
     - javascript
   annotations:
