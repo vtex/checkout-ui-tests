@@ -60,7 +60,7 @@ export { SKUs as SKUS }
 // accordingly. This way all tests will work on either environment.
 export const DELIVERY_TEXT = vtexEnv === 'io' ? 'Entrega em casa' : 'Receber'
 export const PICKUP_TEXT = vtexEnv === 'io' ? 'Retirada no ponto' : 'Retirar'
-export const SCHEDULED_TEXT = 'Agendada'
+export const SCHEDULED_TEXT = 'Agendado'
 
 export const PERU_TEXT = vtexEnv === 'io' ? 'PER' : 'Peru'
 export const ARGENTINA_TEXT = vtexEnv === 'io' ? 'ARG' : 'Argentina'
