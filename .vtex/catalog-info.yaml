@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: checkout-ui-tests
+  description: Checkout UI v6 end-to-end test suite (Cypress + GitHub 
+Actions + Lambda Horus).
+  tags:
+    - javascript
+  annotations:
+    vtex.com/janus-acronym: ""
+    vtex.com/o11y-os-index: ""
+    grafana/dashboard-selector: ""
+    github.com/project-slug: vtex/checkout-ui-tests
+    vtex.com/platform-flow-id: Shopper#4
+    backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: GJC2X40Q
+spec:
+  system: checkout
+  lifecycle: stable
+  owner: te-0001
+  type: worker
+  dependsOn: []
