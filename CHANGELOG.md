@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.17] - 2026-05-29
+
+## [0.19.16] - 2026-05-28
+
+### Fixed
+
+- Scheduled tests
+
 ## [0.19.15] - 2025-05-16
 
 ### Changed
@@ -681,5 +689,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.15...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.17...HEAD
+[0.19.17]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.16...v0.19.17
+[0.19.16]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.15...v0.19.16
 [0.19.15]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.14...v0.19.15

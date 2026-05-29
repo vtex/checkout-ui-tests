@@ -1,7 +1,7 @@
 - acronym: checkout-ui-tests
   description: Deploy checkout-ui-tests with DK CICD
   name: checkout-ui-tests
-  referenceId: PLACEHOLDER
+  referenceId: GJC2X40Q
   build:
     provider: dkcicd
     pipelines:
