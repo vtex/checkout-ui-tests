@@ -18,10 +18,29 @@ export function choosePickupPoint(slaId = '') {
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
+// Selecting a pickup point in the modal is a three-step async dance — the list
+// loads/sorts by distance, clicking a point loads its details panel, and
+// confirming commits the choice via a shippingData update. Without settle time
+// between these steps the confirm can commit the modal's *default* point
+// instead of the one just clicked, intermittently placing the order at the
+// wrong store (e.g. the free Botafogo at 4.2km instead of the asserted
+// Copacabana at 2km). This race is shared by every pickup test that asserts the
+// closest store, so the waits live here in the common helper.
 export function chooseFirstPickupPoint() {
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main', {
+    timeout: 20000,
+  }).should('have.length.greaterThan', 0)
+
   cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').first().click()
 
-  cy.get('.pkpmodal-details-confirm-btn').click()
+  // Let the clicked point's details panel bind before confirming, otherwise the
+  // confirm commits the modal's default point.
+  cy.wait(2000)
+  cy.get('.pkpmodal-details-confirm-btn').should('be.visible').click()
+
+  // Let the pickup selection's shippingData update commit before the flow moves
+  // on (a following recompute can otherwise race the in-flight selection).
+  cy.wait(3000)
 }
 
 function fillPostalCodeOmnishipping(postalCode = '22071060') {
