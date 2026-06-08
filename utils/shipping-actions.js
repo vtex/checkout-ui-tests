@@ -137,31 +137,30 @@ export function chooseDeliveryDate({ account, shouldActivate }) {
 }
 
 export function choosePickupDate({ account, shouldActivate }) {
-  chooseDate(
-    { account, shouldActivate },
-    '#scheduled-delivery-pickup-in-point',
-    'pickup'
-  )
+  chooseDate({ account, shouldActivate }, '#scheduled-delivery-pickup-in-point')
 }
 
-export function chooseDate(
-  { account, shouldActivate },
-  toggleElementId,
-  buttonSpecificId = ''
-) {
+export function chooseDate({ account, shouldActivate }, toggleElementId) {
   if (shouldActivateDatePicker({ account, shouldActivate })) {
     cy.waitAndGet(toggleElementId, 1000).click()
   }
 
-  cy.get('.shp-datepicker-button')
-    .filter(
-      (_, $button) =>
-        $button.id &&
-        $button.id.includes(`scheduled-delivery-choose-${buttonSpecificId}`)
-    )
+  // The datepicker button id is derived from the delivery/pickup point name
+  // (e.g. `scheduled-delivery-choose-Retirada-Botafogo (loja-botafogo)`), so it
+  // can't be matched by a static `pickup`/`delivery` substring. Instead, scope
+  // to the scheduled-delivery group that owns this toggle and click its button.
+  cy.get(toggleElementId)
+    .closest('.vtex-omnishipping-1-x-scheduledDeliveryList')
+    .find('.shp-datepicker-button')
+    .should('be.visible')
     .click()
 
-  cy.get('.react-datepicker__day--keyboard-selected').click()
+  // Pick the first available day — the `--keyboard-selected` day can be disabled.
+  cy.get(
+    '.react-datepicker__day:not(.react-datepicker__day--disabled):not(.react-datepicker__day--outside-month)'
+  )
+    .first()
+    .click()
 }
 
 export function fillPickupAddress(account) {

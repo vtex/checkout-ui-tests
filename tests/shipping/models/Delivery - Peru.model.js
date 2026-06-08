@@ -35,12 +35,31 @@ export default function test(account) {
 
         cy.contains('Avenida Javier Prado Este 2465')
       } else {
-        cy.get('#ship-state').select('Lima')
-        cy.get('#ship-city').select('Lima')
+        cy.get('#ship-state').select('Lima').should('have.value', 'Lima')
+        cy.get('#ship-city').select('Lima').should('have.value', 'Lima')
+        // Selecting the neighborhood triggers the async render of the street/
+        // number fields, which detaches this <select> — so don't chain an
+        // assertion onto it (it would fail "detached from the DOM"). Instead,
+        // wait for street/number to render enabled before typing, mirroring the
+        // reliable Pickup Peru model.
         cy.get('#ship-neighborhood').select('San Borja___150130')
 
-        cy.get('#ship-street').type('Avenida Javier Prado Este')
-        cy.get('#ship-number').type('2465')
+        // #ship-number stays disabled until #ship-street is committed. Type the
+        // street and blur it to fire the change event that enables the number
+        // field, let the resulting re-render settle, then type the number. We do
+        // NOT force the type: forcing into the still-disabled input silently
+        // drops the value, leaving the address incomplete and blocking payment.
+        cy.get('#ship-street')
+          .should('be.enabled')
+          .type('Avenida Javier Prado Este')
+          .blur()
+        cy.wait(1000)
+        cy.get('#ship-number').should('be.enabled').type('2465').blur()
+
+        // Committing the number triggers a shipping recompute (shippingData
+        // POST) that re-renders the page and transiently detaches the "go to
+        // payment" button; wait for it to settle before advancing.
+        cy.wait(3000)
       }
 
       goToPayment()
