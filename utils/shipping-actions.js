@@ -28,12 +28,41 @@ function fillPostalCodeOmnishipping(postalCode = '22071060') {
   cy.get('#ship-postalCode').type(postalCode)
 }
 
+// Wait for the Google Places autocomplete dropdown to render and stabilize.
+// Under load the `.pac-container` can be present-but-hidden (display:none while
+// predictions/quota are pending) and `GetPredictions` may re-render the list
+// mid-interaction, detaching rows. Assert the container is visible and
+// populated, then let it settle before any selection.
+export function waitForPacItems() {
+  cy.get('.pac-container:visible', { timeout: 20000 })
+  cy.get('.pac-item', { timeout: 20000 }).should('have.length.greaterThan', 0)
+  cy.wait(500)
+}
+
+// Robustly pick a Google Places prediction. Waits for the dropdown to
+// stabilize, then selects the item matching `matchText` (case-insensitive
+// substring) or the first item when no text is given. Re-queries between the
+// hover and the click so a late list re-render doesn't act on a detached node;
+// `force` bypasses the transient actionability blocks the dropdown is prone to.
+export function selectPacItem(matchText) {
+  waitForPacItems()
+
+  if (matchText) {
+    const pattern = matchText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const matcher = new RegExp(pattern, 'i')
+
+    cy.contains('.pac-item', matcher).trigger('mouseover', { force: true })
+    cy.contains('.pac-item', matcher).click({ force: true })
+  } else {
+    cy.get('.pac-item').first().trigger('mouseover', { force: true })
+    cy.get('.pac-item').first().click({ force: true })
+  }
+}
+
 function fillGeolocationOmnishipping() {
   cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
 
-  cy.get('.pac-item').first().trigger('mouseover')
-
-  cy.get('.pac-item').first().click()
+  selectPacItem('Saint Roman')
 
   cy.contains('Rua Saint Roman 12')
 }
@@ -45,9 +74,11 @@ function fillAddressInformation() {
 export function fillPickupLocation({ address }) {
   cy.waitAndGet('#pkpmodal-search input', 3000).type(address)
 
-  cy.get('.pac-item').first().trigger('mouseover', { force: true })
-
-  cy.get('.pac-item').first().click({ force: true })
+  // Pick the first prediction (the closest match to the typed address). We
+  // don't text-match here: the typed address and the rendered prediction often
+  // differ (accents, comma placement), so first-item is more robust than
+  // matching for the pickup search box.
+  selectPacItem()
 }
 
 export function fillPickupPostalCode({ postalCode }) {
@@ -99,7 +130,11 @@ export function goToPayment() {
   cy.wait(3000)
 
   cy.get('.btn-go-to-payment').focus()
-  cy.get('.btn-go-to-payment').click()
+  // Re-assert visibility immediately before the click so a late shipping
+  // recompute re-render (which can detach the button) is re-queried and
+  // retried, instead of clicking a stale node and throwing "element detached
+  // from the DOM".
+  cy.get('.btn-go-to-payment').should('be.visible').click()
 }
 
 export function chooseDelivery() {

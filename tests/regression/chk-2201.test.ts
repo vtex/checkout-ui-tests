@@ -3,6 +3,7 @@ import { ACCOUNT_NAMES, SKUS } from '../../utils/constants'
 import {
   fillPickupLocation,
   goToShippingPreviewPickup,
+  waitForPacItems,
 } from '../../utils/shipping-actions'
 
 describe('CHK-2201', () => {
@@ -27,6 +28,9 @@ describe('CHK-2201', () => {
     ).should('be.visible')
     cy.get('.srp-toggle__delivery').click()
     cy.waitAndGet('#ship-addressQuery', 3000).type('Avenida João Wallig')
+    // Keep `.eq(1)` — this test intentionally selects the second prediction;
+    // just wait for the list to stabilize first.
+    waitForPacItems()
     cy.get('.pac-item').eq(1).trigger('mouseover')
     cy.get('.pac-item').eq(1).click()
     cy.waitAndGet('.srp-toggle__pickup', 3000).click()
@@ -60,6 +64,7 @@ describe('CHK-2201', () => {
     cy.waitAndGet('#ship-addressQuery', 3000).type(
       'Rua General Azevedo Pimentel'
     )
+    waitForPacItems()
     cy.get('.pac-item').first().trigger('mouseover')
     cy.get('.pac-item').first().click()
     cy.waitAndGet('.srp-toggle__pickup', 3000).click()

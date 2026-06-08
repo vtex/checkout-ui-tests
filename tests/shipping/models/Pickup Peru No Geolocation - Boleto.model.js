@@ -9,7 +9,7 @@ import {
   goToPayment,
 } from '../../../utils/shipping-actions'
 import { completePurchase, payWithBoleto } from '../../../utils/payment-actions'
-import { PICKUP_TEXT, SKUS } from '../../../utils/constants'
+import { PICKUP_TEXT_ES, SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Pickup Peru No Geolocation - Boleto - ${account}`, () => {
@@ -31,7 +31,19 @@ export default function test(account) {
       cy.get('#ship-city').select('Lima').should('have.value', 'Lima')
       cy.get('#ship-neighborhood').select('Lima')
 
+      // Selecting the neighborhood asynchronously re-renders the pickup points
+      // list; wait for it to populate before choosing so `.first()` doesn't click
+      // a stale/empty entry.
+      cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').should(
+        'be.visible'
+      )
+
       chooseFirstPickupPoint()
+
+      // Confirm the pickup point actually committed before advancing. Without
+      // this gate the order can be placed before the pickup SLA is persisted and
+      // the orderPlaced page renders without PICKUP_TEXT ('Retirar').
+      cy.get('.vtex-omnishipping-1-x-PickupPointName').should('be.visible')
 
       goToPayment()
       payWithBoleto()
@@ -43,7 +55,9 @@ export default function test(account) {
       cy.contains('Fernando Coelho').should('be.visible')
       cy.contains('5112345678').should('be.visible')
       cy.contains('Boleto').should('be.visible')
-      cy.contains(PICKUP_TEXT).should('be.visible')
+      // Peru order → orderPlaced renders in Spanish, so the pickup label is
+      // "Recogida" (PICKUP_TEXT_ES), not the Brazilian-Portuguese "Retirar".
+      cy.contains(PICKUP_TEXT_ES).should('be.visible')
       cy.contains('Loja Peruana').should('be.visible')
       cy.contains('Avenida Paseo de la República S/N').should('be.visible')
       cy.contains('Lima').should('be.visible')

@@ -1,5 +1,6 @@
 import { ACCOUNT_NAMES } from './constants'
 import { waitLoad } from '.'
+import { selectPacItem } from './shipping-actions'
 
 const INVOICE_ACCOUNTS = [
   ACCOUNT_NAMES.INVOICE,
@@ -32,9 +33,7 @@ export function fillInvoiceAddress(account) {
   } else if (account === ACCOUNT_NAMES.GEOLOCATION_INVOICE) {
     cy.waitAndGet('#ship-addressQuery', 1000).type('Rua Saint Roman')
 
-    cy.get('.pac-item').first().trigger('mouseover')
-
-    cy.get('.pac-item').first().click()
+    selectPacItem('Saint Roman')
 
     cy.contains('Rua Saint Roman')
   }

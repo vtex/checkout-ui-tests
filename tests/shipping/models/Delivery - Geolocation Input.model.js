@@ -5,7 +5,11 @@ import {
   fillProfile,
 } from '../../../utils/profile-actions'
 import { ARGENTINA_TEXT, SKUS } from '../../../utils/constants'
-import { selectCountry, goToPayment } from '../../../utils/shipping-actions'
+import {
+  selectCountry,
+  goToPayment,
+  selectPacItem,
+} from '../../../utils/shipping-actions'
 import {
   payWithBoleto,
   completePurchase,
@@ -30,9 +34,7 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Hipólito Irigoyen 2255, Santa Fé')
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
-      cy.get('.pac-item').first().click()
+      selectPacItem('Irigoyen')
 
       cy.contains('Hipólito Irigoyen 2255')
 
@@ -49,9 +51,7 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Hipólito Irigoyen 2255, Santa Fé')
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
-      cy.get('.pac-item').first().click()
+      selectPacItem('Irigoyen')
 
       goToPayment()
       payWithBoleto()

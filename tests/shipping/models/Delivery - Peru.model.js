@@ -5,7 +5,11 @@ import {
   fillProfile,
 } from '../../../utils/profile-actions'
 import { SKUS, ACCOUNT_NAMES, PERU_TEXT } from '../../../utils/constants'
-import { selectCountry, goToPayment } from '../../../utils/shipping-actions'
+import {
+  selectCountry,
+  goToPayment,
+  selectPacItem,
+} from '../../../utils/shipping-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 
 export default function test(account) {
@@ -27,13 +31,19 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.GEOLOCATION) {
         cy.get('#ship-addressQuery').type('Av. Javier Prado Este, 2465')
 
-        cy.get('.pac-item').first().trigger('mouseover')
+        selectPacItem('Javier Prado')
 
-        cy.get('.pac-item').first().click()
-
-        cy.get('#ship-receiverName').type('{selectAll}{backspace}Checkout Team')
+        cy.get('#ship-receiverName')
+          .type('{selectAll}{backspace}Checkout Team')
+          .blur()
 
         cy.contains('Avenida Javier Prado Este 2465')
+
+        // Committing the receiver name / geocoded address triggers a shipping
+        // recompute (shippingData POST) that re-renders and detaches the
+        // go-to-payment button; blur now and let it settle before advancing
+        // (mirrors the non-geo branch and the No number model).
+        cy.wait(3000)
       } else {
         cy.get('#ship-state').select('Lima').should('have.value', 'Lima')
         cy.get('#ship-city').select('Lima').should('have.value', 'Lima')
