@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.18] - 2026-06-09
+
 ### Fixed
 
 - Stabilize flaky checkout UI tests
@@ -700,7 +702,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
 
 
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.17...HEAD
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.18...HEAD
+[0.19.18]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.17...v0.19.18
 [0.19.17]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.16...v0.19.17
 [0.19.16]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.15...v0.19.16
 [0.19.15]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.14...v0.19.15
