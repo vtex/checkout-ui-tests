@@ -9,6 +9,7 @@ import {
   selectCountry,
   goToPayment,
   interceptAutoCompleteResponse,
+  selectPacItem,
 } from '../../../utils/shipping-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 
@@ -30,8 +31,8 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Castro Barros 523, Córdoba, Argentina')
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
+      // The selected prediction's details are stubbed below, so any item works;
+      // register the stub first, then click via the robust pac-item helper.
       interceptAutoCompleteResponse({
         address_components: [
           {
@@ -88,7 +89,7 @@ export default function test(account) {
         },
       })
 
-      cy.get('.pac-item').first().click()
+      selectPacItem()
 
       cy.contains('Avenida Castro Barros 523')
 

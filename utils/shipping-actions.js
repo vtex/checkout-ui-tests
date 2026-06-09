@@ -18,22 +18,70 @@ export function choosePickupPoint(slaId = '') {
   cy.get('.pkpmodal-details-confirm-btn').click()
 }
 
+// Selecting a pickup point in the modal is a three-step async dance — the list
+// loads/sorts by distance, clicking a point loads its details panel, and
+// confirming commits the choice via a shippingData update. Without settle time
+// between these steps the confirm can commit the modal's *default* point
+// instead of the one just clicked, intermittently placing the order at the
+// wrong store (e.g. the free Botafogo at 4.2km instead of the asserted
+// Copacabana at 2km). This race is shared by every pickup test that asserts the
+// closest store, so the waits live here in the common helper.
 export function chooseFirstPickupPoint() {
+  cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main', {
+    timeout: 20000,
+  }).should('have.length.greaterThan', 0)
+
   cy.get('.pkpmodal-points-list .pkpmodal-pickup-point-main').first().click()
 
-  cy.get('.pkpmodal-details-confirm-btn').click()
+  // Let the clicked point's details panel bind before confirming, otherwise the
+  // confirm commits the modal's default point.
+  cy.wait(2000)
+  cy.get('.pkpmodal-details-confirm-btn').should('be.visible').click()
+
+  // Let the pickup selection's shippingData update commit before the flow moves
+  // on (a following recompute can otherwise race the in-flight selection).
+  cy.wait(3000)
 }
 
 function fillPostalCodeOmnishipping(postalCode = '22071060') {
   cy.get('#ship-postalCode').type(postalCode)
 }
 
+// Wait for the Google Places autocomplete dropdown to render and stabilize.
+// Under load the `.pac-container` can be present-but-hidden (display:none while
+// predictions/quota are pending) and `GetPredictions` may re-render the list
+// mid-interaction, detaching rows. Assert the container is visible and
+// populated, then let it settle before any selection.
+export function waitForPacItems() {
+  cy.get('.pac-container:visible', { timeout: 20000 })
+  cy.get('.pac-item', { timeout: 20000 }).should('have.length.greaterThan', 0)
+  cy.wait(500)
+}
+
+// Robustly pick a Google Places prediction. Waits for the dropdown to
+// stabilize, then selects the item matching `matchText` (case-insensitive
+// substring) or the first item when no text is given. Re-queries between the
+// hover and the click so a late list re-render doesn't act on a detached node;
+// `force` bypasses the transient actionability blocks the dropdown is prone to.
+export function selectPacItem(matchText) {
+  waitForPacItems()
+
+  if (matchText) {
+    const pattern = matchText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const matcher = new RegExp(pattern, 'i')
+
+    cy.contains('.pac-item', matcher).trigger('mouseover', { force: true })
+    cy.contains('.pac-item', matcher).click({ force: true })
+  } else {
+    cy.get('.pac-item').first().trigger('mouseover', { force: true })
+    cy.get('.pac-item').first().click({ force: true })
+  }
+}
+
 function fillGeolocationOmnishipping() {
   cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
 
-  cy.get('.pac-item').first().trigger('mouseover')
-
-  cy.get('.pac-item').first().click()
+  selectPacItem('Saint Roman')
 
   cy.contains('Rua Saint Roman 12')
 }
@@ -45,9 +93,11 @@ function fillAddressInformation() {
 export function fillPickupLocation({ address }) {
   cy.waitAndGet('#pkpmodal-search input', 3000).type(address)
 
-  cy.get('.pac-item').first().trigger('mouseover', { force: true })
-
-  cy.get('.pac-item').first().click({ force: true })
+  // Pick the first prediction (the closest match to the typed address). We
+  // don't text-match here: the typed address and the rendered prediction often
+  // differ (accents, comma placement), so first-item is more robust than
+  // matching for the pickup search box.
+  selectPacItem()
 }
 
 export function fillPickupPostalCode({ postalCode }) {
@@ -99,7 +149,11 @@ export function goToPayment() {
   cy.wait(3000)
 
   cy.get('.btn-go-to-payment').focus()
-  cy.get('.btn-go-to-payment').click()
+  // Re-assert visibility immediately before the click so a late shipping
+  // recompute re-render (which can detach the button) is re-queried and
+  // retried, instead of clicking a stale node and throwing "element detached
+  // from the DOM".
+  cy.get('.btn-go-to-payment').should('be.visible').click()
 }
 
 export function chooseDelivery() {
@@ -137,31 +191,30 @@ export function chooseDeliveryDate({ account, shouldActivate }) {
 }
 
 export function choosePickupDate({ account, shouldActivate }) {
-  chooseDate(
-    { account, shouldActivate },
-    '#scheduled-delivery-pickup-in-point',
-    'pickup'
-  )
+  chooseDate({ account, shouldActivate }, '#scheduled-delivery-pickup-in-point')
 }
 
-export function chooseDate(
-  { account, shouldActivate },
-  toggleElementId,
-  buttonSpecificId = ''
-) {
+export function chooseDate({ account, shouldActivate }, toggleElementId) {
   if (shouldActivateDatePicker({ account, shouldActivate })) {
     cy.waitAndGet(toggleElementId, 1000).click()
   }
 
-  cy.get('.shp-datepicker-button')
-    .filter(
-      (_, $button) =>
-        $button.id &&
-        $button.id.includes(`scheduled-delivery-choose-${buttonSpecificId}`)
-    )
+  // The datepicker button id is derived from the delivery/pickup point name
+  // (e.g. `scheduled-delivery-choose-Retirada-Botafogo (loja-botafogo)`), so it
+  // can't be matched by a static `pickup`/`delivery` substring. Instead, scope
+  // to the scheduled-delivery group that owns this toggle and click its button.
+  cy.get(toggleElementId)
+    .closest('.vtex-omnishipping-1-x-scheduledDeliveryList')
+    .find('.shp-datepicker-button')
+    .should('be.visible')
     .click()
 
-  cy.get('.react-datepicker__day--keyboard-selected').click()
+  // Pick the first available day — the `--keyboard-selected` day can be disabled.
+  cy.get(
+    '.react-datepicker__day:not(.react-datepicker__day--disabled):not(.react-datepicker__day--outside-month)'
+  )
+    .first()
+    .click()
 }
 
 export function fillPickupAddress(account) {

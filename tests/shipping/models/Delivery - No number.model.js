@@ -4,7 +4,7 @@ import {
   getRandomEmail,
   fillProfile,
 } from '../../../utils/profile-actions'
-import { goToPayment } from '../../../utils/shipping-actions'
+import { goToPayment, selectPacItem } from '../../../utils/shipping-actions'
 import { completePurchase, payWithBoleto } from '../../../utils/payment-actions'
 import { SKUS, DELIVERY_TEXT } from '../../../utils/constants'
 
@@ -23,9 +23,7 @@ export default function test(account) {
 
       cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman')
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
-      cy.get('.pac-item').first().click()
+      selectPacItem('Saint Roman')
 
       cy.contains('Rua Saint Roman')
 
@@ -33,7 +31,12 @@ export default function test(account) {
 
       cy.contains('Campo obrigatório.')
 
-      cy.get('#ship-number').type(12)
+      // Committing the number triggers a shipping recompute (shippingData POST)
+      // that re-renders and transiently detaches the go-to-payment button; blur
+      // to fire it now and let it settle before advancing (mirrors the Peru
+      // delivery model).
+      cy.get('#ship-number').type(12).blur()
+      cy.wait(3000)
 
       goToPayment()
 

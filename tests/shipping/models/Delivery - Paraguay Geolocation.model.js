@@ -9,6 +9,7 @@ import {
   selectCountry,
   goToPayment,
   interceptAutoCompleteResponse,
+  selectPacItem,
 } from '../../../utils/shipping-actions'
 import { payWithBoleto, completePurchase } from '../../../utils/payment-actions'
 
@@ -30,8 +31,8 @@ export default function test(account) {
 
       cy.get('#ship-addressQuery').type('Avenida Brasilia')
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
+      // The selected prediction's details are stubbed below, so any item works;
+      // register the stub first, then click via the robust pac-item helper.
       interceptAutoCompleteResponse({
         address_components: [
           {
@@ -78,12 +79,21 @@ export default function test(account) {
         },
       })
 
-      cy.get('.pac-item').first().click()
+      selectPacItem()
 
       cy.contains('Avenida Brasilia')
 
-      cy.get('#ship-number').type('1189')
-      cy.get('#ship-receiverName').type('{selectAll}{backspace}Checkout Team')
+      // Committing the number triggers a shipping recompute that transiently
+      // disables the sibling fields; blur it and let the recompute fully settle
+      // before touching the receiver-name field (otherwise it re-disables
+      // mid-type), then settle again before advancing.
+      cy.get('#ship-number').type('1189').blur()
+      cy.wait(3000)
+      cy.get('#ship-receiverName')
+        .should('be.enabled')
+        .type('{selectAll}{backspace}Checkout Team')
+        .blur()
+      cy.wait(3000)
 
       goToPayment()
       payWithBoleto()

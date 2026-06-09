@@ -8,6 +8,7 @@ import {
   goToPayment,
   selectCountry,
   interceptAutoCompleteResponse,
+  selectPacItem,
 } from '../../../utils/shipping-actions'
 import {
   completePurchase,
@@ -36,8 +37,8 @@ export default function test(account) {
         'Corrientes 240, Las Varillas, Córdoba, Argentina'
       )
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
+      // The selected prediction's details are stubbed below, so any item works;
+      // register the stub first, then click via the robust pac-item helper.
       interceptAutoCompleteResponse({
         address_components: [
           {
@@ -89,7 +90,7 @@ export default function test(account) {
         },
       })
 
-      cy.get('.pac-item').first().click()
+      selectPacItem()
 
       cy.contains('Corrientes 240')
       cy.contains('San Justo, Córdoba')

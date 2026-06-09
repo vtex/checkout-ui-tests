@@ -5,7 +5,7 @@ import {
   getRandomEmail,
   fillProfile,
 } from '../../utils/profile-actions'
-import { selectCountry } from '../../utils/shipping-actions'
+import { selectCountry, selectPacItem } from '../../utils/shipping-actions'
 
 describe('CHK-1969', () => {
   describe(`${Accounts.GEOLOCATION}`, () => {
@@ -29,9 +29,7 @@ describe('CHK-1969', () => {
 
       cy.waitAndGet('#ship-addressQuery', 3000).type('42000 Saint-Étienne')
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
-      cy.get('.pac-item').first().click()
+      selectPacItem()
 
       cy.wait(2000)
 

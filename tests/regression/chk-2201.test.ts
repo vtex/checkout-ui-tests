@@ -3,6 +3,7 @@ import { ACCOUNT_NAMES, SKUS } from '../../utils/constants'
 import {
   fillPickupLocation,
   goToShippingPreviewPickup,
+  waitForPacItems,
 } from '../../utils/shipping-actions'
 
 describe('CHK-2201', () => {
@@ -26,7 +27,14 @@ describe('CHK-2201', () => {
       'Retirar 1 item em Loja em Copacabana no Rio de Janeiro'
     ).should('be.visible')
     cy.get('.srp-toggle__delivery').click()
+    // With no delivery address set yet, the preview renders the result with a
+    // clickable address link ("null") instead of an open input. Click it to
+    // open the address editor, which renders #ship-addressQuery.
+    cy.get('.srp-address-title').should('be.visible').click()
     cy.waitAndGet('#ship-addressQuery', 3000).type('Avenida João Wallig')
+    // Keep `.eq(1)` — this test intentionally selects the second prediction;
+    // just wait for the list to stabilize first.
+    waitForPacItems()
     cy.get('.pac-item').eq(1).trigger('mouseover')
     cy.get('.pac-item').eq(1).click()
     cy.waitAndGet('.srp-toggle__pickup', 3000).click()
@@ -57,9 +65,12 @@ describe('CHK-2201', () => {
       'Retirar 1 item em Loja em Copacabana no Rio de Janeiro'
     ).should('be.visible')
     cy.get('.srp-toggle__delivery').click()
+    // See the note in the first test: open the address editor before typing.
+    cy.get('.srp-address-title').should('be.visible').click()
     cy.waitAndGet('#ship-addressQuery', 3000).type(
       'Rua General Azevedo Pimentel'
     )
+    waitForPacItems()
     cy.get('.pac-item').first().trigger('mouseover')
     cy.get('.pac-item').first().click()
     cy.waitAndGet('.srp-toggle__pickup', 3000).click()

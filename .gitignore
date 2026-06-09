@@ -3,6 +3,7 @@
 cypress/videos
 cypress/screenshots
 cypress/results
+.playwright-mcp
 .DS_Store
 .env
 output.html

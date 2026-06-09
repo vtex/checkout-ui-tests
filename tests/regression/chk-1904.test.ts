@@ -3,7 +3,10 @@ import {
   getRandomEmail,
   getSecondPurchaseEmail,
 } from '../../utils/profile-actions'
-import { interceptAutoCompleteResponse } from '../../utils/shipping-actions'
+import {
+  interceptAutoCompleteResponse,
+  selectPacItem,
+} from '../../utils/shipping-actions'
 
 describe('CHK-1904', () => {
   describe(`${Accounts.NO_LEAN}`, () => {
@@ -133,14 +136,15 @@ describe('CHK-1904', () => {
         },
       })
 
-      cy.get('.pac-item').first().trigger('mouseover')
-
+      // Register the shippingData intercept before selecting — the pac-item
+      // click triggers GetPlaceDetails (stubbed) which fires the shippingData
+      // POST we wait on below.
       cy.intercept({
         url: '/api/checkout/**/shippingData',
         times: 1,
       }).as('shippingDataRequest')
 
-      cy.get('.pac-item').first().click()
+      selectPacItem()
 
       cy.wait('@googleMapsAutocomplete')
 

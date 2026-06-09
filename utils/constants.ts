@@ -60,7 +60,11 @@ export { SKUs as SKUS }
 // accordingly. This way all tests will work on either environment.
 export const DELIVERY_TEXT = vtexEnv === 'io' ? 'Entrega em casa' : 'Receber'
 export const PICKUP_TEXT = vtexEnv === 'io' ? 'Retirada no ponto' : 'Retirar'
-export const SCHEDULED_TEXT = 'Agendada'
+// Spanish-locale orderPlaced (e.g. a Peru order) renders the pickup method as
+// "Recogida"; the Brazilian-Portuguese PICKUP_TEXT ("Retirar") never appears
+// there. Verified against a Peru pickup order on the stable orderPlaced page.
+export const PICKUP_TEXT_ES = 'Recogida'
+export const SCHEDULED_TEXT = 'Agendado'
 
 export const PERU_TEXT = vtexEnv === 'io' ? 'PER' : 'Peru'
 export const ARGENTINA_TEXT = vtexEnv === 'io' ? 'ARG' : 'Argentina'

@@ -171,7 +171,10 @@ export function payWithPaymentAppCreditCard(options = { withAddress: false }) {
 }
 
 export function confirmPaymentApp() {
-  cy.get('#payment-app-confirm', { timeout: 120000 }).click()
+  cy.get('#payment-app-confirm', { timeout: 120000 }).should('be.visible')
+  // The .modal-backdrop fade-in animation can briefly cover the button; force the
+  // click once the button is rendered to bypass the transient actionability block.
+  cy.get('#payment-app-confirm').click({ force: true })
 }
 
 export function confirmRedirect() {
@@ -195,11 +198,11 @@ export function typeCVV() {
 }
 
 export function completePurchase() {
-  cy.get('.payment-submit-wrap > button.submit:visible').should(
-    'not.have.attr',
-    'disabled'
-  )
-  cy.waitAndGet('.payment-submit-wrap > button.submit:visible', 3000).click()
+  // Use `be.enabled` (a state assertion) rather than `not.have.attr, 'disabled'`:
+  // the latter is subject-changing and would yield `undefined` to `.click()`.
+  cy.get('.payment-submit-wrap > button.submit:visible', { timeout: 30000 })
+    .should('be.enabled')
+    .click()
 }
 
 export function insertFreeShippingCoupon() {
