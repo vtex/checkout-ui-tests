@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Stabilize flaky checkout UI tests
+- Harden Google Places pickup point selection and Peru pickup locale text
+- Fix pickup-point selection that picked the wrong store on the order
+- Stabilize CHK-2201 and Geolocation Input / Boleto checkout tests
+
+### Changed
+
+- Quarantine geolocation "validate form fields after error" test (pre-existing app bug)
+
 ## [0.19.17] - 2026-05-29
 
 ## [0.19.16] - 2026-05-28
