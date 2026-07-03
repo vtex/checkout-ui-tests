@@ -21,7 +21,7 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         checkShippingPreviewResult([{ name: 'PAC' }])
       } else {
-        checkShippingPreviewResult([{ id: SLA_IDS.FASTEST }])
+        checkShippingPreviewResult([{ id: SLA_IDS.CHEAPEST }])
       }
     })
   })

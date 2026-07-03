@@ -1,4 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
+import { TIMEOUTS } from '../../../utils/timeouts'
 import {
   fillEmail,
   getRandomEmail,
@@ -12,6 +13,7 @@ import {
 import {
   completePurchase,
   payWithCreditCard,
+  fillBillingAddress,
 } from '../../../utils/payment-actions'
 import {
   goToInvoiceAddress,
@@ -45,10 +47,29 @@ export default function test(account) {
       goToInvoiceAddress(account)
       fillInvoiceAddress(account)
       goToPayment()
-      payWithCreditCard({ withAddress: account !== ACCOUNT_NAMES.INVOICE })
+      payWithCreditCard()
+
+      // For pickup-only orders there is no shipping address to prefill the
+      // billing address, so it must be entered manually: select the country and
+      // fill street/neighborhood/number. INVOICE accounts inherit billing from
+      // the invoice address, so they skip this step.
+      if (account !== ACCOUNT_NAMES.INVOICE) {
+        fillBillingAddress({
+          id: 0,
+          country: 'Brasil',
+          postalCode: '22071060',
+          street: 'Rua Saint Roman',
+          neighborhood: 'Copacabana',
+          number: '12',
+        })
+      }
+
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
+      cy.url({ timeout: TIMEOUTS.PAYMENT_PROCESSING }).should(
+        'contain',
+        '/orderPlaced'
+      )
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')

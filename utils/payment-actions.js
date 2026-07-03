@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import { baseConfig, waitLoad } from '.'
 import { ACCOUNT_NAMES, CHECKOUT_ENDPOINT, getBaseURL } from './constants'
+import { TIMEOUTS } from './timeouts'
 
 export function payWithBoleto() {
   cy.get('#payment-group-bankInvoicePaymentGroup:visible').click()
@@ -40,18 +41,24 @@ export function selectWHGooglePay(account) {
     .its('response')
     .then((response) => {
       expect(response).to.have.property('statusCode', 200)
-      expect(response.body).to.have.property('allowedAuthMethods')
-      expect(response.body).to.have.property('merchantId')
-      expect(response.body).to.have.property('merchantName')
-      expect(response.body).to.have.property('merchantOrigin')
-      expect(response.body).to.have.property('authJwt')
+      expect(response?.body).to.have.property('allowedAuthMethods')
+      expect(response?.body).to.have.property('merchantId')
+      expect(response?.body).to.have.property('merchantName')
+      expect(response?.body).to.have.property('merchantOrigin')
+      expect(response?.body).to.have.property('authJwt')
     })
 }
 
+/**
+ * @param {JQuery<HTMLIFrameElement>} $iframe
+ */
 export function getIframeBody($iframe) {
   return $iframe.contents().find('body')
 }
 
+/**
+ * @param {($iframe: JQuery<HTMLIFrameElement>) => void} callback
+ */
 export function queryIframe(callback) {
   cy.waitAndGet(
     '#iframe-placeholder-creditCardPaymentGroup > iframe',
@@ -63,6 +70,7 @@ export function fillCreditCardInfo(
   options = {
     withAddress: false,
     id: '0',
+    country: 'BRA',
   }
 ) {
   cy.wait(3000)
@@ -102,15 +110,39 @@ export function fillCreditCardInfo(
       return
     }
 
-    fillBillingAddress({ id: options.id, postalCode: '22071060', number: '12' })
+    fillBillingAddress({
+      id: options.id,
+      country: options.country || 'BRA',
+      postalCode: '22071060',
+      number: '12',
+    })
   })
 }
 
+/**
+ * @param {{
+ *   id?: string
+ *   country?: string
+ *   postalCode?: string
+ *   street?: string
+ *   neighborhood?: string
+ *   number?: string
+ *   city?: string
+ * }} options
+ */
 export function fillBillingAddress(options) {
   queryIframe(($iframe) => {
     const $body = getIframeBody($iframe)
 
     const id = options.id || '0'
+
+    // The country selector re-renders the billing form for the chosen locale, so
+    // it must be set before the remaining fields are typed. Needed for
+    // pickup-only orders, where there is no shipping address to prefill billing.
+    if (options.country !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-country-${id}`)
+        .select(options.country)
 
     // We type with force:true because of https://github.com/cypress-io/cypress/issues/5830
     if (options.postalCode !== undefined)
@@ -118,15 +150,20 @@ export function fillBillingAddress(options) {
         .find(`#payment-billing-address-postalCode-${id}`)
         .type(options.postalCode, { force: true })
 
-    if (options.number !== undefined)
-      cy.wrap($body)
-        .find(`#payment-billing-address-number-${id}`)
-        .type(options.number, { force: true })
-
     if (options.street !== undefined)
       cy.wrap($body)
         .find(`#payment-billing-address-street-${id}`)
         .type(options.street, { force: true })
+
+    if (options.neighborhood !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-neighborhood-${id}`)
+        .type(options.neighborhood, { force: true })
+
+    if (options.number !== undefined)
+      cy.wrap($body)
+        .find(`#payment-billing-address-number-${id}`)
+        .type(options.number, { force: true })
 
     if (options.city !== undefined)
       cy.wrap($body)
@@ -171,7 +208,9 @@ export function payWithPaymentAppCreditCard(options = { withAddress: false }) {
 }
 
 export function confirmPaymentApp() {
-  cy.get('#payment-app-confirm', { timeout: 120000 }).should('be.visible')
+  cy.get('#payment-app-confirm', {
+    timeout: TIMEOUTS.PAYMENT_PROCESSING,
+  }).should('be.visible')
   // The .modal-backdrop fade-in animation can briefly cover the button; force the
   // click once the button is rendered to bypass the transient actionability block.
   cy.get('#payment-app-confirm').click({ force: true })
@@ -200,7 +239,9 @@ export function typeCVV() {
 export function completePurchase() {
   // Use `be.enabled` (a state assertion) rather than `not.have.attr, 'disabled'`:
   // the latter is subject-changing and would yield `undefined` to `.click()`.
-  cy.get('.payment-submit-wrap > button.submit:visible', { timeout: 30000 })
+  cy.get('.payment-submit-wrap > button.submit:visible', {
+    timeout: TIMEOUTS.SUBMIT_BUTTON,
+  })
     .should('be.enabled')
     .click()
 }

@@ -25,9 +25,9 @@ export default function test(account) {
       } else {
         checkShippingPreviewResult([{ name: 'Mais econômica' }])
 
-        cy.get('.srp-delivery-select').select('FASTEST')
+        cy.get('.srp-delivery-select').select('CHEAPEST')
 
-        checkShippingPreviewResult([{ name: 'Mais rápida' }])
+        checkShippingPreviewResult([{ name: 'Em até 7 dias úteis' }])
       }
     })
   })

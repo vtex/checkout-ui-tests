@@ -6,6 +6,7 @@ import {
   DEFAULT_SALES_CHANNEL,
 } from './constants'
 import { vtexEnv, workspace, appKey, appToken } from './environment'
+import { TIMEOUTS } from './timeouts'
 
 export const baseConfig = {
   accountName: Accounts.DEFAULT,
@@ -79,7 +80,7 @@ export function setup({
     throw error
   })
 
-  cy.wait('@getRuntimeContext', { timeout: 60000 })
+  cy.wait('@getRuntimeContext', { timeout: TIMEOUTS.RUNTIME_CONTEXT })
     .its('response.statusCode')
     .should('eq', 200)
 

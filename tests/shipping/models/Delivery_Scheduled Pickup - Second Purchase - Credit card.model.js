@@ -1,4 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
+import { TIMEOUTS } from '../../../utils/timeouts'
 import {
   confirmSecondPurchase,
   fillEmail,
@@ -47,7 +48,10 @@ export default function test(account) {
       typeCVV()
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
+      cy.url({ timeout: TIMEOUTS.PAYMENT_PROCESSING }).should(
+        'contain',
+        '/orderPlaced'
+      )
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains(PICKUP_TEXT).should('be.visible')
@@ -61,7 +65,7 @@ export default function test(account) {
         cy.contains('Rua*** ***man ***').should('be.visible')
       }
 
-      cy.contains('PAC').should('be.visible')
+      cy.contains('Motoboy').should('be.visible')
     })
   })
 }
