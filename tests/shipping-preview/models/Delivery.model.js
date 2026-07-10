@@ -23,10 +23,10 @@ export default function test(account) {
 
         checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
-        checkShippingPreviewResult([{ name: 'cheapest' }])
-
-        cy.get('.srp-delivery-select').select('CHEAPEST')
-
+        // At this address the lean options aggregate to a single SLA (cheapest ===
+        // fastest), so the preview renders the `justOneOption` variant (ResultRadio),
+        // which shows the delivery estimate and has no `.srp-delivery-select`
+        // dropdown. Assert that estimate; there is no lean option to select.
         checkShippingPreviewResult([{ name: 'Em até 7 dias úteis' }])
       }
     })

@@ -30,6 +30,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dead-code (skipped) payment models and their wrappers: `Payment - Credit card - Redirect` (5 wrappers), `Payment - Promissory - Redirect` (5 wrappers), `Payment - Google Pay` (1 wrapper), `Payment - Credit card - Expired` (5 wrappers).
 - Duplicated fully-skipped shipping/shipping-preview models and their wrappers: `Scheduled Delivery` (shipping-preview, 5 wrappers), `Scheduled Delivery_Scheduled Pickup` (shipping-preview, 5 wrappers), `Scheduled Delivery_Scheduled Pickup - Credit card` (shipping, 5 wrappers).
 
+### Fixed
+
+- Fill the full billing address (Brasil + street/neighborhood/number) for the
+  pickup-only credit-card model on non-invoice accounts, so the flow reaches
+  order placement; invoice accounts still inherit billing from the invoice
+  address.
+- Re-submit reliably in the post-payment-error "validate form fields after
+  error" test via an opt-in `completePurchase({ force })` that bypasses the
+  briefly-gated submit button; the strict visible+enabled check remains the
+  default for all other callers.
+- Correct the shipping-preview lean-account assertions that expected a literal
+  `cheapest`/`fastest` `data-testid`. Single-carrier lean views render a visible
+  carrier name or delivery estimate instead, so those scenarios now assert the
+  rendered label (`Delivery` / `Delivery - Second Purchase` → estimate;
+  `Delivery_Scheduled Delivery`, `Delivery_Scheduled Delivery and Delivery` →
+  `Expressa`; `Delivery_Scheduled Delivery_Pickup`,
+  `Delivery_Scheduled Delivery_Scheduled Pickup` → `PAC`;
+  `Delivery - Same Price Packages` → `Motoboy`).
+
 ## [0.19.18] - 2026-06-09
 
 ### Fixed

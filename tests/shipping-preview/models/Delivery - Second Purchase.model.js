@@ -26,7 +26,11 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
-        checkShippingPreviewResult([{ name: 'cheapest' }])
+        // On the second purchase the saved address resolves to a single SLA, so the
+        // preview renders the `justOneOption` variant (ResultRadio) whose visible
+        // text is the delivery estimate — not the lean "Mais econômica" title. Assert
+        // that estimate instead of the (never-rendered) "cheapest" label.
+        checkShippingPreviewResult([{ name: 'Em até 7 dias úteis' }])
       }
     })
   })

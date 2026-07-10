@@ -18,7 +18,14 @@ export default function test(account) {
       fillShippingPreviewDelivery(account)
       insertFreeShippingCoupon()
 
-      if (account === ACCOUNT_NAMES.NO_LEAN) {
+      // vtexgame1clean (CLEAN_NO_MAPS) renders the legacy carrier dropdown for
+      // this delivery item rather than the lean "cheapest" radio, so it emits no
+      // cheapest/fastest data-testid. Assert its visible carrier name, like
+      // no-lean.
+      if (
+        account === ACCOUNT_NAMES.NO_LEAN ||
+        account === ACCOUNT_NAMES.CLEAN_NO_MAPS
+      ) {
         checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
         checkShippingPreviewResult([{ id: SLA_IDS.CHEAPEST }])
