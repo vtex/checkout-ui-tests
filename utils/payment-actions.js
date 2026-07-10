@@ -236,7 +236,26 @@ export function typeCVV() {
   })
 }
 
-export function completePurchase() {
+/**
+ * Submits the order.
+ *
+ * @param {{ force?: boolean }} [options] When `force` is true, clicks the submit
+ *   button bypassing the visible/enabled actionability checks. Use for
+ *   error-recovery flows that re-submit an intentionally-invalid form to trigger
+ *   field validation, where the button is briefly hidden/disabled and the strict
+ *   checks would otherwise time out.
+ */
+export function completePurchase({ force = false } = {}) {
+  if (force) {
+    cy.get('.payment-submit-wrap > button.submit', {
+      timeout: TIMEOUTS.SUBMIT_BUTTON,
+    })
+      .first()
+      .click({ force: true })
+
+    return
+  }
+
   // Use `be.enabled` (a state assertion) rather than `not.have.attr, 'disabled'`:
   // the latter is subject-changing and would yield `undefined` to `.click()`.
   cy.get('.payment-submit-wrap > button.submit:visible', {

@@ -24,9 +24,9 @@ export default function test(account) {
       goBackToCart()
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        checkShippingPreviewResult([{ name: 'PAC' }])
+        checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
-        checkShippingPreviewResult([{ name: 'Mais econômica' }])
+        checkShippingPreviewResult([{ name: 'cheapest' }])
       }
     })
   })

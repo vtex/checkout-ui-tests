@@ -23,7 +23,7 @@ export default function test(account) {
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({ name: 'Expressa' })
       } else {
-        selectors.push({ id: SLA_IDS.CHEAPEST })
+        selectors.push({ id: SLA_IDS.FASTEST })
       }
 
       checkShippingPreviewResult(selectors)

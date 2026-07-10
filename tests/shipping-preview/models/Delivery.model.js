@@ -17,13 +17,13 @@ export default function test(account) {
       fillShippingPreviewDelivery(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        checkShippingPreviewResult([{ name: 'PAC' }])
+        checkShippingPreviewResult([{ name: 'Motoboy' }])
 
         cy.get('.srp-delivery-select').select('Motoboy')
 
         checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
-        checkShippingPreviewResult([{ name: 'Mais econômica' }])
+        checkShippingPreviewResult([{ name: 'cheapest' }])
 
         cy.get('.srp-delivery-select').select('CHEAPEST')
 

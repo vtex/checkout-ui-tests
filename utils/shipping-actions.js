@@ -79,7 +79,7 @@ export function selectPacItem(matchText) {
 }
 
 function fillGeolocationOmnishipping() {
-  cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
+  cy.waitAndGet('#ship-addressQuery', 4000).type('Rua Saint Roman 12')
 
   selectPacItem('Saint Roman')
 

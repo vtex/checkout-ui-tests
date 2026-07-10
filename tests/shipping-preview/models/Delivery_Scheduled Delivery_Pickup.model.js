@@ -28,7 +28,7 @@ export default function test(account) {
       fillShippingPreviewPickupAddress(account)
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        selectors.push({ name: 'PAC' })
+        selectors.push({ name: 'Motoboy' })
       } else {
         selectors.push({ id: SLA_IDS.CHEAPEST })
       }

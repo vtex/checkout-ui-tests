@@ -118,7 +118,10 @@ export default function test(account) {
         cy.wrap(body).find('#creditCardpayment-card-0Code').clear()
       })
 
-      completePurchase()
+      // Re-submit the now-invalid form to trigger field validation. After the
+      // declined-payment error the submit button is gated (hidden/disabled), so
+      // force the click instead of waiting for the strict visible/enabled state.
+      completePurchase({ force: true })
 
       queryIframe(($iframe) => {
         const body = getIframeBody($iframe)

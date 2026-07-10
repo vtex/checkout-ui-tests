@@ -31,7 +31,7 @@ export function fillInvoiceAddress(account) {
       .type('22071060')
       .should('have.value', '22071-060')
   } else if (account === ACCOUNT_NAMES.GEOLOCATION_INVOICE) {
-    cy.waitAndGet('#ship-addressQuery', 1000).type('Rua Saint Roman')
+    cy.waitAndGet('#ship-addressQuery', 4000).type('Rua Saint Roman')
 
     selectPacItem('Saint Roman')
 

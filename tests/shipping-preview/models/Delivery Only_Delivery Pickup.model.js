@@ -25,9 +25,9 @@ export default function test(account) {
 
       fillShippingPreviewDelivery(account)
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        selectors.push({ name: 'PAC' })
+        selectors.push({ name: 'Motoboy' })
       } else {
-        selectors.push({ name: 'Mais econômica' })
+        selectors.push({ name: 'Em até 7 dias úteis' })
       }
 
       checkShippingPreviewResult(selectors)

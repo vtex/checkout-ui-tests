@@ -19,7 +19,7 @@ export default function test(account) {
       insertFreeShippingCoupon()
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
-        checkShippingPreviewResult([{ name: 'PAC' }])
+        checkShippingPreviewResult([{ name: 'Motoboy' }])
       } else {
         checkShippingPreviewResult([{ id: SLA_IDS.CHEAPEST }])
       }

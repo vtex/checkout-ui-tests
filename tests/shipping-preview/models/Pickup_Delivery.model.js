@@ -22,11 +22,11 @@ export default function test(account) {
 
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({
-          name: 'PAC',
+          name: 'Motoboy',
         })
       } else {
         selectors.push({
-          name: 'Mais econômica',
+          name: 'Em até 7 dias úteis',
         })
       }
 
