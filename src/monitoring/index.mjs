@@ -73,7 +73,17 @@ const isIOEnv = program.env === 'io'
 
 const BASE_PATH = fileURLToPath(new URL('../../tests', import.meta.url))
 
-const CONCURRENCY = 1
+// How many specs to run in parallel. Each spec spins up its own headless
+// Cypress + browser, so this is CPU/RAM bound — size it to the host. Defaults
+// to 3; override per-run/container via CYPRESS_CONCURRENCY, e.g.:
+//   CYPRESS_CONCURRENCY=6 yarn test
+function concurrencyFromEnv(fallback) {
+  const parsed = Number(process.env.CYPRESS_CONCURRENCY)
+
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback
+}
+
+const CONCURRENCY = concurrencyFromEnv(3)
 const CYPRESS_CONFIG = {
   headed: !program.headless,
   headless: program.headless,
@@ -84,7 +94,6 @@ const CYPRESS_CONFIG = {
     viewportHeight: 660,
     viewportWidth: 1024,
     trashAssetsBeforeRuns: false,
-    videoUploadOnPasses: false,
     env: {
       VTEX_ENV: isIOBetaEnv ? 'stable' : program.env,
       VTEX_WORKSPACE: program.workspace,
@@ -201,7 +210,7 @@ const run = async () => {
     await s3.downloadFixture()
     console.log('Fixtures downloaded.')
 
-    console.log('Starting Tests...')
+    console.log(`Starting Tests... (concurrency: ${CONCURRENCY})`)
     Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
 
     return
