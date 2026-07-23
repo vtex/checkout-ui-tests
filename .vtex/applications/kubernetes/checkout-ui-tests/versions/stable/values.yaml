@@ -8,7 +8,7 @@ sre-provisioning:
     secretsManager:
       enabled: true
       secretsName: stable/checkout-ui-tests/checkout-ui-tests
-    version: v0.20.0
+    version: v0.20.1
   apps:
   - activeDeadlineSeconds: 2400
     command:
@@ -54,10 +54,10 @@ sre-provisioning:
     resources:
       limits:
         cpu: 2
-        memory: 2Gi
+        memory: 4Gi
       requests:
         cpu: 2
-        memory: 2Gi
+        memory: 4Gi
     schedule: '* * * * *'
     serviceAccount:
       arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
