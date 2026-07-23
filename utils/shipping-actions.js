@@ -13,9 +13,26 @@ export function selectCountry(country) {
 }
 
 export function choosePickupPoint(slaId = '') {
+  // Guard that the requested point is actually in the list before clicking; a
+  // clear "expected 0 to be greater than 0" beats silently committing the
+  // modal's default point.
+  cy.get(`#${slaId} .pkpmodal-pickup-point-main`, { timeout: 20000 }).should(
+    'have.length.greaterThan',
+    0
+  )
+
   cy.get(`#${slaId} .pkpmodal-pickup-point-main`).first().click()
 
-  cy.get('.pkpmodal-details-confirm-btn').click()
+  // Same three-step race as chooseFirstPickupPoint: let the clicked point's
+  // details panel bind before confirming, otherwise the confirm commits the
+  // modal's default point (e.g. the Botafogo store instead of the requested
+  // scheduled Copacabana point).
+  cy.wait(2000)
+  cy.get('.pkpmodal-details-confirm-btn').should('be.visible').click()
+
+  // Let the pickup selection's shippingData update commit before the flow
+  // moves on (a following recompute can otherwise race the in-flight selection).
+  cy.wait(3000)
 }
 
 // Selecting a pickup point in the modal is a three-step async dance — the list
@@ -79,7 +96,7 @@ export function selectPacItem(matchText) {
 }
 
 function fillGeolocationOmnishipping() {
-  cy.waitAndGet('#ship-addressQuery', 3000).type('Rua Saint Roman 12')
+  cy.waitAndGet('#ship-addressQuery', 4000).type('Rua Saint Roman 12')
 
   selectPacItem('Saint Roman')
 

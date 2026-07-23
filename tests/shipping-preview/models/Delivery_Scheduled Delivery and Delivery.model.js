@@ -3,7 +3,7 @@ import {
   checkShippingPreviewResult,
   fillShippingPreviewDelivery,
 } from '../../../utils/shipping-actions'
-import { ACCOUNT_NAMES, SKUS, SLA_IDS } from '../../../utils/constants'
+import { SKUS } from '../../../utils/constants'
 
 export default function test(account) {
   describe(`Delivery + Scheduled Delivery and Delivery - ${account}`, () => {
@@ -20,15 +20,16 @@ export default function test(account) {
         account,
       })
 
+      /** @type {Array<{ id?: string; name?: string }>} */
       const selectors = []
 
       fillShippingPreviewDelivery(account)
 
-      if (account === ACCOUNT_NAMES.NO_LEAN) {
-        selectors.push({ name: 'Expressa' })
-      } else {
-        selectors.push({ id: SLA_IDS.CHEAPEST })
-      }
+      // At this address the delivery item resolves to a single carrier, so the
+      // preview renders the multi-SLA select variant labelled "Expressa"
+      // (`.srp-delivery-current-many`), which carries no `cheapest` data-testid —
+      // assert its visible carrier name instead, for lean accounts too.
+      selectors.push({ name: 'Expressa' })
 
       checkShippingPreviewResult(selectors)
     })

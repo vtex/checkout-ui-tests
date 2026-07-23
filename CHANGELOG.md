@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.0] - 2026-07-23
+
+### Changed
+
+- Reduce `retries.runMode` from 2 to 1 so a genuinely failing live flow no
+  longer re-runs its full ~90s setup three times ("looping overtime"). All
+  timeouts/retries are now env-tunable (e.g. `CYPRESS_RETRIES`,
+  `CYPRESS_PAGE_LOAD_TIMEOUT`) to restore previous behavior when needed.
+- Trim `pageLoadTimeout` (180s → 90s) and the payment submit-button wait
+  (30s → 20s) so a stuck page/checkout fails fast instead of burning minutes.
+- Add `requestTimeout`/`responseTimeout` bounds so slow/failing live requests
+  fail fast rather than hanging.
+- Centralize the scattered payment/orderPlaced `timeout: 120000` waits into a
+  single env-tunable `utils/timeouts.js` module (value unchanged at 120s).
+
+### Added
+
+- Pre-flight health-check spec (`tests/AAA - Preflight Health Check.test.js`) that fails fast with an actionable message when the checkout server returns 500/401/403 due to an empty `VTEX_AUTH_TOKEN`, instead of every spec failing with a generic 500 in `before each`. The `.test.js` extension ensures it is discovered by `specPattern`.
+- `docs/test-dedup-analysis.md` documenting the removed tests and the remaining open team decisions.
+
+### Removed
+
+- Dead-code (skipped) payment models and their wrappers: `Payment - Credit card - Redirect` (5 wrappers), `Payment - Promissory - Redirect` (5 wrappers), `Payment - Google Pay` (1 wrapper), `Payment - Credit card - Expired` (5 wrappers).
+- Duplicated fully-skipped shipping/shipping-preview models and their wrappers: `Scheduled Delivery` (shipping-preview, 5 wrappers), `Scheduled Delivery_Scheduled Pickup` (shipping-preview, 5 wrappers), `Scheduled Delivery_Scheduled Pickup - Credit card` (shipping, 5 wrappers).
+
+### Fixed
+
+- Fill the full billing address (Brasil + street/neighborhood/number) for the
+  pickup-only credit-card model on non-invoice accounts, so the flow reaches
+  order placement; invoice accounts still inherit billing from the invoice
+  address.
+- Re-submit reliably in the post-payment-error "validate form fields after
+  error" test via an opt-in `completePurchase({ force })` that bypasses the
+  briefly-gated submit button; the strict visible+enabled check remains the
+  default for all other callers.
+- Correct the shipping-preview lean-account assertions that expected a literal
+  `cheapest`/`fastest` `data-testid`. Single-carrier lean views render a visible
+  carrier name or delivery estimate instead, so those scenarios now assert the
+  rendered label (`Delivery` / `Delivery - Second Purchase` → estimate;
+  `Delivery_Scheduled Delivery`, `Delivery_Scheduled Delivery and Delivery` →
+  `Expressa`; `Delivery_Scheduled Delivery_Pickup`,
+  `Delivery_Scheduled Delivery_Scheduled Pickup` → `PAC`;
+  `Delivery - Same Price Packages` → `Motoboy`).
+
 ## [0.19.18] - 2026-06-09
 
 ### Fixed
@@ -700,10 +744,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.2]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
-
-
-[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.18...HEAD
+[unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.18...HEAD
+[0.20.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.18...v0.20.0
 [0.19.18]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.17...v0.19.18
 [0.19.17]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.16...v0.19.17
 [0.19.16]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.15...v0.19.16
 [0.19.15]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.14...v0.19.15
+
+
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.20.0...HEAD

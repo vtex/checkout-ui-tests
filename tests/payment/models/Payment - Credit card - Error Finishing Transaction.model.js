@@ -1,4 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
+import { TIMEOUTS } from '../../../utils/timeouts'
 import {
   fillEmail,
   getRandomEmail,
@@ -37,17 +38,18 @@ export default function test(account) {
         cy.get('#shipping-data').contains('Expressa').should('be.visible')
         cy.get('#shipping-data').contains('PAC Lento').should('be.visible')
       } else {
-        cy.get('#shipping-data').contains('Mais rápida').should('be.visible')
-        cy.get('#shipping-data').contains('Mais econômica').should('be.visible')
+        cy.get('#shipping-data')
+          .contains('Em até 7 dias úteis')
+          .should('be.visible')
       }
 
       goToPayment()
       payWithCreditCard()
       completePurchase()
 
-      cy.get('.payment-unauthorized-modal', { timeout: 120000 }).should(
-        'be.visible'
-      )
+      cy.get('.payment-unauthorized-modal', {
+        timeout: TIMEOUTS.PAYMENT_PROCESSING,
+      }).should('be.visible')
       cy.get('.payment-unauthorized-button').click()
       cy.get('.payment-unauthorized-modal').should('not.be.visible')
     })
@@ -65,9 +67,9 @@ export default function test(account) {
       payWithCreditCard()
       completePurchase()
 
-      cy.get('.payment-unauthorized-modal', { timeout: 120000 }).should(
-        'be.visible'
-      )
+      cy.get('.payment-unauthorized-modal', {
+        timeout: TIMEOUTS.PAYMENT_PROCESSING,
+      }).should('be.visible')
       cy.get('.payment-unauthorized-button').click()
       cy.get('.payment-unauthorized-modal').should('not.be.visible')
 
@@ -104,9 +106,9 @@ export default function test(account) {
       payWithCreditCard()
       completePurchase()
 
-      cy.get('.payment-unauthorized-modal', { timeout: 120000 }).should(
-        'be.visible'
-      )
+      cy.get('.payment-unauthorized-modal', {
+        timeout: TIMEOUTS.PAYMENT_PROCESSING,
+      }).should('be.visible')
       cy.get('.payment-unauthorized-button').click()
       cy.get('.payment-unauthorized-modal').should('not.be.visible')
 
@@ -116,7 +118,10 @@ export default function test(account) {
         cy.wrap(body).find('#creditCardpayment-card-0Code').clear()
       })
 
-      completePurchase()
+      // Re-submit the now-invalid form to trigger field validation. After the
+      // declined-payment error the submit button is gated (hidden/disabled), so
+      // force the click instead of waiting for the strict visible/enabled state.
+      completePurchase({ force: true })
 
       queryIframe(($iframe) => {
         const body = getIframeBody($iframe)

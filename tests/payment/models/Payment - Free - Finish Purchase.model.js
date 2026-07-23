@@ -1,4 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
+import { TIMEOUTS } from '../../../utils/timeouts'
 import {
   fillEmail,
   getRandomEmail,
@@ -32,7 +33,10 @@ export default function test(account) {
 
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
+      cy.url({ timeout: TIMEOUTS.PAYMENT_PROCESSING }).should(
+        'contain',
+        '/orderPlaced'
+      )
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')

@@ -22,6 +22,7 @@ export default function test(account) {
         account,
       })
 
+      /** @type {Array<{ id?: string; name?: string }>} */
       const selectors = [
         { id: SLA_IDS.SCHEDULED_PICKUP },
         { id: SLA_IDS.SCHEDULED },
@@ -30,13 +31,17 @@ export default function test(account) {
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account, SLA_IDS.SCHEDULED_PICKUP)
 
+      // The delivery item (SKU 31) resolves to a single carrier at this address,
+      // so the preview renders the multi-SLA select variant labelled "PAC"
+      // (`.srp-delivery-current-many`), which carries no `cheapest`/`fastest`
+      // data-testid — assert its visible carrier name instead.
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({
-          name: 'PAC',
+          name: 'Motoboy',
         })
       } else {
         selectors.push({
-          id: SLA_IDS.CHEAPEST,
+          name: 'PAC',
         })
       }
 

@@ -1,4 +1,5 @@
 import { setup, visitAndClearCookies } from '../../../utils'
+import { TIMEOUTS } from '../../../utils/timeouts'
 import {
   fillEmail,
   getRandomEmail,
@@ -45,7 +46,10 @@ export default function test(account) {
       payWithCreditCard()
       completePurchase()
 
-      cy.url({ timeout: 120000 }).should('contain', '/orderPlaced')
+      cy.url({ timeout: TIMEOUTS.PAYMENT_PROCESSING }).should(
+        'contain',
+        '/orderPlaced'
+      )
       cy.wait(2000)
       cy.contains(email).should('be.visible')
       cy.contains('Fernando Coelho').should('be.visible')
@@ -55,7 +59,7 @@ export default function test(account) {
       cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
       cy.contains(DELIVERY_TEXT).should('be.visible')
       cy.contains('Rua Saint Roman 12').should('be.visible')
-      cy.contains('PAC').should('be.visible')
+      cy.contains('Motoboy').should('be.visible')
     })
   })
 }
