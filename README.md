@@ -138,6 +138,46 @@ In the `utils` folder you have at your disposal a series of implemented actions 
 
 - `goBackToCart` - Turns back from the checkout to cart
 
+## Releasing / Deploy
+
+Releases are cut with [releasy](https://github.com/vtex/releasy), which bumps the
+version, updates the `CHANGELOG.md`, commits, creates the Git tag and pushes it.
+The [Drone pipeline](https://drone-robots.vtex.com/vtex/checkout-ui-tests) picks
+up the new tag and runs the deploy automatically.
+
+### Prerequisites
+
+- Install releasy globally: `npm i -g releasy`
+- Export a GitHub Personal Access Token (with `repo` scope) as `GITHUB_API_TOKEN`
+  so releasy can publish the GitHub release. Add it to your shell profile:
+
+```sh
+export GITHUB_API_TOKEN=<your_token>
+```
+
+### Steps
+
+1. Make sure the changes for this release are listed under the `## [Unreleased]`
+   section of `CHANGELOG.md` (Keep a Changelog format).
+2. From an up-to-date `master`, run releasy with the desired bump. Always preview
+   first with `--dry-run` to see what will happen without applying changes:
+
+```sh
+$ releasy patch --stable --dry-run   # preview only, no changes applied
+$ releasy patch --stable             # 0.20.0 => 0.20.1
+$ releasy minor --stable             # 0.20.0 => 0.21.0
+$ releasy major --stable             # 0.20.0 => 1.0.0
+```
+
+> ℹ️ Without `--stable`, releasy's default behavior bumps the `patch` and creates
+> a `beta` prerelease (e.g. `0.20.1-beta`). Pass `--stable` for a stable release.
+
+3. releasy then bumps the `version` in `package.json`, moves the `[Unreleased]`
+   entries into the new version block in `CHANGELOG.md`, commits, creates the
+   `vX.Y.Z` tag and pushes the commit and tag to the remote.
+4. Pushing the tag triggers the Drone deploy pipeline. Follow the run on the
+   [Drone dashboard](https://drone-robots.vtex.com/vtex/checkout-ui-tests).
+
 ## Contributing
 
 The main purpose of this repository build a more effective e2e test suite for the Checkout UI. Read below to learn how you can contribute.
