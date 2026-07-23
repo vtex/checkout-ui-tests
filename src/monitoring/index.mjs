@@ -190,6 +190,24 @@ function runCypress(spec) {
     })
 }
 
+// Each cron run has a fixed wall-clock budget (k8s `activeDeadlineSeconds`) that
+// is much shorter than a full sweep of every spec. Running the specs in a fixed
+// (alphabetical) order means the job is always killed at the same point, so the
+// tail of the list (e.g. `shipping-preview/*`) never runs and never reports.
+// Shuffling per run spreads coverage across the whole suite over successive cron
+// cycles instead of starving the same specs on every run.
+function shuffle(items) {
+  const shuffled = [...items]
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+
+  return shuffled
+}
+
 const run = async () => {
   const specs = await getTestFiles({
     dir: BASE_PATH,
@@ -210,10 +228,14 @@ const run = async () => {
     await s3.downloadFixture()
     console.log('Fixtures downloaded.')
 
-    console.log(`Starting Tests... (concurrency: ${CONCURRENCY})`)
-    Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
+    const orderedSpecs = shuffle(specs)
 
-    return
+    console.log(`Starting Tests... (concurrency: ${CONCURRENCY})`)
+    // Await the sweep so the process treats it as a single unit of work and we
+    // can log when a full pass actually completes (useful to tell "the sweep
+    // finished" from "the job was killed by the deadline").
+    await Promise.map(orderedSpecs, runCypress, { concurrency: CONCURRENCY })
+    console.log('Finished running all scheduled specs.')
   } catch (err) {
     console.log(err.message)
   }

@@ -59,7 +59,7 @@ apps:
   resources:
     requests:
       cpu: 2
-      memory: 2Gi
+      memory: 4Gi
     limits:
       cpu: 2
-      memory: 2Gi
+      memory: 4Gi
