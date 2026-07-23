@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.0] - 2026-07-23
+
 ### Changed
 
 - Reduce `retries.runMode` from 2 to 1 so a genuinely failing live flow no
@@ -743,7 +745,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.13.1]: https://github.com/vtex/checkout-ui-tests/compare/v0.13.0...v0.13.1
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.17.0...HEAD
 [unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.18...HEAD
+[0.20.0]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.18...v0.20.0
 [0.19.18]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.17...v0.19.18
 [0.19.17]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.16...v0.19.17
 [0.19.16]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.15...v0.19.16
 [0.19.15]: https://github.com/vtex/checkout-ui-tests/compare/v0.19.14...v0.19.15
+
+
+[Unreleased]: https://github.com/vtex/checkout-ui-tests/compare/v0.20.0...HEAD
