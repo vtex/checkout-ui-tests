@@ -54,10 +54,10 @@ sre-provisioning:
     resources:
       limits:
         cpu: 2
-        memory: 2Gi
+        memory: 4Gi
       requests:
         cpu: 2
-        memory: 2Gi
+        memory: 4Gi
     schedule: '* * * * *'
     serviceAccount:
       arn: arn:aws:iam::558830342743:role/s3-healthcheck-io
