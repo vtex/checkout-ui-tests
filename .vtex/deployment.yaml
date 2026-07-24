@@ -38,6 +38,9 @@
 
     - name: node-ci-v2
       parameters:
+        nodeCommands:
+          - install
+          - test:coverage
         sonarProjectName: checkout-ui-tests
         nodeVersion: 20-bookworm
       runtime:
