@@ -28,13 +28,16 @@ export default function test(account) {
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account)
 
-      // The remaining delivery item resolves to a single carrier, so the preview
-      // renders its visible carrier name rather than a `cheapest` data-testid.
-      // The label differs from the NO_LEAN view: lean accounts render "PAC".
+      // How the remaining delivery item can be asserted depends on lean shipping.
+      // Lean accounts aggregate its SLAs into a single option that carries the
+      // `cheapest` data-testid. Non-lean accounts render the raw multi-SLA select
+      // with no such testid — assert the visible carrier name instead.
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({ name: 'Motoboy' })
-      } else {
+      } else if (account === ACCOUNT_NAMES.CLEAN_NO_MAPS) {
         selectors.push({ name: 'PAC' })
+      } else {
+        selectors.push({ id: SLA_IDS.CHEAPEST })
       }
 
       checkShippingPreviewResult(selectors)

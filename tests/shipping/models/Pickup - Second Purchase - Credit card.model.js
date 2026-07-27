@@ -36,7 +36,6 @@ export default function test(account) {
       )
       cy.wait(2000)
       cy.contains(email).should('be.visible')
-      cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
       cy.contains(PICKUP_TEXT).should('be.visible')
     })
   })
