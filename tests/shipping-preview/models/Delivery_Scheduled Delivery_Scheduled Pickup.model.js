@@ -31,17 +31,22 @@ export default function test(account) {
       goToShippingPreviewPickup()
       fillShippingPreviewPickupAddress(account, SLA_IDS.SCHEDULED_PICKUP)
 
-      // The delivery item (SKU 31) resolves to a single carrier at this address,
-      // so the preview renders the multi-SLA select variant labelled "PAC"
-      // (`.srp-delivery-current-many`), which carries no `cheapest`/`fastest`
-      // data-testid — assert its visible carrier name instead.
+      // How the delivery item (SKU 31) can be asserted depends on lean shipping.
+      // Lean accounts aggregate its SLAs into a single option that carries the
+      // `cheapest` data-testid. Non-lean accounts render the raw multi-SLA select
+      // (`.srp-delivery-current-many`), which has no such testid — assert the
+      // visible carrier name instead.
       if (account === ACCOUNT_NAMES.NO_LEAN) {
         selectors.push({
           name: 'Motoboy',
         })
-      } else {
+      } else if (account === ACCOUNT_NAMES.CLEAN_NO_MAPS) {
         selectors.push({
           name: 'PAC',
+        })
+      } else {
+        selectors.push({
+          id: SLA_IDS.CHEAPEST,
         })
       }
 
