@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Assert shipping-preview delivery options per account lean-shipping config:
+  `Delivery_Scheduled Delivery and Delivery` expects `Expressa` on
+  `NO_LEAN`/`CLEAN_NO_MAPS` and `Prazos variados` on lean accounts;
+  `Delivery_Scheduled Delivery_Scheduled Pickup` expects carrier name `PAC`
+  on `CLEAN_NO_MAPS` and `cheapest` `data-testid` on lean accounts.
+- Select Brazil (`BRA`) in `#ship-country` when present before typing a CEP in
+  `fillPostalCodeOmnishipping`, so multi-country trade-policy accounts keep
+  the Brazilian postal-code mask.
+- Complete the pre-filled pickup shipping payload (address fields + geo) and
+  drop the obsolete store-name assertion in
+  `Pickup - Pre-filled profile and shipping data`.
+
 ## [0.20.1] - 2026-07-23
 
 ## [0.20.0] - 2026-07-23
