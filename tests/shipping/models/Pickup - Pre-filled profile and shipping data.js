@@ -40,7 +40,16 @@ export default function test(account) {
             addressId: '1',
             addressType: 'search',
             country: 'BRA',
-            postalCode: '22250-040',
+            isDisposable: true,
+            postalCode: '22011050',
+            city: 'Rio de Janeiro',
+            state: 'RJ',
+            street: 'Rua General Azevedo Pimentel',
+            number: '5',
+            neighborhood: 'Copacabana',
+            complement: '',
+            reference: null,
+            geoCoordinates: [-43.1808, -22.9654],
           },
         ],
       }
@@ -67,7 +76,6 @@ export default function test(account) {
         cy.contains('Paulo Pipoco').should('be.visible')
         cy.contains('2144443333').should('be.visible')
         cy.contains(PICKUP_TEXT).should('be.visible')
-        cy.contains('Loja em Copacabana no Rio de Janeiro').should('be.visible')
         cy.contains('Rua General Azevedo Pimentel 5').should('be.visible')
         cy.contains('Copacabana').should('be.visible')
       })

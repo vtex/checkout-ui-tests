@@ -60,7 +60,34 @@ export function chooseFirstPickupPoint() {
   cy.wait(3000)
 }
 
+// Accounts with a multi-country trade policy render a country selector in the
+// shipping form. The address rules — and therefore the postal code mask —
+// follow whatever is selected there, so `#ship-postalCode` only accepts a CEP
+// while Brazil is selected. Accounts without the selector are already locked to
+// BRA and need no action. An already-selected BRA is left alone on purpose:
+// `.select()` fires a change event that reloads the address rules and resets
+// the form, which would be a pointless re-render on every existing test.
+function ensureBrazilSelected() {
+  cy.get('body').then(($body) => {
+    if (!$body.find('#ship-country').length) {
+      return
+    }
+
+    cy.get('#ship-country').then(($country) => {
+      if ($country.val() !== 'BRA') {
+        selectCountry('BRA')
+      }
+    })
+  })
+}
+
 function fillPostalCodeOmnishipping(postalCode = '22071060') {
+  // Wait for the address form to render before the probe above — `$body.find()`
+  // is synchronous and cannot retry. Either field means the form is up.
+  cy.get('#ship-country, #ship-postalCode').should('exist')
+
+  ensureBrazilSelected()
+
   cy.get('#ship-postalCode').type(postalCode)
 }
 
