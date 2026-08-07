@@ -102,7 +102,7 @@ export function visitAndClearCookies(account = Accounts.DEFAULT) {
     cy.setCookie('vtex-commerce-env', 'beta')
   }
 
-  if (baseConfig.environment === 'io') {
+  if (baseConfig.environment === 'io' || baseConfig.environment === 'local') {
     cy.request(
       'POST',
       `http://api.vtexcommercestable.com.br/api/vtexid/apptoken/login?an=${account}`,
