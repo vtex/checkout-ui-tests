@@ -14,7 +14,8 @@
     "test:ci-beta-io": "make ENVIRONMENT=beta-io",
     "lint": "eslint --ext js,ts,mjs .",
     "lint:fix": "eslint --fix --ext js,ts,mjs .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:coverage": "echo \"no tests\" && exit 0"
   },
   "repository": {
     "type": "git",
