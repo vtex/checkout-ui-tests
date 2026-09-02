@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Regression tests for KI PEXP-1709 being solved
+
 ## [0.20.2] - 2026-07-27
 
 ### Fixed
